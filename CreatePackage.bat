@@ -1,0 +1,2 @@
+nuget pack .nuspec
+pause
