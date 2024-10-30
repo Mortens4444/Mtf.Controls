@@ -1,9 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35417.141 d17.12
+VisualStudioVersion = 17.12.35417.141
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtf.Controls", "Mtf.Controls\Mtf.Controls.csproj", "{2E47B360-78B3-4B0D-A68D-4C4F928ED1C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtf.Controls.Test", "Mtf.Controls.Test\Mtf.Controls.Test.csproj", "{47BA6240-C068-4A9A-9FB2-7F8C5BEDCE99}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D0F6F5F8-22B0-4B9E-AF46-78DF60449C08}"
+	ProjectSection(SolutionItems) = preProject
+		ReadMe.md = ReadMe.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +22,10 @@ Global
 		{2E47B360-78B3-4B0D-A68D-4C4F928ED1C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E47B360-78B3-4B0D-A68D-4C4F928ED1C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E47B360-78B3-4B0D-A68D-4C4F928ED1C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47BA6240-C068-4A9A-9FB2-7F8C5BEDCE99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47BA6240-C068-4A9A-9FB2-7F8C5BEDCE99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47BA6240-C068-4A9A-9FB2-7F8C5BEDCE99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47BA6240-C068-4A9A-9FB2-7F8C5BEDCE99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

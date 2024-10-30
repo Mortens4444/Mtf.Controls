@@ -27,52 +27,301 @@ To install the `Mtf.Controls` package, follow these steps:
 
 ### ListView Control
 
-The `ListView` control enables efficient display and management of lists in your project.
+# MtfListView Class Documentation
+
+The `MtfListView` class is a custom `ListView` control that enhances the standard functionality with additional features such as alternating colors, compact view, and integrated thread safe behaviour. It is designed to improve the visual appearance and usability of list views in applications.
+
+## Attributes
+
+- **ToolboxItem**: Indicates that the control is a toolbox item.
+- **ToolboxBitmap**: Provides a bitmap for the control in the toolbox.
+
+## Constructor
+
+### `MtfListView()`
+
+Initializes a new instance of the `MtfListView` class, setting default values for its properties.
+
+## Properties
+
+| Property                     | Type        | Description                                                                                      |
+|------------------------------|-------------|--------------------------------------------------------------------------------------------------|
+| `ReadonlyCheckboxes`         | `bool`      | Indicates if the item checkboxes are readonly.                                                   |
+| `EnsureLastItemIsVisible`    | `bool`      | Ensures that the last item is visible.                                                           |
+| `AlternatingColorEven`       | `Color`     | Specifies color for even rows.                                                                   |
+| `AlternatingColorOdd`        | `Color`     | Specifies color for odd rows.                                                                    |
+| `AlternatingPairColorEven`   | `Color`     | Specifies color for paired even rows.                                                            |
+| `AlternatingPairColorOdd`    | `Color`     | Specifies color for paired odd rows.                                                             |
+| `SameItemsColorEven`         | `Color`     | Specifies color for same even rows.                                                              |
+| `SameItemsColorOdd`          | `Color`     | Specifies color for same odd rows.                                                               |
+| `CompactView`                | `bool`      | If `true`, identical items are displayed only once.                                              |
+| `AlternatingColorsAreInUse`  | `bool`      | Enables/disables alternating colors.                                                             |
+| `FirstItemIsGray`            | `bool`      | If `true`, the first item will be gray.                                                          |
+| `AlwaysDifferentColumnIndexes`| `ReadOnlyCollection<int>` | Specifies columns to ignore for compact view creation, defaulting to an empty list.             |
+
+
+
+## Example Usage
 
 ```csharp
-var listView = new ListView();
-listView.Add("Item 1");
-listView.Add("Item 2");
+[ToolboxItem(true)]
+[ToolboxBitmap(typeof(MtfListView), "Resources.MtfListView.png")]
+public class MtfListView : ListView
+{
+    private readonly List<int> alwaysDifferentColumnIndexes = new List<int>();
+
+    public MtfListView()
+    {
+        EnsureLastItemIsVisible = false;
+        AlternatingColorsAreInUse = true;
+        FirstItemIsGray = false;
+        OwnerDraw = AlternatingColorsAreInUse;
+        SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.EnableNotifyMessage | ControlStyles.UserPaint, true);
+        UpdateStyles();
+
+        View = View.Details;
+        FullRowSelect = true;
+        AlternatingColorEven = Color.LightBlue;
+        AlternatingColorOdd = BackColor;
+
+        AlternatingPairColorEven = Color.LightSeaGreen;
+        AlternatingPairColorOdd = Color.CadetBlue;
+        SameItemsColorEven = Color.DarkOrange;
+        SameItemsColorOdd = Color.LightSalmon;
+        CompactView = false;
+    }
+
+    // Properties
+    [Browsable(true)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+    [Description("Indicates that the item checkboxes are readonly or not.")]
+    public bool ReadonlyCheckboxes { get; set; }
+
+    [Browsable(true)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+    [Description("Ensures that the last item is visible.")]
+    public bool EnsureLastItemIsVisible { get; set; }
+
+    // Additional properties...
+}
 ```
 
-- **Properties**:
-  - `Items`: Collection of items within the list view.
-  - `SelectedIndex`: The index of the currently selected item.
-- **Methods**:
-  - `Add(string item)`: Adds a new item to the list.
-  - `Remove(string item)`: Removes the specified item from the list.
+### MtfTreeView Class
 
-### TreeView Control
+The `MtfTreeView` class extends TreeView with features like custom line styles, multiple selection support, custom checkbox appearance, and tick color.
 
-The `TreeView` control allows hierarchical display of items, ideal for representing tree structures such as file directories.
+#### Constants
+
+| Constant          | Type      | Description                       |
+|-------------------|-----------|-----------------------------------|
+| `CheckboxSize`    | `short`   | Specifies the size of the checkbox. |
+| `BigShift`        | `byte`    | Specifies the large shift value. |
+| `SmallShift`      | `byte`    | Specifies the small shift value. |
+| `MinShift`        | `byte`    | Specifies the minimum shift value.|
+
+#### Properties
+
+| Property                      | Type        | Description                                                                                      |
+|-------------------------------|-------------|--------------------------------------------------------------------------------------------------|
+| `StateImageOrCheckBoxOnLeft`  | `bool`      | If `true`, displays the state image on the left side.                                           |
+| `LineStyle`                   | `DashStyle` | Sets the style of lines between nodes.                                                          |
+| `ShowPlusMinusOnRootNodes`    | `bool`      | If `true`, displays a plus-minus icon on root nodes.                                            |
+| `DrawDefaultImageToNodes`     | `bool`      | Uses `ImageIndex` of ListView to set node images.                                               |
+| `TickColor`                   | `Color`     | Sets the color of checkbox ticks.                                                               |
+| `CheckBoxBackground`          | `Color`     | Sets the background color for checkboxes.                                                       |
+| `MultiSelect`                 | `bool`      | Enables/disables multiple node selection.                                                       |
+| `SelectedNodes`               | `TreeNode[]`| Array of currently selected nodes.                                                              |
+
+#### Usage Example
 
 ```csharp
-var treeView = new TreeView();
-var root = treeView.AddRoot("Root Node");
-root.AddChild("Child Node");
+var treeView = new MtfTreeView
+{
+    MultiSelect = true,
+    TickColor = Color.Green,
+    LineStyle = DashStyle.Dot
+};
 ```
 
-- **Properties**:
-  - `Root`: The root node of the tree.
-  - `Nodes`: Collection of nodes within the tree view.
-- **Methods**:
-  - `AddRoot(string text)`: Adds a root node.
-  - `AddChild(string text)`: Adds a child node to the selected node.
+### SourceCodeViewerRichTextBox
 
-### Panel Control
+`SourceCodeViewerRichTextBox` is a custom control derived from the `RichTextBox` class. It provides functionality for displaying source code with customizable syntax coloring and improved control over text rendering and updates. 
 
-The `Panel` control provides a container for other controls, enabling structured layout and organization.
+#### Features
+
+- **Syntax Highlighting**: Supports multiple coloring methods, such as C++/CLI, C#, Java, Object Pascal, Visual Basic, and Visual C++.
+- **Thread-Safe Text Manipulation**: Safe methods for appending and setting text in multithreaded applications.
+- **Efficient Updates**: Supports batch updates without flickering, with options to begin and end updates manually.
+- **Customizable Tab Size**: Dynamically calculates tab width based on font size.
+- **Optional Auto-Scrolling**: Ensures the last line of text is visible on updates if configured.
+
+#### Constructors
+
+##### `SourceCodeViewerRichTextBox()`
+
+Initializes the control, setting default options for:
+- Disabling URL detection
+- Accepting tabs
+- No initial coloring
+
+#### Properties
+
+##### `ColoringMethod` (ColoringMethod)
+
+Defines the syntax coloring mode.
+- **Type**: `ColoringMethod`
+- **Default**: `ColoringMethod.No_Coloring`
+- **Usage**: Set to any of the supported programming languages to enable syntax highlighting for that language.
+
+##### `ScroolToLastLine` (bool)
+
+Determines whether the control automatically scrolls to the last line on each update.
+- **Type**: `bool`
+- **Default**: `false`
+- **Description**: Set to `true` to enable auto-scrolling to the last line.
+
+#### Methods
+
+##### `GetTextThreadSafe()`
+Returns the control’s text safely in a multithreaded environment.
+
+##### `SetTextThreadSafe(string text)`
+Sets the control’s text safely in a multithreaded environment.
+
+##### `AppendTextThreadSafe(string text, Color? textColor = null)`
+Appends text to the control safely in a multithreaded environment, with an optional text color.
+
+##### `BeginUpdate()`
+Disables control updates to prevent flickering during batch operations.
+
+##### `EndUpdate()`
+Re-enables control updates after a batch operation and redraws the control.
+
+##### `StartUpdate(ref int scrollTo, ref int pos, ref int len)`
+Starts a safe update process by caching the current scroll and cursor positions.
+
+##### `StopUpdate(int scrollTo, int pos, int len)`
+Ends the update process, restoring the control's scroll and cursor positions.
+
+##### `ClearColoring()`
+Resets all text colors to the default font color.
+
+##### `ClearBackgroundColoring()`
+Resets the background color of all text to the control’s background color.
+
+##### `ApplyColoring()`
+Applies syntax coloring based on the configured `ColoringMethod`.
+
+#### Supported Coloring Methods
+
+1. **No_Coloring** - Disables all syntax highlighting.
+2. **CPP_CLI** - Syntax highlighting for C++/CLI.
+3. **C_Sharp** - Syntax highlighting for C#.
+4. **Java** - Syntax highlighting for Java.
+5. **Object_Pascal** - Syntax highlighting for Object Pascal.
+6. **Visual_Basic** - Syntax highlighting for Visual Basic.
+7. **Visual_CPP** - Syntax highlighting for Visual C++.
+
+#### Example Usage
 
 ```csharp
-var panel = new Panel();
-panel.AddControl(new ListView());
-panel.AddControl(new TreeView());
+var codeViewer = new SourceCodeViewerRichTextBox
+{
+    ColoringMethod = ColoringMethod.C_Sharp,
+    ScroolToLastLine = true
+};
+codeViewer.SetTextThreadSafe("public class HelloWorld { }");
 ```
 
-- **Properties**:
-  - `Controls`: Collection of child controls within the panel.
-- **Methods**:
-  - `AddControl(Control control)`: Adds a new control to the panel.
+### **MovablePanel**
+
+`MovablePanel` is a transparent panel that can be moved by dragging it with the mouse. It is useful in scenarios where dynamic relocation of a window or panel is needed. The following attributes and events are available:
+
+#### **Attributes**
+- `[ToolboxItem(true)]` – Ensures the control is available in the Toolbox.
+- `[ToolboxBitmap(typeof(MovablePanel), "Resources.MovablePanel.bmp")]` – Associates a custom icon for the panel in the Toolbox.
+
+#### **Properties**
+- `CanMove` (bool): Determines if the panel is movable. Default is `true`.
+
+#### **Methods**
+- `OnMouseDown(MouseEventArgs e)`: Initiates the panel's movement when the mouse button is pressed, if `CanMove` is set to `true`.
+- `OnMouseUp(MouseEventArgs e)`: Stops moving the panel when the mouse button is released.
+- `OnMouseMove(MouseEventArgs e)`: Updates the panel's position as the mouse is moved, as long as movement is allowed.
+
+#### **Usage Example**
+```csharp
+var panel = new MovablePanel
+{
+    CanMove = true
+};
+```
+
+### **MovableSizablePanel**
+
+`MovableSizablePanel` extends `MovablePanel`, adding the capability to resize the panel in the East (right), South (bottom), and South-East (bottom-right) directions.
+
+#### **Attributes**
+- `[Browsable(true)]`, `[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]`, `[Description("Can change the size of the panel")]` – Allows the `CanSize` property to be visible and modifiable in the designer.
+
+#### **Properties**
+- `CanSize` (bool): Determines if the panel is resizable. Default is `true`.
+
+#### **Methods**
+- `InitializeResizeHandles()`: Creates resize handles on the panel's right, bottom, and bottom-right sides.
+- `CheckSize()`: Ensures the panel does not shrink below a predefined minimum size (`Constants.MinSize`).
+- `PbEast_MouseMove`, `PbSouth_MouseMove`, `PbSouthEast_MouseMove`: Logic for resizing in specific directions.
+
+#### **Usage Example**
+```csharp
+var sizablePanel = new MovableSizablePanel
+{
+    CanMove = true,
+    CanSize = true
+};
+```
+
+### **MtfPictureBox**
+
+`MtfPictureBox` is a custom PictureBox control that supports resizable and repositionable inner controls during resizing. It is particularly useful for displaying elements with relative positions that need to adapt dynamically to changes in size.
+
+#### **Attributes**
+- `[ToolboxItem(true)]` – Ensures the control is available in the Toolbox.
+- `[ToolboxBitmap(typeof(MtfPictureBox), "Resources.MtfPictureBox.png")]` – Associates a custom icon for the PictureBox in the Toolbox.
+
+#### **Properties**
+- `RepositioningAndResizingControlsOnResize` (bool): Specifies whether controls added to the PictureBox should resize and reposition automatically.
+- `OriginalSize` (Size): Stores the original size for scaling calculations.
+
+#### **Methods**
+- `OnControlAdded(ControlEventArgs e)`: Stores the position and size of a new control added to the PictureBox.
+- `OnControlRemoved(ControlEventArgs e)`: Deletes position and size information of a control when it’s removed.
+- `RefreshLocation(Control control)`: Updates the position of a given control.
+- `RefreshSize(Control control)`: Updates the size of a given control.
+- `RelocateControls()`: Relocates all controls based on the new scaling ratio.
+
+#### **Usage Example**
+```csharp
+var pictureBox = new MtfPictureBox
+{
+    RepositioningAndResizingControlsOnResize = true,
+    OriginalSize = new Size(800, 600)
+};
+```
+
+### **Constants**
+
+This project uses a `Constants` class to store shared values such as:
+- `MinSize` (Size): Minimum size allowed for resizable panels, ensuring they do not shrink below this threshold.
+- `Border` (int): Defines the size of the resize borders on the `MovableSizablePanel`.
+
+Ensure the `Constants` class is defined appropriately for the panels to function as expected.
+
+### **Notes**
+- `MovablePanel` and `MovableSizablePanel` rely on the `Constants` class for settings like `MinSize` and `Border`.
+- `MtfPictureBox` should be initialized with the `OriginalSize` property set to the initial dimensions, so it can calculate scaling accurately.
+- The methods handling resizing (`PbEast_MouseMove`, `PbSouth_MouseMove`, and `PbSouthEast_MouseMove`) require careful handling of mouse events to avoid conflicts with other mouse-based controls on the form.
+
 
 ## Important Notes
 
