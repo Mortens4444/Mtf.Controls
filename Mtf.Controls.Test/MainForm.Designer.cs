@@ -69,12 +69,17 @@ namespace Mtf.Controls.Test
             label5 = new Label();
             button1 = new Button();
             pictureBox2 = new PictureBox();
+            pictureBox3 = new PictureBox();
+            kbd300aSimulator1 = new Kbd300ASimulator();
+            richTextBox1 = new RichTextBox();
             ((System.ComponentModel.ISupportInitialize)mtfPictureBox1).BeginInit();
             movablePanel1.SuspendLayout();
             movableSizablePanel1.SuspendLayout();
             transparentPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)kbd300aSimulator1).BeginInit();
             SuspendLayout();
             // 
             // mtfListView1
@@ -150,7 +155,7 @@ namespace Mtf.Controls.Test
             sourceCodeViewerRichTextBox1.Location = new Point(726, 7);
             sourceCodeViewerRichTextBox1.Name = "sourceCodeViewerRichTextBox1";
             sourceCodeViewerRichTextBox1.ScroolToLastLine = false;
-            sourceCodeViewerRichTextBox1.Size = new Size(625, 573);
+            sourceCodeViewerRichTextBox1.Size = new Size(625, 417);
             sourceCodeViewerRichTextBox1.TabIndex = 3;
             sourceCodeViewerRichTextBox1.Text = resources.GetString("sourceCodeViewerRichTextBox1.Text");
             // 
@@ -158,7 +163,7 @@ namespace Mtf.Controls.Test
             // 
             mtfPictureBox1.BackColor = Color.FromArgb(192, 255, 255);
             mtfPictureBox1.BackgroundImageLayout = ImageLayout.Center;
-            mtfPictureBox1.Location = new Point(22, 370);
+            mtfPictureBox1.Location = new Point(8, 322);
             mtfPictureBox1.Name = "mtfPictureBox1";
             mtfPictureBox1.OriginalSize = new Size(100, 50);
             mtfPictureBox1.RepositioningAndResizingControlsOnResize = false;
@@ -242,7 +247,7 @@ namespace Mtf.Controls.Test
             // pictureBox1
             // 
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox1.Location = new Point(199, 370);
+            pictureBox1.Location = new Point(185, 322);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(171, 102);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -252,7 +257,7 @@ namespace Mtf.Controls.Test
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(26, 341);
+            label4.Location = new Point(12, 293);
             label4.Name = "label4";
             label4.Size = new Size(82, 15);
             label4.TabIndex = 15;
@@ -261,7 +266,7 @@ namespace Mtf.Controls.Test
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(199, 341);
+            label5.Location = new Point(185, 293);
             label5.Name = "label5";
             label5.Size = new Size(63, 15);
             label5.TabIndex = 16;
@@ -269,7 +274,7 @@ namespace Mtf.Controls.Test
             // 
             // button1
             // 
-            button1.Location = new Point(127, 478);
+            button1.Location = new Point(113, 430);
             button1.Name = "button1";
             button1.Size = new Size(106, 23);
             button1.TabIndex = 17;
@@ -280,18 +285,54 @@ namespace Mtf.Controls.Test
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.kertmester;
-            pictureBox2.Location = new Point(381, 343);
+            pictureBox2.Location = new Point(12, 459);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(189, 129);
+            pictureBox2.Size = new Size(230, 225);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 18;
             pictureBox2.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(248, 459);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(230, 225);
+            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox3.TabIndex = 19;
+            pictureBox3.TabStop = false;
+            // 
+            // kbd300aSimulator1
+            // 
+            kbd300aSimulator1.Image = (Image)resources.GetObject("kbd300aSimulator1.Image");
+            kbd300aSimulator1.Location = new Point(726, 430);
+            kbd300aSimulator1.Name = "kbd300aSimulator1";
+            kbd300aSimulator1.OriginalSize = new Size(675, 425);
+            kbd300aSimulator1.PipeName = "testpipe";
+            kbd300aSimulator1.RepositioningAndResizingControlsOnResize = true;
+            kbd300aSimulator1.Shift = false;
+            kbd300aSimulator1.Size = new Size(659, 421);
+            kbd300aSimulator1.SizeMode = PictureBoxSizeMode.Zoom;
+            kbd300aSimulator1.TabIndex = 0;
+            kbd300aSimulator1.TabStop = false;
+            // 
+            // richTextBox1
+            // 
+            richTextBox1.Location = new Point(504, 431);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.Size = new Size(216, 417);
+            richTextBox1.TabIndex = 20;
+            richTextBox1.Text = "Press a key on KBD300A simulator\n\n";
+            richTextBox1.TextChanged += RichTextBox1_TextChanged;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1351, 580);
+            ClientSize = new Size(1594, 860);
+            Controls.Add(richTextBox1);
+            Controls.Add(kbd300aSimulator1);
+            Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
             Controls.Add(button1);
             Controls.Add(label5);
@@ -317,6 +358,8 @@ namespace Mtf.Controls.Test
             transparentPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)kbd300aSimulator1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -342,5 +385,8 @@ namespace Mtf.Controls.Test
         private Label label5;
         private Button button1;
         private PictureBox pictureBox2;
+        private PictureBox pictureBox3;
+        private Kbd300ASimulator kbd300aSimulator1;
+        private RichTextBox richTextBox1;
     }
 }

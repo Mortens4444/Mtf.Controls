@@ -38,6 +38,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\KBD300A.png" />
+    <None Remove="Resources\Kbd300ASimulator.png" />
     <None Remove="Resources\MovablePanel.bmp" />
     <None Remove="Resources\MovablePanel.ico" />
     <None Remove="Resources\MovablePanel.png" />
@@ -61,6 +63,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\KBD300A.png" />
+    <EmbeddedResource Include="Resources\Kbd300ASimulator.png" />
     <EmbeddedResource Include="Resources\MovablePanel.png" />
     <EmbeddedResource Include="Resources\MovableSizablePanel.png" />
     <EmbeddedResource Include="Resources\MtfListView.png" />

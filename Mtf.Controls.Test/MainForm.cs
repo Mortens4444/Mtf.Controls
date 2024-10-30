@@ -1,7 +1,8 @@
+using Mtf.Controls.Services;
 using System;
 using System.Drawing;
 using System.IO;
-using System.Reflection;
+using System.IO.Pipes;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -11,15 +12,35 @@ namespace Mtf.Controls.Test
     public partial class MainForm : Form
     {
         private CancellationTokenSource cancellationTokenSource;
-        private Task task;
         private bool firstImage;
         private readonly Image image1, image2;
 
         public MainForm()
         {
+            StartPipeServer();
             InitializeComponent();
-            image1 = GetEmbeddedResourceByName("Mtf.Controls.Test.Resources.kertmester.png");
-            image2 = GetEmbeddedResourceByName("Mtf.Controls.Test.Resources.hack_with_me.png");
+            image1 = ResourceHelper.GetEmbeddedResourceByName(GetType().Assembly, "Mtf.Controls.Test.Resources.kertmester.png");
+            image2 = ResourceHelper.GetEmbeddedResourceByName(GetType().Assembly, "Mtf.Controls.Test.Resources.hack_with_me.png");
+
+        }
+
+        private async void StartPipeServer()
+        {
+            while (true)
+            {
+                using (var server = new NamedPipeServerStream("testpipe", PipeDirection.In))
+                {
+                    await server.WaitForConnectionAsync().ConfigureAwait(false);
+                    using (var reader = new StreamReader(server))
+                    {
+                        string message;
+                        while ((message = await reader.ReadLineAsync().ConfigureAwait(false)) != null)
+                        {
+                            AppendMessageToRichTextBox(message);
+                        }
+                    }
+                }
+            }
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -32,7 +53,7 @@ namespace Mtf.Controls.Test
             else
             {
                 cancellationTokenSource = new CancellationTokenSource();
-                task = Task.Run(() =>
+                _ = Task.Run(() =>
                 {
                     try
                     {
@@ -59,13 +80,22 @@ namespace Mtf.Controls.Test
             }
         }
 
-        public static Image GetEmbeddedResourceByName(string resourceName)
+        private void AppendMessageToRichTextBox(string message)
         {
-            var assembly = Assembly.GetExecutingAssembly();
-            using (var stream = assembly.GetManifestResourceStream(resourceName))
+            if (richTextBox1.InvokeRequired)
             {
-                return stream == null ? throw new FileNotFoundException($"Resource '{resourceName}' not found.") : Image.FromStream(stream);
+                richTextBox1.Invoke(new Action(() => AppendMessageToRichTextBox(message)));
             }
+            else
+            {
+                richTextBox1.AppendText(message + Environment.NewLine);
+            }
+        }
+
+        private void RichTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            richTextBox1.Select(richTextBox1.Text.Length - 1, 0);
+            richTextBox1.ScrollToCaret();
         }
     }
 }

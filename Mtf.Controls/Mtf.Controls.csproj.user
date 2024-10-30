@@ -2,6 +2,9 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="Kbd300ASimulator.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="MovablePanel.cs">
       <SubType>Component</SubType>
     </Compile>
