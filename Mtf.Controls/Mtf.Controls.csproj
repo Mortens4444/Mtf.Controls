@@ -44,6 +44,9 @@
     <None Remove="Resources\MovableSizablePanel.png" />
     <None Remove="Resources\MtfListView.png" />
     <None Remove="Resources\MtfPictureBox.png" />
+    <None Remove="Resources\MtfTreeView.png" />
+    <None Remove="Resources\SourceCodeViewerRichTextBox.png" />
+    <None Remove="Resources\TransparentPanel.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -58,11 +61,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources\MovablePanel.bmp" />
     <EmbeddedResource Include="Resources\MovablePanel.png" />
     <EmbeddedResource Include="Resources\MovableSizablePanel.png" />
     <EmbeddedResource Include="Resources\MtfListView.png" />
     <EmbeddedResource Include="Resources\MtfPictureBox.png" />
+    <EmbeddedResource Include="Resources\MtfTreeView.png" />
+    <EmbeddedResource Include="Resources\SourceCodeViewerRichTextBox.png" />
+    <EmbeddedResource Include="Resources\TransparentPanel.png" />
   </ItemGroup>
   
 </Project>

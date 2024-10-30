@@ -6,7 +6,7 @@ using System.Windows.Forms;
 namespace Mtf.Controls
 {
     [ToolboxItem(true)]
-    [ToolboxBitmap(typeof(MovablePanel), "Resources.MovablePanel.bmp")]
+    [ToolboxBitmap(typeof(MovablePanel), "Resources.MovablePanel.png")]
     public class MovablePanel : TransparentPanel
     {
         private Point dragStartPoint;

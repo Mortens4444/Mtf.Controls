@@ -7,6 +7,7 @@ using System.Windows.Forms;
 namespace Mtf.Controls
 {
     [ToolboxItem(true)]
+    [ToolboxBitmap(typeof(TransparentPanel), "Resources.TransparentPanel.png")]
     public class TransparentPanel : Panel
     {
         public TransparentPanel()

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 namespace Mtf.Controls
 {
     [ToolboxItem(true)]
+    [ToolboxBitmap(typeof(SourceCodeViewerRichTextBox), "Resources.SourceCodeViewerRichTextBox.png")]
     public class SourceCodeViewerRichTextBox : RichTextBox
     {
         [DllImport("User32.dll", SetLastError = true)]

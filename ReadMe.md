@@ -327,5 +327,6 @@ Ensure the `Constants` class is defined appropriately for the panels to function
 
 - Ensure your project has .NET dependencies to support `Mtf.Controls`.
 - For more details on using specific methods or properties, refer to the `Mtf.Controls` [GitHub Repository](https://github.com/Mortens4444/Mtf.Controls).
+- If you have problems with the Visual Studio Toolbox, remove all files from C:\Users\morte\AppData\Local\Microsoft\VisualStudio\[vs_version_]\ComponentModelCache. After a rebuild, the toolbox should include these controls.
 
 Feel free to reach out if further clarification is needed!

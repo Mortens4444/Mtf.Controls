@@ -10,6 +10,7 @@ using System.Windows.Forms;
 namespace Mtf.Controls
 {
     [ToolboxItem(true)]
+    [ToolboxBitmap(typeof(MtfTreeView), "Resources.MtfTreeView.png")]
     public class MtfTreeView : TreeView
     {
         public const short CheckboxSize = 10;
