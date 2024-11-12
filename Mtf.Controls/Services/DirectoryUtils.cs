@@ -1,6 +1,7 @@
 ﻿using MessageBoxes;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace Mtf.Controls.Services
 {
@@ -26,22 +27,32 @@ namespace Mtf.Controls.Services
         public static long CalculateDirectorySize(string directoryPath)
         {
             long size = 0;
-            try
+            var files = Directory.GetFiles(directoryPath, "*", SearchOption.AllDirectories);
+
+            Exception firstException = null;
+
+            foreach (var file in files)
             {
-                var files = Directory.GetFiles(directoryPath, "*", SearchOption.AllDirectories);
-                foreach (var file in files)
+                try
                 {
                     var fileInfo = new FileInfo(file);
                     size += fileInfo.Length;
                 }
+                catch (Exception ex)
+                {
+                    if (firstException == null)
+                    {
+                        firstException = ex;
+                    }
+                }
             }
-            catch (Exception ex)
+
+            if (firstException != null)
             {
-                _ = ErrorBox.Show("Size calculation error", $"Failed to calculate directory size: {ex.Message}");
+                _ = ErrorBox.Show("Size calculation error", $"There were errors while calculating directory size: {firstException.Message}");
             }
 
             return size;
         }
-
     }
 }

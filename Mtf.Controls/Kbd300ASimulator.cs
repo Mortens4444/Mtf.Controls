@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO.Pipes;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -60,10 +61,10 @@ namespace Mtf.Controls
         private readonly Button btn_1;
         private int move;
         private ImageList il_Images;
-        private IContainer components;
+        private Container components;
         private StringBuilder number;
 
-        protected bool disposed;
+        private volatile int disposed;
 
         public event EventHandler CameraWindowClosed;
 
@@ -634,6 +635,64 @@ namespace Mtf.Controls
             Controls.Add(btn_3);
             Controls.Add(btn_2);
             Controls.Add(btn_1);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (Interlocked.Exchange(ref disposed, 1) != 0)
+            {
+                return;
+            }
+
+            base.Dispose(disposing);
+            if (disposing)
+            {
+                tb_MoveValue.Dispose();
+                p_LED.Dispose();
+                btn_ZoomOut.Dispose();
+                btn_ZoomIn.Dispose();
+                btn_RigthDown.Dispose();
+                btn_LeftDown.Dispose();
+                btn_RightUp.Dispose();
+                btn_LeftUp.Dispose();
+                btn_Down.Dispose();
+                btn_Up.Dispose();
+                btn_Right.Dispose();
+                btn_Left.Dispose();
+                btn_Close.Dispose();
+                btn_Open.Dispose();
+                btn_Far.Dispose();
+                btn_Near.Dispose();
+                btn_AuxOff.Dispose();
+                btn_AuxOn.Dispose();
+                btn_F3_Mom.Dispose();
+                btn_F2_Off.Dispose();
+                btn_F1_Latch.Dispose();
+                btn_Shift.Dispose();
+                btn_Pgm.Dispose();
+                btn_Macro.Dispose();
+                btn_Preset.Dispose();
+                btn_Pattern.Dispose();
+                btn_Hold.Dispose();
+                btn_Next.Dispose();
+                btn_Prev.Dispose();
+                btn_Ack.Dispose();
+                btn_Mon.Dispose();
+                btn_Clear.Dispose();
+                btn_0.Dispose();
+                btn_Cam.Dispose();
+                btn_9.Dispose();
+                btn_8.Dispose();
+                btn_7.Dispose();
+                btn_6.Dispose();
+                btn_5.Dispose();
+                btn_4.Dispose();
+                btn_3.Dispose();
+                btn_2.Dispose();
+                btn_1.Dispose();
+                il_Images.Dispose();
+                components.Dispose();
+            }
         }
 
         [Browsable(true)]

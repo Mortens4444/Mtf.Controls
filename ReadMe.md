@@ -25,6 +25,67 @@ To install the `Mtf.Controls` package, follow these steps:
 
 ## Using Custom Controls
 
+### PasswordBox Control
+
+The `PasswordBox` control in `Mtf.Controls` extends the standard `TextBox` to provide a secure way to handle password input. Unlike a regular `TextBox` with `PasswordChar`, the `PasswordBox` stores the password as a `SecureString` and handles input securely, preventing sensitive data from being stored in plain text.
+
+#### Attributes
+- `[ToolboxItem(true)]` – Ensures that the control is available in the Toolbox.
+- `[ToolboxBitmap(typeof(PasswordBox), "Resources.PasswordBox.png")]` – Associates an icon for the control in the Toolbox.
+
+#### Constructor
+
+- **PasswordBox()**: Initializes a new `PasswordBox` with a default `PasswordChar` (`*`).
+
+#### Properties
+
+| Property              | Type           | Description                                      |
+|-----------------------|----------------|--------------------------------------------------|
+| `PasswordChar`        | `char`         | The character to display in place of the actual password characters. Default is `*`. |
+| `UseSystemPasswordChar` | `bool`       | If `true`, the system-defined password character is used. Default is `false`. |
+
+#### Methods
+
+- **OnKeyPress(KeyPressEventArgs e)**: Handles key press events to update the `SecureString` (`password`) instead of storing characters in plain text. Prevents the actual character from being displayed.
+- **OnTextChanged(EventArgs e)**: Clears the `SecureString` when the `Text` property is cleared.
+- **OnKeyDown(KeyEventArgs e)**: Manages additional key events such as backspace or delete to ensure `password` remains consistent with displayed text.
+- **Dispose()**: Overrides `Dispose()` to securely clear and release the `SecureString` when the control is disposed of.
+
+#### SecureString Handling
+
+The `PasswordBox` uses a `SecureString` to store the password securely. This ensures that sensitive data isn't held in memory in plain text, reducing the risk of exposure.
+
+#### Example Usage
+
+```csharp
+using System;
+using System.Security;
+using System.Windows.Forms;
+using Mtf.Controls;
+
+public class LoginForm : Form
+{
+    private PasswordBox passwordBox;
+
+    public LoginForm()
+    {
+        passwordBox = new PasswordBox
+        {
+            Location = new System.Drawing.Point(10, 10),
+            Width = 200
+        };
+        Controls.Add(passwordBox);
+    }
+
+    public SecureString GetPassword()
+    {
+        return passwordBox.Password;  // Use this to retrieve the secure password input
+    }
+}
+```
+
+In this example, `LoginForm` creates a `PasswordBox` control to securely capture a password. The password can be retrieved as a `SecureString` by calling `GetPassword()`.
+
 ### ListView Control
 
 # MtfListView Class Documentation
@@ -105,6 +166,16 @@ public class MtfListView : ListView
     // Additional properties...
 }
 ```
+
+### FileBrowserView class
+
+#### Properties
+
+| Property            | Type                          | Description                         |
+|---------------------|-------------------------------|-------------------------------------|
+| `WorkingDirectory`  | `string`                      | The current working directory.      |
+| `SelectedElements`  | `IEnumerable<FileSystemInfo>` | Gets the seleted files and folders. |
+
 
 ### MtfTreeView Class
 
