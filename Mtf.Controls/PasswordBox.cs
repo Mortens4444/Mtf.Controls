@@ -14,10 +14,10 @@ namespace Mtf.Controls
     public class PasswordBox : TextBox
     {
         private volatile int disposed;
-        private SecureString password;
+        private SecureString password = new SecureString();
         private static readonly Random random = new Random();
 
-        public PasswordBox()
+        public PasswordBox() : base()
         {
             PasswordChar = '*';
             UseSystemPasswordChar = false;
@@ -133,7 +133,6 @@ namespace Mtf.Controls
                 {
                     secureString.AppendChar(ch);
                 }
-                //secureString.MakeReadOnly();
                 password = secureString;
             }
         }
