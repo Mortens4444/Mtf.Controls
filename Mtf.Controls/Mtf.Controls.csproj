@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
-    <!--<TargetFramework>net481</TargetFramework>-->
     <TargetFrameworks>net9.0-windows;net8.0-windows;net481</TargetFrameworks>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>disable</Nullable>
@@ -38,6 +37,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\FileBrowserView.png" />
+    <None Remove="Resources\Folder.png" />
     <None Remove="Resources\KBD300A.png" />
     <None Remove="Resources\Kbd300ASimulator.png" />
     <None Remove="Resources\MovablePanel.bmp" />
@@ -47,6 +48,7 @@
     <None Remove="Resources\MtfListView.png" />
     <None Remove="Resources\MtfPictureBox.png" />
     <None Remove="Resources\MtfTreeView.png" />
+    <None Remove="Resources\PasswordBox.png" />
     <None Remove="Resources\SourceCodeViewerRichTextBox.png" />
     <None Remove="Resources\TransparentPanel.png" />
   </ItemGroup>
@@ -63,6 +65,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\FileBrowserView.png" />
+    <EmbeddedResource Include="Resources\Folder.png" />
     <EmbeddedResource Include="Resources\KBD300A.png" />
     <EmbeddedResource Include="Resources\Kbd300ASimulator.png" />
     <EmbeddedResource Include="Resources\MovablePanel.png" />
@@ -70,8 +74,13 @@
     <EmbeddedResource Include="Resources\MtfListView.png" />
     <EmbeddedResource Include="Resources\MtfPictureBox.png" />
     <EmbeddedResource Include="Resources\MtfTreeView.png" />
+    <EmbeddedResource Include="Resources\PasswordBox.png" />
     <EmbeddedResource Include="Resources\SourceCodeViewerRichTextBox.png" />
     <EmbeddedResource Include="Resources\TransparentPanel.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Mtf.MessageBoxes" Version="1.0.14" />
   </ItemGroup>
   
 </Project>

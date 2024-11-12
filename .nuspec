@@ -2,17 +2,19 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Mtf.Controls</id>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <description>
       Custom Windows Forms Controls.
       
       The library includes various controls, such as:
+	  - FileBrowserView
       - Kbd300ASimulator
       - MovablePanel
       - MovableSizablePanel
 	  - MtfListView
 	  - MtfPictureBox
 	  - MtfTreeView
+	  - PasswordBox
 	  - SourceCodeViewerRichTextBox
 	  - TransparentPanel
       
@@ -27,7 +29,7 @@
 	<license type="expression">MIT</license>
 	<projectUrl>https://github.com/Mortens4444/Mtf.Controls</projectUrl>
     <repository type="git" url="https://github.com/Mortens4444/Mtf.Controls.git" branch="main" commit="838cc1e372fab8c1435cc318e15ad1400ac49a3a" />
-	<tags>Kbd300ASimulator MovablePanel MovableSizablePanel MtfListView MtfPictureBox MtfTreeView SourceCodeViewerRichTextBox TransparentPanel</tags>
+	<tags>FileBrowserView Kbd300ASimulator MovablePanel MovableSizablePanel MtfListView MtfPictureBox MtfTreeView PasswordBox SourceCodeViewerRichTextBox TransparentPanel Mortens</tags>
 	<readme>docs\ReadMe.md</readme>
     <dependencies>
       <group targetFramework="net481" />

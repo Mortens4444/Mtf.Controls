@@ -97,5 +97,10 @@ namespace Mtf.Controls.Test
             richTextBox1.Select(richTextBox1.Text.Length - 1, 0);
             richTextBox1.ScrollToCaret();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            textBox2.Text = passwordBox1.Password;
+        }
     }
 }

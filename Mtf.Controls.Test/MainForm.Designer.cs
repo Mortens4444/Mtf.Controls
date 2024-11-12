@@ -31,25 +31,72 @@ namespace Mtf.Controls.Test
         /// </summary>
         private void InitializeComponent()
         {
-            var listViewGroup1 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
-            var listViewGroup2 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
-            var listViewItem1 = new ListViewItem(new string[] { "Lorem", "1", "2020.10.21" }, -1);
-            var listViewItem2 = new ListViewItem(new string[] { "Ipsum", "", "2020.10.21" }, -1);
-            var listViewItem3 = new ListViewItem(new string[] { "Dolor", "2", "2020.10.21" }, -1);
-            var listViewItem4 = new ListViewItem(new string[] { "Est", "", "" }, -1);
-            var listViewItem5 = new ListViewItem(new string[] { "Sit", "", "2020.10.21" }, -1);
-            var listViewItem6 = new ListViewItem(new string[] { "Amet", "5", "2020.10.21" }, -1);
-            var treeNode1 = new TreeNode("Node0");
-            var treeNode2 = new TreeNode("Node4");
-            var treeNode3 = new TreeNode("Node5");
-            var treeNode4 = new TreeNode("Node7");
-            var treeNode5 = new TreeNode("Node8");
-            var treeNode6 = new TreeNode("Node9");
-            var treeNode7 = new TreeNode("Node6", new TreeNode[] { treeNode4, treeNode5, treeNode6 });
-            var treeNode8 = new TreeNode("Node1", new TreeNode[] { treeNode2, treeNode3, treeNode7 });
-            var treeNode9 = new TreeNode("Node2");
-            var treeNode10 = new TreeNode("Node3");
+            components = new System.ComponentModel.Container();
+            var listViewGroup3 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
+            var listViewGroup4 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
+            var listViewItem53 = new ListViewItem(new string[] { "Lorem", "1", "2020.10.21" }, -1);
+            var listViewItem54 = new ListViewItem(new string[] { "Ipsum", "", "2020.10.21" }, -1);
+            var listViewItem55 = new ListViewItem(new string[] { "Dolor", "2", "2020.10.21" }, -1);
+            var listViewItem56 = new ListViewItem(new string[] { "Est", "", "" }, -1);
+            var listViewItem57 = new ListViewItem(new string[] { "Sit", "", "2020.10.21" }, -1);
+            var listViewItem58 = new ListViewItem(new string[] { "Amet", "5", "2020.10.21" }, -1);
+            var treeNode11 = new TreeNode("Node0");
+            var treeNode12 = new TreeNode("Node4");
+            var treeNode13 = new TreeNode("Node5");
+            var treeNode14 = new TreeNode("Node7");
+            var treeNode15 = new TreeNode("Node8");
+            var treeNode16 = new TreeNode("Node9");
+            var treeNode17 = new TreeNode("Node6", new TreeNode[] { treeNode14, treeNode15, treeNode16 });
+            var treeNode18 = new TreeNode("Node1", new TreeNode[] { treeNode12, treeNode13, treeNode17 });
+            var treeNode19 = new TreeNode("Node2");
+            var treeNode20 = new TreeNode("Node3");
             var resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            var listViewItem59 = new ListViewItem(new string[] { "$AV_AVG", "Folder", "" }, "folder");
+            var listViewItem60 = new ListViewItem(new string[] { "$Recycle.Bin", "Folder", "" }, "folder");
+            var listViewItem61 = new ListViewItem(new string[] { "avi", "Folder", "" }, "folder");
+            var listViewItem62 = new ListViewItem(new string[] { "BigFishCache", "Folder", "" }, "folder");
+            var listViewItem63 = new ListViewItem(new string[] { "Code Browser", "Folder", "" }, "folder");
+            var listViewItem64 = new ListViewItem(new string[] { "DesktopUpdater", "Folder", "" }, "folder");
+            var listViewItem65 = new ListViewItem(new string[] { "dicomdir", "Folder", "" }, "folder");
+            var listViewItem66 = new ListViewItem(new string[] { "Documents and Settings", "Folder", "" }, "folder");
+            var listViewItem67 = new ListViewItem(new string[] { "ECGo", "Folder", "" }, "folder");
+            var listViewItem68 = new ListViewItem(new string[] { "ffmpeg-master-latest-win64-gpl", "Folder", "" }, "folder");
+            var listViewItem69 = new ListViewItem(new string[] { "gcc", "Folder", "" }, "folder");
+            var listViewItem70 = new ListViewItem(new string[] { "gradle", "Folder", "" }, "folder");
+            var listViewItem71 = new ListViewItem(new string[] { "Install", "Folder", "" }, "folder");
+            var listViewItem72 = new ListViewItem(new string[] { "Intel", "Folder", "" }, "folder");
+            var listViewItem73 = new ListViewItem(new string[] { "logs", "Folder", "" }, "folder");
+            var listViewItem74 = new ListViewItem(new string[] { "Masm", "Folder", "" }, "folder");
+            var listViewItem75 = new ListViewItem(new string[] { "Microsoft Shared", "Folder", "" }, "folder");
+            var listViewItem76 = new ListViewItem(new string[] { "My Web Sites", "Folder", "" }, "folder");
+            var listViewItem77 = new ListViewItem(new string[] { "NuGetTest", "Folder", "" }, "folder");
+            var listViewItem78 = new ListViewItem(new string[] { "OneDriveTemp", "Folder", "" }, "folder");
+            var listViewItem79 = new ListViewItem(new string[] { "PE-bear", "Folder", "" }, "folder");
+            var listViewItem80 = new ListViewItem(new string[] { "PerfLogs", "Folder", "" }, "folder");
+            var listViewItem81 = new ListViewItem(new string[] { "processing-4.0b4", "Folder", "" }, "folder");
+            var listViewItem82 = new ListViewItem(new string[] { "Program Files", "Folder", "" }, "folder");
+            var listViewItem83 = new ListViewItem(new string[] { "Program Files (x86)", "Folder", "" }, "folder");
+            var listViewItem84 = new ListViewItem(new string[] { "ProgramData", "Folder", "" }, "folder");
+            var listViewItem85 = new ListViewItem(new string[] { "Recovery", "Folder", "" }, "folder");
+            var listViewItem86 = new ListViewItem(new string[] { "SQL2022", "Folder", "" }, "folder");
+            var listViewItem87 = new ListViewItem(new string[] { "System Volume Information", "Folder", "" }, "folder");
+            var listViewItem88 = new ListViewItem(new string[] { "TeamCity", "Folder", "" }, "folder");
+            var listViewItem89 = new ListViewItem(new string[] { "temp", "Folder", "" }, "folder");
+            var listViewItem90 = new ListViewItem(new string[] { "Users", "Folder", "" }, "folder");
+            var listViewItem91 = new ListViewItem(new string[] { "VideoProjects", "Folder", "" }, "folder");
+            var listViewItem92 = new ListViewItem(new string[] { "Windows", "Folder", "" }, "folder");
+            var listViewItem93 = new ListViewItem(new string[] { "Work", "Folder", "" }, "folder");
+            var listViewItem94 = new ListViewItem(new string[] { "$WINRE_BACKUP_PARTITION.MARKER", ".MARKER File", "0 KB" }, ".marker");
+            var listViewItem95 = new ListViewItem(new string[] { "AMTAG.BIN", ".BIN File", "1 KB" }, ".bin");
+            var listViewItem96 = new ListViewItem(new string[] { "appverifUI.dll", ".DLL File", "109 KB" }, ".dll");
+            var listViewItem97 = new ListViewItem(new string[] { "bootTel.dat", ".DAT File", "0 KB" }, ".dat");
+            var listViewItem98 = new ListViewItem(new string[] { "DumpStack.log", ".LOG File", "12 KB" }, ".log");
+            var listViewItem99 = new ListViewItem(new string[] { "DumpStack.log.tmp", ".TMP File", "12 KB" }, ".tmp");
+            var listViewItem100 = new ListViewItem(new string[] { "hiberfil.sys", ".SYS File", "6613936 KB" }, ".sys");
+            var listViewItem101 = new ListViewItem(new string[] { "Not recognized checkmate.png", ".PNG File", "66 KB" }, ".png");
+            var listViewItem102 = new ListViewItem(new string[] { "pagefile.sys", ".SYS File", "39043328 KB" }, ".sys");
+            var listViewItem103 = new ListViewItem(new string[] { "swapfile.sys", ".SYS File", "278528 KB" }, ".sys");
+            var listViewItem104 = new ListViewItem(new string[] { "vfcompat.dll", ".DLL File", "65 KB" }, ".dll");
             mtfListView1 = new MtfListView();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
@@ -72,6 +119,10 @@ namespace Mtf.Controls.Test
             pictureBox3 = new PictureBox();
             kbd300aSimulator1 = new Kbd300ASimulator();
             richTextBox1 = new RichTextBox();
+            fileBrowserView1 = new FileBrowserView();
+            passwordBox1 = new PasswordBox();
+            button2 = new Button();
+            textBox2 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)mtfPictureBox1).BeginInit();
             movablePanel1.SuspendLayout();
             movableSizablePanel1.SuspendLayout();
@@ -94,12 +145,12 @@ namespace Mtf.Controls.Test
             mtfListView1.EnsureLastItemIsVisible = false;
             mtfListView1.FirstItemIsGray = false;
             mtfListView1.FullRowSelect = true;
-            listViewGroup1.Header = "ListViewGroup";
-            listViewGroup1.Name = "listViewGroup1";
-            listViewGroup2.Header = "ListViewGroup";
-            listViewGroup2.Name = "listViewGroup2";
-            mtfListView1.Groups.AddRange(new ListViewGroup[] { listViewGroup1, listViewGroup2 });
-            mtfListView1.Items.AddRange(new ListViewItem[] { listViewItem1, listViewItem2, listViewItem3, listViewItem4, listViewItem5, listViewItem6 });
+            listViewGroup3.Header = "ListViewGroup";
+            listViewGroup3.Name = "listViewGroup1";
+            listViewGroup4.Header = "ListViewGroup";
+            listViewGroup4.Name = "listViewGroup2";
+            mtfListView1.Groups.AddRange(new ListViewGroup[] { listViewGroup3, listViewGroup4 });
+            mtfListView1.Items.AddRange(new ListViewItem[] { listViewItem53, listViewItem54, listViewItem55, listViewItem56, listViewItem57, listViewItem58 });
             mtfListView1.Location = new Point(12, 7);
             mtfListView1.Name = "mtfListView1";
             mtfListView1.OwnerDraw = true;
@@ -120,27 +171,27 @@ namespace Mtf.Controls.Test
             mtfTreeView1.Location = new Point(262, 7);
             mtfTreeView1.MultiSelect = false;
             mtfTreeView1.Name = "mtfTreeView1";
-            treeNode1.Name = "Node0";
-            treeNode1.Text = "Node0";
-            treeNode2.Name = "Node4";
-            treeNode2.Text = "Node4";
-            treeNode3.Name = "Node5";
-            treeNode3.Text = "Node5";
-            treeNode4.Name = "Node7";
-            treeNode4.Text = "Node7";
-            treeNode5.Name = "Node8";
-            treeNode5.Text = "Node8";
-            treeNode6.Name = "Node9";
-            treeNode6.Text = "Node9";
-            treeNode7.Name = "Node6";
-            treeNode7.Text = "Node6";
-            treeNode8.Name = "Node1";
-            treeNode8.Text = "Node1";
-            treeNode9.Name = "Node2";
-            treeNode9.Text = "Node2";
-            treeNode10.Name = "Node3";
-            treeNode10.Text = "Node3";
-            mtfTreeView1.Nodes.AddRange(new TreeNode[] { treeNode1, treeNode8, treeNode9, treeNode10 });
+            treeNode11.Name = "Node0";
+            treeNode11.Text = "Node0";
+            treeNode12.Name = "Node4";
+            treeNode12.Text = "Node4";
+            treeNode13.Name = "Node5";
+            treeNode13.Text = "Node5";
+            treeNode14.Name = "Node7";
+            treeNode14.Text = "Node7";
+            treeNode15.Name = "Node8";
+            treeNode15.Text = "Node8";
+            treeNode16.Name = "Node9";
+            treeNode16.Text = "Node9";
+            treeNode17.Name = "Node6";
+            treeNode17.Text = "Node6";
+            treeNode18.Name = "Node1";
+            treeNode18.Text = "Node1";
+            treeNode19.Name = "Node2";
+            treeNode19.Text = "Node2";
+            treeNode20.Name = "Node3";
+            treeNode20.Text = "Node3";
+            mtfTreeView1.Nodes.AddRange(new TreeNode[] { treeNode11, treeNode18, treeNode19, treeNode20 });
             mtfTreeView1.ShowPlusMinusOnRootNodes = true;
             mtfTreeView1.Size = new Size(224, 283);
             mtfTreeView1.StateImageOrCheckBoxOnLeft = false;
@@ -155,7 +206,7 @@ namespace Mtf.Controls.Test
             sourceCodeViewerRichTextBox1.Location = new Point(726, 7);
             sourceCodeViewerRichTextBox1.Name = "sourceCodeViewerRichTextBox1";
             sourceCodeViewerRichTextBox1.ScroolToLastLine = false;
-            sourceCodeViewerRichTextBox1.Size = new Size(625, 417);
+            sourceCodeViewerRichTextBox1.Size = new Size(357, 417);
             sourceCodeViewerRichTextBox1.TabIndex = 3;
             sourceCodeViewerRichTextBox1.Text = resources.GetString("sourceCodeViewerRichTextBox1.Text");
             // 
@@ -325,11 +376,54 @@ namespace Mtf.Controls.Test
             richTextBox1.Text = "Press a key on KBD300A simulator\n\n";
             richTextBox1.TextChanged += RichTextBox1_TextChanged;
             // 
+            // fileBrowserView1
+            // 
+            fileBrowserView1.FullRowSelect = true;
+            fileBrowserView1.Items.AddRange(new ListViewItem[] { listViewItem59, listViewItem60, listViewItem61, listViewItem62, listViewItem63, listViewItem64, listViewItem65, listViewItem66, listViewItem67, listViewItem68, listViewItem69, listViewItem70, listViewItem71, listViewItem72, listViewItem73, listViewItem74, listViewItem75, listViewItem76, listViewItem77, listViewItem78, listViewItem79, listViewItem80, listViewItem81, listViewItem82, listViewItem83, listViewItem84, listViewItem85, listViewItem86, listViewItem87, listViewItem88, listViewItem89, listViewItem90, listViewItem91, listViewItem92, listViewItem93, listViewItem94, listViewItem95, listViewItem96, listViewItem97, listViewItem98, listViewItem99, listViewItem100, listViewItem101, listViewItem102, listViewItem103, listViewItem104 });
+            fileBrowserView1.Location = new Point(1089, 7);
+            fileBrowserView1.Name = "fileBrowserView1";
+            fileBrowserView1.Size = new Size(413, 417);
+            fileBrowserView1.TabIndex = 21;
+            fileBrowserView1.UseCompatibleStateImageBehavior = false;
+            fileBrowserView1.View = View.Details;
+            fileBrowserView1.WorkingDirectory = "C:\\";
+            // 
+            // passwordBox1
+            // 
+            passwordBox1.Location = new Point(492, 322);
+            passwordBox1.Name = "passwordBox1";
+            passwordBox1.Password = "";
+            passwordBox1.PasswordChar = '*';
+            passwordBox1.ShowRealPasswordLength = false;
+            passwordBox1.Size = new Size(100, 23);
+            passwordBox1.TabIndex = 22;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(598, 321);
+            button2.Name = "button2";
+            button2.Size = new Size(100, 23);
+            button2.TabIndex = 23;
+            button2.Text = "Get password";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(492, 350);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(206, 23);
+            textBox2.TabIndex = 24;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1594, 860);
+            Controls.Add(textBox2);
+            Controls.Add(button2);
+            Controls.Add(passwordBox1);
+            Controls.Add(fileBrowserView1);
             Controls.Add(richTextBox1);
             Controls.Add(kbd300aSimulator1);
             Controls.Add(pictureBox3);
@@ -388,5 +482,9 @@ namespace Mtf.Controls.Test
         private PictureBox pictureBox3;
         private Kbd300ASimulator kbd300aSimulator1;
         private RichTextBox richTextBox1;
+        private FileBrowserView fileBrowserView1;
+        private PasswordBox passwordBox1;
+        private Button button2;
+        private TextBox textBox2;
     }
 }

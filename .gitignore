@@ -5,4 +5,4 @@
 *.exe
 *.bak
 publish.bat
-nuget.config
+nuget.config*
