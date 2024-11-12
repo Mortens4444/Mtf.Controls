@@ -15,3 +15,4 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Style", "IDE0058:Remove unnecessary expression value", Justification = "<Pending>", Scope = "type", Target = "~T:Mtf.Controls.Extensions.ControlExtensions")]
 [assembly: SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "<Pending>", Scope = "member", Target = "~M:Mtf.Controls.Extensions.ControlExtensions.ExecuteThreadSafely(System.Windows.Forms.Control,System.Action)")]
 [assembly: SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "<Pending>", Scope = "member", Target = "~M:Mtf.Controls.Extensions.ControlExtensions.ExecuteThreadSafely``1(System.Windows.Forms.Control,System.Func{``0},``0)~``0")]
+[assembly: SuppressMessage("Style", "IDE0057:Use range operator")]

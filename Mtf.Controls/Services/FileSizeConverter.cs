@@ -1,28 +1,66 @@
-﻿namespace Mtf.Controls.Services
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+
+namespace Mtf.Controls.Services
 {
     public static class FileSizeConverter
     {
+        private const string Byte = "B";
+        private const string KiloByte = "kB";
+        private const string MegaByte = "MB";
+        private const string GigaByte = "GB";
+        private const string TeraByte = "TB";
+        private const string PetaByte = "PB";
+        private const string ExaByte = "EB";
+        private const string ZettaByte = "ZB";
+        private const string YottaByte = "YB";
+
+        private static readonly List<string> Units = new List<string> { Byte, KiloByte, MegaByte, GigaByte, TeraByte, PetaByte, ExaByte, ZettaByte, YottaByte };
+
         public static string ToReadableForm(long fileSizeInBytes)
         {
-            if (fileSizeInBytes < 1024)
+            double size = fileSizeInBytes;
+            var unitIndex = 0;
+
+            while (size >= 1024 && unitIndex < Units.Count - 1)
             {
-                return $"{fileSizeInBytes} byte";
+                size /= 1024;
+                unitIndex++;
             }
 
-            var fileSizeInKB = fileSizeInBytes / 1024.0;
-            if (fileSizeInKB < 1024)
+            return $"{size:0.#} {Units[unitIndex]}";
+        }
+
+        public static long FromReadableForm(string fileSize)
+        {
+            if (String.IsNullOrWhiteSpace(fileSize))
             {
-                return $"{fileSizeInKB:0.#} KB";
+                return 0;
             }
 
-            var fileSizeInMB = fileSizeInKB / 1024.0;
-            if (fileSizeInMB < 1024)
+            string valueText = null;
+            var multiplier = 1;
+            foreach (var unit in Units)
             {
-                return $"{fileSizeInMB:0.#} MB";
+                if (!fileSize.EndsWith($" {unit}", StringComparison.OrdinalIgnoreCase))
+                {
+                    multiplier *= 1024;
+                }
+                else
+                {
+                    valueText = fileSize.Substring(0, fileSize.Length - (unit.Length + 1));
+                    break;
+                }
             }
 
-            var fileSizeInGB = fileSizeInMB / 1024.0;
-            return $"{fileSizeInGB:0.#} GB";
+            if (valueText == null)
+            {
+                return 0;
+            }
+
+            valueText = valueText.Replace(",", ".");
+            return !Double.TryParse(valueText, NumberStyles.Any, CultureInfo.InvariantCulture, out var value) ? 0 : (long)(value * multiplier);
         }
     }
 }

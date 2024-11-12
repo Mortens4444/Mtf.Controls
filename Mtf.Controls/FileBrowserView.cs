@@ -1,5 +1,6 @@
 ﻿using Enums;
 using MessageBoxes;
+using Mtf.Controls.Enums;
 using Mtf.Controls.Services;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,9 @@ namespace Mtf.Controls
     [ToolboxBitmap(typeof(FileBrowserView), "Resources.FileBrowserView.png")]
     public class FileBrowserView : ListView
     {
+        private OrderStrategy currentOrderStrategy = OrderStrategy.Name;
+        private bool ascendingOrder = true;
+
         private string workingDirectory;
         private readonly Dictionary<string, Icon> extensionIcons = new Dictionary<string, Icon>();
         private readonly ContextMenuStrip contextMenu;
@@ -27,6 +31,7 @@ namespace Mtf.Controls
             _ = Columns.Add("Name", 200);
             _ = Columns.Add("Type", 100);
             _ = Columns.Add("Size", 80, HorizontalAlignment.Right);
+            ColumnClick += FileBrowserView_ColumnClick;
 
             var folderImage = ResourceHelper.GetEmbeddedResourceByName(GetType().Assembly, "Mtf.Controls.Resources.Folder.png");
             SmallImageList = new ImageList();
@@ -69,6 +74,42 @@ namespace Mtf.Controls
                     throw new DirectoryNotFoundException($"The directory '{value}' does not exist.");
                 }
             }
+        }
+
+        public IEnumerable<FileSystemInfo> SelectedElements
+        {
+            get
+            {
+                foreach (ListViewItem selectedItem in SelectedItems)
+                {
+                    if (selectedItem.Tag is FileSystemInfo item)
+                    {
+                        yield return item;
+                    }
+                }
+            }
+        }
+
+        private void FileBrowserView_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            switch (e.Column)
+            {
+                case 0:
+                    currentOrderStrategy = OrderStrategy.Name;
+                    break;
+                case 1:
+                    currentOrderStrategy = OrderStrategy.Type;
+                    break;
+                case 2:
+                    currentOrderStrategy = OrderStrategy.Size;
+                    break;
+                default:
+                    break;
+            };
+
+            ascendingOrder = !ascendingOrder;
+            ListViewItemSorter = new FileBrowserViewComparer(currentOrderStrategy, ascendingOrder);
+            Sort();
         }
 
         private void ContextMenu_Opening(object sender, CancelEventArgs e)
@@ -248,6 +289,14 @@ namespace Mtf.Controls
                     foreach (var item in itemsToPaste)
                     {
                         var destinationPath = Path.Combine(workingDirectory, item.Name);
+
+                        // Check for recursive copy/move
+                        if (IsRecursivePath(item, destinationPath))
+                        {
+                            ErrorBox.Show("Paste error", "Cannot paste an item into itself or a subdirectory.");
+                            return;
+                        }
+
                         if (item is DirectoryInfo dirInfo)
                         {
                             if (isCutOperation)
@@ -274,7 +323,7 @@ namespace Mtf.Controls
 
                     if (isCutOperation)
                     {
-                        cutItems.Clear();  // Clear the cut items after moving
+                        cutItems.Clear();
                     }
 
                     RefreshItems();
@@ -284,6 +333,16 @@ namespace Mtf.Controls
                     _ = ErrorBox.Show("Paste error", $"Failed to paste the items: {ex.Message}");
                 }
             }
+        }
+
+        private bool IsRecursivePath(FileSystemInfo item, string destinationPath)
+        {
+            if (item is DirectoryInfo dirInfo)
+            {
+                var fullPath = Path.GetFullPath(destinationPath).TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar;
+                return fullPath.StartsWith(dirInfo.FullName, StringComparison.OrdinalIgnoreCase);
+            }
+            return false;
         }
 
         private void DeleteItem_Click(object sender, EventArgs e)
