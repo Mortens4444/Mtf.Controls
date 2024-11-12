@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Mtf.Controls</id>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <description>
       Custom Windows Forms Controls.
       
@@ -28,13 +28,19 @@
     <copyright>Copyright © 2024</copyright>
 	<license type="expression">MIT</license>
 	<projectUrl>https://github.com/Mortens4444/Mtf.Controls</projectUrl>
-    <repository type="git" url="https://github.com/Mortens4444/Mtf.Controls.git" branch="main" commit="184b293231913a3df4a20140f39f0d9116cc7c64" />
+    <repository type="git" url="https://github.com/Mortens4444/Mtf.Controls.git" branch="main" commit="a7277f76db3ec6e5f1b69b65938817d72b116b2c" />
 	<tags>FileBrowserView Kbd300ASimulator MovablePanel MovableSizablePanel MtfListView MtfPictureBox MtfTreeView PasswordBox SourceCodeViewerRichTextBox TransparentPanel Mortens</tags>
 	<readme>docs\ReadMe.md</readme>
     <dependencies>
-      <group targetFramework="net481" />
-      <group targetFramework="net8.0-windows7" />
-      <group targetFramework="net9.0-windows7" />
+	  <group targetFramework="net481">
+		<dependency id="Mtf.MessageBoxes" version="1.0.14" />
+	  </group>
+	  <group targetFramework="net8.0-windows7">
+		<dependency id="Mtf.MessageBoxes" version="1.0.14" />
+	  </group>
+	  <group targetFramework="net9.0-windows7">
+		<dependency id="Mtf.MessageBoxes" version="1.0.14" />
+	  </group>
     </dependencies>
   </metadata>
   <files>
