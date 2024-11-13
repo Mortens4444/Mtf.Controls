@@ -2,6 +2,9 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="AnsiColoringRichTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="FileBrowserView.cs">
       <SubType>Component</SubType>
     </Compile>

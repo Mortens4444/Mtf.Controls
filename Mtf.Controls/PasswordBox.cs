@@ -151,5 +151,31 @@ namespace Mtf.Controls
 
             base.Dispose(disposing);
         }
+
+        protected override void WndProc(ref Message m)
+        {
+            const int WM_PASTE = 0x0302;
+
+            if (m.Msg == WM_PASTE)
+            {
+                var clipboardText = Clipboard.GetText();
+                if (!String.IsNullOrEmpty(clipboardText))
+                {
+                    var index = SelectionStart < 0 ? 0 : (SelectionStart > password.Length ? password.Length : SelectionStart);
+
+                    foreach (var ch in clipboardText)
+                    {
+                        password.InsertAt(index++, ch);
+                    }
+
+                    UpdateMaskedText();
+                    SelectionStart = index;
+                }
+
+                return;
+            }
+
+            base.WndProc(ref m);
+        }
     }
 }

@@ -25,6 +25,43 @@ To install the `Mtf.Controls` package, follow these steps:
 
 ## Using Custom Controls
 
+### AnsiColoringRichTextBox
+
+The `AnsiColoringRichTextBox` is a custom control that extends `RichTextBox` to display text with ANSI color codes, allowing for text formatting with color, bold, and underline styles based on ANSI escape sequences.
+
+#### Properties
+
+- **DisplayAnsiColors** (`bool`): 
+  - Specifies whether ANSI color codes should be processed and displayed. 
+  - When set to `true`, the control will automatically format text with ANSI colors.
+
+#### Usage Example
+
+```csharp
+var ansiTextBox = new AnsiColoringRichTextBox
+{
+    DisplayAnsiColors = true,
+    Text = "\x1B[0;31mThis is red text\x1B[0;32m and this is green text."
+};
+Controls.Add(ansiTextBox);
+```
+
+#### ANSI Color Codes Supported
+
+The `AnsiColoringRichTextBox` recognizes a wide range of ANSI color codes, including:
+- **Regular Colors**: Black, Red, Green, Yellow, Blue, Purple, Cyan, White.
+- **Bold Colors**: Enhanced versions of regular colors.
+- **High Intensity Colors**: Lighter or more intense shades.
+- **Bold High Intensity Colors**: Bolder shades of high intensity colors.
+
+#### Methods
+
+- **ClearColoring**: Resets the text formatting to default colors and styles.
+
+#### Events
+
+- **OnTextChanged**: Automatically applies ANSI coloring if `DisplayAnsiColors` is enabled when the text changes.
+
 ### PasswordBox Control
 
 The `PasswordBox` control in `Mtf.Controls` extends the standard `TextBox` to provide a secure way to handle password input. Unlike a regular `TextBox` with `PasswordChar`, the `PasswordBox` stores the password as a `SecureString` and handles input securely, preventing sensitive data from being stored in plain text.
