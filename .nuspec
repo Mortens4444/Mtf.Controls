@@ -29,7 +29,7 @@
     <copyright>Copyright © 2024</copyright>
 	<license type="expression">MIT</license>
 	<projectUrl>https://github.com/Mortens4444/Mtf.Controls</projectUrl>
-    <repository type="git" url="https://github.com/Mortens4444/Mtf.Controls.git" branch="main" commit="1050673ad440ee002cdd37cf4729342849f6b1c2" />
+    <repository type="git" url="https://github.com/Mortens4444/Mtf.Controls.git" branch="main" commit="a1c0f7ceee972c11c3856ea2cc34ee629401424c" />
 	<tags>AnsiColoringRichTextBox FileBrowserView Kbd300ASimulator MovablePanel MovableSizablePanel MtfListView MtfPictureBox MtfTreeView PasswordBox SourceCodeViewerRichTextBox TransparentPanel Mortens</tags>
 	<readme>docs\ReadMe.md</readme>
     <dependencies>
