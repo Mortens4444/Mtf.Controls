@@ -2,22 +2,22 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Mtf.Controls</id>
-    <version>1.0.13</version>
+    <version>1.0.14</version>
     <description>
       Custom Windows Forms Controls.
       
       The library includes various controls, such as:
-	  - AnsiColoringRichTextBox
-	  - FileBrowserView
+      - AnsiColoringRichTextBox
+      - FileBrowserView
       - Kbd300ASimulator
       - MovablePanel
       - MovableSizablePanel
-	  - MtfListView
-	  - MtfPictureBox
-	  - MtfTreeView
-	  - PasswordBox
-	  - SourceCodeViewerRichTextBox
-	  - TransparentPanel
+      - MtfListView
+      - MtfPictureBox
+      - MtfTreeView
+      - PasswordBox
+      - SourceCodeViewerRichTextBox
+      - TransparentPanel
       
       Compatibility:
       - .NET Framework 4.8.1

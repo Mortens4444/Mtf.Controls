@@ -11,7 +11,8 @@ namespace Mtf.Controls
     [ToolboxBitmap(typeof(SourceCodeViewerRichTextBox), "Resources.SourceCodeViewerRichTextBox.png")]
     public class AnsiColoringRichTextBox : RichTextBox
     {
-        private const string AnsiPattern = @"\x1B\[[0-9;]*m|[\r\n]+";
+        private static readonly char[] separator = new char[] { '\n', '\n' };
+        private const string AnsiPattern = @"\x1B\[[0-9;]*m";
         private bool isApplyingColoring;
         private bool displayAnsiColors;
         private int previousTextLength;
@@ -93,7 +94,7 @@ namespace Mtf.Controls
             var ansiBoldMap = new Dictionary<string, bool> { { "\x1B[1;31m", true }, { "\x1B[1;32m", true } };
             var ansiUnderlineMap = new Dictionary<string, bool> { { "\x1B[4;30m", true }, { "\x1B[4;31m", true } };
 
-            var regex = new Regex(AnsiPattern, RegexOptions.Multiline);
+            var regex = new Regex(AnsiPattern, RegexOptions.Compiled);
             var matches = regex.Matches(Text.Substring(startIndex));
 
             foreach (Match match in matches)
@@ -126,11 +127,20 @@ namespace Mtf.Controls
                 return;
             }
 
+            var parts = text.Split(separator, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var part in parts)
+            {
+                AppendTextPart(part);
+            }
+        }
+
+        private void AppendTextPart(string text)
+        {
             isApplyingColoring = true;
 
             var insertionStartIndex = TextLength;
 
-            var regex = new Regex(AnsiPattern, RegexOptions.Multiline);
+            var regex = new Regex(AnsiPattern, RegexOptions.Compiled);
             var matches = regex.Matches(text);
             var formattedBlocks = new List<(int start, int length, Color? color, FontStyle style)>();
 
@@ -183,7 +193,6 @@ namespace Mtf.Controls
 
             isApplyingColoring = false;
         }
-
 
         public void ClearColoring()
         {
