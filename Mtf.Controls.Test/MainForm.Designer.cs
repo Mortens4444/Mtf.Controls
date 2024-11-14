@@ -78,6 +78,7 @@ namespace Mtf.Controls.Test
             passwordBox1 = new PasswordBox();
             button2 = new Button();
             textBox2 = new TextBox();
+            ansiColoringRichTextBox1 = new AnsiColoringRichTextBox();
             ((System.ComponentModel.ISupportInitialize)mtfPictureBox1).BeginInit();
             movablePanel1.SuspendLayout();
             movableSizablePanel1.SuspendLayout();
@@ -371,11 +372,22 @@ namespace Mtf.Controls.Test
             textBox2.Size = new Size(206, 23);
             textBox2.TabIndex = 24;
             // 
+            // ansiColoringRichTextBox1
+            // 
+            ansiColoringRichTextBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            ansiColoringRichTextBox1.DisplayAnsiColors = true;
+            ansiColoringRichTextBox1.Location = new Point(1391, 430);
+            ansiColoringRichTextBox1.Name = "ansiColoringRichTextBox1";
+            ansiColoringRichTextBox1.Size = new Size(200, 418);
+            ansiColoringRichTextBox1.TabIndex = 25;
+            ansiColoringRichTextBox1.Text = "";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1594, 860);
+            Controls.Add(ansiColoringRichTextBox1);
             Controls.Add(textBox2);
             Controls.Add(button2);
             Controls.Add(passwordBox1);
@@ -442,5 +454,6 @@ namespace Mtf.Controls.Test
         private PasswordBox passwordBox1;
         private Button button2;
         private TextBox textBox2;
+        private AnsiColoringRichTextBox ansiColoringRichTextBox1;
     }
 }

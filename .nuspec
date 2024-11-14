@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Mtf.Controls</id>
-    <version>1.0.5</version>
+    <version>1.0.13</version>
     <description>
       Custom Windows Forms Controls.
       
@@ -29,8 +29,8 @@
     <copyright>Copyright © 2024</copyright>
 	<license type="expression">MIT</license>
 	<projectUrl>https://github.com/Mortens4444/Mtf.Controls</projectUrl>
-    <repository type="git" url="https://github.com/Mortens4444/Mtf.Controls.git" branch="main" commit="0cec68821cda14e5ba3d4c0a443a495fce5c3d4e" />
-	<tags>FileBrowserView Kbd300ASimulator MovablePanel MovableSizablePanel MtfListView MtfPictureBox MtfTreeView PasswordBox SourceCodeViewerRichTextBox TransparentPanel Mortens</tags>
+    <repository type="git" url="https://github.com/Mortens4444/Mtf.Controls.git" branch="main" commit="1050673ad440ee002cdd37cf4729342849f6b1c2" />
+	<tags>AnsiColoringRichTextBox FileBrowserView Kbd300ASimulator MovablePanel MovableSizablePanel MtfListView MtfPictureBox MtfTreeView PasswordBox SourceCodeViewerRichTextBox TransparentPanel Mortens</tags>
 	<readme>docs\ReadMe.md</readme>
     <dependencies>
 	  <group targetFramework="net481">
