@@ -456,7 +456,7 @@ namespace Mtf.Controls
 
         private void DrawStateImage(TreeNode node, ref int left, Graphics g)
         {
-            if (node.StateImageIndex > Constants.NotFound)
+            if (node.StateImageIndex >= 0)
             {
                 left += StateImageList.Images[node.StateImageIndex].Width + SmallShift;
                 var point = new Point(left, node.Bounds.Top);
@@ -468,7 +468,7 @@ namespace Mtf.Controls
         {
             if ((ImageList != null) && (ImageList.Images.Count > image_index))
             {
-                if (DrawDefaultImageToNodes && (node.ImageIndex > Constants.NotFound))
+                if (DrawDefaultImageToNodes && (node.ImageIndex >= 0))
                 {
                     left += node.Bounds.Height + SmallShift;
                     var point = new Point(left, node.Bounds.Top);
@@ -531,7 +531,7 @@ namespace Mtf.Controls
             }
 
             var imageindex = Constants.NotFound;
-            if (node.ImageIndex > Constants.NotFound)
+            if (node.ImageIndex >= 0)
             {
                 imageindex = node.ImageIndex;
             }
@@ -701,7 +701,7 @@ namespace Mtf.Controls
             }
 
             var left = node.Level * node.Bounds.Height;
-            if (node.StateImageIndex != Constants.NotFound)
+            if (node.StateImageIndex >= 0)
             {
                 left += StateImageList.Images[node.StateImageIndex].Width + SmallShift;
             }
@@ -710,7 +710,7 @@ namespace Mtf.Controls
                 left += node.Bounds.Height + SmallShift;
             }
 
-            if (node.ImageIndex != Constants.NotFound)
+            if (node.ImageIndex >= 0)
             {
                 left += node.Bounds.Height + SmallShift;
             }
@@ -741,7 +741,7 @@ namespace Mtf.Controls
             {
                 if (ImageList != null)
                 {
-                    if (node.ImageIndex != Constants.NotFound)
+                    if (node.ImageIndex >= 0)
                     {
                         x = ImageList.Images[node.ImageIndex].Width + SmallShift;
                         bounds = new RectangleF(bounds.X - x, bounds.Y, ImageList.Images[node.ImageIndex].Width, ImageList.Images[node.ImageIndex].Height);
@@ -753,7 +753,7 @@ namespace Mtf.Controls
                 }
                 if (StateImageList != null)
                 {
-                    if (node.StateImageIndex != Constants.NotFound)
+                    if (node.StateImageIndex >= 0)
                     {
                         x = StateImageList.Images[node.StateImageIndex].Width + SmallShift;
                         bounds = new RectangleF(bounds.X - x, bounds.Y, StateImageList.Images[node.StateImageIndex].Width, StateImageList.Images[node.StateImageIndex].Height);
@@ -768,7 +768,7 @@ namespace Mtf.Controls
             {
                 if (StateImageList != null)
                 {
-                    if (node.StateImageIndex != Constants.NotFound)
+                    if (node.StateImageIndex >= 0)
                     {
                         x = StateImageList.Images[node.StateImageIndex].Width + SmallShift;
                         bounds = new RectangleF(bounds.X - x, bounds.Y, StateImageList.Images[node.StateImageIndex].Width, StateImageList.Images[node.StateImageIndex].Height);
@@ -780,7 +780,7 @@ namespace Mtf.Controls
                 }
                 if (ImageList != null)
                 {
-                    if (node.ImageIndex != Constants.NotFound)
+                    if (node.ImageIndex >= 0)
                     {
                         x = ImageList.Images[node.ImageIndex].Width + SmallShift;
                         bounds = new RectangleF(bounds.X - x, bounds.Y, ImageList.Images[node.ImageIndex].Width, ImageList.Images[node.ImageIndex].Height);

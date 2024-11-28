@@ -40,18 +40,18 @@ namespace Mtf.Controls.Test
             var listViewItem4 = new ListViewItem(new string[] { "Est", "", "" }, -1);
             var listViewItem5 = new ListViewItem(new string[] { "Sit", "", "2020.10.21" }, -1);
             var listViewItem6 = new ListViewItem(new string[] { "Amet", "5", "2020.10.21" }, -1);
-            var treeNode1 = new TreeNode("Node0");
-            var treeNode2 = new TreeNode("Node4");
-            var treeNode3 = new TreeNode("Node5");
-            var treeNode4 = new TreeNode("Node7");
-            var treeNode5 = new TreeNode("Node8");
-            var treeNode6 = new TreeNode("Node9");
-            var treeNode7 = new TreeNode("Node6", new TreeNode[] { treeNode4, treeNode5, treeNode6 });
-            var treeNode8 = new TreeNode("Node1", new TreeNode[] { treeNode2, treeNode3, treeNode7 });
-            var treeNode9 = new TreeNode("Node2");
-            var treeNode10 = new TreeNode("Node3");
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            var treeNode1 = new TreeNode("Node0", -2, -2);
+            var treeNode2 = new TreeNode("Node4", 0, 0);
+            var treeNode3 = new TreeNode("Node5", 0, 0);
+            var treeNode4 = new TreeNode("Node7", 1, 1);
+            var treeNode5 = new TreeNode("Node8", 1, 1);
+            var treeNode6 = new TreeNode("Node9", 1, 1);
+            var treeNode7 = new TreeNode("Node6", 0, 0, new TreeNode[] { treeNode4, treeNode5, treeNode6 });
+            var treeNode8 = new TreeNode("Node1", -2, -2, new TreeNode[] { treeNode2, treeNode3, treeNode7 });
+            var treeNode9 = new TreeNode("Node2", -2, -2);
+            var treeNode10 = new TreeNode("Node3", -2, -2);
             var listViewItem7 = new ListViewItem(new string[] { "..", "Parent Directory" }, "up");
+            var resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             mtfListView1 = new MtfListView();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
@@ -79,6 +79,7 @@ namespace Mtf.Controls.Test
             button2 = new Button();
             textBox2 = new TextBox();
             ansiColoringRichTextBox1 = new AnsiColoringRichTextBox();
+            imageList1 = new ImageList(components);
             ((System.ComponentModel.ISupportInitialize)mtfPictureBox1).BeginInit();
             movablePanel1.SuspendLayout();
             movableSizablePanel1.SuspendLayout();
@@ -123,31 +124,54 @@ namespace Mtf.Controls.Test
             mtfTreeView1.CheckBoxBackground = SystemColors.Window;
             mtfTreeView1.DrawDefaultImageToNodes = true;
             mtfTreeView1.HideSelection = false;
+            mtfTreeView1.ImageIndex = 0;
+            mtfTreeView1.ImageList = imageList1;
             mtfTreeView1.LineStyle = System.Drawing.Drawing2D.DashStyle.Dot;
             mtfTreeView1.Location = new Point(262, 7);
             mtfTreeView1.MultiSelect = false;
             mtfTreeView1.Name = "mtfTreeView1";
+            treeNode1.ImageIndex = -2;
             treeNode1.Name = "Node0";
+            treeNode1.SelectedImageIndex = -2;
             treeNode1.Text = "Node0";
+            treeNode2.ImageIndex = 0;
             treeNode2.Name = "Node4";
+            treeNode2.SelectedImageIndex = 0;
             treeNode2.Text = "Node4";
+            treeNode3.ImageIndex = 0;
             treeNode3.Name = "Node5";
+            treeNode3.SelectedImageIndex = 0;
             treeNode3.Text = "Node5";
+            treeNode4.ImageIndex = 1;
             treeNode4.Name = "Node7";
+            treeNode4.SelectedImageIndex = 1;
             treeNode4.Text = "Node7";
+            treeNode5.ImageIndex = 1;
             treeNode5.Name = "Node8";
+            treeNode5.SelectedImageIndex = 1;
             treeNode5.Text = "Node8";
+            treeNode6.ImageIndex = 1;
             treeNode6.Name = "Node9";
+            treeNode6.SelectedImageIndex = 1;
             treeNode6.Text = "Node9";
+            treeNode7.ImageIndex = 0;
             treeNode7.Name = "Node6";
+            treeNode7.SelectedImageIndex = 0;
             treeNode7.Text = "Node6";
+            treeNode8.ImageIndex = -2;
             treeNode8.Name = "Node1";
+            treeNode8.SelectedImageIndex = -2;
             treeNode8.Text = "Node1";
+            treeNode9.ImageIndex = -2;
             treeNode9.Name = "Node2";
+            treeNode9.SelectedImageIndex = -2;
             treeNode9.Text = "Node2";
+            treeNode10.ImageIndex = -2;
             treeNode10.Name = "Node3";
+            treeNode10.SelectedImageIndex = -2;
             treeNode10.Text = "Node3";
             mtfTreeView1.Nodes.AddRange(new TreeNode[] { treeNode1, treeNode8, treeNode9, treeNode10 });
+            mtfTreeView1.SelectedImageIndex = 0;
             mtfTreeView1.ShowPlusMinusOnRootNodes = true;
             mtfTreeView1.Size = new Size(224, 283);
             mtfTreeView1.StateImageOrCheckBoxOnLeft = false;
@@ -382,6 +406,14 @@ namespace Mtf.Controls.Test
             ansiColoringRichTextBox1.TabIndex = 25;
             ansiColoringRichTextBox1.Text = "";
             // 
+            // imageList1
+            // 
+            imageList1.ColorDepth = ColorDepth.Depth32Bit;
+            imageList1.ImageStream = (ImageListStreamer)resources.GetObject("imageList1.ImageStream");
+            imageList1.TransparentColor = Color.Transparent;
+            imageList1.Images.SetKeyName(0, "add_group.ico");
+            imageList1.Images.SetKeyName(1, "add_user.ico");
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -455,5 +487,6 @@ namespace Mtf.Controls.Test
         private Button button2;
         private TextBox textBox2;
         private AnsiColoringRichTextBox ansiColoringRichTextBox1;
+        private ImageList imageList1;
     }
 }
