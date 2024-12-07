@@ -37,6 +37,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\EditableComboBox.png" />
     <None Remove="Resources\FileBrowserView.png" />
     <None Remove="Resources\Folder.png" />
     <None Remove="Resources\KBD300A.png" />
@@ -48,9 +49,12 @@
     <None Remove="Resources\MtfListView.png" />
     <None Remove="Resources\MtfPictureBox.png" />
     <None Remove="Resources\MtfTreeView.png" />
+    <None Remove="Resources\NoSignal.png" />
     <None Remove="Resources\PasswordBox.png" />
     <None Remove="Resources\SourceCodeViewerRichTextBox.png" />
+    <None Remove="Resources\TextBoxWithRegEx.png" />
     <None Remove="Resources\TransparentPanel.png" />
+    <None Remove="Resources\VideoSource.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -65,6 +69,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\EditableComboBox.png" />
     <EmbeddedResource Include="Resources\FileBrowserView.png" />
     <EmbeddedResource Include="Resources\Folder.png" />
     <EmbeddedResource Include="Resources\KBD300A.png" />
@@ -76,11 +81,48 @@
     <EmbeddedResource Include="Resources\MtfTreeView.png" />
     <EmbeddedResource Include="Resources\PasswordBox.png" />
     <EmbeddedResource Include="Resources\SourceCodeViewerRichTextBox.png" />
+    <EmbeddedResource Include="Resources\TextBoxWithRegEx.png" />
     <EmbeddedResource Include="Resources\TransparentPanel.png" />
+    <EmbeddedResource Include="Resources\VideoSource.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Mtf.MessageBoxes" Version="1.0.14" />
+    <PackageReference Include="LibVLCSharp" Version="3.9.1" />
+    <PackageReference Include="LibVLCSharp.WinForms" Version="3.9.1" />
+    <PackageReference Include="Mtf.MessageBoxes" Version="2.0.29" />
+    <PackageReference Include="OpenCvSharp4" Version="4.10.0.20241108" />
+    <PackageReference Include="OpenCvSharp4.Extensions" Version="4.10.0.20241108" />
+    <PackageReference Include="OpenCvSharp4.runtime.win" Version="4.10.0.20241108" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.21" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\NoSignal.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Video\FFmpegWindow.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Video\VlcWindow.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Video\OpenCvSharpVideoWindow.cs">
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   
 </Project>

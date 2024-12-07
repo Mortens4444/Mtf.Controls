@@ -23,6 +23,26 @@ To install the `Mtf.Controls` package, follow these steps:
    using Mtf.Controls;
    ```
 
+## Dependencies and Licensing
+
+This package uses the following dependencies, each under their respective licenses:
+
+- **[Mtf.MessageBoxes](https://www.nuget.org/packages/Mtf.MessageBoxes/)**: Version 2.0.29 (MIT License)
+- **[LibVLCSharp](https://www.nuget.org/packages/LibVLCSharp/)**: Version 3.9.1 (LGPL-3.0)
+- **[LibVLCSharp.WinForms](https://www.nuget.org/packages/LibVLCSharp.WinForms/)**: Version 3.9.1 (LGPL-3.0)
+- **[OpenCvSharp4](https://www.nuget.org/packages/OpenCvSharp4/)**: Version 4.10.0.20241108 (Apache License 2.0)
+- **[OpenCvSharp4.Extensions](https://www.nuget.org/packages/OpenCvSharp4.Extensions/)**: Version 4.10.0.20241108 (Apache License 2.0)
+- **[OpenCvSharp4.runtime.win](https://www.nuget.org/packages/OpenCvSharp4.runtime.win/)**: Version 4.10.0.20241108 (Apache License 2.0)
+- **[System.Net.Http](https://www.nuget.org/packages/System.Net.Http/)**: Version 4.3.4 (MIT License)
+- **[VideoLAN.LibVLC.Windows](https://www.nuget.org/packages/VideoLAN.LibVLC.Windows/)**: Version 3.0.21 (LGPL-2.1)
+- **[Accord](https://www.nuget.org/packages/Accord/)**: Version 3.8.0 (LGPL-3.0)
+- **[Accord.Video](https://www.nuget.org/packages/Accord.Video/)**: Version 3.8.0 (LGPL-3.0)
+- **[AForge](https://www.nuget.org/packages/AForge/)**: Version 2.2.5 (LGPL-3.0)
+- **[AForge.Video](https://www.nuget.org/packages/AForge.Video/)**: Version 2.2.5 (LGPL-3.0)
+- **[AForge.Video.DirectShow](https://www.nuget.org/packages/AForge.Video.DirectShow/)**: Version 2.2.5 (LGPL-3.0)
+
+Each dependency's license applies independently to their respective code. This package complies with their license terms. If you use this package, ensure that you meet the requirements of each dependency's license.
+
 ## Using Custom Controls
 
 ### AnsiColoringRichTextBox

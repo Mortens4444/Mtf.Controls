@@ -1,7 +1,7 @@
-﻿using Enums;
-using MessageBoxes;
-using Mtf.Controls.Enums;
+﻿using Mtf.Controls.Enums;
 using Mtf.Controls.Services;
+using Mtf.MessageBoxes;
+using Mtf.MessageBoxes.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

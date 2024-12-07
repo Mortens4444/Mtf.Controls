@@ -201,18 +201,18 @@ namespace Mtf.Controls
             int result;
             if (y.Level > x.Level)
             {
-                result = MtfTreeView.ComparePosition(x, y.Parent);
+                result = ComparePosition(x, y.Parent);
                 return result == 0 ? 1 : result;
             }
             if (x.Level > y.Level)
             {
-                result = MtfTreeView.ComparePosition(x.Parent, y);
+                result = ComparePosition(x.Parent, y);
                 return result == 0 ? -1 : result;
             }
 
             if (x.Parent != y.Parent)
             {
-                return MtfTreeView.ComparePosition(x.Parent, y.Parent);
+                return ComparePosition(x.Parent, y.Parent);
             }
 
             return x.Index < y.Index ? 1 : -1;

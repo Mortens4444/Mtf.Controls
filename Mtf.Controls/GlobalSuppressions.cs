@@ -16,3 +16,5 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "<Pending>", Scope = "member", Target = "~M:Mtf.Controls.Extensions.ControlExtensions.ExecuteThreadSafely(System.Windows.Forms.Control,System.Action)")]
 [assembly: SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "<Pending>", Scope = "member", Target = "~M:Mtf.Controls.Extensions.ControlExtensions.ExecuteThreadSafely``1(System.Windows.Forms.Control,System.Func{``0},``0)~``0")]
 [assembly: SuppressMessage("Style", "IDE0057:Use range operator")]
+[assembly: SuppressMessage("Performance", "CA1849:Call async methods when in an async method", Justification = "<Pending>", Scope = "member", Target = "~M:Mtf.Controls.Video.AForgeJpegVideoSource.FetchImagesAsync(System.Threading.CancellationToken)~System.Threading.Tasks.Task")]
+[assembly: SuppressMessage("Naming", "CA1716:Identifiers should not match keywords")]

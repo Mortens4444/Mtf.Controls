@@ -1,0 +1,61 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net481</TargetFrameworks>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <AnalysisLevel>latest-all</AnalysisLevel>
+    <PackageReadmeFile>ReadMe.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\NoSignal.png" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Accord" Version="3.8.0" />
+    <PackageReference Include="Accord.Video" Version="3.8.0" />
+    <PackageReference Include="AForge" Version="2.2.5" />
+    <PackageReference Include="AForge.Video" Version="2.2.5" />
+    <PackageReference Include="AForge.Video.DirectShow" Version="2.2.5" />
+    <PackageReference Include="Mtf.MessageBoxes" Version="2.0.29" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Resource Include="Resources\NoSignal.png" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Update="AForgeVideoCaptureDeviceWindow.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="AForgeMjpegVideoWindow.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="AccordMjpegVideoWindow.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="AForgeScreenCaptureWindow.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="AccordScreenCaptureWindow.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

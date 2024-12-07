@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "Mtf.Controls.Test\\Mtf.Controls.Test.csproj",
+        "Action": "Start",
+        "DebugTarget": "Mtf.Controls.Test"
+      },
+      {
+        "Path": "Mtf.Controls.Net481.Test\\Mtf.Controls.Net481.Test.csproj",
+        "Action": "Start",
+        "DebugTarget": "Mtf.Controls.Net481.Test"
+      }
+    ]
+  }
+]

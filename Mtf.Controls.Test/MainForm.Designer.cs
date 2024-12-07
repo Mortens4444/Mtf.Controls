@@ -50,13 +50,14 @@ namespace Mtf.Controls.Test
             var treeNode8 = new TreeNode("Node1", -2, -2, new TreeNode[] { treeNode2, treeNode3, treeNode7 });
             var treeNode9 = new TreeNode("Node2", -2, -2);
             var treeNode10 = new TreeNode("Node3", -2, -2);
-            var listViewItem7 = new ListViewItem(new string[] { "..", "Parent Directory" }, "up");
             var resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            var listViewItem7 = new ListViewItem(new string[] { "..", "Parent Directory" }, "up");
             mtfListView1 = new MtfListView();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
             columnHeader3 = new ColumnHeader();
             mtfTreeView1 = new MtfTreeView();
+            imageList1 = new ImageList(components);
             sourceCodeViewerRichTextBox1 = new SourceCodeViewerRichTextBox();
             mtfPictureBox1 = new MtfPictureBox();
             movablePanel1 = new MovablePanel();
@@ -72,14 +73,22 @@ namespace Mtf.Controls.Test
             button1 = new Button();
             pictureBox2 = new PictureBox();
             pictureBox3 = new PictureBox();
-            kbd300aSimulator1 = new Kbd300ASimulator();
             richTextBox1 = new RichTextBox();
             fileBrowserView1 = new FileBrowserView();
             passwordBox1 = new PasswordBox();
             button2 = new Button();
             textBox2 = new TextBox();
             ansiColoringRichTextBox1 = new AnsiColoringRichTextBox();
-            imageList1 = new ImageList(components);
+            textBoxWithRegEx1 = new TextBoxWithRegEx();
+            richTextBoxWithLineNumbers1 = new RichTextBoxWithLineNumbers();
+            rotatableImagePanel1 = new RotatableImagePanel();
+            editableComboBox1 = new EditableComboBox();
+            button3 = new Button();
+            openCvSharp4VideoWindow1 = new Video.OpenCvSharp4VideoWindow();
+            button7 = new Button();
+            mortoGraphyWindow1 = new Video.MortoGraphyWindow();
+            vlcWindow1 = new Video.VlcWindow();
+            fFmpegWindow1 = new Video.FFmpegWindow();
             ((System.ComponentModel.ISupportInitialize)mtfPictureBox1).BeginInit();
             movablePanel1.SuspendLayout();
             movableSizablePanel1.SuspendLayout();
@@ -87,7 +96,10 @@ namespace Mtf.Controls.Test
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)kbd300aSimulator1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)openCvSharp4VideoWindow1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)mortoGraphyWindow1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)vlcWindow1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)fFmpegWindow1).BeginInit();
             SuspendLayout();
             // 
             // mtfListView1
@@ -177,6 +189,14 @@ namespace Mtf.Controls.Test
             mtfTreeView1.StateImageOrCheckBoxOnLeft = false;
             mtfTreeView1.TabIndex = 1;
             mtfTreeView1.TickColor = Color.Green;
+            // 
+            // imageList1
+            // 
+            imageList1.ColorDepth = ColorDepth.Depth32Bit;
+            imageList1.ImageStream = (ImageListStreamer)resources.GetObject("imageList1.ImageStream");
+            imageList1.TransparentColor = Color.Transparent;
+            imageList1.Images.SetKeyName(0, "add_group.ico");
+            imageList1.Images.SetKeyName(1, "add_user.ico");
             // 
             // sourceCodeViewerRichTextBox1
             // 
@@ -325,27 +345,13 @@ namespace Mtf.Controls.Test
             // 
             // pictureBox3
             // 
-            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Image = Properties.Resources.hack_with_me;
             pictureBox3.Location = new Point(248, 459);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(230, 225);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox3.TabIndex = 19;
             pictureBox3.TabStop = false;
-            // 
-            // kbd300aSimulator1
-            // 
-            kbd300aSimulator1.Image = (Image)resources.GetObject("kbd300aSimulator1.Image");
-            kbd300aSimulator1.Location = new Point(726, 430);
-            kbd300aSimulator1.Name = "kbd300aSimulator1";
-            kbd300aSimulator1.OriginalSize = new Size(675, 425);
-            kbd300aSimulator1.PipeName = "testpipe";
-            kbd300aSimulator1.RepositioningAndResizingControlsOnResize = true;
-            kbd300aSimulator1.Shift = false;
-            kbd300aSimulator1.Size = new Size(659, 421);
-            kbd300aSimulator1.SizeMode = PictureBoxSizeMode.Zoom;
-            kbd300aSimulator1.TabIndex = 0;
-            kbd300aSimulator1.TabStop = false;
             // 
             // richTextBox1
             // 
@@ -363,7 +369,7 @@ namespace Mtf.Controls.Test
             fileBrowserView1.Items.AddRange(new ListViewItem[] { listViewItem7 });
             fileBrowserView1.Location = new Point(1089, 7);
             fileBrowserView1.Name = "fileBrowserView1";
-            fileBrowserView1.Size = new Size(413, 417);
+            fileBrowserView1.Size = new Size(413, 115);
             fileBrowserView1.TabIndex = 21;
             fileBrowserView1.UseCompatibleStateImageBehavior = false;
             fileBrowserView1.View = View.Details;
@@ -406,26 +412,151 @@ namespace Mtf.Controls.Test
             ansiColoringRichTextBox1.TabIndex = 25;
             ansiColoringRichTextBox1.Text = "";
             // 
-            // imageList1
+            // textBoxWithRegEx1
             // 
-            imageList1.ColorDepth = ColorDepth.Depth32Bit;
-            imageList1.ImageStream = (ImageListStreamer)resources.GetObject("imageList1.ImageStream");
-            imageList1.TransparentColor = Color.Transparent;
-            imageList1.Images.SetKeyName(0, "add_group.ico");
-            imageList1.Images.SetKeyName(1, "add_user.ico");
+            textBoxWithRegEx1.AcceptColor = Color.LightGreen;
+            textBoxWithRegEx1.DisplayErrorOnLeft = false;
+            textBoxWithRegEx1.ErrorMessage = "The given text not macthing the regex.";
+            textBoxWithRegEx1.Location = new Point(1230, 340);
+            textBoxWithRegEx1.Name = "textBoxWithRegEx1";
+            textBoxWithRegEx1.RegularExpression = "\\b((25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\\b";
+            textBoxWithRegEx1.RejectionColor = Color.LightSalmon;
+            textBoxWithRegEx1.Size = new Size(214, 23);
+            textBoxWithRegEx1.TabIndex = 26;
+            // 
+            // richTextBoxWithLineNumbers1
+            // 
+            richTextBoxWithLineNumbers1.ColoringMethod = Enums.ColoringMethod.No_Coloring;
+            richTextBoxWithLineNumbers1.CopyText = "Copy";
+            richTextBoxWithLineNumbers1.CutText = "Cut";
+            richTextBoxWithLineNumbers1.EmbeddedContextMenuStrip = true;
+            richTextBoxWithLineNumbers1.Location = new Point(1090, 128);
+            richTextBoxWithLineNumbers1.Margin = new Padding(4, 3, 4, 3);
+            richTextBoxWithLineNumbers1.Name = "richTextBoxWithLineNumbers1";
+            richTextBoxWithLineNumbers1.PasteText = "Paste";
+            richTextBoxWithLineNumbers1.ReadOnly = false;
+            richTextBoxWithLineNumbers1.RichTextBoxBackColor = SystemColors.Window;
+            richTextBoxWithLineNumbers1.RichTextBoxForeColor = SystemColors.WindowText;
+            richTextBoxWithLineNumbers1.SelectionColor = Color.Black;
+            richTextBoxWithLineNumbers1.SelectionLength = 0;
+            richTextBoxWithLineNumbers1.SelectionStart = 0;
+            richTextBoxWithLineNumbers1.ShowLineNumbers = true;
+            richTextBoxWithLineNumbers1.Size = new Size(412, 162);
+            richTextBoxWithLineNumbers1.TabIndex = 27;
+            richTextBoxWithLineNumbers1.WrapLines = false;
+            // 
+            // rotatableImagePanel1
+            // 
+            rotatableImagePanel1.BackgroundImage = Properties.Resources.kertmester;
+            rotatableImagePanel1.BackgroundImageLayout = ImageLayout.Stretch;
+            rotatableImagePanel1.CanMove = true;
+            rotatableImagePanel1.CanSize = true;
+            rotatableImagePanel1.Location = new Point(1090, 296);
+            rotatableImagePanel1.Name = "rotatableImagePanel1";
+            rotatableImagePanel1.RotatingMouseButton = MouseButtons.Middle;
+            rotatableImagePanel1.Rotation = null;
+            rotatableImagePanel1.Size = new Size(69, 67);
+            rotatableImagePanel1.TabIndex = 28;
+            rotatableImagePanel1.TransparentColor = Color.Black;
+            rotatableImagePanel1.UseTransparentColor = false;
+            // 
+            // editableComboBox1
+            // 
+            editableComboBox1.FormattingEnabled = true;
+            editableComboBox1.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7" });
+            editableComboBox1.Location = new Point(1230, 302);
+            editableComboBox1.Name = "editableComboBox1";
+            editableComboBox1.Size = new Size(121, 23);
+            editableComboBox1.TabIndex = 29;
+            // 
+            // button3
+            // 
+            button3.BackColor = SystemColors.Control;
+            button3.Location = new Point(12, 828);
+            button3.Name = "button3";
+            button3.Size = new Size(75, 23);
+            button3.TabIndex = 31;
+            button3.Text = "Start";
+            button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
+            // 
+            // openCvSharp4VideoWindow1
+            // 
+            openCvSharp4VideoWindow1.BackgroundImage = (Image)resources.GetObject("openCvSharp4VideoWindow1.BackgroundImage");
+            openCvSharp4VideoWindow1.BackgroundImageLayout = ImageLayout.Stretch;
+            openCvSharp4VideoWindow1.Location = new Point(12, 690);
+            openCvSharp4VideoWindow1.Name = "openCvSharp4VideoWindow1";
+            openCvSharp4VideoWindow1.Size = new Size(230, 135);
+            openCvSharp4VideoWindow1.SizeMode = PictureBoxSizeMode.StretchImage;
+            openCvSharp4VideoWindow1.TabIndex = 32;
+            openCvSharp4VideoWindow1.TabStop = false;
+            // 
+            // button7
+            // 
+            button7.Location = new Point(93, 828);
+            button7.Name = "button7";
+            button7.Size = new Size(75, 23);
+            button7.TabIndex = 36;
+            button7.Text = "Stop";
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
+            // 
+            // mortoGraphyWindow1
+            // 
+            mortoGraphyWindow1.BackColor = Color.Black;
+            mortoGraphyWindow1.BackgroundImageLayout = ImageLayout.Stretch;
+            mortoGraphyWindow1.Location = new Point(248, 690);
+            mortoGraphyWindow1.Name = "mortoGraphyWindow1";
+            mortoGraphyWindow1.Size = new Size(230, 135);
+            mortoGraphyWindow1.SizeMode = PictureBoxSizeMode.StretchImage;
+            mortoGraphyWindow1.TabIndex = 37;
+            mortoGraphyWindow1.TabStop = false;
+            // 
+            // vlcWindow1
+            // 
+            vlcWindow1.BackColor = Color.Black;
+            vlcWindow1.BackgroundImageLayout = ImageLayout.Stretch;
+            vlcWindow1.Location = new Point(747, 446);
+            vlcWindow1.MediaPlayer = null;
+            vlcWindow1.Name = "vlcWindow1";
+            vlcWindow1.Size = new Size(218, 138);
+            vlcWindow1.TabIndex = 38;
+            vlcWindow1.Text = "vlcWindow1";
+            // 
+            // fFmpegWindow1
+            // 
+            fFmpegWindow1.BackColor = Color.Black;
+            fFmpegWindow1.BackgroundImageLayout = ImageLayout.Stretch;
+            fFmpegWindow1.Codec = "mjpeg";
+            fFmpegWindow1.Location = new Point(747, 590);
+            fFmpegWindow1.Name = "fFmpegWindow1";
+            fFmpegWindow1.Size = new Size(218, 138);
+            fFmpegWindow1.SizeMode = PictureBoxSizeMode.StretchImage;
+            fFmpegWindow1.TabIndex = 39;
+            fFmpegWindow1.TabStop = false;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Gray;
             ClientSize = new Size(1594, 860);
+            Controls.Add(fFmpegWindow1);
+            Controls.Add(vlcWindow1);
+            Controls.Add(mortoGraphyWindow1);
+            Controls.Add(button7);
+            Controls.Add(openCvSharp4VideoWindow1);
+            Controls.Add(button3);
+            Controls.Add(editableComboBox1);
+            Controls.Add(rotatableImagePanel1);
+            Controls.Add(richTextBoxWithLineNumbers1);
+            Controls.Add(textBoxWithRegEx1);
             Controls.Add(ansiColoringRichTextBox1);
             Controls.Add(textBox2);
             Controls.Add(button2);
             Controls.Add(passwordBox1);
             Controls.Add(fileBrowserView1);
             Controls.Add(richTextBox1);
-            Controls.Add(kbd300aSimulator1);
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
             Controls.Add(button1);
@@ -453,7 +584,10 @@ namespace Mtf.Controls.Test
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)kbd300aSimulator1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)openCvSharp4VideoWindow1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)mortoGraphyWindow1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)vlcWindow1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)fFmpegWindow1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -488,5 +622,15 @@ namespace Mtf.Controls.Test
         private TextBox textBox2;
         private AnsiColoringRichTextBox ansiColoringRichTextBox1;
         private ImageList imageList1;
+        private TextBoxWithRegEx textBoxWithRegEx1;
+        private RichTextBoxWithLineNumbers richTextBoxWithLineNumbers1;
+        private RotatableImagePanel rotatableImagePanel1;
+        private EditableComboBox editableComboBox1;
+        private Button button3;
+        private Video.OpenCvSharp4VideoWindow openCvSharp4VideoWindow1;
+        private Button button7;
+        private Video.MortoGraphyWindow mortoGraphyWindow1;
+        private Video.VlcWindow vlcWindow1;
+        private Video.FFmpegWindow fFmpegWindow1;
     }
 }

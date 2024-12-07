@@ -5,6 +5,9 @@
     <Compile Update="AnsiColoringRichTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="EditableComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="FileBrowserView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -29,10 +32,25 @@
     <Compile Update="PasswordBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="RichTextBoxWithLineNumbers.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="RotatableImagePanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="SourceCodeViewerRichTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="TextBoxWithRegEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="TransparentPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Video\MortoGraphyWindow.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Video\OpenCvSharp4VideoWindow.cs">
       <SubType>Component</SubType>
     </Compile>
   </ItemGroup>

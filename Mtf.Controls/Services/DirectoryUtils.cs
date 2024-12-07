@@ -1,7 +1,6 @@
-﻿using MessageBoxes;
+﻿using Mtf.MessageBoxes;
 using System;
 using System.IO;
-using System.Linq;
 
 namespace Mtf.Controls.Services
 {

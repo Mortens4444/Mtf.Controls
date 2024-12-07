@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Mtf.Controls</id>
-    <version>1.0.15</version>
+    <version>1.0.16</version>
     <description>
       Custom Windows Forms Controls.
       
@@ -27,20 +27,46 @@
     <authors>Mortens</authors>
 	<owners>Mortens</owners>
     <copyright>Copyright © 2024</copyright>
-	<license type="expression">MIT</license>
+	<license type="expression">LGPL-3.0-or-later</license>
 	<projectUrl>https://github.com/Mortens4444/Mtf.Controls</projectUrl>
     <repository type="git" url="https://github.com/Mortens4444/Mtf.Controls.git" branch="main" commit="31f8a27f96c1e516dbafa80ccf8b7df25bd3e021" />
 	<tags>AnsiColoringRichTextBox FileBrowserView Kbd300ASimulator MovablePanel MovableSizablePanel MtfListView MtfPictureBox MtfTreeView PasswordBox SourceCodeViewerRichTextBox TransparentPanel Mortens</tags>
 	<readme>docs\ReadMe.md</readme>
     <dependencies>
 	  <group targetFramework="net481">
-		<dependency id="Mtf.MessageBoxes" version="1.0.14" />
+		<dependency id="Mtf.MessageBoxes" version="2.0.29" />
+		<dependency id="LibVLCSharp" version="3.9.1" />
+		<dependency id="LibVLCSharp.WinForms" version="3.9.1" />
+		<dependency id="OpenCvSharp4" version="4.10.0.20241108" />
+		<dependency id="OpenCvSharp4.Extensions" version="4.10.0.20241108" />
+		<dependency id="OpenCvSharp4.runtime.win" version="4.10.0.20241108" />
+		<dependency id="System.Net.Http" version="4.3.4" />
+		<dependency id="VideoLAN.LibVLC.Windows" version="3.0.21" />
+		<dependency id="Accord" version="3.8.0" />
+		<dependency id="Accord.Video" version="3.8.0" />
+		<dependency id="AForge" version="2.2.5" />
+		<dependency id="AForge.Video" version="2.2.5" />
+		<dependency id="AForge.Video.DirectShow" version="2.2.5" />
 	  </group>
 	  <group targetFramework="net8.0-windows7">
-		<dependency id="Mtf.MessageBoxes" version="1.0.14" />
+		<dependency id="Mtf.MessageBoxes" version="2.0.29" />
+		<dependency id="LibVLCSharp" version="3.9.1" />
+		<dependency id="LibVLCSharp.WinForms" version="3.9.1" />
+		<dependency id="OpenCvSharp4" version="4.10.0.20241108" />
+		<dependency id="OpenCvSharp4.Extensions" version="4.10.0.20241108" />
+		<dependency id="OpenCvSharp4.runtime.win" version="4.10.0.20241108" />
+		<dependency id="System.Net.Http" version="4.3.4" />
+		<dependency id="VideoLAN.LibVLC.Windows" version="3.0.21" />
 	  </group>
 	  <group targetFramework="net9.0-windows7">
-		<dependency id="Mtf.MessageBoxes" version="1.0.14" />
+		<dependency id="Mtf.MessageBoxes" version="2.0.29" />
+		<dependency id="LibVLCSharp" version="3.9.1" />
+		<dependency id="LibVLCSharp.WinForms" version="3.9.1" />
+		<dependency id="OpenCvSharp4" version="4.10.0.20241108" />
+		<dependency id="OpenCvSharp4.Extensions" version="4.10.0.20241108" />
+		<dependency id="OpenCvSharp4.runtime.win" version="4.10.0.20241108" />
+		<dependency id="System.Net.Http" version="4.3.4" />
+		<dependency id="VideoLAN.LibVLC.Windows" version="3.0.21" />
 	  </group>
     </dependencies>
   </metadata>
@@ -48,6 +74,11 @@
     <file src=".\Mtf.Controls\bin\Release\net481\**" target="lib\net481" />
     <file src=".\Mtf.Controls\bin\Release\net8.0-windows\**" target="lib\net8.0-windows7" />
     <file src=".\Mtf.Controls\bin\Release\net9.0-windows\**" target="lib\net9.0-windows7" />
+    <file src=".\Mtf.Controls.Net481\bin\Release\net481\**" target="lib\net481" exclude= ".\Mtf.Controls.Net481\bin\Release\net481\Mtf.MessageBoxes.dll;.\Mtf.Controls.Net481\bin\Release\net481\System.CodeDom.dll"/>
+    <file src=".\Mtf.Controls.x86\bin\Release\net481\*VIDEOCONTROL4Lib.dll" target="lib\net481" />
+    <file src=".\Mtf.Controls.x86\bin\Release\net481\Mtf.Controls.x86*" target="lib\net481" />
+    <file src=".\Mtf.Controls.x86\bin\Release\net8.0-windows\**" target="lib\net8.0-windows7" />
+    <file src=".\Mtf.Controls.x86\bin\Release\net9.0-windows\**" target="lib\net9.0-windows7" />
 	<file src=".\ReadMe.md" target="docs\" />
   </files>
 </package>

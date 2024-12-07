@@ -104,5 +104,22 @@ namespace Mtf.Controls.Test
         {
             textBox2.Text = passwordBox1.Password;
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            openCvSharp4VideoWindow1.Start("http://takemotopiano.aa1.netvolante.jp:8190/nphMotionJpeg?Resolution=640x480&Quality=Standard&Framerate=30");
+            mortoGraphyWindow1.Start("http://takemotopiano.aa1.netvolante.jp:8190/nphMotionJpeg?Resolution=640x480&Quality=Standard&Framerate=30");
+            //mortoGraphyWindow1.Start("http://camera.buffalotrace.com/mjpg/video.mjpg");
+            vlcWindow1.Start("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4");
+            fFmpegWindow1.Start("http://takemotopiano.aa1.netvolante.jp:8190/nphMotionJpeg?Resolution=640x480&Quality=Standard&Framerate=30");
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            openCvSharp4VideoWindow1.Stop();
+            mortoGraphyWindow1.Stop();
+            vlcWindow1.Stop();
+            fFmpegWindow1.Stop();
+        }
     }
 }
