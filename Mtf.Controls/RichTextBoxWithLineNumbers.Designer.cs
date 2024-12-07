@@ -36,7 +36,6 @@ namespace Mtf.Controls
             tsmiCopy = new ToolStripMenuItem();
             tsmiPaste = new ToolStripMenuItem();
             pMain = new TransparentPanel();
-            rtbTextAreaUnseenAble = new SourceCodeViewerRichTextBox();
             rtbTextArea = new SourceCodeViewerRichTextBox();
             splitter = new Splitter();
             pLineNumbers = new TransparentPanel();
@@ -73,7 +72,6 @@ namespace Mtf.Controls
             // 
             // pMain
             // 
-            pMain.Controls.Add(rtbTextAreaUnseenAble);
             pMain.Controls.Add(rtbTextArea);
             pMain.Controls.Add(splitter);
             pMain.Controls.Add(pLineNumbers);
@@ -85,22 +83,6 @@ namespace Mtf.Controls
             pMain.TabIndex = 0;
             pMain.TransparentColor = System.Drawing.Color.Black;
             pMain.UseTransparentColor = false;
-            // 
-            // rtbTextAreaUnseenAble
-            // 
-            rtbTextAreaUnseenAble.AcceptsTab = true;
-            rtbTextAreaUnseenAble.BorderStyle = BorderStyle.None;
-            rtbTextAreaUnseenAble.ColoringMethod = Enums.ColoringMethod.No_Coloring;
-            rtbTextAreaUnseenAble.DetectUrls = false;
-            rtbTextAreaUnseenAble.Dock = DockStyle.Fill;
-            rtbTextAreaUnseenAble.Location = new System.Drawing.Point(64, 0);
-            rtbTextAreaUnseenAble.Margin = new Padding(4, 3, 4, 3);
-            rtbTextAreaUnseenAble.Name = "rtbTextAreaUnseenAble";
-            rtbTextAreaUnseenAble.ScroolToLastLine = false;
-            rtbTextAreaUnseenAble.Size = new System.Drawing.Size(548, 366);
-            rtbTextAreaUnseenAble.TabIndex = 3;
-            rtbTextAreaUnseenAble.Text = "";
-            rtbTextAreaUnseenAble.Visible = false;
             // 
             // rtbTextArea
             // 
@@ -131,6 +113,7 @@ namespace Mtf.Controls
             // 
             // pLineNumbers
             // 
+            pLineNumbers.BackColor = System.Drawing.Color.Silver;
             pLineNumbers.Dock = DockStyle.Left;
             pLineNumbers.Location = new System.Drawing.Point(0, 0);
             pLineNumbers.Margin = new Padding(4, 3, 4, 3);
@@ -149,7 +132,6 @@ namespace Mtf.Controls
             Margin = new Padding(4, 3, 4, 3);
             Name = "RichTextBoxWithLineNumbers";
             Size = new System.Drawing.Size(612, 366);
-            FontChanged += RTBWLN_FontChanged;
             cmsMenu.ResumeLayout(false);
             pMain.ResumeLayout(false);
             ResumeLayout(false);
@@ -159,12 +141,11 @@ namespace Mtf.Controls
 
         private TransparentPanel pMain;
         private SourceCodeViewerRichTextBox rtbTextArea;
-        private System.Windows.Forms.Splitter splitter;
+        private Splitter splitter;
         private TransparentPanel pLineNumbers;
         private ContextMenuStrip cmsMenu;
         private ToolStripMenuItem tsmiCut;
         private ToolStripMenuItem tsmiCopy;
         private ToolStripMenuItem tsmiPaste;
-        private SourceCodeViewerRichTextBox rtbTextAreaUnseenAble;
     }
 }

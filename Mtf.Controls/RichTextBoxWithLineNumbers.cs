@@ -153,12 +153,10 @@ namespace Mtf.Controls
         [Description("Background color of the control.")]
         public override Color BackColor
         {
-            get
-            => rtbTextArea.BackColor;
+            get => rtbTextArea.BackColor;
             set
             {
                 rtbTextArea.BackColor = value;
-                rtbTextAreaUnseenAble.BackColor = value;
                 pLineNumbers.BackColor = value;
             }
         }
@@ -213,7 +211,7 @@ namespace Mtf.Controls
         [Description("Border style of the control.")]
         public new BorderStyle BorderStyle
         {
-            get => rtbTextAreaUnseenAble.BorderStyle;
+            get => rtbTextArea.BorderStyle;
             set => UpdateBorderStyle(value);
         }
 
@@ -221,7 +219,6 @@ namespace Mtf.Controls
         {
             pLineNumbers.BorderStyle = borderStyle;
             rtbTextArea.BorderStyle = borderStyle;
-            rtbTextAreaUnseenAble.BorderStyle = borderStyle;
         }
 
         private void SetLineNumbers()
@@ -234,12 +231,10 @@ namespace Mtf.Controls
 
         private void RtbTextArea_TextChanged(object sender, EventArgs e)
         {
-            rtbTextAreaUnseenAble.Text = "";
             var ss = rtbTextArea.SelectionStart;
             var sl = rtbTextArea.SelectionLength;
             rtbTextArea.SelectionStart = 0;
             rtbTextArea.SelectionLength = rtbTextArea.Text.Length;
-            rtbTextAreaUnseenAble.SelectedRtf = rtbTextArea.SelectedRtf;
             rtbTextArea.SelectionStart = ss;
             rtbTextArea.SelectionLength = sl;
             SetLineNumbers();
@@ -335,11 +330,6 @@ namespace Mtf.Controls
         private void TsmiPaste_Click(object sender, EventArgs e)
         {
             rtbTextArea.Paste();
-        }
-
-        private void RTBWLN_FontChanged(object sender, EventArgs e)
-        {
-            rtbTextAreaUnseenAble.Font = Font;
         }
     }
 }

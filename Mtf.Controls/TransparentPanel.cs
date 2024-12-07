@@ -12,6 +12,7 @@ namespace Mtf.Controls
     {
         public TransparentPanel()
         {
+            DoubleBuffered = true;
             UseTransparentColor = false;
             TransparentColor = Color.Black;
         }
