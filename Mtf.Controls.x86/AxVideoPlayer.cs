@@ -79,8 +79,6 @@ namespace Mtf.Controls.x86
             this.username = username;
             this.password = password;
 
-            axVideoPlayerWindow.OverlayText = $"{ipAddress} - {camera}";
-
             SubscribeToEvents();
             _ = AxVideoPicture?.Connect(ipAddress, camera, username, password);
         }

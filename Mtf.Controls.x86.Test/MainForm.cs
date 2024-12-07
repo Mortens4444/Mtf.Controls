@@ -1,6 +1,7 @@
 using AxVIDEOCONTROL4Lib;
 using Mtf.Controls.x86.Services;
 using Mtf.MessageBoxes;
+using System.Net;
 
 namespace Mtf.Controls.x86.Test
 {
@@ -18,6 +19,7 @@ namespace Mtf.Controls.x86.Test
             axVideoPlayerWindow1.AxVideoPlayer.Connected += AxVideoPlayer_Connected;
             axVideoPlayerWindow1.AxVideoPlayer.ErrorOccurred += AxVideoPlayer_ErrorOccurred;
             axVideoPlayerWindow1.AxVideoPlayer.Start("127.0.0.1", "Kamera 1", "admin", "admin");
+            axVideoPlayerWindow1.OverlayText = $"{"127.0.0.1"} - {"Kamera 1"}";
         }
 
         private void AxVideoPlayer_ErrorOccurred(object? sender, _DVideoPictureEvents_onErrorEvent e)
