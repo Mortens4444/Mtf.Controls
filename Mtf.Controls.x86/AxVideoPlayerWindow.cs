@@ -53,7 +53,7 @@ namespace Mtf.Controls.x86
             if (!String.IsNullOrEmpty(OverlayText))
             {
                 var graphics = e.Graphics;
-                var textSize = graphics.MeasureString(OverlayText, OverlayFont);
+                //_ = graphics.MeasureString(OverlayText, OverlayFont);
                 graphics.DrawString(OverlayText, OverlayFont, OverlayBrush, OverlayLocation);
             }
         }

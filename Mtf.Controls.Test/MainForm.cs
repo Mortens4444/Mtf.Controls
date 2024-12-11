@@ -109,7 +109,6 @@ namespace Mtf.Controls.Test
         {
             openCvSharp4VideoWindow1.Start("http://takemotopiano.aa1.netvolante.jp:8190/nphMotionJpeg?Resolution=640x480&Quality=Standard&Framerate=30");
             mortoGraphyWindow1.Start("http://takemotopiano.aa1.netvolante.jp:8190/nphMotionJpeg?Resolution=640x480&Quality=Standard&Framerate=30");
-            //mortoGraphyWindow1.Start("http://camera.buffalotrace.com/mjpg/video.mjpg");
             vlcWindow1.Start("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4");
             fFmpegWindow1.Start("http://takemotopiano.aa1.netvolante.jp:8190/nphMotionJpeg?Resolution=640x480&Quality=Standard&Framerate=30");
         }

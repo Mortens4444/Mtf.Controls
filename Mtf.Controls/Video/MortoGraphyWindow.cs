@@ -1,4 +1,4 @@
-﻿using Mtf.Controls.Properties;
+﻿using Mtf.Controls.Enums;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -17,8 +17,24 @@ namespace Mtf.Controls.Video
             BackgroundImage = Properties.Resources.NoSignal;
             BackgroundImageLayout = ImageLayout.Stretch;
             SizeMode = PictureBoxSizeMode.StretchImage;
-            mortoGraphy = new MortoGraphy(this);
+            mortoGraphy = new MortoGraphy(this, Username, Password);
         }
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("StreamType.")]
+        public StreamType StreamType { get; set; } = StreamType.Mjpeg;
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Username.")]
+        public string Username { get; set; }
+
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Password.")]
+        public string Password { get; set; }
 
         protected override void Dispose(bool disposing)
         {

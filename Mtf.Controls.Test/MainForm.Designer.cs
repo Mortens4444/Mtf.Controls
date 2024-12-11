@@ -86,9 +86,9 @@ namespace Mtf.Controls.Test
             button3 = new Button();
             openCvSharp4VideoWindow1 = new Video.OpenCvSharp4VideoWindow();
             button7 = new Button();
-            mortoGraphyWindow1 = new Video.MortoGraphyWindow();
             vlcWindow1 = new Video.VlcWindow();
             fFmpegWindow1 = new Video.FFmpegWindow();
+            mortoGraphyWindow1 = new Video.MortoGraphyWindow();
             ((System.ComponentModel.ISupportInitialize)mtfPictureBox1).BeginInit();
             movablePanel1.SuspendLayout();
             movableSizablePanel1.SuspendLayout();
@@ -97,9 +97,9 @@ namespace Mtf.Controls.Test
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)openCvSharp4VideoWindow1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)mortoGraphyWindow1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)vlcWindow1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)fFmpegWindow1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)mortoGraphyWindow1).BeginInit();
             SuspendLayout();
             // 
             // mtfListView1
@@ -501,19 +501,9 @@ namespace Mtf.Controls.Test
             button7.UseVisualStyleBackColor = true;
             button7.Click += button7_Click;
             // 
-            // mortoGraphyWindow1
-            // 
-            mortoGraphyWindow1.BackColor = Color.Black;
-            mortoGraphyWindow1.BackgroundImageLayout = ImageLayout.Stretch;
-            mortoGraphyWindow1.Location = new Point(248, 690);
-            mortoGraphyWindow1.Name = "mortoGraphyWindow1";
-            mortoGraphyWindow1.Size = new Size(230, 135);
-            mortoGraphyWindow1.SizeMode = PictureBoxSizeMode.StretchImage;
-            mortoGraphyWindow1.TabIndex = 37;
-            mortoGraphyWindow1.TabStop = false;
-            // 
             // vlcWindow1
             // 
+            vlcWindow1.BackgroundImage = (Image)resources.GetObject("openCvSharp4VideoWindow1.BackgroundImage");
             vlcWindow1.BackColor = Color.Black;
             vlcWindow1.BackgroundImageLayout = ImageLayout.Stretch;
             vlcWindow1.Location = new Point(747, 446);
@@ -525,6 +515,7 @@ namespace Mtf.Controls.Test
             // 
             // fFmpegWindow1
             // 
+            fFmpegWindow1.BackgroundImage = (Image)resources.GetObject("openCvSharp4VideoWindow1.BackgroundImage");
             fFmpegWindow1.BackColor = Color.Black;
             fFmpegWindow1.BackgroundImageLayout = ImageLayout.Stretch;
             fFmpegWindow1.Codec = "mjpeg";
@@ -535,15 +526,29 @@ namespace Mtf.Controls.Test
             fFmpegWindow1.TabIndex = 39;
             fFmpegWindow1.TabStop = false;
             // 
+            // mortoGraphyWindow1
+            // 
+            mortoGraphyWindow1.BackgroundImage = (Image)resources.GetObject("openCvSharp4VideoWindow1.BackgroundImage");
+            mortoGraphyWindow1.BackgroundImageLayout = ImageLayout.Stretch;
+            mortoGraphyWindow1.Location = new Point(248, 690);
+            mortoGraphyWindow1.Name = "mortoGraphyWindow1";
+            mortoGraphyWindow1.Password = null;
+            mortoGraphyWindow1.Size = new Size(230, 135);
+            mortoGraphyWindow1.SizeMode = PictureBoxSizeMode.StretchImage;
+            mortoGraphyWindow1.StreamType = Enums.StreamType.Mjpeg;
+            mortoGraphyWindow1.TabIndex = 40;
+            mortoGraphyWindow1.TabStop = false;
+            mortoGraphyWindow1.Username = null;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Gray;
             ClientSize = new Size(1594, 860);
+            Controls.Add(mortoGraphyWindow1);
             Controls.Add(fFmpegWindow1);
             Controls.Add(vlcWindow1);
-            Controls.Add(mortoGraphyWindow1);
             Controls.Add(button7);
             Controls.Add(openCvSharp4VideoWindow1);
             Controls.Add(button3);
@@ -585,9 +590,9 @@ namespace Mtf.Controls.Test
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)openCvSharp4VideoWindow1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)mortoGraphyWindow1).EndInit();
             ((System.ComponentModel.ISupportInitialize)vlcWindow1).EndInit();
             ((System.ComponentModel.ISupportInitialize)fFmpegWindow1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)mortoGraphyWindow1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -629,8 +634,8 @@ namespace Mtf.Controls.Test
         private Button button3;
         private Video.OpenCvSharp4VideoWindow openCvSharp4VideoWindow1;
         private Button button7;
-        private Video.MortoGraphyWindow mortoGraphyWindow1;
         private Video.VlcWindow vlcWindow1;
         private Video.FFmpegWindow fFmpegWindow1;
+        private Video.MortoGraphyWindow mortoGraphyWindow1;
     }
 }
