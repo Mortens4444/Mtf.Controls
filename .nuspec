@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Mtf.Controls</id>
-    <version>1.0.16</version>
+    <version>1.0.17</version>
     <description>
       Custom Windows Forms Controls.
       
@@ -74,11 +74,11 @@
     <file src=".\Mtf.Controls\bin\Release\net481\**" target="lib\net481" />
     <file src=".\Mtf.Controls\bin\Release\net8.0-windows\**" target="lib\net8.0-windows7" />
     <file src=".\Mtf.Controls\bin\Release\net9.0-windows\**" target="lib\net9.0-windows7" />
-    <file src=".\Mtf.Controls.Net481\bin\Release\net481\**" target="lib\net481" exclude= ".\Mtf.Controls.Net481\bin\Release\net481\Mtf.MessageBoxes.dll;.\Mtf.Controls.Net481\bin\Release\net481\System.CodeDom.dll"/>
-    <file src=".\Mtf.Controls.x86\bin\Release\net481\*VIDEOCONTROL4Lib.dll" target="lib\net481" />
-    <file src=".\Mtf.Controls.x86\bin\Release\net481\Mtf.Controls.x86*" target="lib\net481" />
-    <file src=".\Mtf.Controls.x86\bin\Release\net8.0-windows\**" target="lib\net8.0-windows7" />
-    <file src=".\Mtf.Controls.x86\bin\Release\net9.0-windows\**" target="lib\net9.0-windows7" />
+    <file src=".\Mtf.Controls.Net481\bin\Release\net481\**" target="lib\net481" exclude= ".\Mtf.Controls.Net481\bin\Release\net481\Mtf.MessageBoxes.dll;.\Mtf.Controls.Net481\bin\Release\net481\System.CodeDom.dll;.\Mtf.Controls.Net481\bin\Release\net481\Microsoft.Bcl.AsyncInterfaces.dll;.\Mtf.Controls.Net481\bin\Release\net481\Microsoft.Extensions.DependencyInjection.dll;.\Mtf.Controls.Net481\bin\Release\net481\Microsoft.Extensions.Logging.dll;.\Mtf.Controls.Net481\bin\Release\net481\Microsoft.Extensions.Primitives.dll;.\Mtf.Controls.Net481\bin\Release\net481\System.Buffers.dll;.\Mtf.Controls.Net481\bin\Release\net481\System.Diagnostics.DiagnosticSource.dll;.\Mtf.Controls.Net481\bin\Release\net481\System.Memory.dll;.\Mtf.Controls.Net481\bin\Release\net481\System.Numerics.Vectors.dll;.\Mtf.Controls.Net481\bin\Release\net481\System.Runtime.CompilerServices.Unsafe.dll;.\Mtf.Controls.Net481\bin\Release\net481\System.Threading.Tasks.Extensions.dll;.\Mtf.Controls.Net481\bin\Release\net481\System.ValueTuple.dll;.\Mtf.Controls.Net481\bin\Release\net481\Microsoft.Extensions.DependencyInjection.Abstractions.dll;.\Mtf.Controls.Net481\bin\Release\net481\Microsoft.Extensions.Logging.Abstractions.dll;.\Mtf.Controls.Net481\bin\Release\net481\Microsoft.Extensions.Options.dll"/>
+    <file src=".\Mtf.Controls.x86\bin\Release\net481\*VIDEOCONTROL4Lib.dll" target="lib\net481" exclude=".\Mtf.Controls.x86\bin\Release\net481\Microsoft.Extensions.Logging.dll" />
+    <file src=".\Mtf.Controls.x86\bin\Release\net481\Mtf.Controls.x86*" target="lib\net481" exclude=".\Mtf.Controls.x86\bin\Release\net481\Microsoft.Extensions.Logging.dll" />
+    <file src=".\Mtf.Controls.x86\bin\Release\net8.0-windows\**" target="lib\net8.0-windows7" exclude=".\Mtf.Controls.x86\bin\Release\net8.0-windows\Microsoft.Extensions.Logging.dll" />
+    <file src=".\Mtf.Controls.x86\bin\Release\net9.0-windows\**" target="lib\net9.0-windows7" exclude=".\Mtf.Controls.x86\bin\Release\net9.0-windows\Microsoft.Extensions.Logging.dll" />
 	<file src=".\ReadMe.md" target="docs\" />
   </files>
 </package>
