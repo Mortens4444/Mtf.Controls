@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
@@ -641,6 +642,61 @@ namespace Mtf.Controls
         public virtual Color GetBackColorOfItem(int index)
         {
             return (index % 2) == 0 ? AlternatingColorEven : AlternatingColorOdd;
+        }
+
+        public void ExportItemsToCsv(string filePath, string delimiter = ",")
+        {
+            var csvBuilder = new StringBuilder();
+
+            if (Columns.Count > 0)
+            {
+                csvBuilder.AppendLine(String.Join(delimiter, Columns.Cast<ColumnHeader>().Select(c => EscapeCsvValue(c.Text))));
+            }
+
+            var headerWritten = false;
+            foreach (ListViewItem item in Items)
+            {
+                if (item.Group == null)
+                {
+                    if (Groups.Count > 0 && !headerWritten)
+                    {
+                        _ = csvBuilder.AppendLine($"\"Default\"");
+                        headerWritten = true;
+                    }
+                    var row = String.Join(delimiter, item.SubItems.Cast<ListViewItem.ListViewSubItem>().Select(subItem => EscapeCsvValue(subItem.Text)));
+                    csvBuilder.AppendLine(row);
+                }
+            }
+
+            if (Groups.Count > 0)
+            {
+                foreach (ListViewGroup group in Groups)
+                {
+                    if (group.Items.Count > 0)
+                    {
+                        _ = csvBuilder.AppendLine($"\"{group.Header}\"");
+
+                        foreach (ListViewItem item in group.Items)
+                        {
+                            var row = String.Join(delimiter, item.SubItems.Cast<ListViewItem.ListViewSubItem>().Select(subItem => EscapeCsvValue(subItem.Text)));
+                            csvBuilder.AppendLine(row);
+                        }
+
+                        csvBuilder.AppendLine();
+                    }
+                }
+            }
+
+            File.WriteAllText(filePath, csvBuilder.ToString(), Encoding.UTF8);
+        }
+
+        private static string EscapeCsvValue(string value)
+        {
+            if (value.Contains(",") || value.Contains("\"") || value.Contains("\n"))
+            {
+                value = $"\"{value.Replace("\"", "\"\"")}\"";
+            }
+            return value;
         }
 
         protected override void OnDrawItem(DrawListViewItemEventArgs e)

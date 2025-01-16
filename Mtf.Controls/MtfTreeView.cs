@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
+using System.Text;
 using System.Windows.Forms;
 
 namespace Mtf.Controls
@@ -975,6 +977,45 @@ namespace Mtf.Controls
         public bool IsTreeNodeSelectedWithTag(object obj)
         {
             return this.ExecuteThreadSafely(() => (SelectedNodes.Length == 1) && obj.Equals(SelectedNodes[0].Tag));
+        }
+
+        public void ExportNodesToCsv(string filePath, string delimiter = ",")
+        {
+            var csvBuilder = new StringBuilder();
+            //_ = csvBuilder.AppendLine($"{"Level".PadRight(10)}{delimiter}Node Text{delimiter}Node Tag");
+
+            foreach (TreeNode rootNode in Nodes)
+            {
+                ExportNode(csvBuilder, delimiter, rootNode, -1);
+            }
+
+            File.WriteAllText(filePath, csvBuilder.ToString(), Encoding.UTF8);
+        }
+
+        private void ExportNode(StringBuilder csvBuilder, string delimiter, TreeNode node, int level)
+        {
+            if (level > -1)
+            {
+                _ = csvBuilder.AppendLine($"{new string('\t', level)}{delimiter}{EscapeCsvValue(node.Text)}{delimiter}{EscapeCsvValue(node.Tag?.ToString() ?? String.Empty)}");
+            }
+            else
+            {
+                _ = csvBuilder.AppendLine($"{EscapeCsvValue(node.Text)}{delimiter}{EscapeCsvValue(node.Tag?.ToString() ?? String.Empty)}");
+            }
+
+            foreach (TreeNode childNode in node.Nodes)
+            {
+                ExportNode(csvBuilder, delimiter, childNode, level + 1);
+            }
+        }
+
+        private static string EscapeCsvValue(string value)
+        {
+            if (value.Contains(",") || value.Contains("\"") || value.Contains("\n"))
+            {
+                value = $"\"{value.Replace("\"", "\"\"")}\"";
+            }
+            return value;
         }
 
         private TreeNode GetTreeNodeWithTag(object obj, TreeNode node = null)

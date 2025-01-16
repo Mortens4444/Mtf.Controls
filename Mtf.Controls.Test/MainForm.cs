@@ -1,5 +1,6 @@
 using Mtf.Controls.Services;
 using System;
+using System.CodeDom.Compiler;
 using System.Drawing;
 using System.IO;
 using System.IO.Pipes;
@@ -119,6 +120,16 @@ namespace Mtf.Controls.Test
             mortoGraphyWindow1.Stop();
             vlcWindow1.Stop();
             fFmpegWindow1.Stop();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            mtfListView1.ExportItemsToCsv(@"C:\Work\Test.csv", ";");
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            mtfTreeView1.ExportNodesToCsv(@"C:\Work\Test.csv", ";");
         }
     }
 }

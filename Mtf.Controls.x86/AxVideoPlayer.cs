@@ -2,7 +2,9 @@
 using Mtf.Controls.x86.Extensions;
 using Mtf.MessageBoxes;
 using System;
+using System.Drawing;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Mtf.Controls.x86
 {
@@ -13,18 +15,11 @@ namespace Mtf.Controls.x86
         private AxVideoPicture originalAxVideoPicture;
         private AxVideoPlayerWindow axVideoPlayerWindow;
 
-        public AxVideoPicture AxVideoPicture { get; private set; }
-
         public event EventHandler FrameArrived;
         public event EventHandler Connected;
         public event EventHandler Disconnected;
         public event EventHandler<_DVideoPictureEvents_onConnectFailedEvent> ConnectFailed;
         public event EventHandler<_DVideoPictureEvents_onErrorEvent> ErrorOccurred;
-
-        private string ipAddress;
-        private string camera;
-        private string username;
-        private string password;
 
         public AxVideoPlayer(AxVideoPlayerWindow axVideoPlayerWindow)
         {
@@ -45,6 +40,48 @@ namespace Mtf.Controls.x86
             catch (Exception ex)
             {
                 DebugErrorBox.Show(ex);
+            }
+        }
+
+        public AxVideoPicture AxVideoPicture { get; private set; }
+
+        public string IpAddress { get; private set; }
+
+        public string Camera { get; private set; }
+
+        public string Username { get; private set; }
+
+        public string Password { get; private set; }
+
+        public short? Light => AxVideoPicture?.Light;
+
+        public short? Millisec => AxVideoPicture?.Millisec;
+
+        public short? Motion => AxVideoPicture?.Motion;
+
+        public bool? OSD => AxVideoPicture?.OSD;
+
+        public short? PlayStatus => AxVideoPicture?.PlayStatus;
+
+        public Image Image => AxVideoPicture?.Picture;
+
+        public bool? DisplayImage => AxVideoPicture?.DisplayPicture;
+
+        public bool? ShowDateTime => AxVideoPicture?.ShowDateTime;
+
+        public short? Speed => AxVideoPicture?.Speed;
+
+        public DateTime? Time
+        {
+            get
+            {
+                if (AxVideoPicture == null)
+                {
+                    return null;
+                }
+
+                var time = AxVideoPicture.Time;
+                return new DateTime(time.Year, time.Month, time.Day, time.Hour, time.Minute, time.Second, AxVideoPicture.Millisec, time.Kind);
             }
         }
 
@@ -74,13 +111,153 @@ namespace Mtf.Controls.x86
 
         public void Start(string ipAddress, string camera, string username, string password)
         {
-            this.ipAddress = ipAddress;
-            this.camera = camera;
-            this.username = username;
-            this.password = password;
-
-            SubscribeToEvents();
+            InitStart(ipAddress, camera, username, password);
             _ = AxVideoPicture?.Connect(ipAddress, camera, username, password);
+        }
+
+        public async void StartAsync(string ipAddress, string camera, string username, string password, CancellationToken cancellationToken)
+        {
+            InitStart(ipAddress, camera, username, password);
+            try
+            {
+                await Task.Run(() => AxVideoPicture?.Connect(ipAddress, camera, username, password), cancellationToken).ConfigureAwait(false);
+            }
+            catch (OperationCanceledException) { }
+        }
+
+        public int? CameraFocus(short focusSpeed)
+        {
+            return AxVideoPicture?.CameraFocus(focusSpeed);
+        }
+
+        public int? CameraGoToPreset(int presetNumber)
+        {
+            return AxVideoPicture?.CameraGoToPreset(presetNumber);
+        }
+
+        public int? CameraIris(short irisSpeed)
+        {
+            return AxVideoPicture?.CameraIris(irisSpeed);
+        }
+
+        public int? CameraMove(short upDown, short leftRight)
+        {
+            return AxVideoPicture?.CameraMove(upDown, leftRight);
+        }
+
+        public int? CameraRunPattern(short patternNumber, short repeat)
+        {
+            return AxVideoPicture?.CameraRunPattern(patternNumber, repeat);
+        }
+
+        public int? CameraStop()
+        {
+            return AxVideoPicture?.CameraStop();
+        }
+
+        public int? CameraZoom(short zoomSpeed)
+        {
+            return AxVideoPicture?.CameraZoom(zoomSpeed);
+        }
+
+        public void EnableDeblock(bool enable)
+        {
+            AxVideoPicture?.EnableDeblock(enable);
+        }
+
+        public void EnableThreading(bool enable)
+        {
+            AxVideoPicture?.EnableThreading(enable);
+        }
+
+        public int? Find(DateTime dateTime)
+        {
+            return AxVideoPicture?.Find(dateTime, (short)dateTime.Millisecond);
+        }
+
+        public bool First()
+        {
+            return AxVideoPicture?.First() ?? false;
+        }
+
+        public int? GetOcxVersion()
+        {
+            return AxVideoPicture?.GetOcxVersion();
+        }
+
+        public int? InitAudio(int windowHandle)
+        {
+            return AxVideoPicture?.InitAudio(windowHandle);
+        }
+
+        public bool? IsCameraControl()
+        {
+            return AxVideoPicture?.IsCameraControl();
+        }
+
+        public bool? IsConnected()
+        {
+            return AxVideoPicture?.IsConnected();
+        }
+
+        public bool? IsVideoSignal()
+        {
+            return AxVideoPicture?.IsVideoSignal();
+        }
+
+        public bool? Last()
+        {
+            return AxVideoPicture?.Last();
+        }
+
+        public bool? LiveVideo(int layer = 0, int frameRate = 25)
+        {
+            return AxVideoPicture?.LiveVideo(layer, frameRate);
+        }
+
+        public bool? Next()
+        {
+            return AxVideoPicture?.Next();
+        }
+
+        public bool? Play()
+        {
+            return AxVideoPicture?.Play();
+        }
+
+        public bool? PlayReverse()
+        {
+            return AxVideoPicture?.PlayReverse();
+        }
+
+        public bool? Prev()
+        {
+            return AxVideoPicture?.Prev();
+        }
+
+        public int? SaveAsBitmap(string filename, short width, short height, short mode, short osd = 1)
+        {
+            return AxVideoPicture?.SaveAsBMP(filename, width, height, mode, osd);
+        }
+
+        public int? SaveAsJpeg(string filename, short width, short height, short mode, short osd = 1, short quality = 100)
+        {
+            return AxVideoPicture?.SaveAsJPG(filename, width, height, mode, osd, quality);
+        }
+
+        public bool? StopAxVideoPicture()
+        {
+            return AxVideoPicture?.Stop();
+        }
+
+        public bool? WaitForConnect(int waitTimeInMs)
+        {
+            return AxVideoPicture?.WaitForConnect(waitTimeInMs);
+        }
+
+        public bool? WaitForDisconnect(int waitTimeInMs)
+        {
+            return AxVideoPicture?.WaitForDisconnect(waitTimeInMs);
         }
 
         public void Stop()
@@ -100,6 +277,16 @@ namespace Mtf.Controls.x86
             {
                 DebugErrorBox.Show(ex);
             }
+        }
+
+        private void InitStart(string ipAddress, string camera, string username, string password)
+        {
+            IpAddress = ipAddress;
+            Camera = camera;
+            Username = username;
+            Password = password;
+
+            SubscribeToEvents();
         }
 
         private void DisconnectToolStripMenuItem_Click(object sender, EventArgs e)
