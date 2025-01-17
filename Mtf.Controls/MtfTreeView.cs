@@ -994,14 +994,8 @@ namespace Mtf.Controls
 
         private void ExportNode(StringBuilder csvBuilder, string delimiter, TreeNode node, int level)
         {
-            if (level > -1)
-            {
-                _ = csvBuilder.AppendLine($"{new string('\t', level)}{delimiter}{EscapeCsvValue(node.Text)}{delimiter}{EscapeCsvValue(node.Tag?.ToString() ?? String.Empty)}");
-            }
-            else
-            {
-                _ = csvBuilder.AppendLine($"{EscapeCsvValue(node.Text)}{delimiter}{EscapeCsvValue(node.Tag?.ToString() ?? String.Empty)}");
-            }
+            var indent = level > -1 ? $"{new string('\t', level)}{delimiter}" : String.Empty;
+            _ = csvBuilder.AppendLine($"{indent}{EscapeCsvValue(node.Text)}{delimiter}{EscapeCsvValue(node.Tag?.ToString() ?? String.Empty)}");
 
             foreach (TreeNode childNode in node.Nodes)
             {

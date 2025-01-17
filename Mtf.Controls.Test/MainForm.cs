@@ -1,6 +1,5 @@
 using Mtf.Controls.Services;
 using System;
-using System.CodeDom.Compiler;
 using System.Drawing;
 using System.IO;
 using System.IO.Pipes;
@@ -25,6 +24,13 @@ namespace Mtf.Controls.Test
 
             ansiColoringRichTextBox1.AppendText("\u001b[1;34mbin\u001b[0m      \u001b[1;34mcifs2\u001b[0m    \u001b[1;34mdev\u001b[0m      \u001b[1;34mjffs\u001b[0m     \u001b[1;34mmmc\u001b[0m      \u001b[1;34mproc\u001b[0m     \u001b[1;34msbin\u001b[0m     \u001b[1;34mtmp\u001b[0m      \u001b[1;34mwww\u001b[0m\r\n\u001b[1;34mbootfs\u001b[0m   \u001b[1;34mdata\u001b[0m     \u001b[1;36metc\u001b[0m      \u001b[1;34mlib\u001b[0m      \u001b[1;36mmnt\u001b[0m      \u001b[1;34mrom\u001b[0m      \u001b[1;34msys\u001b[0m      \u001b[1;34musr\u001b[0m\r\n\u001b[1;34mcifs1\u001b[0m    \u001b[1;36mdebug\u001b[0m    \u001b[1;36mhome\u001b[0m     \u001b[1;34mlib64\u001b[0m    \u001b[1;34mopt\u001b[0m      \u001b[1;36mroot\u001b[0m     \u001b[1;34msysroot\u001b[0m  \u001b[1;34mvar\u001b[0m\r\nuser@system:/home/user# ");
             ansiColoringRichTextBox1.AppendText("\u001b[1;34mbin\u001b[0m      \u001b[1;34mcifs2\u001b[0m    \u001b[1;34mdev\u001b[0m      \u001b[1;34mjffs\u001b[0m     \u001b[1;34mmmc\u001b[0m      \u001b[1;34mproc\u001b[0m     \u001b[1;34msbin\u001b[0m     \u001b[1;34mtmp\u001b[0m      \u001b[1;34mwww\u001b[0m\r\n\u001b[1;34mbootfs\u001b[0m   \u001b[1;34mdata\u001b[0m     \u001b[1;36metc\u001b[0m      \u001b[1;34mlib\u001b[0m      \u001b[1;36mmnt\u001b[0m      \u001b[1;34mrom\u001b[0m      \u001b[1;34msys\u001b[0m      \u001b[1;34musr\u001b[0m\r\n\u001b[1;34mcifs1\u001b[0m    \u001b[1;36mdebug\u001b[0m    \u001b[1;36mhome\u001b[0m     \u001b[1;34mlib64\u001b[0m    \u001b[1;34mopt\u001b[0m      \u001b[1;36mroot\u001b[0m     \u001b[1;34msysroot\u001b[0m  \u001b[1;34mvar\u001b[0m\r\nuser@system:/home/user# ");
+
+            mtfPictureBox2.Controls.Add(new TransparentPanel
+            {
+                Location = new Point(10, 10),
+                Size = new Size(30, 30),
+                BackColor = Color.Black
+            });
         }
 
         private async void StartPipeServer()

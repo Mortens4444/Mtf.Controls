@@ -99,6 +99,20 @@ namespace Mtf.Controls.Test
             columnHeader5 = new ColumnHeader();
             button4 = new Button();
             button5 = new Button();
+            mtfPictureBox2 = new MtfPictureBox();
+            tabControl1 = new TabControl();
+            tabPage1 = new TabPage();
+            tabPage2 = new TabPage();
+            tabPage3 = new TabPage();
+            tabPage4 = new TabPage();
+            tabPage5 = new TabPage();
+            tabPage6 = new TabPage();
+            tabPage7 = new TabPage();
+            tabPage8 = new TabPage();
+            tabPage9 = new TabPage();
+            tabPage10 = new TabPage();
+            tabPage11 = new TabPage();
+            tabPage12 = new TabPage();
             ((System.ComponentModel.ISupportInitialize)mtfPictureBox1).BeginInit();
             movablePanel1.SuspendLayout();
             movableSizablePanel1.SuspendLayout();
@@ -110,6 +124,20 @@ namespace Mtf.Controls.Test
             ((System.ComponentModel.ISupportInitialize)vlcWindow1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)fFmpegWindow1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)mortoGraphyWindow1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)mtfPictureBox2).BeginInit();
+            tabControl1.SuspendLayout();
+            tabPage1.SuspendLayout();
+            tabPage2.SuspendLayout();
+            tabPage3.SuspendLayout();
+            tabPage4.SuspendLayout();
+            tabPage5.SuspendLayout();
+            tabPage6.SuspendLayout();
+            tabPage7.SuspendLayout();
+            tabPage8.SuspendLayout();
+            tabPage9.SuspendLayout();
+            tabPage10.SuspendLayout();
+            tabPage11.SuspendLayout();
+            tabPage12.SuspendLayout();
             SuspendLayout();
             // 
             // mtfListView1
@@ -132,13 +160,13 @@ namespace Mtf.Controls.Test
             listViewItem5.Group = listViewGroup2;
             listViewItem6.Group = listViewGroup1;
             mtfListView1.Items.AddRange(new ListViewItem[] { listViewItem1, listViewItem2, listViewItem3, listViewItem4, listViewItem5, listViewItem6 });
-            mtfListView1.Location = new Point(12, 7);
+            mtfListView1.Location = new Point(3, 6);
             mtfListView1.Name = "mtfListView1";
             mtfListView1.OwnerDraw = true;
             mtfListView1.ReadonlyCheckboxes = false;
             mtfListView1.SameItemsColorEven = Color.DarkOrange;
             mtfListView1.SameItemsColorOdd = Color.LightSalmon;
-            mtfListView1.Size = new Size(244, 283);
+            mtfListView1.Size = new Size(387, 293);
             mtfListView1.TabIndex = 0;
             mtfListView1.UseCompatibleStateImageBehavior = false;
             mtfListView1.View = View.Details;
@@ -163,7 +191,7 @@ namespace Mtf.Controls.Test
             mtfTreeView1.ImageIndex = 0;
             mtfTreeView1.ImageList = imageList1;
             mtfTreeView1.LineStyle = System.Drawing.Drawing2D.DashStyle.Dot;
-            mtfTreeView1.Location = new Point(262, 7);
+            mtfTreeView1.Location = new Point(6, 6);
             mtfTreeView1.MultiSelect = false;
             mtfTreeView1.Name = "mtfTreeView1";
             treeNode1.ImageIndex = -2;
@@ -209,7 +237,7 @@ namespace Mtf.Controls.Test
             mtfTreeView1.Nodes.AddRange(new TreeNode[] { treeNode1, treeNode8, treeNode9, treeNode10 });
             mtfTreeView1.SelectedImageIndex = 0;
             mtfTreeView1.ShowPlusMinusOnRootNodes = true;
-            mtfTreeView1.Size = new Size(224, 283);
+            mtfTreeView1.Size = new Size(224, 201);
             mtfTreeView1.StateImageOrCheckBoxOnLeft = false;
             mtfTreeView1.TabIndex = 1;
             mtfTreeView1.TickColor = Color.Green;
@@ -227,10 +255,11 @@ namespace Mtf.Controls.Test
             sourceCodeViewerRichTextBox1.AcceptsTab = true;
             sourceCodeViewerRichTextBox1.ColoringMethod = Enums.ColoringMethod.C_Sharp;
             sourceCodeViewerRichTextBox1.DetectUrls = false;
-            sourceCodeViewerRichTextBox1.Location = new Point(726, 7);
+            sourceCodeViewerRichTextBox1.Dock = DockStyle.Fill;
+            sourceCodeViewerRichTextBox1.Location = new Point(0, 0);
             sourceCodeViewerRichTextBox1.Name = "sourceCodeViewerRichTextBox1";
             sourceCodeViewerRichTextBox1.ScroolToLastLine = false;
-            sourceCodeViewerRichTextBox1.Size = new Size(357, 417);
+            sourceCodeViewerRichTextBox1.Size = new Size(1586, 832);
             sourceCodeViewerRichTextBox1.TabIndex = 3;
             sourceCodeViewerRichTextBox1.Text = resources.GetString("sourceCodeViewerRichTextBox1.Text");
             // 
@@ -238,9 +267,9 @@ namespace Mtf.Controls.Test
             // 
             mtfPictureBox1.BackColor = Color.FromArgb(192, 255, 255);
             mtfPictureBox1.BackgroundImageLayout = ImageLayout.Center;
-            mtfPictureBox1.Location = new Point(8, 322);
+            mtfPictureBox1.Location = new Point(185, 16);
             mtfPictureBox1.Name = "mtfPictureBox1";
-            mtfPictureBox1.OriginalSize = new Size(100, 50);
+            mtfPictureBox1.OriginalSize = new Size(171, 102);
             mtfPictureBox1.RepositioningAndResizingControlsOnResize = false;
             mtfPictureBox1.Size = new Size(171, 102);
             mtfPictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -252,7 +281,7 @@ namespace Mtf.Controls.Test
             movablePanel1.BackColor = Color.Red;
             movablePanel1.CanMove = true;
             movablePanel1.Controls.Add(label2);
-            movablePanel1.Location = new Point(492, 12);
+            movablePanel1.Location = new Point(16, 13);
             movablePanel1.Name = "movablePanel1";
             movablePanel1.Size = new Size(228, 78);
             movablePanel1.TabIndex = 7;
@@ -262,7 +291,7 @@ namespace Mtf.Controls.Test
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(25, 22);
+            label2.Location = new Point(18, 19);
             label2.Name = "label2";
             label2.Size = new Size(53, 15);
             label2.TabIndex = 4;
@@ -283,7 +312,7 @@ namespace Mtf.Controls.Test
             movableSizablePanel1.CanMove = true;
             movableSizablePanel1.CanSize = true;
             movableSizablePanel1.Controls.Add(label1);
-            movableSizablePanel1.Location = new Point(492, 190);
+            movableSizablePanel1.Location = new Point(16, 191);
             movableSizablePanel1.Name = "movableSizablePanel1";
             movableSizablePanel1.Size = new Size(228, 100);
             movableSizablePanel1.TabIndex = 11;
@@ -292,7 +321,7 @@ namespace Mtf.Controls.Test
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(504, 111);
+            textBox1.Location = new Point(28, 112);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(194, 23);
             textBox1.TabIndex = 12;
@@ -303,7 +332,7 @@ namespace Mtf.Controls.Test
             transparentPanel1.BackColor = Color.White;
             transparentPanel1.BackgroundImageLayout = ImageLayout.Center;
             transparentPanel1.Controls.Add(label3);
-            transparentPanel1.Location = new Point(492, 96);
+            transparentPanel1.Location = new Point(16, 97);
             transparentPanel1.Name = "transparentPanel1";
             transparentPanel1.Size = new Size(228, 88);
             transparentPanel1.TabIndex = 13;
@@ -322,7 +351,7 @@ namespace Mtf.Controls.Test
             // pictureBox1
             // 
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox1.Location = new Point(185, 322);
+            pictureBox1.Location = new Point(8, 16);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(171, 102);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -349,7 +378,7 @@ namespace Mtf.Controls.Test
             // 
             // button1
             // 
-            button1.Location = new Point(113, 430);
+            button1.Location = new Point(113, 124);
             button1.Name = "button1";
             button1.Size = new Size(106, 23);
             button1.TabIndex = 17;
@@ -360,7 +389,7 @@ namespace Mtf.Controls.Test
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.kertmester;
-            pictureBox2.Location = new Point(12, 459);
+            pictureBox2.Location = new Point(760, 32);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(230, 225);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -370,7 +399,7 @@ namespace Mtf.Controls.Test
             // pictureBox3
             // 
             pictureBox3.Image = Properties.Resources.hack_with_me;
-            pictureBox3.Location = new Point(248, 459);
+            pictureBox3.Location = new Point(996, 32);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(230, 225);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -379,21 +408,22 @@ namespace Mtf.Controls.Test
             // 
             // richTextBox1
             // 
-            richTextBox1.Location = new Point(504, 431);
+            richTextBox1.Location = new Point(8, 3);
             richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(216, 417);
+            richTextBox1.Size = new Size(230, 383);
             richTextBox1.TabIndex = 20;
             richTextBox1.Text = "Press a key on KBD300A simulator\n\n";
             richTextBox1.TextChanged += RichTextBox1_TextChanged;
             // 
             // fileBrowserView1
             // 
+            fileBrowserView1.Dock = DockStyle.Fill;
             fileBrowserView1.FullRowSelect = true;
             listViewItem7.Tag = "up";
             fileBrowserView1.Items.AddRange(new ListViewItem[] { listViewItem7 });
-            fileBrowserView1.Location = new Point(1089, 7);
+            fileBrowserView1.Location = new Point(0, 0);
             fileBrowserView1.Name = "fileBrowserView1";
-            fileBrowserView1.Size = new Size(413, 115);
+            fileBrowserView1.Size = new Size(1586, 832);
             fileBrowserView1.TabIndex = 21;
             fileBrowserView1.UseCompatibleStateImageBehavior = false;
             fileBrowserView1.View = View.Details;
@@ -401,7 +431,7 @@ namespace Mtf.Controls.Test
             // 
             // passwordBox1
             // 
-            passwordBox1.Location = new Point(492, 321);
+            passwordBox1.Location = new Point(19, 22);
             passwordBox1.Name = "passwordBox1";
             passwordBox1.Password = "";
             passwordBox1.PasswordChar = '*';
@@ -411,7 +441,7 @@ namespace Mtf.Controls.Test
             // 
             // button2
             // 
-            button2.Location = new Point(598, 321);
+            button2.Location = new Point(125, 22);
             button2.Name = "button2";
             button2.Size = new Size(100, 23);
             button2.TabIndex = 23;
@@ -421,18 +451,18 @@ namespace Mtf.Controls.Test
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(492, 350);
+            textBox2.Location = new Point(19, 51);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(206, 23);
             textBox2.TabIndex = 24;
             // 
             // ansiColoringRichTextBox1
             // 
-            ansiColoringRichTextBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             ansiColoringRichTextBox1.DisplayAnsiColors = true;
-            ansiColoringRichTextBox1.Location = new Point(1391, 430);
+            ansiColoringRichTextBox1.Dock = DockStyle.Fill;
+            ansiColoringRichTextBox1.Location = new Point(0, 0);
             ansiColoringRichTextBox1.Name = "ansiColoringRichTextBox1";
-            ansiColoringRichTextBox1.Size = new Size(200, 418);
+            ansiColoringRichTextBox1.Size = new Size(1586, 832);
             ansiColoringRichTextBox1.TabIndex = 25;
             ansiColoringRichTextBox1.Text = "";
             // 
@@ -441,7 +471,7 @@ namespace Mtf.Controls.Test
             textBoxWithRegEx1.AcceptColor = Color.LightGreen;
             textBoxWithRegEx1.DisplayErrorOnLeft = false;
             textBoxWithRegEx1.ErrorMessage = "The given text not macthing the regex.";
-            textBoxWithRegEx1.Location = new Point(1230, 340);
+            textBoxWithRegEx1.Location = new Point(8, 202);
             textBoxWithRegEx1.Name = "textBoxWithRegEx1";
             textBoxWithRegEx1.RegularExpression = "\\b((25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\\b";
             textBoxWithRegEx1.RejectionColor = Color.LightSalmon;
@@ -453,8 +483,9 @@ namespace Mtf.Controls.Test
             richTextBoxWithLineNumbers1.ColoringMethod = Enums.ColoringMethod.No_Coloring;
             richTextBoxWithLineNumbers1.CopyText = "Copy";
             richTextBoxWithLineNumbers1.CutText = "Cut";
+            richTextBoxWithLineNumbers1.Dock = DockStyle.Fill;
             richTextBoxWithLineNumbers1.EmbeddedContextMenuStrip = true;
-            richTextBoxWithLineNumbers1.Location = new Point(1090, 128);
+            richTextBoxWithLineNumbers1.Location = new Point(0, 0);
             richTextBoxWithLineNumbers1.Margin = new Padding(4, 3, 4, 3);
             richTextBoxWithLineNumbers1.Name = "richTextBoxWithLineNumbers1";
             richTextBoxWithLineNumbers1.PasteText = "Paste";
@@ -465,7 +496,7 @@ namespace Mtf.Controls.Test
             richTextBoxWithLineNumbers1.SelectionLength = 0;
             richTextBoxWithLineNumbers1.SelectionStart = 0;
             richTextBoxWithLineNumbers1.ShowLineNumbers = true;
-            richTextBoxWithLineNumbers1.Size = new Size(412, 162);
+            richTextBoxWithLineNumbers1.Size = new Size(1586, 832);
             richTextBoxWithLineNumbers1.TabIndex = 27;
             richTextBoxWithLineNumbers1.WrapLines = false;
             // 
@@ -475,11 +506,11 @@ namespace Mtf.Controls.Test
             rotatableImagePanel1.BackgroundImageLayout = ImageLayout.Stretch;
             rotatableImagePanel1.CanMove = true;
             rotatableImagePanel1.CanSize = true;
-            rotatableImagePanel1.Location = new Point(1090, 296);
+            rotatableImagePanel1.Location = new Point(377, 16);
             rotatableImagePanel1.Name = "rotatableImagePanel1";
             rotatableImagePanel1.RotatingMouseButton = MouseButtons.Middle;
             rotatableImagePanel1.Rotation = null;
-            rotatableImagePanel1.Size = new Size(69, 67);
+            rotatableImagePanel1.Size = new Size(132, 102);
             rotatableImagePanel1.TabIndex = 28;
             rotatableImagePanel1.TransparentColor = Color.Black;
             rotatableImagePanel1.UseTransparentColor = false;
@@ -488,15 +519,15 @@ namespace Mtf.Controls.Test
             // 
             editableComboBox1.FormattingEnabled = true;
             editableComboBox1.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7" });
-            editableComboBox1.Location = new Point(1230, 302);
+            editableComboBox1.Location = new Point(8, 130);
             editableComboBox1.Name = "editableComboBox1";
-            editableComboBox1.Size = new Size(121, 23);
+            editableComboBox1.Size = new Size(217, 23);
             editableComboBox1.TabIndex = 29;
             // 
             // button3
             // 
             button3.BackColor = SystemColors.Control;
-            button3.Location = new Point(12, 828);
+            button3.Location = new Point(20, 311);
             button3.Name = "button3";
             button3.Size = new Size(75, 23);
             button3.TabIndex = 31;
@@ -508,16 +539,16 @@ namespace Mtf.Controls.Test
             // 
             openCvSharp4VideoWindow1.BackgroundImage = (Image)resources.GetObject("openCvSharp4VideoWindow1.BackgroundImage");
             openCvSharp4VideoWindow1.BackgroundImageLayout = ImageLayout.Stretch;
-            openCvSharp4VideoWindow1.Location = new Point(12, 690);
+            openCvSharp4VideoWindow1.Location = new Point(20, 158);
             openCvSharp4VideoWindow1.Name = "openCvSharp4VideoWindow1";
-            openCvSharp4VideoWindow1.Size = new Size(230, 135);
+            openCvSharp4VideoWindow1.Size = new Size(218, 135);
             openCvSharp4VideoWindow1.SizeMode = PictureBoxSizeMode.StretchImage;
             openCvSharp4VideoWindow1.TabIndex = 32;
             openCvSharp4VideoWindow1.TabStop = false;
             // 
             // button7
             // 
-            button7.Location = new Point(93, 828);
+            button7.Location = new Point(101, 311);
             button7.Name = "button7";
             button7.Size = new Size(75, 23);
             button7.TabIndex = 36;
@@ -530,7 +561,7 @@ namespace Mtf.Controls.Test
             vlcWindow1.BackColor = Color.Black;
             vlcWindow1.BackgroundImage = (Image)resources.GetObject("vlcWindow1.BackgroundImage");
             vlcWindow1.BackgroundImageLayout = ImageLayout.Stretch;
-            vlcWindow1.Location = new Point(747, 446);
+            vlcWindow1.Location = new Point(20, 14);
             vlcWindow1.MediaPlayer = null;
             vlcWindow1.Name = "vlcWindow1";
             vlcWindow1.Size = new Size(218, 138);
@@ -543,7 +574,7 @@ namespace Mtf.Controls.Test
             fFmpegWindow1.BackgroundImage = (Image)resources.GetObject("fFmpegWindow1.BackgroundImage");
             fFmpegWindow1.BackgroundImageLayout = ImageLayout.Stretch;
             fFmpegWindow1.Codec = "mjpeg";
-            fFmpegWindow1.Location = new Point(747, 590);
+            fFmpegWindow1.Location = new Point(244, 14);
             fFmpegWindow1.Name = "fFmpegWindow1";
             fFmpegWindow1.Size = new Size(218, 138);
             fFmpegWindow1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -554,10 +585,10 @@ namespace Mtf.Controls.Test
             // 
             mortoGraphyWindow1.BackgroundImage = (Image)resources.GetObject("mortoGraphyWindow1.BackgroundImage");
             mortoGraphyWindow1.BackgroundImageLayout = ImageLayout.Stretch;
-            mortoGraphyWindow1.Location = new Point(248, 690);
+            mortoGraphyWindow1.Location = new Point(244, 158);
             mortoGraphyWindow1.Name = "mortoGraphyWindow1";
             mortoGraphyWindow1.Password = null;
-            mortoGraphyWindow1.Size = new Size(230, 135);
+            mortoGraphyWindow1.Size = new Size(218, 135);
             mortoGraphyWindow1.SizeMode = PictureBoxSizeMode.StretchImage;
             mortoGraphyWindow1.StreamType = Enums.StreamType.Mjpeg;
             mortoGraphyWindow1.TabIndex = 40;
@@ -585,7 +616,7 @@ namespace Mtf.Controls.Test
             listViewItem9.Group = listViewGroup4;
             listViewItem10.Group = listViewGroup4;
             mtfListView2.Items.AddRange(new ListViewItem[] { listViewItem8, listViewItem9, listViewItem10 });
-            mtfListView2.Location = new Point(1002, 526);
+            mtfListView2.Location = new Point(707, 11);
             mtfListView2.Name = "mtfListView2";
             mtfListView2.OwnerDraw = true;
             mtfListView2.ReadonlyCheckboxes = false;
@@ -606,7 +637,7 @@ namespace Mtf.Controls.Test
             // 
             // button4
             // 
-            button4.Location = new Point(19, 258);
+            button4.Location = new Point(15, 328);
             button4.Name = "button4";
             button4.Size = new Size(75, 23);
             button4.TabIndex = 42;
@@ -616,7 +647,7 @@ namespace Mtf.Controls.Test
             // 
             // button5
             // 
-            button5.Location = new Point(272, 258);
+            button5.Location = new Point(15, 223);
             button5.Name = "button5";
             button5.Size = new Size(75, 23);
             button5.TabIndex = 43;
@@ -624,45 +655,195 @@ namespace Mtf.Controls.Test
             button5.UseVisualStyleBackColor = true;
             button5.Click += button5_Click;
             // 
+            // mtfPictureBox2
+            // 
+            mtfPictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
+            mtfPictureBox2.Dock = DockStyle.Fill;
+            mtfPictureBox2.Image = Properties.Resources.hack_with_me;
+            mtfPictureBox2.Location = new Point(3, 3);
+            mtfPictureBox2.Name = "mtfPictureBox2";
+            mtfPictureBox2.OriginalSize = new Size(800, 800);
+            mtfPictureBox2.RepositioningAndResizingControlsOnResize = true;
+            mtfPictureBox2.Size = new Size(1580, 826);
+            mtfPictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            mtfPictureBox2.TabIndex = 44;
+            mtfPictureBox2.TabStop = false;
+            // 
+            // tabControl1
+            // 
+            tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPage2);
+            tabControl1.Controls.Add(tabPage3);
+            tabControl1.Controls.Add(tabPage4);
+            tabControl1.Controls.Add(tabPage5);
+            tabControl1.Controls.Add(tabPage6);
+            tabControl1.Controls.Add(tabPage7);
+            tabControl1.Controls.Add(tabPage8);
+            tabControl1.Controls.Add(tabPage9);
+            tabControl1.Controls.Add(tabPage10);
+            tabControl1.Controls.Add(tabPage11);
+            tabControl1.Controls.Add(tabPage12);
+            tabControl1.Dock = DockStyle.Fill;
+            tabControl1.Location = new Point(0, 0);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(1594, 860);
+            tabControl1.TabIndex = 45;
+            // 
+            // tabPage1
+            // 
+            tabPage1.Controls.Add(mtfListView1);
+            tabPage1.Controls.Add(mtfListView2);
+            tabPage1.Controls.Add(button4);
+            tabPage1.Location = new Point(4, 24);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(1586, 832);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "MtfListView";
+            tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            tabPage2.Controls.Add(mtfTreeView1);
+            tabPage2.Controls.Add(button5);
+            tabPage2.Location = new Point(4, 24);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(1586, 832);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "MtfTreeView";
+            tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            tabPage3.Controls.Add(mtfPictureBox2);
+            tabPage3.Location = new Point(4, 24);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Padding = new Padding(3);
+            tabPage3.Size = new Size(1586, 832);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "MtfPictureBox";
+            tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tabPage4
+            // 
+            tabPage4.Controls.Add(mtfPictureBox1);
+            tabPage4.Controls.Add(pictureBox1);
+            tabPage4.Controls.Add(button1);
+            tabPage4.Controls.Add(rotatableImagePanel1);
+            tabPage4.Location = new Point(4, 24);
+            tabPage4.Name = "tabPage4";
+            tabPage4.Padding = new Padding(3);
+            tabPage4.Size = new Size(1586, 832);
+            tabPage4.TabIndex = 3;
+            tabPage4.Text = "PictureBox vs MtfPictureBox RotateablePictureBox";
+            tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // tabPage5
+            // 
+            tabPage5.Controls.Add(passwordBox1);
+            tabPage5.Controls.Add(button2);
+            tabPage5.Controls.Add(textBox2);
+            tabPage5.Controls.Add(editableComboBox1);
+            tabPage5.Controls.Add(textBoxWithRegEx1);
+            tabPage5.Location = new Point(4, 24);
+            tabPage5.Name = "tabPage5";
+            tabPage5.Padding = new Padding(3);
+            tabPage5.Size = new Size(1586, 832);
+            tabPage5.TabIndex = 4;
+            tabPage5.Text = "ComboBox & TextBox";
+            tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // tabPage6
+            // 
+            tabPage6.Controls.Add(movablePanel1);
+            tabPage6.Controls.Add(movableSizablePanel1);
+            tabPage6.Controls.Add(textBox1);
+            tabPage6.Controls.Add(transparentPanel1);
+            tabPage6.Location = new Point(4, 24);
+            tabPage6.Name = "tabPage6";
+            tabPage6.Size = new Size(1586, 832);
+            tabPage6.TabIndex = 5;
+            tabPage6.Text = "Panels";
+            tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // tabPage7
+            // 
+            tabPage7.Controls.Add(sourceCodeViewerRichTextBox1);
+            tabPage7.Location = new Point(4, 24);
+            tabPage7.Name = "tabPage7";
+            tabPage7.Size = new Size(1586, 832);
+            tabPage7.TabIndex = 6;
+            tabPage7.Text = "SourceCodeViewerRichTextBox";
+            tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // tabPage8
+            // 
+            tabPage8.Controls.Add(ansiColoringRichTextBox1);
+            tabPage8.Location = new Point(4, 24);
+            tabPage8.Name = "tabPage8";
+            tabPage8.Size = new Size(1586, 832);
+            tabPage8.TabIndex = 7;
+            tabPage8.Text = "AnsiColoringRichTextBox";
+            tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // tabPage9
+            // 
+            tabPage9.Controls.Add(richTextBoxWithLineNumbers1);
+            tabPage9.Location = new Point(4, 24);
+            tabPage9.Name = "tabPage9";
+            tabPage9.Size = new Size(1586, 832);
+            tabPage9.TabIndex = 8;
+            tabPage9.Text = "RichTextBoxWithLineNumbers";
+            tabPage9.UseVisualStyleBackColor = true;
+            // 
+            // tabPage10
+            // 
+            tabPage10.Controls.Add(fileBrowserView1);
+            tabPage10.Location = new Point(4, 24);
+            tabPage10.Name = "tabPage10";
+            tabPage10.Size = new Size(1586, 832);
+            tabPage10.TabIndex = 9;
+            tabPage10.Text = "FileBrowserView";
+            tabPage10.UseVisualStyleBackColor = true;
+            // 
+            // tabPage11
+            // 
+            tabPage11.Controls.Add(openCvSharp4VideoWindow1);
+            tabPage11.Controls.Add(pictureBox3);
+            tabPage11.Controls.Add(button3);
+            tabPage11.Controls.Add(pictureBox2);
+            tabPage11.Controls.Add(fFmpegWindow1);
+            tabPage11.Controls.Add(mortoGraphyWindow1);
+            tabPage11.Controls.Add(vlcWindow1);
+            tabPage11.Controls.Add(button7);
+            tabPage11.Location = new Point(4, 24);
+            tabPage11.Name = "tabPage11";
+            tabPage11.Size = new Size(1586, 832);
+            tabPage11.TabIndex = 10;
+            tabPage11.Text = "Video";
+            tabPage11.UseVisualStyleBackColor = true;
+            // 
+            // tabPage12
+            // 
+            tabPage12.Controls.Add(richTextBox1);
+            tabPage12.Location = new Point(4, 24);
+            tabPage12.Name = "tabPage12";
+            tabPage12.Size = new Size(1586, 832);
+            tabPage12.TabIndex = 11;
+            tabPage12.Text = "KDB300 Simulator";
+            tabPage12.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Gray;
             ClientSize = new Size(1594, 860);
-            Controls.Add(button5);
-            Controls.Add(button4);
-            Controls.Add(mtfListView2);
-            Controls.Add(mortoGraphyWindow1);
-            Controls.Add(fFmpegWindow1);
-            Controls.Add(vlcWindow1);
-            Controls.Add(button7);
-            Controls.Add(openCvSharp4VideoWindow1);
-            Controls.Add(button3);
-            Controls.Add(editableComboBox1);
-            Controls.Add(rotatableImagePanel1);
-            Controls.Add(richTextBoxWithLineNumbers1);
-            Controls.Add(textBoxWithRegEx1);
-            Controls.Add(ansiColoringRichTextBox1);
-            Controls.Add(textBox2);
-            Controls.Add(button2);
-            Controls.Add(passwordBox1);
-            Controls.Add(fileBrowserView1);
-            Controls.Add(richTextBox1);
-            Controls.Add(pictureBox3);
-            Controls.Add(pictureBox2);
-            Controls.Add(button1);
+            Controls.Add(tabControl1);
             Controls.Add(label5);
             Controls.Add(label4);
-            Controls.Add(pictureBox1);
-            Controls.Add(transparentPanel1);
-            Controls.Add(textBox1);
-            Controls.Add(movableSizablePanel1);
-            Controls.Add(movablePanel1);
-            Controls.Add(mtfPictureBox1);
-            Controls.Add(sourceCodeViewerRichTextBox1);
-            Controls.Add(mtfTreeView1);
-            Controls.Add(mtfListView1);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MainForm";
@@ -680,6 +861,22 @@ namespace Mtf.Controls.Test
             ((System.ComponentModel.ISupportInitialize)vlcWindow1).EndInit();
             ((System.ComponentModel.ISupportInitialize)fFmpegWindow1).EndInit();
             ((System.ComponentModel.ISupportInitialize)mortoGraphyWindow1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)mtfPictureBox2).EndInit();
+            tabControl1.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
+            tabPage2.ResumeLayout(false);
+            tabPage3.ResumeLayout(false);
+            tabPage4.ResumeLayout(false);
+            tabPage5.ResumeLayout(false);
+            tabPage5.PerformLayout();
+            tabPage6.ResumeLayout(false);
+            tabPage6.PerformLayout();
+            tabPage7.ResumeLayout(false);
+            tabPage8.ResumeLayout(false);
+            tabPage9.ResumeLayout(false);
+            tabPage10.ResumeLayout(false);
+            tabPage11.ResumeLayout(false);
+            tabPage12.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -729,5 +926,19 @@ namespace Mtf.Controls.Test
         private ColumnHeader columnHeader5;
         private Button button4;
         private Button button5;
+        private MtfPictureBox mtfPictureBox2;
+        private TabControl tabControl1;
+        private TabPage tabPage1;
+        private TabPage tabPage2;
+        private TabPage tabPage3;
+        private TabPage tabPage4;
+        private TabPage tabPage5;
+        private TabPage tabPage6;
+        private TabPage tabPage7;
+        private TabPage tabPage8;
+        private TabPage tabPage9;
+        private TabPage tabPage10;
+        private TabPage tabPage11;
+        private TabPage tabPage12;
     }
 }

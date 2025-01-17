@@ -13,6 +13,7 @@ namespace Mtf.Controls
     [ToolboxBitmap(typeof(MtfPictureBox), "Resources.MtfPictureBox.png")]
     public class MtfPictureBox : PictureBox
     {
+        private bool first = true;
         private readonly List<string> controlNames;
         private readonly List<LocationAndSize> controlLocationsAndSizes;
 
@@ -21,7 +22,6 @@ namespace Mtf.Controls
             SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
             DoubleBuffered = true;
             UpdateStyles();
-            OriginalSize = Size;
             controlNames = new List<string>();
             controlLocationsAndSizes = new List<LocationAndSize>();
             RepositioningAndResizingControlsOnResize = false;
@@ -113,6 +113,11 @@ namespace Mtf.Controls
                 {
                     return;
                 }
+                if (first)
+                {
+                    OriginalSize = ImageLocationAndSize.Size;
+                    first = false;
+                }
 
                 var scaleX = (double)ImageLocationAndSize.Size.Width / OriginalSize.Width;
                 var scaleY = (double)ImageLocationAndSize.Size.Height / OriginalSize.Height;
@@ -154,23 +159,23 @@ namespace Mtf.Controls
                         case PictureBoxSizeMode.StretchImage:
                             return new LocationAndSize(0, 0, Size.Width, Size.Height);
                         case PictureBoxSizeMode.Zoom:
-                            var aspect_ratio = (double)Image.Width / Image.Height;
-                            var aspect_ratio_2 = (double)Size.Width / Size.Height;
-                            if (aspect_ratio_2 == aspect_ratio)
+                            var aspectRatio = (double)Image.Width / Image.Height;
+                            var aspectRatio2 = (double)Size.Width / Size.Height;
+                            if (aspectRatio2 == aspectRatio)
                             {
                                 return new LocationAndSize(0, 0, Size.Width, Size.Height);
                             }
-                            else if (aspect_ratio_2 < aspect_ratio)
+                            else if (aspectRatio2 < aspectRatio)
                             {
-                                var height = (int)Math.Round(Size.Width / aspect_ratio);
-                                var half_pad = (Size.Height - height) / 2;
-                                return new LocationAndSize(0, half_pad, Size.Width, height);
+                                var height = (int)Math.Round(Size.Width / aspectRatio);
+                                var halfPad = (Size.Height - height) / 2;
+                                return new LocationAndSize(0, halfPad, Size.Width, height);
                             }
                             else
                             {
-                                var width = (int)Math.Round(Size.Height * aspect_ratio);
-                                var half_pad = (Size.Width - width) / 2;
-                                return new LocationAndSize(half_pad, 0, width, Size.Height);
+                                var width = (int)Math.Round(Size.Height * aspectRatio);
+                                var halfPad = (Size.Width - width) / 2;
+                                return new LocationAndSize(halfPad, 0, width, Size.Height);
                             }
                         default:
                             return null;
