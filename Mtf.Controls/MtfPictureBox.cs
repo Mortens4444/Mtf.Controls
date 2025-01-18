@@ -14,6 +14,7 @@ namespace Mtf.Controls
     public class MtfPictureBox : PictureBox
     {
         private bool first = true;
+        private bool isResizing;
         private readonly List<string> controlNames;
         private readonly List<LocationAndSize> controlLocationsAndSizes;
 
@@ -133,8 +134,21 @@ namespace Mtf.Controls
 
         protected override void OnResize(EventArgs e)
         {
-            RelocateControls();
-            base.OnResize(e);
+            if (isResizing)
+            {
+                return;
+            }
+
+            try
+            {
+                isResizing = true;
+                base.OnResize(e);
+                RelocateControls();
+            }
+            finally
+            {
+                isResizing = false;
+            }
         }
 
         public LocationAndSize ImageLocationAndSize
