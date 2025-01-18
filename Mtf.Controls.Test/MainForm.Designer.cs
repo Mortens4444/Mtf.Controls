@@ -32,14 +32,14 @@ namespace Mtf.Controls.Test
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            var listViewGroup1 = new ListViewGroup("A", HorizontalAlignment.Left);
-            var listViewGroup2 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
-            var listViewItem1 = new ListViewItem(new string[] { "Lorem", "1", "2020.10.21" }, -1);
-            var listViewItem2 = new ListViewItem(new string[] { "Ipsum", "", "2020.10.21" }, -1);
-            var listViewItem3 = new ListViewItem(new string[] { "Dolor", "2", "2020.10.21" }, -1);
-            var listViewItem4 = new ListViewItem(new string[] { "Est", "", "" }, -1);
-            var listViewItem5 = new ListViewItem(new string[] { "Sit", "", "2020.10.21" }, -1);
-            var listViewItem6 = new ListViewItem(new string[] { "Amet", "5", "2020.10.21" }, -1);
+            var listViewGroup9 = new ListViewGroup("A", HorizontalAlignment.Left);
+            var listViewGroup10 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
+            var listViewItem20 = new ListViewItem(new string[] { "Lorem", "1", "2020.10.21" }, -1);
+            var listViewItem21 = new ListViewItem(new string[] { "Ipsum", "", "2020.10.21" }, -1);
+            var listViewItem22 = new ListViewItem(new string[] { "Dolor", "2", "2020.10.21" }, -1);
+            var listViewItem23 = new ListViewItem(new string[] { "Est", "", "" }, -1);
+            var listViewItem24 = new ListViewItem(new string[] { "Sit", "", "2020.10.21" }, -1);
+            var listViewItem25 = new ListViewItem(new string[] { "Amet", "5", "2020.10.21" }, -1);
             var treeNode1 = new TreeNode("Node0", -2, -2);
             var treeNode2 = new TreeNode("Node4", 0, 0);
             var treeNode3 = new TreeNode("Node5", 0, 0);
@@ -51,12 +51,12 @@ namespace Mtf.Controls.Test
             var treeNode9 = new TreeNode("Node2", -2, -2);
             var treeNode10 = new TreeNode("Node3", -2, -2);
             var resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            var listViewItem7 = new ListViewItem(new string[] { "..", "Parent Directory" }, "up");
-            var listViewGroup3 = new ListViewGroup("1. Group", HorizontalAlignment.Left);
-            var listViewGroup4 = new ListViewGroup("2. Group", HorizontalAlignment.Left);
-            var listViewItem8 = new ListViewItem("1");
-            var listViewItem9 = new ListViewItem("2");
-            var listViewItem10 = new ListViewItem("3");
+            var listViewItem26 = new ListViewItem(new string[] { "..", "Parent Directory" }, "up");
+            var listViewGroup11 = new ListViewGroup("1. Group", HorizontalAlignment.Left);
+            var listViewGroup12 = new ListViewGroup("2. Group", HorizontalAlignment.Left);
+            var listViewItem17 = new ListViewItem("1");
+            var listViewItem27 = new ListViewItem("2");
+            var listViewItem28 = new ListViewItem("3");
             mtfListView1 = new MtfListView();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
@@ -113,7 +113,7 @@ namespace Mtf.Controls.Test
             tabPage10 = new TabPage();
             tabPage11 = new TabPage();
             tabPage12 = new TabPage();
-            kbd300aSimulator2 = new Kbd300ASimulator();
+            kbd300aSimulator1 = new Kbd300ASimulator();
             ((System.ComponentModel.ISupportInitialize)mtfPictureBox1).BeginInit();
             movablePanel1.SuspendLayout();
             movableSizablePanel1.SuspendLayout();
@@ -139,7 +139,7 @@ namespace Mtf.Controls.Test
             tabPage10.SuspendLayout();
             tabPage11.SuspendLayout();
             tabPage12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)kbd300aSimulator2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)kbd300aSimulator1).BeginInit();
             SuspendLayout();
             // 
             // mtfListView1
@@ -154,14 +154,14 @@ namespace Mtf.Controls.Test
             mtfListView1.EnsureLastItemIsVisible = false;
             mtfListView1.FirstItemIsGray = false;
             mtfListView1.FullRowSelect = true;
-            listViewGroup1.Header = "A";
-            listViewGroup1.Name = "listViewGroup1";
-            listViewGroup2.Header = "ListViewGroup";
-            listViewGroup2.Name = "listViewGroup2";
-            mtfListView1.Groups.AddRange(new ListViewGroup[] { listViewGroup1, listViewGroup2 });
-            listViewItem5.Group = listViewGroup2;
-            listViewItem6.Group = listViewGroup1;
-            mtfListView1.Items.AddRange(new ListViewItem[] { listViewItem1, listViewItem2, listViewItem3, listViewItem4, listViewItem5, listViewItem6 });
+            listViewGroup9.Header = "A";
+            listViewGroup9.Name = "listViewGroup1";
+            listViewGroup10.Header = "ListViewGroup";
+            listViewGroup10.Name = "listViewGroup2";
+            mtfListView1.Groups.AddRange(new ListViewGroup[] { listViewGroup9, listViewGroup10 });
+            listViewItem24.Group = listViewGroup10;
+            listViewItem25.Group = listViewGroup9;
+            mtfListView1.Items.AddRange(new ListViewItem[] { listViewItem20, listViewItem21, listViewItem22, listViewItem23, listViewItem24, listViewItem25 });
             mtfListView1.Location = new Point(3, 6);
             mtfListView1.Name = "mtfListView1";
             mtfListView1.OwnerDraw = true;
@@ -421,8 +421,8 @@ namespace Mtf.Controls.Test
             // 
             fileBrowserView1.Dock = DockStyle.Fill;
             fileBrowserView1.FullRowSelect = true;
-            listViewItem7.Tag = "up";
-            fileBrowserView1.Items.AddRange(new ListViewItem[] { listViewItem7 });
+            listViewItem26.Tag = "up";
+            fileBrowserView1.Items.AddRange(new ListViewItem[] { listViewItem26 });
             fileBrowserView1.Location = new Point(0, 0);
             fileBrowserView1.Name = "fileBrowserView1";
             fileBrowserView1.Size = new Size(1586, 832);
@@ -609,15 +609,15 @@ namespace Mtf.Controls.Test
             mtfListView2.EnsureLastItemIsVisible = false;
             mtfListView2.FirstItemIsGray = false;
             mtfListView2.FullRowSelect = true;
-            listViewGroup3.Header = "1. Group";
-            listViewGroup3.Name = "listViewGroup1";
-            listViewGroup4.Header = "2. Group";
-            listViewGroup4.Name = "listViewGroup2";
-            mtfListView2.Groups.AddRange(new ListViewGroup[] { listViewGroup3, listViewGroup4 });
-            listViewItem8.Group = listViewGroup3;
-            listViewItem9.Group = listViewGroup4;
-            listViewItem10.Group = listViewGroup4;
-            mtfListView2.Items.AddRange(new ListViewItem[] { listViewItem8, listViewItem9, listViewItem10 });
+            listViewGroup11.Header = "1. Group";
+            listViewGroup11.Name = "listViewGroup1";
+            listViewGroup12.Header = "2. Group";
+            listViewGroup12.Name = "listViewGroup2";
+            mtfListView2.Groups.AddRange(new ListViewGroup[] { listViewGroup11, listViewGroup12 });
+            listViewItem17.Group = listViewGroup11;
+            listViewItem27.Group = listViewGroup12;
+            listViewItem28.Group = listViewGroup12;
+            mtfListView2.Items.AddRange(new ListViewItem[] { listViewItem17, listViewItem27, listViewItem28 });
             mtfListView2.Location = new Point(707, 11);
             mtfListView2.Name = "mtfListView2";
             mtfListView2.OwnerDraw = true;
@@ -829,7 +829,7 @@ namespace Mtf.Controls.Test
             // 
             // tabPage12
             // 
-            tabPage12.Controls.Add(kbd300aSimulator2);
+            tabPage12.Controls.Add(kbd300aSimulator1);
             tabPage12.Controls.Add(richTextBox1);
             tabPage12.Location = new Point(4, 24);
             tabPage12.Name = "tabPage12";
@@ -838,19 +838,20 @@ namespace Mtf.Controls.Test
             tabPage12.Text = "KDB300 Simulator";
             tabPage12.UseVisualStyleBackColor = true;
             // 
-            // kbd300aSimulator2
+            // kbd300aSimulator1
             // 
-            kbd300aSimulator2.Image = (Image)resources.GetObject("kbd300aSimulator2.Image");
-            kbd300aSimulator2.Location = new Point(244, 3);
-            kbd300aSimulator2.Name = "kbd300aSimulator2";
-            kbd300aSimulator2.OriginalSize = new Size(958, 608);
-            kbd300aSimulator2.PipeName = null;
-            kbd300aSimulator2.RepositioningAndResizingControlsOnResize = true;
-            kbd300aSimulator2.Shift = false;
-            kbd300aSimulator2.Size = new Size(675, 425);
-            kbd300aSimulator2.SizeMode = PictureBoxSizeMode.Zoom;
-            kbd300aSimulator2.TabIndex = 0;
-            kbd300aSimulator2.TabStop = false;
+            kbd300aSimulator1.Dock = DockStyle.Fill;
+            kbd300aSimulator1.Image = (Image)resources.GetObject("kbd300aSimulator1.Image");
+            kbd300aSimulator1.Location = new Point(0, 0);
+            kbd300aSimulator1.Name = "kbd300aSimulator1";
+            kbd300aSimulator1.OriginalSize = new Size(675, 425);
+            kbd300aSimulator1.PipeName = null;
+            kbd300aSimulator1.RepositioningAndResizingControlsOnResize = true;
+            kbd300aSimulator1.Shift = false;
+            kbd300aSimulator1.Size = new Size(1586, 832);
+            kbd300aSimulator1.SizeMode = PictureBoxSizeMode.Zoom;
+            kbd300aSimulator1.TabIndex = 0;
+            kbd300aSimulator1.TabStop = false;
             // 
             // MainForm
             // 
@@ -894,7 +895,7 @@ namespace Mtf.Controls.Test
             tabPage10.ResumeLayout(false);
             tabPage11.ResumeLayout(false);
             tabPage12.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)kbd300aSimulator2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)kbd300aSimulator1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -958,6 +959,5 @@ namespace Mtf.Controls.Test
         private TabPage tabPage10;
         private TabPage tabPage11;
         private TabPage tabPage12;
-        private Kbd300ASimulator kbd300aSimulator2;
     }
 }
