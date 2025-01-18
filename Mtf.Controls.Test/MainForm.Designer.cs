@@ -62,7 +62,7 @@ namespace Mtf.Controls.Test
             columnHeader2 = new ColumnHeader();
             columnHeader3 = new ColumnHeader();
             mtfTreeView1 = new MtfTreeView();
-            imageList1 = new ImageList(components);
+            imageList = new ImageList(components);
             sourceCodeViewerRichTextBox1 = new SourceCodeViewerRichTextBox();
             mtfPictureBox1 = new MtfPictureBox();
             movablePanel1 = new MovablePanel();
@@ -113,6 +113,7 @@ namespace Mtf.Controls.Test
             tabPage10 = new TabPage();
             tabPage11 = new TabPage();
             tabPage12 = new TabPage();
+            kbd300aSimulator2 = new Kbd300ASimulator();
             ((System.ComponentModel.ISupportInitialize)mtfPictureBox1).BeginInit();
             movablePanel1.SuspendLayout();
             movableSizablePanel1.SuspendLayout();
@@ -138,6 +139,7 @@ namespace Mtf.Controls.Test
             tabPage10.SuspendLayout();
             tabPage11.SuspendLayout();
             tabPage12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)kbd300aSimulator2).BeginInit();
             SuspendLayout();
             // 
             // mtfListView1
@@ -189,7 +191,7 @@ namespace Mtf.Controls.Test
             mtfTreeView1.DrawDefaultImageToNodes = true;
             mtfTreeView1.HideSelection = false;
             mtfTreeView1.ImageIndex = 0;
-            mtfTreeView1.ImageList = imageList1;
+            mtfTreeView1.ImageList = imageList;
             mtfTreeView1.LineStyle = System.Drawing.Drawing2D.DashStyle.Dot;
             mtfTreeView1.Location = new Point(6, 6);
             mtfTreeView1.MultiSelect = false;
@@ -242,13 +244,13 @@ namespace Mtf.Controls.Test
             mtfTreeView1.TabIndex = 1;
             mtfTreeView1.TickColor = Color.Green;
             // 
-            // imageList1
+            // imageList
             // 
-            imageList1.ColorDepth = ColorDepth.Depth32Bit;
-            imageList1.ImageStream = (ImageListStreamer)resources.GetObject("imageList1.ImageStream");
-            imageList1.TransparentColor = Color.Transparent;
-            imageList1.Images.SetKeyName(0, "add_group.ico");
-            imageList1.Images.SetKeyName(1, "add_user.ico");
+            imageList.ColorDepth = ColorDepth.Depth32Bit;
+            imageList.ImageStream = (ImageListStreamer)resources.GetObject("imageList.ImageStream");
+            imageList.TransparentColor = Color.Transparent;
+            imageList.Images.SetKeyName(0, "add_group.ico");
+            imageList.Images.SetKeyName(1, "add_user.ico");
             // 
             // sourceCodeViewerRichTextBox1
             // 
@@ -662,7 +664,7 @@ namespace Mtf.Controls.Test
             mtfPictureBox2.Image = Properties.Resources.hack_with_me;
             mtfPictureBox2.Location = new Point(3, 3);
             mtfPictureBox2.Name = "mtfPictureBox2";
-            mtfPictureBox2.OriginalSize = new Size(800, 800);
+            mtfPictureBox2.OriginalSize = new Size(1024, 1024);
             mtfPictureBox2.RepositioningAndResizingControlsOnResize = true;
             mtfPictureBox2.Size = new Size(1580, 826);
             mtfPictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -827,6 +829,7 @@ namespace Mtf.Controls.Test
             // 
             // tabPage12
             // 
+            tabPage12.Controls.Add(kbd300aSimulator2);
             tabPage12.Controls.Add(richTextBox1);
             tabPage12.Location = new Point(4, 24);
             tabPage12.Name = "tabPage12";
@@ -834,6 +837,20 @@ namespace Mtf.Controls.Test
             tabPage12.TabIndex = 11;
             tabPage12.Text = "KDB300 Simulator";
             tabPage12.UseVisualStyleBackColor = true;
+            // 
+            // kbd300aSimulator2
+            // 
+            kbd300aSimulator2.Image = (Image)resources.GetObject("kbd300aSimulator2.Image");
+            kbd300aSimulator2.Location = new Point(244, 3);
+            kbd300aSimulator2.Name = "kbd300aSimulator2";
+            kbd300aSimulator2.OriginalSize = new Size(958, 608);
+            kbd300aSimulator2.PipeName = null;
+            kbd300aSimulator2.RepositioningAndResizingControlsOnResize = true;
+            kbd300aSimulator2.Shift = false;
+            kbd300aSimulator2.Size = new Size(675, 425);
+            kbd300aSimulator2.SizeMode = PictureBoxSizeMode.Zoom;
+            kbd300aSimulator2.TabIndex = 0;
+            kbd300aSimulator2.TabStop = false;
             // 
             // MainForm
             // 
@@ -877,6 +894,7 @@ namespace Mtf.Controls.Test
             tabPage10.ResumeLayout(false);
             tabPage11.ResumeLayout(false);
             tabPage12.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)kbd300aSimulator2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -910,7 +928,7 @@ namespace Mtf.Controls.Test
         private Button button2;
         private TextBox textBox2;
         private AnsiColoringRichTextBox ansiColoringRichTextBox1;
-        private ImageList imageList1;
+        private ImageList imageList;
         private TextBoxWithRegEx textBoxWithRegEx1;
         private RichTextBoxWithLineNumbers richTextBoxWithLineNumbers1;
         private RotatableImagePanel rotatableImagePanel1;
@@ -940,5 +958,6 @@ namespace Mtf.Controls.Test
         private TabPage tabPage10;
         private TabPage tabPage11;
         private TabPage tabPage12;
+        private Kbd300ASimulator kbd300aSimulator2;
     }
 }
