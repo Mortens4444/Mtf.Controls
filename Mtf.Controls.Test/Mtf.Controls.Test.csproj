@@ -10,6 +10,8 @@
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
     <UseWindowsForms>true</UseWindowsForms>
+    <DesignerExcludedFiles>OpenCvSharpExtern.dll</DesignerExcludedFiles>
+    <DesignerExcludedFiles>opencv_videoio_ffmpeg4100.dll</DesignerExcludedFiles>
   </PropertyGroup>
 
   <ItemGroup>
