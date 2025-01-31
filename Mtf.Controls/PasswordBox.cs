@@ -127,13 +127,15 @@ namespace Mtf.Controls
                 {
                     password = new SecureString();
                 }
-
-                var secureString = new SecureString();
-                foreach (var ch in value)
+                else
                 {
-                    secureString.AppendChar(ch);
+                    var secureString = new SecureString();
+                    foreach (var ch in value)
+                    {
+                        secureString.AppendChar(ch);
+                    }
+                    password = secureString;
                 }
-                password = secureString;
             }
         }
 
