@@ -646,6 +646,58 @@ namespace Mtf.Controls
 
         public void ExportItemsToCsv(string filePath, string delimiter = ",")
         {
+            using (var writer = new StreamWriter(filePath, false, Encoding.UTF8))
+            {
+                if (Columns.Count > 0)
+                {
+                    var headerLine = String.Join(delimiter, Columns.Cast<ColumnHeader>().Select(c => EscapeCsvValue(c.Text)));
+                    writer.WriteLine(headerLine);
+                }
+
+                bool headerWritten = false;
+                foreach (ListViewItem item in Items)
+                {
+                    if (item.Group == null)
+                    {
+                        if (Groups.Count > 0 && !headerWritten)
+                        {
+                            writer.WriteLine("\"Default\"");
+                            headerWritten = true;
+                        }
+                        var row = String.Join(delimiter, item.SubItems.Cast<ListViewItem.ListViewSubItem>()
+                            .Select(subItem => EscapeCsvValue(subItem.Text)));
+                        writer.WriteLine(row);
+                    }
+                }
+
+                if (Groups.Count > 0)
+                {
+                    foreach (ListViewGroup group in Groups)
+                    {
+                        if (group.Items.Count > 0)
+                        {
+                            writer.WriteLine($"\"{group.Header}\"");
+                            foreach (ListViewItem item in group.Items)
+                            {
+                                var row = String.Join(delimiter, item.SubItems.Cast<ListViewItem.ListViewSubItem>()
+                                    .Select(subItem => EscapeCsvValue(subItem.Text)));
+                                writer.WriteLine(row);
+                            }
+                            writer.WriteLine();
+                        }
+                    }
+                }
+            }
+        }
+
+        public void CopyToClipboard(string delimiter = ",")
+        {
+            var content = BuildCsvContentFromListView(delimiter);
+            Clipboard.SetText(content);
+        }
+
+        public string BuildCsvContentFromListView(string delimiter)
+        {
             var csvBuilder = new StringBuilder();
 
             if (Columns.Count > 0)
@@ -687,7 +739,7 @@ namespace Mtf.Controls
                 }
             }
 
-            File.WriteAllText(filePath, csvBuilder.ToString(), Encoding.UTF8);
+            return csvBuilder.ToString();
         }
 
         private static string EscapeCsvValue(string value)
