@@ -699,6 +699,7 @@ namespace Mtf.Controls
         public string BuildCsvContentFromListView(string delimiter)
         {
             var csvBuilder = new StringBuilder();
+            var itemsToProcess = SelectedItems.Count > 0 ? SelectedItems.Cast<ListViewItem>() : Items.Cast<ListViewItem>();
 
             if (Columns.Count > 0)
             {
@@ -706,13 +707,13 @@ namespace Mtf.Controls
             }
 
             var headerWritten = false;
-            foreach (ListViewItem item in Items)
+            foreach (var item in itemsToProcess)
             {
                 if (item.Group == null)
                 {
                     if (Groups.Count > 0 && !headerWritten)
                     {
-                        _ = csvBuilder.AppendLine($"\"Default\"");
+                        _ = csvBuilder.AppendLine("\"Default\"");
                         headerWritten = true;
                     }
                     var row = String.Join(delimiter, item.SubItems.Cast<ListViewItem.ListViewSubItem>().Select(subItem => EscapeCsvValue(subItem.Text)));
@@ -724,11 +725,12 @@ namespace Mtf.Controls
             {
                 foreach (ListViewGroup group in Groups)
                 {
-                    if (group.Items.Count > 0)
+                    var groupItems = itemsToProcess.Where(i => i.Group == group);
+                    if (groupItems.Any())
                     {
                         _ = csvBuilder.AppendLine($"\"{group.Header}\"");
 
-                        foreach (ListViewItem item in group.Items)
+                        foreach (var item in groupItems)
                         {
                             var row = String.Join(delimiter, item.SubItems.Cast<ListViewItem.ListViewSubItem>().Select(subItem => EscapeCsvValue(subItem.Text)));
                             csvBuilder.AppendLine(row);
