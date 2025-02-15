@@ -89,11 +89,11 @@ namespace Mtf.Controls.Test
             rotatableImagePanel1 = new RotatableImagePanel();
             editableComboBox1 = new EditableComboBox();
             button3 = new Button();
-            openCvSharp4VideoWindow1 = new Mtf.Controls.Video.OpenCvSharp4VideoWindow();
+            openCvSharp4VideoWindow1 = new Video.OpenCvSharp4VideoWindow();
             button7 = new Button();
-            vlcWindow1 = new Mtf.Controls.Video.VlcWindow();
-            fFmpegWindow1 = new Mtf.Controls.Video.FFmpegWindow();
-            mortoGraphyWindow1 = new Mtf.Controls.Video.MortoGraphyWindow();
+            vlcWindow1 = new Video.VlcWindow();
+            fFmpegWindow1 = new Video.FFmpegWindow();
+            mortoGraphyWindow1 = new Video.MortoGraphyWindow();
             mtfListView2 = new MtfListView();
             columnHeader4 = new ColumnHeader();
             columnHeader5 = new ColumnHeader();
@@ -112,6 +112,11 @@ namespace Mtf.Controls.Test
             tabPage9 = new TabPage();
             tabPage10 = new TabPage();
             tabPage11 = new TabPage();
+            chkMortoGraphyWindow = new CheckBox();
+            chkOpenCvSharp4Video = new CheckBox();
+            chkFFMpegVideo = new CheckBox();
+            chkVlcVideo = new CheckBox();
+            tbUrl = new TextBox();
             tabPage12 = new TabPage();
             kbd300aSimulator1 = new Kbd300ASimulator();
             ((System.ComponentModel.ISupportInitialize)mtfPictureBox1).BeginInit();
@@ -269,11 +274,15 @@ namespace Mtf.Controls.Test
             // 
             mtfPictureBox1.BackColor = Color.FromArgb(192, 255, 255);
             mtfPictureBox1.BackgroundImageLayout = ImageLayout.Center;
-            mtfPictureBox1.ResizeDebounceIntervalInMs = 200;
+            mtfPictureBox1.BackgroundPaintDebounceIntervalInMs = 0;
             mtfPictureBox1.Location = new Point(185, 16);
             mtfPictureBox1.Name = "mtfPictureBox1";
             mtfPictureBox1.OriginalSize = new Size(171, 102);
+            mtfPictureBox1.PaintDebounceIntervalInMs = 0;
             mtfPictureBox1.RepositioningAndResizingControlsOnResize = false;
+            mtfPictureBox1.ResizeDebounceIntervalInMs = 200;
+            mtfPictureBox1.ShowPaintErrors = false;
+            mtfPictureBox1.ShowResizeErrors = false;
             mtfPictureBox1.Size = new Size(171, 102);
             mtfPictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             mtfPictureBox1.TabIndex = 4;
@@ -530,7 +539,7 @@ namespace Mtf.Controls.Test
             // button3
             // 
             button3.BackColor = SystemColors.Control;
-            button3.Location = new Point(20, 311);
+            button3.Location = new Point(20, 342);
             button3.Name = "button3";
             button3.Size = new Size(75, 23);
             button3.TabIndex = 31;
@@ -542,7 +551,7 @@ namespace Mtf.Controls.Test
             // 
             openCvSharp4VideoWindow1.BackgroundImage = (Image)resources.GetObject("openCvSharp4VideoWindow1.BackgroundImage");
             openCvSharp4VideoWindow1.BackgroundImageLayout = ImageLayout.Stretch;
-            openCvSharp4VideoWindow1.Location = new Point(20, 158);
+            openCvSharp4VideoWindow1.Location = new Point(20, 196);
             openCvSharp4VideoWindow1.Name = "openCvSharp4VideoWindow1";
             openCvSharp4VideoWindow1.Size = new Size(218, 135);
             openCvSharp4VideoWindow1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -551,7 +560,7 @@ namespace Mtf.Controls.Test
             // 
             // button7
             // 
-            button7.Location = new Point(101, 311);
+            button7.Location = new Point(101, 342);
             button7.Name = "button7";
             button7.Size = new Size(75, 23);
             button7.TabIndex = 36;
@@ -564,7 +573,7 @@ namespace Mtf.Controls.Test
             vlcWindow1.BackColor = Color.Black;
             vlcWindow1.BackgroundImage = (Image)resources.GetObject("vlcWindow1.BackgroundImage");
             vlcWindow1.BackgroundImageLayout = ImageLayout.Stretch;
-            vlcWindow1.Location = new Point(20, 14);
+            vlcWindow1.Location = new Point(20, 30);
             vlcWindow1.MediaPlayer = null;
             vlcWindow1.Name = "vlcWindow1";
             vlcWindow1.Size = new Size(218, 138);
@@ -577,7 +586,7 @@ namespace Mtf.Controls.Test
             fFmpegWindow1.BackgroundImage = (Image)resources.GetObject("fFmpegWindow1.BackgroundImage");
             fFmpegWindow1.BackgroundImageLayout = ImageLayout.Stretch;
             fFmpegWindow1.Codec = "mjpeg";
-            fFmpegWindow1.Location = new Point(244, 14);
+            fFmpegWindow1.Location = new Point(244, 30);
             fFmpegWindow1.Name = "fFmpegWindow1";
             fFmpegWindow1.Size = new Size(218, 138);
             fFmpegWindow1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -588,7 +597,7 @@ namespace Mtf.Controls.Test
             // 
             mortoGraphyWindow1.BackgroundImage = (Image)resources.GetObject("mortoGraphyWindow1.BackgroundImage");
             mortoGraphyWindow1.BackgroundImageLayout = ImageLayout.Stretch;
-            mortoGraphyWindow1.Location = new Point(244, 158);
+            mortoGraphyWindow1.Location = new Point(244, 196);
             mortoGraphyWindow1.Name = "mortoGraphyWindow1";
             mortoGraphyWindow1.Password = null;
             mortoGraphyWindow1.Size = new Size(218, 135);
@@ -661,12 +670,17 @@ namespace Mtf.Controls.Test
             // mtfPictureBox2
             // 
             mtfPictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
+            mtfPictureBox2.BackgroundPaintDebounceIntervalInMs = 0;
             mtfPictureBox2.Dock = DockStyle.Fill;
             mtfPictureBox2.Image = Properties.Resources.hack_with_me;
             mtfPictureBox2.Location = new Point(3, 3);
             mtfPictureBox2.Name = "mtfPictureBox2";
             mtfPictureBox2.OriginalSize = new Size(1024, 1024);
+            mtfPictureBox2.PaintDebounceIntervalInMs = 0;
             mtfPictureBox2.RepositioningAndResizingControlsOnResize = true;
+            mtfPictureBox2.ResizeDebounceIntervalInMs = 0;
+            mtfPictureBox2.ShowPaintErrors = false;
+            mtfPictureBox2.ShowResizeErrors = false;
             mtfPictureBox2.Size = new Size(1580, 826);
             mtfPictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             mtfPictureBox2.TabIndex = 44;
@@ -813,6 +827,11 @@ namespace Mtf.Controls.Test
             // 
             // tabPage11
             // 
+            tabPage11.Controls.Add(chkMortoGraphyWindow);
+            tabPage11.Controls.Add(chkOpenCvSharp4Video);
+            tabPage11.Controls.Add(chkFFMpegVideo);
+            tabPage11.Controls.Add(chkVlcVideo);
+            tabPage11.Controls.Add(tbUrl);
             tabPage11.Controls.Add(openCvSharp4VideoWindow1);
             tabPage11.Controls.Add(pictureBox3);
             tabPage11.Controls.Add(button3);
@@ -828,6 +847,62 @@ namespace Mtf.Controls.Test
             tabPage11.Text = "Video";
             tabPage11.UseVisualStyleBackColor = true;
             // 
+            // chkMortoGraphyWindow
+            // 
+            chkMortoGraphyWindow.AutoSize = true;
+            chkMortoGraphyWindow.Checked = true;
+            chkMortoGraphyWindow.CheckState = CheckState.Checked;
+            chkMortoGraphyWindow.Location = new Point(244, 174);
+            chkMortoGraphyWindow.Name = "chkMortoGraphyWindow";
+            chkMortoGraphyWindow.Size = new Size(97, 19);
+            chkMortoGraphyWindow.TabIndex = 45;
+            chkMortoGraphyWindow.Text = "MortoGraphy";
+            chkMortoGraphyWindow.UseVisualStyleBackColor = true;
+            // 
+            // chkOpenCvSharp4Video
+            // 
+            chkOpenCvSharp4Video.AutoSize = true;
+            chkOpenCvSharp4Video.Checked = true;
+            chkOpenCvSharp4Video.CheckState = CheckState.Checked;
+            chkOpenCvSharp4Video.Location = new Point(20, 174);
+            chkOpenCvSharp4Video.Name = "chkOpenCvSharp4Video";
+            chkOpenCvSharp4Video.Size = new Size(111, 19);
+            chkOpenCvSharp4Video.TabIndex = 44;
+            chkOpenCvSharp4Video.Text = "Open Cv Sharp4";
+            chkOpenCvSharp4Video.UseVisualStyleBackColor = true;
+            // 
+            // chkFFMpegVideo
+            // 
+            chkFFMpegVideo.AutoSize = true;
+            chkFFMpegVideo.Checked = true;
+            chkFFMpegVideo.CheckState = CheckState.Checked;
+            chkFFMpegVideo.Location = new Point(244, 10);
+            chkFFMpegVideo.Name = "chkFFMpegVideo";
+            chkFFMpegVideo.Size = new Size(69, 19);
+            chkFFMpegVideo.TabIndex = 43;
+            chkFFMpegVideo.Text = "FFMpeg";
+            chkFFMpegVideo.UseVisualStyleBackColor = true;
+            // 
+            // chkVlcVideo
+            // 
+            chkVlcVideo.AutoSize = true;
+            chkVlcVideo.Checked = true;
+            chkVlcVideo.CheckState = CheckState.Checked;
+            chkVlcVideo.Location = new Point(20, 10);
+            chkVlcVideo.Name = "chkVlcVideo";
+            chkVlcVideo.Size = new Size(47, 19);
+            chkVlcVideo.TabIndex = 42;
+            chkVlcVideo.Text = "VLC";
+            chkVlcVideo.UseVisualStyleBackColor = true;
+            // 
+            // tbUrl
+            // 
+            tbUrl.Location = new Point(20, 371);
+            tbUrl.Name = "tbUrl";
+            tbUrl.Size = new Size(442, 23);
+            tbUrl.TabIndex = 41;
+            tbUrl.Text = "rtsp://192.168.0.201:554/snl/live/1/1";
+            // 
             // tabPage12
             // 
             tabPage12.Controls.Add(kbd300aSimulator1);
@@ -841,15 +916,19 @@ namespace Mtf.Controls.Test
             // 
             // kbd300aSimulator1
             // 
-            kbd300aSimulator1.ResizeDebounceIntervalInMs = 200;
+            kbd300aSimulator1.BackgroundPaintDebounceIntervalInMs = 0;
             kbd300aSimulator1.Dock = DockStyle.Fill;
             kbd300aSimulator1.Image = (Image)resources.GetObject("kbd300aSimulator1.Image");
             kbd300aSimulator1.Location = new Point(0, 0);
             kbd300aSimulator1.Name = "kbd300aSimulator1";
             kbd300aSimulator1.OriginalSize = new Size(675, 425);
+            kbd300aSimulator1.PaintDebounceIntervalInMs = 0;
             kbd300aSimulator1.PipeName = null;
             kbd300aSimulator1.RepositioningAndResizingControlsOnResize = true;
+            kbd300aSimulator1.ResizeDebounceIntervalInMs = 200;
             kbd300aSimulator1.Shift = false;
+            kbd300aSimulator1.ShowPaintErrors = false;
+            kbd300aSimulator1.ShowResizeErrors = false;
             kbd300aSimulator1.Size = new Size(1586, 832);
             kbd300aSimulator1.SizeMode = PictureBoxSizeMode.Zoom;
             kbd300aSimulator1.TabIndex = 0;
@@ -896,6 +975,7 @@ namespace Mtf.Controls.Test
             tabPage9.ResumeLayout(false);
             tabPage10.ResumeLayout(false);
             tabPage11.ResumeLayout(false);
+            tabPage11.PerformLayout();
             tabPage12.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)kbd300aSimulator1).EndInit();
             ResumeLayout(false);
@@ -961,5 +1041,10 @@ namespace Mtf.Controls.Test
         private TabPage tabPage10;
         private TabPage tabPage11;
         private TabPage tabPage12;
+        private TextBox tbUrl;
+        private CheckBox chkMortoGraphyWindow;
+        private CheckBox chkOpenCvSharp4Video;
+        private CheckBox chkFFMpegVideo;
+        private CheckBox chkVlcVideo;
     }
 }

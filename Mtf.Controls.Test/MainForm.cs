@@ -1,4 +1,5 @@
 using Mtf.Controls.Services;
+using Mtf.MessageBoxes;
 using System;
 using System.Drawing;
 using System.IO;
@@ -114,10 +115,29 @@ namespace Mtf.Controls.Test
 
         private void button3_Click(object sender, EventArgs e)
         {
-            openCvSharp4VideoWindow1.Start("http://takemotopiano.aa1.netvolante.jp:8190/nphMotionJpeg?Resolution=640x480&Quality=Standard&Framerate=30");
-            mortoGraphyWindow1.Start("http://takemotopiano.aa1.netvolante.jp:8190/nphMotionJpeg?Resolution=640x480&Quality=Standard&Framerate=30");
-            vlcWindow1.Start("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4");
-            fFmpegWindow1.Start("http://takemotopiano.aa1.netvolante.jp:8190/nphMotionJpeg?Resolution=640x480&Quality=Standard&Framerate=30");
+            try
+            {
+                if (chkOpenCvSharp4Video.Checked)
+                {
+                    openCvSharp4VideoWindow1.Start(String.IsNullOrEmpty(tbUrl.Text) ? "http://takemotopiano.aa1.netvolante.jp:8190/nphMotionJpeg?Resolution=640x480&Quality=Standard&Framerate=30" : tbUrl.Text);
+                }
+                if (chkMortoGraphyWindow.Checked)
+                {
+                    mortoGraphyWindow1.Start(String.IsNullOrEmpty(tbUrl.Text) ? "http://takemotopiano.aa1.netvolante.jp:8190/nphMotionJpeg?Resolution=640x480&Quality=Standard&Framerate=30" : tbUrl.Text);
+                }
+                if (chkFFMpegVideo.Checked)
+                {
+                    fFmpegWindow1.Start(String.IsNullOrEmpty(tbUrl.Text) ? "http://takemotopiano.aa1.netvolante.jp:8190/nphMotionJpeg?Resolution=640x480&Quality=Standard&Framerate=30" : tbUrl.Text);
+                }
+                if (chkVlcVideo.Checked)
+                {
+                    vlcWindow1.Start(String.IsNullOrEmpty(tbUrl.Text) ? "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" : tbUrl.Text);
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorBox.Show(ex);
+            }
         }
 
         private void button7_Click(object sender, EventArgs e)
