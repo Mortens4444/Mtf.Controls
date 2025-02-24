@@ -41,6 +41,11 @@ namespace Mtf.Controls.Video
                 {
                     using (var capture = new VideoCapture(resource))
                     {
+                        capture.Set(VideoCaptureProperties.BufferSize, 0);
+                        capture.Set(VideoCaptureProperties.Fps, 60);
+                        //capture.Set(VideoCaptureProperties.RtspTransport, (double)VideoCaptureAPIs.ANY);
+                        capture.Set(VideoCaptureProperties.HwAcceleration, (double)VideoCaptureAPIs.ANY);
+
                         if (!capture.IsOpened())
                         {
                             return;
@@ -60,7 +65,7 @@ namespace Mtf.Controls.Video
                                     });
                                 }
 
-                                Thread.Sleep(30);
+                                Thread.Sleep(1);
                             }
                         }
                     }

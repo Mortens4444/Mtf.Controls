@@ -4,6 +4,7 @@ using Mtf.MessageBoxes;
 using OpenCvSharp;
 using OpenCvSharp.Extensions;
 using System;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -39,6 +40,11 @@ namespace Mtf.Controls.Video
                 {
                     if (videoCapture.IsOpened())
                     {
+                        videoCapture.Set(VideoCaptureProperties.BufferSize, 0);
+                        videoCapture.Set(VideoCaptureProperties.Fps, 60);
+                        //videoCapture.Set(VideoCaptureProperties.RtspTransport, (double)VideoCaptureAPIs.ANY);
+                        videoCapture.Set(VideoCaptureProperties.HwAcceleration, (double)VideoCaptureAPIs.ANY);
+
                         try
                         {
                             var frame = new Mat();
