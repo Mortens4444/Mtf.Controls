@@ -1,4 +1,5 @@
-﻿using Mtf.Controls.Properties;
+﻿using Mtf.Controls.Enums;
+using Mtf.Controls.Properties;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -15,7 +16,7 @@ namespace Mtf.Controls.Video
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [Description("FFMPEG Codec.")]
-        public string Codec { get; set; } = "mjpeg";
+        public Codec Codec { get; set; } = Codec.mjpeg;
 
         public FFmpegWindow()
         {

@@ -585,7 +585,7 @@ namespace Mtf.Controls.Test
             fFmpegWindow1.BackColor = Color.Black;
             fFmpegWindow1.BackgroundImage = (Image)resources.GetObject("fFmpegWindow1.BackgroundImage");
             fFmpegWindow1.BackgroundImageLayout = ImageLayout.Stretch;
-            fFmpegWindow1.Codec = "mjpeg";
+            fFmpegWindow1.Codec = Enums.Codec.mjpeg;
             fFmpegWindow1.Location = new Point(244, 30);
             fFmpegWindow1.Name = "fFmpegWindow1";
             fFmpegWindow1.Size = new Size(218, 138);

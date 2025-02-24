@@ -1,4 +1,5 @@
-﻿using Mtf.Controls.Extensions;
+﻿using Mtf.Controls.Enums;
+using Mtf.Controls.Extensions;
 using Mtf.Controls.Interfaces;
 using Mtf.MessageBoxes;
 using System;
@@ -16,11 +17,11 @@ namespace Mtf.Controls.Video
     {
         private readonly object sync = new object();
 
-        private readonly string codec;
+        private readonly Codec codec;
         private readonly PictureBox pictureBox;
         private CancellationTokenSource cancellationTokenSource;
 
-        public FFmpeg(PictureBox pictureBox, string codec)
+        public FFmpeg(PictureBox pictureBox, Codec codec)
         {
             this.codec = codec;
             this.pictureBox = pictureBox;

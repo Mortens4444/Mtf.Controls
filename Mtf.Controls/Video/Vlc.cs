@@ -1,4 +1,4 @@
-﻿using LibVLCSharp.Shared;
+﻿ using LibVLCSharp.Shared;
 using LibVLCSharp.WinForms;
 using Mtf.Controls.Interfaces;
 
@@ -22,6 +22,9 @@ namespace Mtf.Controls.Video
             StopMediaPlayer();
 
             var media = new Media(LibVLC, resource, FromType.FromLocation);
+            media.AddOption(":network-caching=100");
+            media.AddOption(":rtsp-udp");
+            //media.AddOption(":rtsp-tcp");
             mediaPlayer = new MediaPlayer(media)
             {
                 EnableHardwareDecoding = true,

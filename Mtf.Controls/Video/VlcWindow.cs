@@ -10,13 +10,13 @@ namespace Mtf.Controls.Video
     public class VlcWindow : VideoView
     {
         private bool disposed;
-        private readonly Vlc openCvSharpWrapper;
+        private readonly Vlc vlc;
 
         public VlcWindow()
         {
             BackgroundImage = Properties.Resources.NoSignal;
             BackgroundImageLayout = ImageLayout.Stretch;
-            openCvSharpWrapper = new Vlc(this);
+            vlc = new Vlc(this);
         }
 
         protected override void Dispose(bool disposing)
@@ -28,7 +28,7 @@ namespace Mtf.Controls.Video
 
             if (disposing)
             {
-                openCvSharpWrapper.Dispose();
+                vlc.Dispose();
             }
             base.Dispose(disposing);
             disposed = true;
@@ -40,12 +40,12 @@ namespace Mtf.Controls.Video
         /// <param name="resource">Resource is an URI.</param>
         public void Start(string resource)
         {
-            openCvSharpWrapper.Start(resource);
+            vlc.Start(resource);
         }
 
         public void Stop()
         {
-            openCvSharpWrapper.Stop();
+            vlc.Stop();
         }
     }
 }
