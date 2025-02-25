@@ -850,8 +850,6 @@ namespace Mtf.Controls.Test
             // chkMortoGraphyWindow
             // 
             chkMortoGraphyWindow.AutoSize = true;
-            chkMortoGraphyWindow.Checked = true;
-            chkMortoGraphyWindow.CheckState = CheckState.Checked;
             chkMortoGraphyWindow.Location = new Point(244, 174);
             chkMortoGraphyWindow.Name = "chkMortoGraphyWindow";
             chkMortoGraphyWindow.Size = new Size(97, 19);
@@ -862,8 +860,6 @@ namespace Mtf.Controls.Test
             // chkOpenCvSharp4Video
             // 
             chkOpenCvSharp4Video.AutoSize = true;
-            chkOpenCvSharp4Video.Checked = true;
-            chkOpenCvSharp4Video.CheckState = CheckState.Checked;
             chkOpenCvSharp4Video.Location = new Point(20, 174);
             chkOpenCvSharp4Video.Name = "chkOpenCvSharp4Video";
             chkOpenCvSharp4Video.Size = new Size(111, 19);
@@ -874,8 +870,6 @@ namespace Mtf.Controls.Test
             // chkFFMpegVideo
             // 
             chkFFMpegVideo.AutoSize = true;
-            chkFFMpegVideo.Checked = true;
-            chkFFMpegVideo.CheckState = CheckState.Checked;
             chkFFMpegVideo.Location = new Point(244, 10);
             chkFFMpegVideo.Name = "chkFFMpegVideo";
             chkFFMpegVideo.Size = new Size(69, 19);

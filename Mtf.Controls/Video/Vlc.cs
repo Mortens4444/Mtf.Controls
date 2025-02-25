@@ -1,12 +1,15 @@
-﻿ using LibVLCSharp.Shared;
+﻿using LibVLCSharp.Shared;
 using LibVLCSharp.WinForms;
 using Mtf.Controls.Interfaces;
+using System;
 
 namespace Mtf.Controls.Video
 {
     public class Vlc : BaseVideoPlayer, IVideoPlayer
     {
-        public static readonly LibVLC LibVLC = new LibVLC();
+        public static readonly LibVLC LibVLC = new LibVLC("--verbose=2");
+
+        public event Action<bool> SignalChanged;
 
         public VideoView VideoView { get; }
 
@@ -19,19 +22,34 @@ namespace Mtf.Controls.Video
 
         public void Start(string resource)
         {
-            StopMediaPlayer();
+            Start(resource, true, true, true, true, 100, 100);
+        }
 
+        public void Start(string resource, bool enableHardwareDecoding = true, bool mute = true, bool rtsp = true, bool udp = true, int networkCachingMs = 100, int liveCachingMs = 100)
+        {
+            StopMediaPlayer();
             var media = new Media(LibVLC, resource, FromType.FromLocation);
-            media.AddOption(":network-caching=100");
-            media.AddOption(":rtsp-udp");
-            //media.AddOption(":rtsp-tcp");
+            media.AddOption($":network-caching={networkCachingMs}");
+            media.AddOption($":live-caching={liveCachingMs}");
+            if (rtsp)
+            {
+                media.AddOption(udp ? ":rtsp-udp" : ":rtsp-tcp");
+            }
             mediaPlayer = new MediaPlayer(media)
             {
-                EnableHardwareDecoding = true,
-                Mute = true
+                EnableHardwareDecoding = enableHardwareDecoding,
+                Mute = mute
             };
-            VideoView.MediaPlayer = mediaPlayer;
 
+            VideoView.Invoke((Action)(() =>
+            {
+                VideoView.MediaPlayer = mediaPlayer;
+            }));
+
+            mediaPlayer.Playing += OnPlaying;
+            mediaPlayer.Stopped += OnStopped;
+            mediaPlayer.EncounteredError += OnError;
+            mediaPlayer.EndReached += OnStopped;
             mediaPlayer.Play();
             media.Dispose();
         }
@@ -54,6 +72,21 @@ namespace Mtf.Controls.Video
         //    return result;
         //}
 
+        private void OnPlaying(object sender, EventArgs e)
+        {
+            VideoView.Invoke((Action)(() => SignalChanged?.Invoke(true)));
+        }
+
+        private void OnStopped(object sender, EventArgs e)
+        {
+            VideoView.Invoke((Action)(() => SignalChanged?.Invoke(false)));
+        }
+
+        private void OnError(object sender, EventArgs e)
+        {
+            //VideoView.Invoke((Action)(() => SignalChanged?.Invoke(false)));
+        }
+
         public void Stop()
         {
             StopMediaPlayer();
@@ -65,10 +98,22 @@ namespace Mtf.Controls.Video
             //VideoView.Dispose();
         }
 
+        private void UnsubscribeEvents()
+        {
+            if (mediaPlayer != null)
+            {
+                mediaPlayer.Playing -= OnPlaying;
+                mediaPlayer.Stopped -= OnStopped;
+                mediaPlayer.EncounteredError -= OnError;
+                mediaPlayer.EndReached -= OnStopped;
+            }
+        }
+
         private void StopMediaPlayer()
         {
             if (mediaPlayer != null)
             {
+                UnsubscribeEvents();
                 if (mediaPlayer.IsPlaying)
                 {
                     mediaPlayer.Stop();
