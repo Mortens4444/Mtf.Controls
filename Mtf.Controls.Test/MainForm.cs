@@ -131,7 +131,7 @@ namespace Mtf.Controls.Test
                 }
                 if (chkVlcVideo.Checked)
                 {
-                    vlcWindow1.Start(String.IsNullOrEmpty(tbUrl.Text) ? "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" : tbUrl.Text);
+                    vlcWindow1.Start(String.IsNullOrEmpty(tbUrl.Text) ? "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" : tbUrl.Text, demux: Enums.Demux.live555);
                 }
             }
             catch (Exception ex)

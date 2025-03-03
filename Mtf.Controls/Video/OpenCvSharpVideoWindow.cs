@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -10,6 +11,26 @@ namespace Mtf.Controls.Video
     {
         private bool disposed;
         private readonly OpenCvSharpWrapper openCvSharpWrapper;
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Text to be displayed on the control.")]
+        public string OverlayText { get; set; } = String.Empty;
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Font type of the text to be displayed on the control.")]
+        public Font OverlayFont { get; set; } = new Font("Arial", 32, FontStyle.Bold);
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Color of the text to be displayed on the control.")]
+        public Brush OverlayBrush { get; set; } = Brushes.White;
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Location of the text to be displayed on the control.")]
+        public Point OverlayLocation { get; set; } = new Point(10, 10);
 
         public OpenCvSharpVideoWindow()
         {
@@ -46,6 +67,17 @@ namespace Mtf.Controls.Video
         public void Stop()
         {
             openCvSharpWrapper.Stop();
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            if (!String.IsNullOrEmpty(OverlayText))
+            {
+                var graphics = e.Graphics;
+                _ = graphics.MeasureString(OverlayText, OverlayFont);
+                graphics.DrawString(OverlayText, OverlayFont, OverlayBrush, OverlayLocation);
+            }
         }
     }
 }

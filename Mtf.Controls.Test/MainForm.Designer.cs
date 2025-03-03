@@ -89,11 +89,11 @@ namespace Mtf.Controls.Test
             rotatableImagePanel1 = new RotatableImagePanel();
             editableComboBox1 = new EditableComboBox();
             button3 = new Button();
-            openCvSharp4VideoWindow1 = new Video.OpenCvSharp4VideoWindow();
+            openCvSharp4VideoWindow1 = new Mtf.Controls.Video.OpenCvSharp4VideoWindow();
             button7 = new Button();
-            vlcWindow1 = new Video.VlcWindow();
-            fFmpegWindow1 = new Video.FFmpegWindow();
-            mortoGraphyWindow1 = new Video.MortoGraphyWindow();
+            vlcWindow1 = new Mtf.Controls.Video.VlcWindow();
+            fFmpegWindow1 = new Mtf.Controls.Video.FFmpegWindow();
+            mortoGraphyWindow1 = new Mtf.Controls.Video.MortoGraphyWindow();
             mtfListView2 = new MtfListView();
             columnHeader4 = new ColumnHeader();
             columnHeader5 = new ColumnHeader();
@@ -576,6 +576,8 @@ namespace Mtf.Controls.Test
             vlcWindow1.Location = new Point(20, 30);
             vlcWindow1.MediaPlayer = null;
             vlcWindow1.Name = "vlcWindow1";
+            vlcWindow1.OverlayFont = (Font)resources.GetObject("vlcWindow1.OverlayFont");
+            vlcWindow1.OverlayLocation = new Point(10, 10);
             vlcWindow1.Size = new Size(218, 138);
             vlcWindow1.TabIndex = 38;
             vlcWindow1.Text = "vlcWindow1";
@@ -588,6 +590,8 @@ namespace Mtf.Controls.Test
             fFmpegWindow1.Codec = Enums.Codec.mjpeg;
             fFmpegWindow1.Location = new Point(244, 30);
             fFmpegWindow1.Name = "fFmpegWindow1";
+            fFmpegWindow1.OverlayFont = (Font)resources.GetObject("fFmpegWindow1.OverlayFont");
+            fFmpegWindow1.OverlayLocation = new Point(10, 10);
             fFmpegWindow1.Size = new Size(218, 138);
             fFmpegWindow1.SizeMode = PictureBoxSizeMode.StretchImage;
             fFmpegWindow1.TabIndex = 39;
@@ -895,7 +899,7 @@ namespace Mtf.Controls.Test
             tbUrl.Name = "tbUrl";
             tbUrl.Size = new Size(442, 23);
             tbUrl.TabIndex = 41;
-            tbUrl.Text = "rtsp://192.168.0.201:554/snl/live/1/1";
+            tbUrl.Text = "rtsp://192.168.0.202:554/snl/live/1/1";
             // 
             // tabPage12
             // 
