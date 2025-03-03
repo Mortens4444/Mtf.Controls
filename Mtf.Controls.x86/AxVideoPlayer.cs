@@ -40,6 +40,7 @@ namespace Mtf.Controls.x86
             catch (Exception ex)
             {
                 DebugErrorBox.Show(ex);
+                throw;
             }
         }
 
@@ -53,23 +54,140 @@ namespace Mtf.Controls.x86
 
         public string Password { get; private set; }
 
-        public short? Light => AxVideoPicture?.Light;
+        public short? Light
+        {
+            get
+            {
+                return AxVideoPicture?.Light;
+            }
+            set
+            {
+                if (AxVideoPicture != null && value.HasValue)
+                {
+                    AxVideoPicture.Light = value.Value;
+                }
+            }
+        }
 
-        public short? Millisec => AxVideoPicture?.Millisec;
+        public short? Millisec
+        {
+            get
+            {
+                return AxVideoPicture?.Millisec;
+            }
+            set
+            {
+                if (AxVideoPicture != null && value.HasValue)
+                {
+                    AxVideoPicture.Millisec = value.Value;
+                }
+            }
+        }
 
-        public short? Motion => AxVideoPicture?.Motion;
+        public short? Motion
+        {
+            get
+            {
+                return AxVideoPicture?.Motion;
+            }
+            set
+            {
+                if (AxVideoPicture != null && value.HasValue)
+                {
+                    AxVideoPicture.Motion = value.Value;
+                }
+            }
+        }
 
-        public bool? OSD => AxVideoPicture?.OSD;
+        public bool? OSD
+        {
+            get
+            {
+                return AxVideoPicture?.OSD;
+            }
+            set
+            {
+                if (AxVideoPicture != null && value.HasValue)
+                {
+                    AxVideoPicture.OSD = value.Value;
+                }
+            }
+        }
 
-        public short? PlayStatus => AxVideoPicture?.PlayStatus;
+        public short? PlayStatus
+        {
+            get
+            {
+                return AxVideoPicture?.PlayStatus;
+            }
+            set
+            {
+                if (AxVideoPicture != null && value.HasValue)
+                {
+                    AxVideoPicture.PlayStatus = value.Value;
+                }
+            }
+        }
 
-        public Image Image => AxVideoPicture?.Picture;
+        public Image Image
+        {
+            get
+            {
+                return AxVideoPicture?.Picture;
+            }
+            set
+            {
+                if (AxVideoPicture != null)
+                {
+                    AxVideoPicture.Picture = value;
+                }
+            }
+        }
 
-        public bool? DisplayImage => AxVideoPicture?.DisplayPicture;
+        public bool? DisplayImage
+        {
+            get
+            {
+                return AxVideoPicture?.DisplayPicture;
+            }
+            set
+            {
+                if (AxVideoPicture != null && value.HasValue)
+                {
+                    AxVideoPicture.DisplayPicture = value.Value;
+                }
+            }
+        }
 
-        public bool? ShowDateTime => AxVideoPicture?.ShowDateTime;
+        public bool? ShowDateTime
+        {
+            get
+            {
+                return AxVideoPicture?.ShowDateTime;
+            }
+            set
+            {
+                if (AxVideoPicture != null && value.HasValue)
+                {
+                    AxVideoPicture.ShowDateTime = value.Value;
+                }
+            }
+        }
 
-        public short? Speed => AxVideoPicture?.Speed;
+        public short? Speed
+        {
+            get
+            {
+                return AxVideoPicture?.Speed;
+            }
+            set
+            {
+                if (AxVideoPicture != null && value.HasValue)
+                {
+                    AxVideoPicture.Speed = value.Value;
+                }
+            }
+        }
 
         public DateTime? Time
         {
@@ -82,6 +200,13 @@ namespace Mtf.Controls.x86
 
                 var time = AxVideoPicture.Time;
                 return new DateTime(time.Year, time.Month, time.Day, time.Hour, time.Minute, time.Second, AxVideoPicture.Millisec, time.Kind);
+            }
+            set
+            {
+                if (AxVideoPicture != null && value.HasValue)
+                {
+                    AxVideoPicture.Time = value.Value;
+                }
             }
         }
 
@@ -276,6 +401,7 @@ namespace Mtf.Controls.x86
             catch (Exception ex)
             {
                 DebugErrorBox.Show(ex);
+                throw;
             }
         }
 
@@ -378,7 +504,7 @@ namespace Mtf.Controls.x86
             GC.SuppressFinalize(this);
         }
 
-        private void Dispose(bool disposing)
+        protected virtual void Dispose(bool disposing)
         {
             if (Interlocked.Exchange(ref disposed, 1) != 0)
             {
