@@ -11,7 +11,9 @@ namespace Mtf.Controls.Video
     public class MortoGraphyWindow : PictureBox
     {
         private bool disposed;
-        private readonly MortoGraphy mortoGraphy;
+        private string username;
+        private MortoGraphy mortoGraphy;
+        private string password;
 
         public MortoGraphyWindow()
         {
@@ -29,12 +31,28 @@ namespace Mtf.Controls.Video
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [Description("Username.")]
-        public string Username { get; set; }
+        public string Username
+        {
+            get => username;
+            set
+            {
+                username = value;
+                mortoGraphy = new MortoGraphy(this, Username, Password);
+            }
+        }
 
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [Description("Password.")]
-        public string Password { get; set; }
+        public string Password
+        {
+            get => password;
+            set
+            {
+                password = value;
+                mortoGraphy = new MortoGraphy(this, Username, Password);
+            }
+        }
 
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
