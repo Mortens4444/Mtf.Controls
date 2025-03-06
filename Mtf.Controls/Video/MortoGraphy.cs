@@ -2,10 +2,12 @@
 using Mtf.Controls.Enums;
 using Mtf.Controls.Extensions;
 using Mtf.Controls.Interfaces;
+using Mtf.MessageBoxes;
 using System;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -101,72 +103,82 @@ namespace Mtf.Controls.Video
                     return;
                 }
 
-                using (var httpClient = new HttpClient { Timeout = TimeSpan.FromSeconds(3) })
+                using (var handler = new HttpClientHandler { Credentials = new NetworkCredential(username, password) })
+                using (var httpClient = new HttpClient(handler) { Timeout = TimeSpan.FromSeconds(3) })
                 {
-                    if (!String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password))
+                    //using (var request = new HttpRequestMessage(HttpMethod.Get, url))
                     {
-                        var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{username}:{password}"));
-                        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
-                    }
+                        //request.Content = new StringContent(String.Empty);
+                        httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("multipart/x-mixed-replace"));
+                        //httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("MortoGraphy/1.0");
 
-                    var response = await httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+                        //if (!String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password))
+                        //{
+                        //    var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{username}:{password}"));
+                        //    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
+                        //    //request.Headers.Authorization = new AuthenticationHeaderValue("Basic", credentials);
+                        //}
 
-                    if (!response.IsSuccessStatusCode || !response.Content.Headers.ContentType?.MediaType.Contains("multipart/x-mixed-replace") == true)
-                    {
-                        return;
-                    }
+                        //var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+                        var response = await httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
 
-                    var boundary = response.Content.Headers.ContentType.Parameters.FirstOrDefault(p => p.Name == "boundary")?.Value;
-                    if (String.IsNullOrEmpty(boundary))
-                    {
-                        throw new ApplicationException("Invalid MJPEG stream: Missing boundary");
-                    }
-
-                    if (!boundary.StartsWith("--"))
-                    {
-                        boundary = "--" + boundary;
-                    }
-
-                    var boundaryBytes = Encoding.ASCII.GetBytes(boundary);
-
-                    using (var stream = await response.Content.ReadAsStreamAsync())
-                    {
-                        //var buffer = new byte[BufferSize];
-                        total = 0;
-
-                        while (!cancellationToken.IsCancellationRequested)
+                        if (!response.IsSuccessStatusCode || !response.Content.Headers.ContentType?.MediaType.Contains("multipart/x-mixed-replace") == true)
                         {
-                            var read = await stream.ReadAsync(buffer, total, BufferSize - total, cancellationToken);
+                            return;
+                        }
 
-                            if (read == 0)
+                        var boundary = response.Content.Headers.ContentType.Parameters.FirstOrDefault(p => p.Name == "boundary")?.Value;
+                        if (String.IsNullOrEmpty(boundary))
+                        {
+                            throw new ApplicationException("Invalid MJPEG stream: Missing boundary");
+                        }
+
+                        if (!boundary.StartsWith("--"))
+                        {
+                            boundary = "--" + boundary;
+                        }
+
+                        var boundaryBytes = Encoding.ASCII.GetBytes(boundary);
+
+                        using (var stream = await response.Content.ReadAsStreamAsync())
+                        {
+                            //var buffer = new byte[BufferSize];
+                            total = 0;
+
+                            while (!cancellationToken.IsCancellationRequested)
                             {
-                                throw new ApplicationException("Stream closed unexpectedly");
-                            }
+                                var read = await stream.ReadAsync(buffer, total, BufferSize - total, cancellationToken);
 
-                            total += read;
-
-                            var start = FindSequence(buffer, boundaryBytes, 0, total);
-
-                            if (start != -1)
-                            {
-                                var end = FindSequence(buffer, boundaryBytes, start + boundaryBytes.Length, total - (start + boundaryBytes.Length));
-
-                                if (end != -1)
+                                if (read == 0)
                                 {
-                                    var imageStart = start + boundaryBytes.Length;
-                                    while (buffer[imageStart] != 0xFF && buffer[imageStart + 1] != 0xD8)
-                                    {
-                                        imageStart++;
-                                    }
-                                    var imageEnd = end;
+                                    throw new ApplicationException("Stream closed unexpectedly");
+                                }
 
-                                    using (var ms = new MemoryStream(buffer, imageStart, imageEnd - imageStart))
+                                total += read;
+
+                                var start = FindSequence(buffer, boundaryBytes, 0, total);
+
+                                if (start != -1)
+                                {
+                                    var end = FindSequence(buffer, boundaryBytes, start + boundaryBytes.Length, total - (start + boundaryBytes.Length));
+
+                                    if (end != -1)
                                     {
-                                        var frame = Image.FromStream(ms);
-                                        FrameArrived?.Invoke(this, new FrameArrivedEventArgs(frame));
-                                        Array.Copy(buffer, end, buffer, 0, total - end);
-                                        total -= end;
-                                        //return frame;
+                                        var imageStart = start + boundaryBytes.Length;
+                                        while (buffer[imageStart] != 0xFF && buffer[imageStart + 1] != 0xD8)
+                                        {
+                                            imageStart++;
+                                        }
+                                        var imageEnd = end;
+
+                                        using (var ms = new MemoryStream(buffer, imageStart, imageEnd - imageStart))
+                                        {
+                                            var frame = Image.FromStream(ms);
+                                            FrameArrived?.Invoke(this, new FrameArrivedEventArgs(frame));
+                                            Array.Copy(buffer, end, buffer, 0, total - end);
+                                            total -= end;
+                                            //return frame;
+                                        }
                                     }
                                 }
                             }
@@ -176,7 +188,8 @@ namespace Mtf.Controls.Video
             }
             catch (Exception ex)
             {
-                // Log or handle exceptions as needed, e.g., Console.WriteLine(ex.Message);
+                DebugErrorBox.Show(ex);
+                throw;
             }
             return;
         }
@@ -234,8 +247,8 @@ namespace Mtf.Controls.Video
             }
             catch (Exception ex)
             {
-                // Log exception if needed, e.g., Console.WriteLine($"Error: {ex.Message}");
-                return null;
+                DebugErrorBox.Show(ex);
+                throw;
             }
         }
 

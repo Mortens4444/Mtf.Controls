@@ -81,6 +81,7 @@ namespace Mtf.Controls.Video
                         catch (Exception ex)
                         {
                             DebugErrorBox.Show(ex);
+                            throw;
                         }
                     }
                     else
@@ -99,6 +100,7 @@ namespace Mtf.Controls.Video
                     catch (Exception ex)
                     {
                         DebugErrorBox.Show(ex);
+                        throw;
                     }
                 });
             });

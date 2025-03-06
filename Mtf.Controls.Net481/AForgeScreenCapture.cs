@@ -38,6 +38,7 @@ namespace Mtf.Controls.Net481
             catch (Exception ex)
             {
                 DebugErrorBox.Show(ex);
+                throw;
             }
             finally
             {

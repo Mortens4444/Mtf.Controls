@@ -553,6 +553,9 @@ namespace Mtf.Controls.Test
             openCvSharp4VideoWindow1.BackgroundImageLayout = ImageLayout.Stretch;
             openCvSharp4VideoWindow1.Location = new Point(20, 196);
             openCvSharp4VideoWindow1.Name = "openCvSharp4VideoWindow1";
+            openCvSharp4VideoWindow1.OverlayFont = (Font)resources.GetObject("openCvSharp4VideoWindow1.OverlayFont");
+            openCvSharp4VideoWindow1.OverlayLocation = new Point(10, 10);
+            openCvSharp4VideoWindow1.OverlayText = "Open CV Sharp 4";
             openCvSharp4VideoWindow1.Size = new Size(218, 135);
             openCvSharp4VideoWindow1.SizeMode = PictureBoxSizeMode.StretchImage;
             openCvSharp4VideoWindow1.TabIndex = 32;
@@ -578,6 +581,7 @@ namespace Mtf.Controls.Test
             vlcWindow1.Name = "vlcWindow1";
             vlcWindow1.OverlayFont = (Font)resources.GetObject("vlcWindow1.OverlayFont");
             vlcWindow1.OverlayLocation = new Point(10, 10);
+            vlcWindow1.OverlayText = "VLC";
             vlcWindow1.Size = new Size(218, 138);
             vlcWindow1.TabIndex = 38;
             vlcWindow1.Text = "vlcWindow1";
@@ -592,6 +596,7 @@ namespace Mtf.Controls.Test
             fFmpegWindow1.Name = "fFmpegWindow1";
             fFmpegWindow1.OverlayFont = (Font)resources.GetObject("fFmpegWindow1.OverlayFont");
             fFmpegWindow1.OverlayLocation = new Point(10, 10);
+            fFmpegWindow1.OverlayText = "FFMpeg";
             fFmpegWindow1.Size = new Size(218, 138);
             fFmpegWindow1.SizeMode = PictureBoxSizeMode.StretchImage;
             fFmpegWindow1.TabIndex = 39;
@@ -603,6 +608,9 @@ namespace Mtf.Controls.Test
             mortoGraphyWindow1.BackgroundImageLayout = ImageLayout.Stretch;
             mortoGraphyWindow1.Location = new Point(244, 196);
             mortoGraphyWindow1.Name = "mortoGraphyWindow1";
+            mortoGraphyWindow1.OverlayFont = (Font)resources.GetObject("mortoGraphyWindow1.OverlayFont");
+            mortoGraphyWindow1.OverlayLocation = new Point(10, 10);
+            mortoGraphyWindow1.OverlayText = "MortoGraphy";
             mortoGraphyWindow1.Password = null;
             mortoGraphyWindow1.Size = new Size(218, 135);
             mortoGraphyWindow1.SizeMode = PictureBoxSizeMode.StretchImage;

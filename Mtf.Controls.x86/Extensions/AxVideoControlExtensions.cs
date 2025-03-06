@@ -40,6 +40,7 @@ namespace Mtf.Controls.x86.Extensions
                 catch (Exception ex)
                 {
                     DebugErrorBox.Show(ex);
+                    throw;
                 }
             }
             return ShallowCopyHelper.ShallowCopy(newControl);
@@ -57,6 +58,7 @@ namespace Mtf.Controls.x86.Extensions
                 catch (Exception ex)
                 {
                     DebugErrorBox.Show(ex);
+                    throw;
                 }
             }
             return ShallowCopyHelper.ShallowCopy(newControl);

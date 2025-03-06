@@ -55,6 +55,7 @@ namespace Mtf.Controls.Video
             catch (Exception ex)
             {
                 DebugErrorBox.Show(ex);
+                throw;
             }
 
             await Task.Run(() =>
@@ -89,6 +90,7 @@ namespace Mtf.Controls.Video
                 catch (Exception ex)
                 {
                     DebugErrorBox.Show(ex);
+                    throw;
                 }
             }).ContinueWith((t) =>
             {
@@ -102,6 +104,7 @@ namespace Mtf.Controls.Video
                 catch (Exception ex)
                 {
                     DebugErrorBox.Show(ex);
+                    throw;
                 }
             });
         }
