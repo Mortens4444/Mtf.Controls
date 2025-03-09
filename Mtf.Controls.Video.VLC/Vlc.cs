@@ -5,7 +5,7 @@ using Mtf.Controls.Interfaces;
 using System;
 using System.Drawing;
 
-namespace Mtf.Controls.Video
+namespace Mtf.Controls.Video.VLC
 {
     /// <summary>
     /// https://wiki.videolan.org/VLC_command-line_help/

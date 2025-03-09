@@ -28,18 +28,7 @@ To install the `Mtf.Controls` package, follow these steps:
 This package uses the following dependencies, each under their respective licenses:
 
 - **[Mtf.MessageBoxes](https://www.nuget.org/packages/Mtf.MessageBoxes/)**: Version 2.0.29 (MIT License)
-- **[LibVLCSharp](https://www.nuget.org/packages/LibVLCSharp/)**: Version 3.9.1 (LGPL-3.0)
-- **[LibVLCSharp.WinForms](https://www.nuget.org/packages/LibVLCSharp.WinForms/)**: Version 3.9.1 (LGPL-3.0)
-- **[OpenCvSharp4](https://www.nuget.org/packages/OpenCvSharp4/)**: Version 4.10.0.20241108 (Apache License 2.0)
-- **[OpenCvSharp4.Extensions](https://www.nuget.org/packages/OpenCvSharp4.Extensions/)**: Version 4.10.0.20241108 (Apache License 2.0)
-- **[OpenCvSharp4.runtime.win](https://www.nuget.org/packages/OpenCvSharp4.runtime.win/)**: Version 4.10.0.20241108 (Apache License 2.0)
 - **[System.Net.Http](https://www.nuget.org/packages/System.Net.Http/)**: Version 4.3.4 (MIT License)
-- **[VideoLAN.LibVLC.Windows](https://www.nuget.org/packages/VideoLAN.LibVLC.Windows/)**: Version 3.0.21 (LGPL-2.1)
-- **[Accord](https://www.nuget.org/packages/Accord/)**: Version 3.8.0 (LGPL-3.0)
-- **[Accord.Video](https://www.nuget.org/packages/Accord.Video/)**: Version 3.8.0 (LGPL-3.0)
-- **[AForge](https://www.nuget.org/packages/AForge/)**: Version 2.2.5 (LGPL-3.0)
-- **[AForge.Video](https://www.nuget.org/packages/AForge.Video/)**: Version 2.2.5 (LGPL-3.0)
-- **[AForge.Video.DirectShow](https://www.nuget.org/packages/AForge.Video.DirectShow/)**: Version 2.2.5 (LGPL-3.0)
 
 Each dependency's license applies independently to their respective code. This package complies with their license terms. If you use this package, ensure that you meet the requirements of each dependency's license.
 
@@ -96,10 +85,10 @@ The `PasswordBox` control in `Mtf.Controls` extends the standard `TextBox` to pr
 
 #### Properties
 
-| Property              | Type           | Description                                      |
-|-----------------------|----------------|--------------------------------------------------|
-| `PasswordChar`        | `char`         | The character to display in place of the actual password characters. Default is `*`. |
-| `UseSystemPasswordChar` | `bool`       | If `true`, the system-defined password character is used. Default is `false`. |
+| Property                | Type           | Description                                                                          |
+|-------------------------|----------------|--------------------------------------------------------------------------------------|
+| `PasswordChar`          | `char`         | The character to display in place of the actual password characters. Default is `*`. |
+| `UseSystemPasswordChar` | `bool`         | If `true`, the system-defined password character is used. Default is `false`.        |
 
 #### Methods
 
@@ -162,20 +151,20 @@ Initializes a new instance of the `MtfListView` class, setting default values fo
 
 ## Properties
 
-| Property                     | Type        | Description                                                                                      |
-|------------------------------|-------------|--------------------------------------------------------------------------------------------------|
-| `ReadonlyCheckboxes`         | `bool`      | Indicates if the item checkboxes are readonly.                                                   |
-| `EnsureLastItemIsVisible`    | `bool`      | Ensures that the last item is visible.                                                           |
-| `AlternatingColorEven`       | `Color`     | Specifies color for even rows.                                                                   |
-| `AlternatingColorOdd`        | `Color`     | Specifies color for odd rows.                                                                    |
-| `AlternatingPairColorEven`   | `Color`     | Specifies color for paired even rows.                                                            |
-| `AlternatingPairColorOdd`    | `Color`     | Specifies color for paired odd rows.                                                             |
-| `SameItemsColorEven`         | `Color`     | Specifies color for same even rows.                                                              |
-| `SameItemsColorOdd`          | `Color`     | Specifies color for same odd rows.                                                               |
-| `CompactView`                | `bool`      | If `true`, identical items are displayed only once.                                              |
-| `AlternatingColorsAreInUse`  | `bool`      | Enables/disables alternating colors.                                                             |
-| `FirstItemIsGray`            | `bool`      | If `true`, the first item will be gray.                                                          |
-| `AlwaysDifferentColumnIndexes`| `ReadOnlyCollection<int>` | Specifies columns to ignore for compact view creation, defaulting to an empty list.             |
+| Property                     | Type        | Description                                                                                        |
+|------------------------------|-------------|----------------------------------------------------------------------------------------------------|
+| `ReadonlyCheckboxes`         | `bool`      | Indicates if the item checkboxes are readonly.                                                     |
+| `EnsureLastItemIsVisible`    | `bool`      | Ensures that the last item is visible.                                                             |
+| `AlternatingColorEven`       | `Color`     | Specifies color for even rows.                                                                     |
+| `AlternatingColorOdd`        | `Color`     | Specifies color for odd rows.                                                                      |
+| `AlternatingPairColorEven`   | `Color`     | Specifies color for paired even rows.                                                              |
+| `AlternatingPairColorOdd`    | `Color`     | Specifies color for paired odd rows.                                                               |
+| `SameItemsColorEven`         | `Color`     | Specifies color for same even rows.                                                                |
+| `SameItemsColorOdd`          | `Color`     | Specifies color for same odd rows.                                                                 |
+| `CompactView`                | `bool`      | If `true`, identical items are displayed only once.                                                |
+| `AlternatingColorsAreInUse`  | `bool`      | Enables/disables alternating colors.                                                               |
+| `FirstItemIsGray`            | `bool`      | If `true`, the first item will be gray.                                                            |
+| `AlwaysDifferentColumnIndexes`| `ReadOnlyCollection<int>` | Specifies columns to ignore for compact view creation, defaulting to an empty list. |
 
 
 
@@ -240,25 +229,25 @@ The `MtfTreeView` class extends TreeView with features like custom line styles, 
 
 #### Constants
 
-| Constant          | Type      | Description                       |
-|-------------------|-----------|-----------------------------------|
+| Constant          | Type      | Description                         |
+|-------------------|-----------|-------------------------------------|
 | `CheckboxSize`    | `short`   | Specifies the size of the checkbox. |
-| `BigShift`        | `byte`    | Specifies the large shift value. |
-| `SmallShift`      | `byte`    | Specifies the small shift value. |
-| `MinShift`        | `byte`    | Specifies the minimum shift value.|
+| `BigShift`        | `byte`    | Specifies the large shift value.    |
+| `SmallShift`      | `byte`    | Specifies the small shift value.    |
+| `MinShift`        | `byte`    | Specifies the minimum shift value.  |
 
 #### Properties
 
-| Property                      | Type        | Description                                                                                      |
-|-------------------------------|-------------|--------------------------------------------------------------------------------------------------|
-| `StateImageOrCheckBoxOnLeft`  | `bool`      | If `true`, displays the state image on the left side.                                           |
-| `LineStyle`                   | `DashStyle` | Sets the style of lines between nodes.                                                          |
-| `ShowPlusMinusOnRootNodes`    | `bool`      | If `true`, displays a plus-minus icon on root nodes.                                            |
-| `DrawDefaultImageToNodes`     | `bool`      | Uses `ImageIndex` of ListView to set node images.                                               |
-| `TickColor`                   | `Color`     | Sets the color of checkbox ticks.                                                               |
-| `CheckBoxBackground`          | `Color`     | Sets the background color for checkboxes.                                                       |
-| `MultiSelect`                 | `bool`      | Enables/disables multiple node selection.                                                       |
-| `SelectedNodes`               | `TreeNode[]`| Array of currently selected nodes.                                                              |
+| Property                      | Type        | Description                                           |
+|-------------------------------|-------------|-------------------------------------------------------|
+| `StateImageOrCheckBoxOnLeft`  | `bool`      | If `true`, displays the state image on the left side. |
+| `LineStyle`                   | `DashStyle` | Sets the style of lines between nodes.                |
+| `ShowPlusMinusOnRootNodes`    | `bool`      | If `true`, displays a plus-minus icon on root nodes.  |
+| `DrawDefaultImageToNodes`     | `bool`      | Uses `ImageIndex` of ListView to set node images.     |
+| `TickColor`                   | `Color`     | Sets the color of checkbox ticks.                     |
+| `CheckBoxBackground`          | `Color`     | Sets the background color for checkboxes.             |
+| `MultiSelect`                 | `bool`      | Enables/disables multiple node selection.             |
+| `SelectedNodes`               | `TreeNode[]`| Array of currently selected nodes.                    |
 
 #### Usage Example
 

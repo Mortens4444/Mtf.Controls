@@ -47,11 +47,5 @@
     <Compile Update="TransparentPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Update="Video\MortoGraphyWindow.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Update="Video\OpenCvSharp4VideoWindow.cs">
-      <SubType>Component</SubType>
-    </Compile>
   </ItemGroup>
 </Project>

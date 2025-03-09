@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Mtf.Controls.Video
+namespace Mtf.Controls.Video.OpenCvSharp
 {
     [ToolboxItem(true)]
     [ToolboxBitmap(typeof(OpenCvSharp4VideoWindow), "Resources.VideoSource.png")]
@@ -39,7 +39,7 @@ namespace Mtf.Controls.Video
 
         public OpenCvSharp4VideoWindow()
         {
-            BackgroundImage = Properties.Resources.NoSignal;
+            BackgroundImage = OpenCvSharp.Properties.Resources.NoSignal;
             BackgroundImageLayout = ImageLayout.Stretch;
             SizeMode = PictureBoxSizeMode.StretchImage;
         }

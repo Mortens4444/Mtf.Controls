@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Mtf.Controls.Video</id>
+    <version>1.0.1</version>
+    <description>
+      Custom Windows Forms Controls.
+      
+      The library includes various controls, such as:
+      - MortoGraphyWindow (Show JPEG and MJPEG streams)
+      
+      Compatibility:
+      - .NET Framework 4.8.1
+      - .NET 8
+      - .NET 9
+	</description>
+    <authors>Mortens</authors>
+	<owners>Mortens</owners>
+    <copyright>Copyright © 2024</copyright>
+	<license type="expression">MIT</license>
+	<projectUrl>https://github.com/Mortens4444/Mtf.Controls</projectUrl>
+    <repository type="git" url="https://github.com/Mortens4444/Mtf.Controls.git" branch="main" />
+	<tags>MortoGraphyWindow Mortens</tags>
+	<readme>docs\ReadMe - Mtf.Controls.Video.md</readme>
+    <dependencies>
+	  <group targetFramework="net481">
+	  </group>
+	  <group targetFramework="net8.0-windows7">
+	  </group>
+	  <group targetFramework="net9.0-windows7">
+	  </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src=".\Mtf.Controls.Video\bin\Release\net481\**" target="lib\net481" />
+    <file src=".\Mtf.Controls.Video\bin\Release\net8.0-windows\**" target="lib\net8.0-windows7" />
+    <file src=".\Mtf.Controls.Video\bin\Release\net9.0-windows\**" target="lib\net9.0-windows7" />
+	<file src=".\ReadMe - Mtf.Controls.Video.md" target="docs\" />
+  </files>
+</package>

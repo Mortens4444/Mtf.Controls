@@ -20,6 +20,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtf.Controls.x86", "Mtf.Con
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtf.Controls.x86.Test", "Mtf.Controls.x86.Test\Mtf.Controls.x86.Test.csproj", "{D49AB670-918C-4464-B7FF-0628185B4DDB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtf.Controls.Video", "Mtf.Controls.Video\Mtf.Controls.Video.csproj", "{0248F22C-5ACF-4CF0-8E83-2A4A5B9925D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtf.Controls.Video.FFmpeg", "Mtf.Controls.Video.FFmpeg\Mtf.Controls.Video.FFmpeg.csproj", "{17F8CCD0-4632-4F76-AACA-03A099BC9B3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtf.Controls.Video.OpenCvSharp", "Mtf.Controls.Video.OpenCvSharp\Mtf.Controls.Video.OpenCvSharp.csproj", "{8F62A6A7-80F9-4D54-9E95-A12EDD5C10DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtf.Controls.Video.VLC", "Mtf.Controls.Video.VLC\Mtf.Controls.Video.VLC.csproj", "{7918721B-BA10-477A-B03F-A2B234F90A7F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +58,22 @@ Global
 		{D49AB670-918C-4464-B7FF-0628185B4DDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D49AB670-918C-4464-B7FF-0628185B4DDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D49AB670-918C-4464-B7FF-0628185B4DDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0248F22C-5ACF-4CF0-8E83-2A4A5B9925D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0248F22C-5ACF-4CF0-8E83-2A4A5B9925D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0248F22C-5ACF-4CF0-8E83-2A4A5B9925D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0248F22C-5ACF-4CF0-8E83-2A4A5B9925D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17F8CCD0-4632-4F76-AACA-03A099BC9B3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17F8CCD0-4632-4F76-AACA-03A099BC9B3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17F8CCD0-4632-4F76-AACA-03A099BC9B3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17F8CCD0-4632-4F76-AACA-03A099BC9B3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F62A6A7-80F9-4D54-9E95-A12EDD5C10DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F62A6A7-80F9-4D54-9E95-A12EDD5C10DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F62A6A7-80F9-4D54-9E95-A12EDD5C10DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F62A6A7-80F9-4D54-9E95-A12EDD5C10DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7918721B-BA10-477A-B03F-A2B234F90A7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7918721B-BA10-477A-B03F-A2B234F90A7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7918721B-BA10-477A-B03F-A2B234F90A7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7918721B-BA10-477A-B03F-A2B234F90A7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

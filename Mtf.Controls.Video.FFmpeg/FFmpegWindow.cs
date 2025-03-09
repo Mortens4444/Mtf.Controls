@@ -1,11 +1,10 @@
 ﻿using Mtf.Controls.Enums;
-using Mtf.Controls.Properties;
 using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Mtf.Controls.Video
+namespace Mtf.Controls.Video.FFmpeg
 {
     [ToolboxItem(true)]
     [ToolboxBitmap(typeof(FFmpegWindow), "Resources.VideoSource.png")]
@@ -41,7 +40,7 @@ namespace Mtf.Controls.Video
 
         public FFmpegWindow()
         {
-            BackgroundImage = Resources.NoSignal;
+            BackgroundImage = Properties.Resources.NoSignal;
             BackgroundImageLayout = ImageLayout.Stretch;
             SizeMode = PictureBoxSizeMode.StretchImage;
             fFmpeg = new FFmpeg(this, Codec);

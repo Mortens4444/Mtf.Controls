@@ -21,7 +21,7 @@ namespace Mtf.Controls.Video
     /// </summary>
     public class MortoGraphy : BaseVideoPlayer, IVideoPlayer
     {
-        private int total = 0;
+        private int total;
         private byte[] buffer = new byte[BufferSize];
         private readonly object sync = new object();
         private readonly MortoGraphyWindow mortoGraphyWindow;
@@ -104,7 +104,7 @@ namespace Mtf.Controls.Video
                 }
 
                 using (var handler = new HttpClientHandler { Credentials = new NetworkCredential(username, password) })
-                using (var httpClient = new HttpClient(handler) { Timeout = TimeSpan.FromSeconds(3) })
+                using (var httpClient = new HttpClient(handler) { Timeout = TimeSpan.FromSeconds(30) })
                 {
                     //using (var request = new HttpRequestMessage(HttpMethod.Get, url))
                     {

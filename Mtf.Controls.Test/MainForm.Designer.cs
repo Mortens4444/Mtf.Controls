@@ -89,10 +89,10 @@ namespace Mtf.Controls.Test
             rotatableImagePanel1 = new RotatableImagePanel();
             editableComboBox1 = new EditableComboBox();
             button3 = new Button();
-            openCvSharp4VideoWindow1 = new Mtf.Controls.Video.OpenCvSharp4VideoWindow();
+            openCvSharp4VideoWindow1 = new Mtf.Controls.Video.OpenCvSharp.OpenCvSharp4VideoWindow();
             button7 = new Button();
-            vlcWindow1 = new Mtf.Controls.Video.VlcWindow();
-            fFmpegWindow1 = new Mtf.Controls.Video.FFmpegWindow();
+            vlcWindow1 = new Mtf.Controls.Video.VLC.VlcWindow();
+            fFmpegWindow1 = new Mtf.Controls.Video.FFmpeg.FFmpegWindow();
             mortoGraphyWindow1 = new Mtf.Controls.Video.MortoGraphyWindow();
             mtfListView2 = new MtfListView();
             columnHeader4 = new ColumnHeader();
@@ -1023,10 +1023,10 @@ namespace Mtf.Controls.Test
         private RotatableImagePanel rotatableImagePanel1;
         private EditableComboBox editableComboBox1;
         private Button button3;
-        private Video.OpenCvSharp4VideoWindow openCvSharp4VideoWindow1;
+        private Video.OpenCvSharp.OpenCvSharp4VideoWindow openCvSharp4VideoWindow1;
         private Button button7;
-        private Video.VlcWindow vlcWindow1;
-        private Video.FFmpegWindow fFmpegWindow1;
+        private Video.VLC.VlcWindow vlcWindow1;
+        private Video.FFmpeg.FFmpegWindow fFmpegWindow1;
         private Video.MortoGraphyWindow mortoGraphyWindow1;
         private MtfListView mtfListView2;
         private ColumnHeader columnHeader4;

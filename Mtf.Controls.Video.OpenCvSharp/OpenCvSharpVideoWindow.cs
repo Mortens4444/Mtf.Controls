@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Mtf.Controls.Video
+namespace Mtf.Controls.Video.OpenCvSharp
 {
     [ToolboxItem(true)]
     [ToolboxBitmap(typeof(OpenCvSharpVideoWindow), "Resources.VideoSource.png")]
@@ -34,7 +34,7 @@ namespace Mtf.Controls.Video
 
         public OpenCvSharpVideoWindow()
         {
-            BackgroundImage = Properties.Resources.NoSignal;
+            BackgroundImage = OpenCvSharp.Properties.Resources.NoSignal;
             BackgroundImageLayout = ImageLayout.Stretch;
             SizeMode = PictureBoxSizeMode.StretchImage;
             openCvSharpWrapper = new OpenCvSharpWrapper(this);

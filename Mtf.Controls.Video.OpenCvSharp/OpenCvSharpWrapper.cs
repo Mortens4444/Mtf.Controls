@@ -4,12 +4,11 @@ using Mtf.MessageBoxes;
 using OpenCvSharp;
 using OpenCvSharp.Extensions;
 using System;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Mtf.Controls.Video
+namespace Mtf.Controls.Video.OpenCvSharp
 {
     public class OpenCvSharpWrapper : BaseVideoPlayer, IVideoPlayer
     {

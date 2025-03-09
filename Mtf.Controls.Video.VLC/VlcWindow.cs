@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Mtf.Controls.Video
+namespace Mtf.Controls.Video.VLC
 {
     [ToolboxItem(true)]
     [ToolboxBitmap(typeof(VlcWindow), "Resources.VideoSource.png")]

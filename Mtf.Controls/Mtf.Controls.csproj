@@ -64,14 +64,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="LibVLCSharp" Version="3.9.1" />
-    <PackageReference Include="LibVLCSharp.WinForms" Version="3.9.1" />
     <PackageReference Include="Mtf.MessageBoxes" Version="3.0.31" />
-    <PackageReference Include="OpenCvSharp4" Version="4.10.0.20241108" />
-    <PackageReference Include="OpenCvSharp4.Extensions" Version="4.10.0.20241108" />
-    <PackageReference Include="OpenCvSharp4.runtime.win" Version="4.10.0.20241108" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
-    <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.21" />
   </ItemGroup>
 
   <ItemGroup>
@@ -83,15 +77,6 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Video\FFmpegWindow.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Update="Video\VlcWindow.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Update="Video\OpenCvSharpVideoWindow.cs">
-      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
 

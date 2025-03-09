@@ -29,6 +29,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Mtf.Controls.Video.FFmpeg\Mtf.Controls.Video.FFmpeg.csproj" />
+    <ProjectReference Include="..\Mtf.Controls.Video.OpenCvSharp\Mtf.Controls.Video.OpenCvSharp.csproj" />
+    <ProjectReference Include="..\Mtf.Controls.Video.VLC\Mtf.Controls.Video.VLC.csproj" />
+    <ProjectReference Include="..\Mtf.Controls.Video\Mtf.Controls.Video.csproj" />
     <ProjectReference Include="..\Mtf.Controls\Mtf.Controls.csproj" />
   </ItemGroup>
 
