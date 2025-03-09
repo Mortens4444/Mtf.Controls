@@ -10,8 +10,8 @@
 
 namespace Mtf.Controls.Video.OpenCvSharp.Properties {
     using System;
-    
-    
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -39,7 +39,7 @@ namespace Mtf.Controls.Video.OpenCvSharp.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Mtf.Controls.Video.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Mtf.Controls.Video.OpenCvSharp.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,12 +63,13 @@ namespace Mtf.Controls.Video.OpenCvSharp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap NoSignal
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap NoSignal {
+            get {
                 object obj = ResourceManager.GetObject("NoSignal", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                using (var ms = new System.IO.MemoryStream((byte[])(obj)))
+                {
+                    return new System.Drawing.Bitmap(ms);
+                }
             }
         }
     }

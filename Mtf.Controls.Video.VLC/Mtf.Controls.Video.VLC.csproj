@@ -30,9 +30,9 @@
 
   <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
-      <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Update="VlcWindow.cs">
       <SubType>Component</SubType>
@@ -41,8 +41,8 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

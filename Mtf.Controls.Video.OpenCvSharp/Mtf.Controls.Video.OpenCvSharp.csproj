@@ -25,10 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\NoSignal.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="OpenCvSharp4VideoWindow.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -36,16 +32,20 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
-      <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

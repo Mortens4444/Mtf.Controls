@@ -34,7 +34,7 @@ namespace Mtf.Controls.Video.OpenCvSharp
 
         public OpenCvSharpVideoWindow()
         {
-            BackgroundImage = OpenCvSharp.Properties.Resources.NoSignal;
+            BackgroundImage = Properties.Resources.NoSignal;
             BackgroundImageLayout = ImageLayout.Stretch;
             SizeMode = PictureBoxSizeMode.StretchImage;
             openCvSharpWrapper = new OpenCvSharpWrapper(this);

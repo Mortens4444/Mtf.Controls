@@ -68,7 +68,10 @@ namespace Mtf.Controls.Video.Properties {
             get
             {
                 object obj = ResourceManager.GetObject("NoSignal", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                using (var ms = new System.IO.MemoryStream((byte[])(obj)))
+                {
+                    return new System.Drawing.Bitmap(ms);
+                }
             }
         }
     }
