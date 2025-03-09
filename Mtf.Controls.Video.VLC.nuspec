@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Mtf.Controls.Video.VLC</id>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <description>
       Custom Windows Forms Controls.
       
@@ -24,18 +24,21 @@
 	<readme>docs\ReadMe - Mtf.Controls.Video.VLC.md</readme>
     <dependencies>
 	  <group targetFramework="net481">
-		<dependency id="LibVLCSharp" version="3.9.1" />
-		<dependency id="LibVLCSharp.WinForms" version="3.9.1" />
+		<dependency id="Mtf.Controls" version="1.0.44" />
+		<dependency id="LibVLCSharp" version="3.9.2" />
+		<dependency id="LibVLCSharp.WinForms" version="3.9.2" />
 		<dependency id="VideoLAN.LibVLC.Windows" version="3.0.21" />
 	  </group>
 	  <group targetFramework="net8.0-windows7">
-		<dependency id="LibVLCSharp" version="3.9.1" />
-		<dependency id="LibVLCSharp.WinForms" version="3.9.1" />
+		<dependency id="Mtf.Controls" version="1.0.44" />
+		<dependency id="LibVLCSharp" version="3.9.2" />
+		<dependency id="LibVLCSharp.WinForms" version="3.9.2" />
 		<dependency id="VideoLAN.LibVLC.Windows" version="3.0.21" />
 	  </group>
 	  <group targetFramework="net9.0-windows7">
-		<dependency id="LibVLCSharp" version="3.9.1" />
-		<dependency id="LibVLCSharp.WinForms" version="3.9.1" />
+		<dependency id="Mtf.Controls" version="1.0.44" />
+		<dependency id="LibVLCSharp" version="3.9.2" />
+		<dependency id="LibVLCSharp.WinForms" version="3.9.2" />
 		<dependency id="VideoLAN.LibVLC.Windows" version="3.0.21" />
 	  </group>
     </dependencies>
