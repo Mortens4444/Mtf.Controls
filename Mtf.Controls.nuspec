@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Mtf.Controls</id>
-    <version>1.0.46</version>
+    <version>1.0.47</version>
     <description>
       Custom Windows Forms Controls.
       
@@ -38,14 +38,29 @@
 	<readme>docs\ReadMe.md</readme>
     <dependencies>
 	  <group targetFramework="net481">
+        <dependency id="Accord" version="3.8.0" />
+        <dependency id="Accord.Video" version="3.8.0" />
+        <dependency id="AForge" version="2.2.5" />
+        <dependency id="AForge.Video" version="2.2.5" />
+        <dependency id="AForge.Video.DirectShow" version="2.2.5" />
 		<dependency id="Mtf.MessageBoxes" version="3.0.31" />
 		<dependency id="System.Net.Http" version="4.3.4" />
 	  </group>
 	  <group targetFramework="net8.0-windows7">
+        <dependency id="Accord" version="3.8.0" />
+        <dependency id="Accord.Video" version="3.8.0" />
+        <dependency id="AForge" version="2.2.5" />
+        <dependency id="AForge.Video" version="2.2.5" />
+        <dependency id="AForge.Video.DirectShow" version="2.2.5" />
 		<dependency id="Mtf.MessageBoxes" version="3.0.31" />
 		<dependency id="System.Net.Http" version="4.3.4" />
 	  </group>
 	  <group targetFramework="net9.0-windows7">
+        <dependency id="Accord" version="3.8.0" />
+        <dependency id="Accord.Video" version="3.8.0" />
+        <dependency id="AForge" version="2.2.5" />
+        <dependency id="AForge.Video" version="2.2.5" />
+        <dependency id="AForge.Video.DirectShow" version="2.2.5" />
 		<dependency id="Mtf.MessageBoxes" version="3.0.31" />
 		<dependency id="System.Net.Http" version="4.3.4" />
 	  </group>

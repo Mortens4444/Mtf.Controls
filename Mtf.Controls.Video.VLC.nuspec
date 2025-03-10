@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Mtf.Controls.Video.VLC</id>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <description>
       Custom Windows Forms Controls.
       
@@ -19,24 +19,24 @@
     <copyright>Copyright © 2024</copyright>
 	<license type="expression">LGPL-3.0-or-later</license>
 	<projectUrl>https://github.com/Mortens4444/Mtf.Controls</projectUrl>
-    <repository type="git" url="https://github.com/Mortens4444/Mtf.Controls.git" branch="main" commit="31f8a27f96c1e516dbafa80ccf8b7df25bd3e021" />
+    <repository type="git" url="https://github.com/Mortens4444/Mtf.Controls.git" branch="main" />
 	<tags>VlcWindow Mortens</tags>
 	<readme>docs\ReadMe - Mtf.Controls.Video.VLC.md</readme>
     <dependencies>
 	  <group targetFramework="net481">
-		<dependency id="Mtf.Controls" version="1.0.44" />
+		<dependency id="Mtf.Controls" version="1.0.46" />
 		<dependency id="LibVLCSharp" version="3.9.2" />
 		<dependency id="LibVLCSharp.WinForms" version="3.9.2" />
 		<dependency id="VideoLAN.LibVLC.Windows" version="3.0.21" />
 	  </group>
 	  <group targetFramework="net8.0-windows7">
-		<dependency id="Mtf.Controls" version="1.0.44" />
+		<dependency id="Mtf.Controls" version="1.0.46" />
 		<dependency id="LibVLCSharp" version="3.9.2" />
 		<dependency id="LibVLCSharp.WinForms" version="3.9.2" />
 		<dependency id="VideoLAN.LibVLC.Windows" version="3.0.21" />
 	  </group>
 	  <group targetFramework="net9.0-windows7">
-		<dependency id="Mtf.Controls" version="1.0.44" />
+		<dependency id="Mtf.Controls" version="1.0.46" />
 		<dependency id="LibVLCSharp" version="3.9.2" />
 		<dependency id="LibVLCSharp.WinForms" version="3.9.2" />
 		<dependency id="VideoLAN.LibVLC.Windows" version="3.0.21" />

@@ -3,6 +3,7 @@ using Mtf.Controls.Interfaces;
 using Mtf.MessageBoxes;
 using OpenCvSharp;
 using OpenCvSharp.Extensions;
+using OpenCvSharp.Internal;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,6 +17,12 @@ namespace Mtf.Controls.Video.OpenCvSharp
         private readonly PictureBox pictureBox;
         private VideoCapture videoCapture;
         private CancellationTokenSource cancellationTokenSource;
+
+        //static OpenCvSharpWrapper()
+        //{
+        //    //NativeMethods.TryPInvoke = true;
+        //    NativeMethods.LoadLibraries(new[] { "opencv_world480.dll" });
+        //}
 
         public OpenCvSharpWrapper(PictureBox pictureBox) : base()
         {

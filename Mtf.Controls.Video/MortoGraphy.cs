@@ -21,6 +21,9 @@ namespace Mtf.Controls.Video
     /// </summary>
     public class MortoGraphy : BaseVideoPlayer, IVideoPlayer
     {
+        private static HttpClientHandler handler;
+        private static HttpClient httpClient;
+
         private int total;
         private byte[] buffer = new byte[BufferSize];
         private readonly object sync = new object();
@@ -30,6 +33,7 @@ namespace Mtf.Controls.Video
         private string password;
         private CancellationTokenSource cancellationTokenSource;
         private const int BufferSize = 512 * 1024;  // buffer size
+
         public event FrameArrivedEventHandler FrameArrived;
         public delegate void FrameArrivedEventHandler(object sender, FrameArrivedEventArgs e);
 
@@ -43,6 +47,9 @@ namespace Mtf.Controls.Video
             this.username = username;
             this.password = password;
             FrameArrived += MortoGraphy_FrameArrived;
+
+            handler = new HttpClientHandler() { Credentials = new NetworkCredential(username, password) };
+            httpClient = new HttpClient(handler) { Timeout = TimeSpan.FromSeconds(30) };
         }
 
         private void MortoGraphy_FrameArrived(object sender, FrameArrivedEventArgs e)
@@ -50,6 +57,7 @@ namespace Mtf.Controls.Video
             mortoGraphyWindow.InvokeAction(() =>
             {
                 mortoGraphyWindow.ThreadSafeSetImageWithCloning(e.Frame, sync);
+                e.Frame.Dispose();
             });
         }
 
@@ -72,6 +80,8 @@ namespace Mtf.Controls.Video
         protected override void DisposeManagedResources()
         {
             Stop();
+            handler?.Dispose();
+            httpClient?.Dispose();
         }
 
         private async Task FrameReceiver(CancellationToken cancellationToken)
@@ -103,83 +113,82 @@ namespace Mtf.Controls.Video
                     return;
                 }
 
-                using (var handler = new HttpClientHandler { Credentials = new NetworkCredential(username, password) })
-                using (var httpClient = new HttpClient(handler) { Timeout = TimeSpan.FromSeconds(30) })
+                //using (var request = new HttpRequestMessage(HttpMethod.Get, url))
                 {
-                    //using (var request = new HttpRequestMessage(HttpMethod.Get, url))
+                    //request.Content = new StringContent(String.Empty);
+                    httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("multipart/x-mixed-replace"));
+                    //httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("MortoGraphy/1.0");
+
+                    //if (!String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password))
+                    //{
+                    //    var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{username}:{password}"));
+                    //    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
+                    //    //request.Headers.Authorization = new AuthenticationHeaderValue("Basic", credentials);
+                    //}
+
+                    //var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+                    var response = await httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+
+                    if (!response.IsSuccessStatusCode || !response.Content.Headers.ContentType?.MediaType.Contains("multipart/x-mixed-replace") == true)
                     {
-                        //request.Content = new StringContent(String.Empty);
-                        httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("multipart/x-mixed-replace"));
-                        //httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("MortoGraphy/1.0");
+                        return;
+                    }
 
-                        //if (!String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password))
-                        //{
-                        //    var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{username}:{password}"));
-                        //    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
-                        //    //request.Headers.Authorization = new AuthenticationHeaderValue("Basic", credentials);
-                        //}
+                    var boundary = response.Content.Headers.ContentType.Parameters.FirstOrDefault(p => p.Name == "boundary")?.Value;
+                    if (String.IsNullOrEmpty(boundary))
+                    {
+                        throw new ApplicationException("Invalid MJPEG stream: Missing boundary");
+                    }
 
-                        //var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
-                        var response = await httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+                    if (!boundary.StartsWith("--"))
+                    {
+                        boundary = "--" + boundary;
+                    }
 
-                        if (!response.IsSuccessStatusCode || !response.Content.Headers.ContentType?.MediaType.Contains("multipart/x-mixed-replace") == true)
+                    var boundaryBytes = Encoding.ASCII.GetBytes(boundary);
+
+                    using (var stream = await response.Content.ReadAsStreamAsync())
+                    {
+                        //var buffer = new byte[BufferSize];
+                        total = 0;
+
+                        while (!cancellationToken.IsCancellationRequested)
                         {
-                            return;
-                        }
+                            //var read = await stream.ReadAsync(buffer.AsMemory(total, BufferSize - total), cancellationToken);
+                            var read = await stream.ReadAsync(buffer, total, BufferSize - total, cancellationToken);
 
-                        var boundary = response.Content.Headers.ContentType.Parameters.FirstOrDefault(p => p.Name == "boundary")?.Value;
-                        if (String.IsNullOrEmpty(boundary))
-                        {
-                            throw new ApplicationException("Invalid MJPEG stream: Missing boundary");
-                        }
-
-                        if (!boundary.StartsWith("--"))
-                        {
-                            boundary = "--" + boundary;
-                        }
-
-                        var boundaryBytes = Encoding.ASCII.GetBytes(boundary);
-
-                        using (var stream = await response.Content.ReadAsStreamAsync())
-                        {
-                            //var buffer = new byte[BufferSize];
-                            total = 0;
-
-                            while (!cancellationToken.IsCancellationRequested)
+                            if (read == 0)
                             {
-                                var read = await stream.ReadAsync(buffer, total, BufferSize - total, cancellationToken);
+                                throw new ApplicationException("Stream closed unexpectedly");
+                            }
 
-                                if (read == 0)
+                            total += read;
+
+                            var start = FindSequence(buffer, boundaryBytes, 0, total);
+
+                            if (start != -1)
+                            {
+                                var end = FindSequence(buffer, boundaryBytes, start + boundaryBytes.Length, total - (start + boundaryBytes.Length));
+
+                                if (end != -1)
                                 {
-                                    throw new ApplicationException("Stream closed unexpectedly");
-                                }
-
-                                total += read;
-
-                                var start = FindSequence(buffer, boundaryBytes, 0, total);
-
-                                if (start != -1)
-                                {
-                                    var end = FindSequence(buffer, boundaryBytes, start + boundaryBytes.Length, total - (start + boundaryBytes.Length));
-
-                                    if (end != -1)
+                                    var imageStart = start + boundaryBytes.Length;
+                                    while (buffer[imageStart] != 0xFF && buffer[imageStart + 1] != 0xD8)
                                     {
-                                        var imageStart = start + boundaryBytes.Length;
-                                        while (buffer[imageStart] != 0xFF && buffer[imageStart + 1] != 0xD8)
-                                        {
-                                            imageStart++;
-                                        }
-                                        var imageEnd = end;
+                                        imageStart++;
+                                    }
+                                    var imageEnd = end;
 
-                                        using (var ms = new MemoryStream(buffer, imageStart, imageEnd - imageStart))
+                                    using (var ms = new MemoryStream(buffer, imageStart, imageEnd - imageStart))
+                                    {
+                                        using (var frame = Image.FromStream(ms))
                                         {
-                                            var frame = Image.FromStream(ms);
-                                            FrameArrived?.Invoke(this, new FrameArrivedEventArgs(frame));
-                                            Array.Copy(buffer, end, buffer, 0, total - end);
-                                            total -= end;
-                                            //return frame;
+                                            FrameArrived?.Invoke(this, new FrameArrivedEventArgs((Image)frame.Clone()));
                                         }
                                     }
+
+                                    Array.Copy(buffer, end, buffer, 0, total - end);
+                                    total -= end;
                                 }
                             }
                         }
