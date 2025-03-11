@@ -124,5 +124,14 @@ namespace Mtf.Controls.Video.OpenCvSharp
                 graphics.DrawString(OverlayText, OverlayFont, OverlayBrush, OverlayLocation);
             }
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                Stop();
+            }
+            base.Dispose(disposing);
+        }
     }
 }

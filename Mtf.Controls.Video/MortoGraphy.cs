@@ -2,7 +2,6 @@
 using Mtf.Controls.Enums;
 using Mtf.Controls.Extensions;
 using Mtf.Controls.Interfaces;
-using Mtf.MessageBoxes;
 using System;
 using System.Drawing;
 using System.IO;
@@ -24,20 +23,22 @@ namespace Mtf.Controls.Video
         private static HttpClientHandler handler;
         private static HttpClient httpClient;
 
-        private int total;
-        private byte[] buffer = new byte[BufferSize];
-        private readonly object sync = new object();
-        private readonly MortoGraphyWindow mortoGraphyWindow;
-        private string url;
-        private string username;
-        private string password;
-        private CancellationTokenSource cancellationTokenSource;
         private const int BufferSize = 512 * 1024;  // buffer size
+
+        private readonly byte[] buffer = new byte[BufferSize];
+        private readonly object sync = new object();
+        private readonly string username;
+        private readonly string password;
+        private readonly MortoGraphyWindow mortoGraphyWindow;
+
+        private int total;
+        private string url;
+        private CancellationTokenSource cancellationTokenSource;
 
         public event FrameArrivedEventHandler FrameArrived;
         public delegate void FrameArrivedEventHandler(object sender, FrameArrivedEventArgs e);
 
-        public MortoGraphy(MortoGraphyWindow mortoGraphyWindow, string username, string password)
+        public MortoGraphy(MortoGraphyWindow mortoGraphyWindow, string username, string password, long timeoutInSeconds = 5)
         {
             if (mortoGraphyWindow == null)
             {
@@ -49,7 +50,7 @@ namespace Mtf.Controls.Video
             FrameArrived += MortoGraphy_FrameArrived;
 
             handler = new HttpClientHandler() { Credentials = new NetworkCredential(username, password) };
-            httpClient = new HttpClient(handler) { Timeout = TimeSpan.FromSeconds(30) };
+            httpClient = new HttpClient(handler) { Timeout = TimeSpan.FromSeconds(timeoutInSeconds) };
         }
 
         private void MortoGraphy_FrameArrived(object sender, FrameArrivedEventArgs e)
@@ -82,23 +83,32 @@ namespace Mtf.Controls.Video
             Stop();
             handler?.Dispose();
             httpClient?.Dispose();
+            cancellationTokenSource?.Dispose();
         }
 
         private async Task FrameReceiver(CancellationToken cancellationToken)
         {
             while (!cancellationToken.IsCancellationRequested)
             {
-                if (mortoGraphyWindow.StreamType == StreamType.Mjpeg)
+                try
                 {
-                    await GrabMjpegFrameAsync(cancellationToken);
-                }
-                else
-                {
-                    var frame = await GrabJpegFrameAsync();
-                    mortoGraphyWindow.InvokeAction(() =>
+                    if (mortoGraphyWindow.StreamType == StreamType.Mjpeg)
                     {
-                        mortoGraphyWindow.ThreadSafeSetImageWithCloning(frame, sync);
-                    });
+                        await GrabMjpegFrameAsync(cancellationToken);
+                    }
+                    else
+                    {
+                        var frame = await GrabJpegFrameAsync();
+                        mortoGraphyWindow.InvokeAction(() =>
+                        {
+                            mortoGraphyWindow.ThreadSafeSetImageWithCloning(frame, sync);
+                        });
+                    }
+                }
+                catch
+                {
+                    mortoGraphyWindow.ThreadSafeSetImageWithCloning(Properties.Resources.NoSignal, sync);
+                    _ = Task.Delay(10, cancellationToken);
                 }
             }
             mortoGraphyWindow.ThreadSafeClearImage(sync);
@@ -131,13 +141,13 @@ namespace Mtf.Controls.Video
 
                     if (!response.IsSuccessStatusCode || !response.Content.Headers.ContentType?.MediaType.Contains("multipart/x-mixed-replace") == true)
                     {
-                        return;
+                        throw new ApplicationException($"Invalid response received: {response}.");
                     }
 
                     var boundary = response.Content.Headers.ContentType.Parameters.FirstOrDefault(p => p.Name == "boundary")?.Value;
                     if (String.IsNullOrEmpty(boundary))
                     {
-                        throw new ApplicationException("Invalid MJPEG stream: Missing boundary");
+                        throw new ApplicationException("Invalid MJPEG stream: Missing boundary.");
                     }
 
                     if (!boundary.StartsWith("--"))
@@ -154,12 +164,19 @@ namespace Mtf.Controls.Video
 
                         while (!cancellationToken.IsCancellationRequested)
                         {
-                            //var read = await stream.ReadAsync(buffer.AsMemory(total, BufferSize - total), cancellationToken);
-                            var read = await stream.ReadAsync(buffer, total, BufferSize - total, cancellationToken);
+                            //var readTask = await stream.ReadAsync(buffer.AsMemory(total, BufferSize - total), cancellationToken);
+                            var readTask = stream.ReadAsync(buffer, total, BufferSize - total, cancellationToken);
+                            var timeoutTask = Task.Delay(TimeSpan.FromSeconds(5), cancellationToken);
+                            var completedTask = await Task.WhenAny(readTask, timeoutTask);
+                            if (completedTask == timeoutTask)
+                            {
+                                throw new TimeoutException("Stream is not responding.");
+                            }
 
+                            var read = await readTask;
                             if (read == 0)
                             {
-                                throw new ApplicationException("Stream closed unexpectedly");
+                                throw new ApplicationException("Stream closed unexpectedly.");
                             }
 
                             total += read;
@@ -194,13 +211,13 @@ namespace Mtf.Controls.Video
                         }
                     }
                 }
+
+                return;
             }
             catch (Exception ex)
             {
-                DebugErrorBox.Show(ex);
                 throw;
             }
-            return;
         }
 
         private static int FindSequence(byte[] buffer, byte[] sequence, int offset, int count)
@@ -231,33 +248,25 @@ namespace Mtf.Controls.Video
                 return null;
             }
 
-            try
+            using (var httpClient = new HttpClient())
             {
-                using (var httpClient = new HttpClient())
+                if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
                 {
-                    if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
-                    {
-                        var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{username}:{password}"));
-                        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
-                    }
-
-                    var response = await httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
-
-                    if (!response.IsSuccessStatusCode)
-                    {
-                        return null;
-                    }
-
-                    using (var stream = await response.Content.ReadAsStreamAsync())
-                    {
-                        return await GetImageFromStream(stream);
-                    }
+                    var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{username}:{password}"));
+                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
                 }
-            }
-            catch (Exception ex)
-            {
-                DebugErrorBox.Show(ex);
-                throw;
+
+                var response = await httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return null;
+                }
+
+                using (var stream = await response.Content.ReadAsStreamAsync())
+                {
+                    return await GetImageFromStream(stream);
+                }
             }
         }
 
@@ -274,6 +283,15 @@ namespace Mtf.Controls.Video
                 memoryStream.Position = 0;
                 return Image.FromStream(memoryStream);
             }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                Stop();
+            }
+            base.Dispose(disposing);
         }
     }
 }

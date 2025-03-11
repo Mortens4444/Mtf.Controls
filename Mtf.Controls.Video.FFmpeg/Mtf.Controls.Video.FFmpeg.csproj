@@ -14,7 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Mtf.Controls" Version="1.0.46" />
+    <ProjectReference Include="..\Mtf.Controls\Mtf.Controls.csproj" />
   </ItemGroup>
 
   <ItemGroup>

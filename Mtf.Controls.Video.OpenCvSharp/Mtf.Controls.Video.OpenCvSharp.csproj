@@ -14,10 +14,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Mtf.Controls" Version="1.0.46" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="OpenCvSharp4" Version="4.10.0.20241108" />
     <PackageReference Include="OpenCvSharp4.Extensions" Version="4.10.0.20241108" />
     <PackageReference Include="OpenCvSharp4.runtime.win" Version="4.10.0.20241108" />
@@ -39,6 +35,10 @@
 
   <ItemGroup>
     <Folder Include="Resources\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Mtf.Controls\Mtf.Controls.csproj" />
   </ItemGroup>
 
   <ItemGroup>

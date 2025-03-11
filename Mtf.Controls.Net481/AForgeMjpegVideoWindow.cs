@@ -8,7 +8,7 @@ namespace Mtf.Controls.Net481
     [ToolboxBitmap(typeof(AForgeMjpegVideoWindow), "Resources.VideoSource.png")]
     public partial class AForgeMjpegVideoWindow : PictureBox
     {
-        private AForgeMjpeg aForgeMjpeg;
+        private readonly AForgeMjpeg aForgeMjpeg;
 
         public AForgeMjpegVideoWindow()
         {
@@ -35,6 +35,15 @@ namespace Mtf.Controls.Net481
         public void Stop()
         {
             aForgeMjpeg.Stop();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                aForgeMjpeg.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Mtf.Controls.Net481
     [ToolboxBitmap(typeof(AccordJpegVideoWindow), "Resources.VideoSource.png")]
     public partial class AccordJpegVideoWindow : PictureBox
     {
-        private AccordJpeg accordJpeg;
+        private readonly AccordJpeg accordJpeg;
 
         public AccordJpegVideoWindow()
         {
@@ -35,6 +35,15 @@ namespace Mtf.Controls.Net481
         public void Stop()
         {
             accordJpeg.Stop();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                accordJpeg.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

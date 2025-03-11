@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Mtf.Controls.Video.VLC" Version="1.0.2" />
+    <PackageReference Include="Mtf.Controls.Video.VLC" Version="1.0.3" />
     <PackageReference Include="System.Private.Uri" Version="4.3.2" />
   </ItemGroup>
 

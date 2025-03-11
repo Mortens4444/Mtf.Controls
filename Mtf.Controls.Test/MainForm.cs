@@ -108,12 +108,12 @@ namespace Mtf.Controls.Test
             richTextBox1.ScrollToCaret();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void BtnShowPassword_Click(object sender, EventArgs e)
         {
             textBox2.Text = passwordBox1.Password;
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void BtnStartVideoWindows_Click(object sender, EventArgs e)
         {
             try
             {
@@ -140,7 +140,7 @@ namespace Mtf.Controls.Test
             }
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void BtnStopVideoWindows_Click(object sender, EventArgs e)
         {
             openCvSharp4VideoWindow1.Stop();
             mortoGraphyWindow1.Stop();
@@ -148,12 +148,12 @@ namespace Mtf.Controls.Test
             fFmpegWindow1.Stop();
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void BtnExportListView_Click(object sender, EventArgs e)
         {
             mtfListView1.ExportItemsToCsv(@"C:\Work\Test.csv", ";");
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void BtnExportTreeView_Click(object sender, EventArgs e)
         {
             mtfTreeView1.ExportNodesToCsv(@"C:\Work\Test.csv", ";");
         }

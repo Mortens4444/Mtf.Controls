@@ -4,6 +4,7 @@ using Mtf.Controls.Extensions;
 using Mtf.Controls.Interfaces;
 using System;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace Mtf.Controls.Video.VLC
 {
@@ -147,6 +148,15 @@ namespace Mtf.Controls.Video.VLC
                 mediaPlayer.Dispose();
                 mediaPlayer = null;
             }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                Stop();
+            }
+            base.Dispose(disposing);
         }
     }
 }

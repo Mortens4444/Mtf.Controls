@@ -8,7 +8,7 @@ namespace Mtf.Controls.Net481
     [ToolboxBitmap(typeof(AccordScreenCaptureWindow), "Resources.VideoSource.png")]
     public partial class AccordScreenCaptureWindow : PictureBox
     {
-        private AccordScreenCapture accordScreenCapture;
+        private readonly AccordScreenCapture accordScreenCapture;
 
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -31,6 +31,15 @@ namespace Mtf.Controls.Net481
         public void Stop()
         {
             accordScreenCapture.Stop();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                accordScreenCapture.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

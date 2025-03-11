@@ -408,5 +408,14 @@ namespace Mtf.Controls
                 contextMenu.Show(this, e.Location);
             }
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                contextMenu.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }

@@ -18,3 +18,7 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Style", "IDE0057:Use range operator")]
 [assembly: SuppressMessage("Performance", "CA1849:Call async methods when in an async method", Justification = "<Pending>", Scope = "member", Target = "~M:Mtf.Controls.Video.AForgeJpegVideoSource.FetchImagesAsync(System.Threading.CancellationToken)~System.Threading.Tasks.Task")]
 [assembly: SuppressMessage("Naming", "CA1716:Identifiers should not match keywords")]
+[assembly: SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "<Pending>", Scope = "type", Target = "~T:Mtf.Controls.Enums.ExtendedWindowStyle")]
+[assembly: SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "<Pending>", Scope = "type", Target = "~T:Mtf.Controls.Enums.WindowMessage")]
+[assembly: SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "<Pending>", Scope = "type", Target = "~T:Mtf.Controls.Enums.CameraType")]
+[assembly: SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "<Pending>", Scope = "type", Target = "~T:Mtf.Controls.Enums.ColoringMethod")]

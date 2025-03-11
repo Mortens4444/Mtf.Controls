@@ -8,7 +8,7 @@ namespace Mtf.Controls.Net481
     [ToolboxBitmap(typeof(AForgeScreenCaptureWindow), "Resources.VideoSource.png")]
     public partial class AForgeScreenCaptureWindow : PictureBox
     {
-        private AForgeScreenCapture aForgeScreenCapture;
+        private readonly AForgeScreenCapture aForgeScreenCapture;
 
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -31,6 +31,15 @@ namespace Mtf.Controls.Net481
         public void Stop()
         {
             aForgeScreenCapture.Stop();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                aForgeScreenCapture.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

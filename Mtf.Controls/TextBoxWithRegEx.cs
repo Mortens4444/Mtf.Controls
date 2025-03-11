@@ -73,5 +73,14 @@ namespace Mtf.Controls
 
             base.OnTextChanged(e);
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                errorProvider.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }

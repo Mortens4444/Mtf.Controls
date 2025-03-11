@@ -25,19 +25,16 @@
 	<readme>docs\ReadMe - Mtf.Controls.Video.OpenCvSharp.md</readme>
     <dependencies>
 	  <group targetFramework="net481">
-		<dependency id="Mtf.Controls" version="1.0.46" />
 		<dependency id="OpenCvSharp4" version="4.10.0.20241108" />
 		<dependency id="OpenCvSharp4.Extensions" version="4.10.0.20241108" />
 		<dependency id="OpenCvSharp4.runtime.win" version="4.10.0.20241108" />
 	  </group>
 	  <group targetFramework="net8.0-windows7">
-		<dependency id="Mtf.Controls" version="1.0.46" />
 		<dependency id="OpenCvSharp4" version="4.10.0.20241108" />
 		<dependency id="OpenCvSharp4.Extensions" version="4.10.0.20241108" />
 		<dependency id="OpenCvSharp4.runtime.win" version="4.10.0.20241108" />
 	  </group>
 	  <group targetFramework="net9.0-windows7">
-		<dependency id="Mtf.Controls" version="1.0.46" />
 		<dependency id="OpenCvSharp4" version="4.10.0.20241108" />
 		<dependency id="OpenCvSharp4.Extensions" version="4.10.0.20241108" />
 		<dependency id="OpenCvSharp4.runtime.win" version="4.10.0.20241108" />

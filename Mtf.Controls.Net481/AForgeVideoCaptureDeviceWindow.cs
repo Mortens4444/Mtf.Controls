@@ -8,7 +8,7 @@ namespace Mtf.Controls.Net481
     [ToolboxBitmap(typeof(AForgeVideoCaptureDeviceWindow), "Resources.VideoSource.png")]
     public partial class AForgeVideoCaptureDeviceWindow : PictureBox
     {
-        private AForgeVideoCaptureDevice aForgeVideoCaptureDevice;
+        private readonly AForgeVideoCaptureDevice aForgeVideoCaptureDevice;
 
         public AForgeVideoCaptureDeviceWindow()
         {
@@ -30,6 +30,14 @@ namespace Mtf.Controls.Net481
         public void Stop()
         {
             aForgeVideoCaptureDevice.Stop();
+        }
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                aForgeVideoCaptureDevice.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

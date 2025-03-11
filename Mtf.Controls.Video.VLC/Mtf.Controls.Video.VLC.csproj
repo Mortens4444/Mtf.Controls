@@ -14,13 +14,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Mtf.Controls" Version="1.0.46" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="LibVLCSharp" Version="3.9.2" />
     <PackageReference Include="LibVLCSharp.WinForms" Version="3.9.2" />
     <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.21" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Mtf.Controls\Mtf.Controls.csproj" />
   </ItemGroup>
 
   <ItemGroup>
