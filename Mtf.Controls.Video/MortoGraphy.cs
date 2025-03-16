@@ -34,6 +34,7 @@ namespace Mtf.Controls.Video
         private int total;
         private string url;
         private CancellationTokenSource cancellationTokenSource;
+        private TimeSpan delay = TimeSpan.FromSeconds(5);
 
         public event FrameArrivedEventHandler FrameArrived;
         public delegate void FrameArrivedEventHandler(object sender, FrameArrivedEventArgs e);
@@ -64,6 +65,25 @@ namespace Mtf.Controls.Video
 
         public void Start(string url)
         {
+            //request.Content = new StringContent(String.Empty);
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("multipart/x-mixed-replace"));
+            //httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("MortoGraphy/1.0");
+
+            var uri = new Uri(url);
+            if (!String.IsNullOrEmpty(uri.UserInfo))
+            {
+                username = uri.UserInfo.Split(':')[0];
+                password = uri.UserInfo.Split(':')[1];
+                url = $"{uri.Scheme}://{uri.Host}{uri.PathAndQuery}";
+            }
+
+            if (!String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password))
+            {
+                var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{username}:{password}"));
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
+                //request.Headers.Authorization = new AuthenticationHeaderValue("Basic", credentials);
+            }
+
             Stop();
             this.url = url;
             cancellationTokenSource = new CancellationTokenSource();
@@ -125,25 +145,6 @@ namespace Mtf.Controls.Video
 
                 //using (var request = new HttpRequestMessage(HttpMethod.Get, url))
                 {
-                    //request.Content = new StringContent(String.Empty);
-                    httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("multipart/x-mixed-replace"));
-                    //httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("MortoGraphy/1.0");
-
-                    var uri = new Uri(url);
-                    if (!String.IsNullOrEmpty(uri.UserInfo))
-                    {
-                        username = uri.UserInfo.Split(':')[0];
-                        password = uri.UserInfo.Split(':')[1];
-                        url = $"{uri.Scheme}://{uri.Host}{uri.PathAndQuery}";
-                    }
-
-                    if (!String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password))
-                    {
-                        var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{username}:{password}"));
-                        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
-                        //request.Headers.Authorization = new AuthenticationHeaderValue("Basic", credentials);
-                    }
-
                     //var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
                     var response = await httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
 
@@ -160,7 +161,7 @@ namespace Mtf.Controls.Video
 
                     if (!boundary.StartsWith("--"))
                     {
-                        boundary = "--" + boundary;
+                        boundary = String.Concat("--", boundary);
                     }
 
                     var boundaryBytes = Encoding.ASCII.GetBytes(boundary);
@@ -174,7 +175,7 @@ namespace Mtf.Controls.Video
                         {
                             //var readTask = await stream.ReadAsync(buffer.AsMemory(total, BufferSize - total), cancellationToken);
                             var readTask = stream.ReadAsync(buffer, total, BufferSize - total, cancellationToken);
-                            var timeoutTask = Task.Delay(TimeSpan.FromSeconds(5), cancellationToken);
+                            var timeoutTask = Task.Delay(delay, cancellationToken);
                             var completedTask = await Task.WhenAny(readTask, timeoutTask);
                             if (completedTask == timeoutTask)
                             {

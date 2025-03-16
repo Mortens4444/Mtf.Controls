@@ -105,12 +105,18 @@ namespace Mtf.Controls.Video
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            base.OnPaint(e);
-            if (!String.IsNullOrEmpty(OverlayText))
+            try
             {
-                var graphics = e.Graphics;
-                //_ = graphics.MeasureString(OverlayText, OverlayFont);
-                graphics.DrawString(OverlayText, OverlayFont, OverlayBrush, OverlayLocation);
+                base.OnPaint(e);
+                if (!String.IsNullOrEmpty(OverlayText))
+                {
+                    var graphics = e.Graphics;
+                    //_ = graphics.MeasureString(OverlayText, OverlayFont);
+                    graphics.DrawString(OverlayText, OverlayFont, OverlayBrush, OverlayLocation);
+                }
+            }
+            catch (Exception _)
+            {
             }
         }
     }

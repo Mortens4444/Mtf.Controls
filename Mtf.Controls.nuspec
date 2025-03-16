@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Mtf.Controls</id>
-    <version>1.0.52</version>
+    <version>1.0.53</version>
     <description>
       Custom Windows Forms Controls.
       
