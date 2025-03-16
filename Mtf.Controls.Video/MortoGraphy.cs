@@ -27,10 +27,10 @@ namespace Mtf.Controls.Video
 
         private readonly byte[] buffer = new byte[BufferSize];
         private readonly object sync = new object();
-        private readonly string username;
-        private readonly string password;
         private readonly MortoGraphyWindow mortoGraphyWindow;
 
+        private string username;
+        private string password;
         private int total;
         private string url;
         private CancellationTokenSource cancellationTokenSource;
@@ -129,12 +129,20 @@ namespace Mtf.Controls.Video
                     httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("multipart/x-mixed-replace"));
                     //httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("MortoGraphy/1.0");
 
-                    //if (!String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password))
-                    //{
-                    //    var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{username}:{password}"));
-                    //    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
-                    //    //request.Headers.Authorization = new AuthenticationHeaderValue("Basic", credentials);
-                    //}
+                    var uri = new Uri(url);
+                    if (!String.IsNullOrEmpty(uri.UserInfo))
+                    {
+                        username = uri.UserInfo.Split(':')[0];
+                        password = uri.UserInfo.Split(':')[1];
+                        url = $"{uri.Scheme}://{uri.Host}{uri.PathAndQuery}";
+                    }
+
+                    if (!String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password))
+                    {
+                        var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{username}:{password}"));
+                        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
+                        //request.Headers.Authorization = new AuthenticationHeaderValue("Basic", credentials);
+                    }
 
                     //var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
                     var response = await httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, cancellationToken);

@@ -7,7 +7,7 @@
     <OutputType>Library</OutputType>
     <AnalysisLevel>latest-all</AnalysisLevel>
     <PackageReadmeFile>ReadMe.md</PackageReadmeFile>
-    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageLicenseFile>LICENSE_GNU LESSER GENERAL PUBLIC.txt</PackageLicenseFile>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
     <UseWindowsForms>true</UseWindowsForms>
     <WarningLevel>9999</WarningLevel>

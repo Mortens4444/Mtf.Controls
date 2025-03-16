@@ -6,12 +6,8 @@
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <AnalysisLevel>latest-all</AnalysisLevel>
-    <PackageReadmeFile>ReadMe.md</PackageReadmeFile>
-    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
     <UseWindowsForms>true</UseWindowsForms>
-    <DesignerExcludedFiles>OpenCvSharpExtern.dll</DesignerExcludedFiles>
-    <DesignerExcludedFiles>opencv_videoio_ffmpeg4100.dll</DesignerExcludedFiles>
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
 
@@ -26,13 +22,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Mtf.Controls.Video.VLC" Version="1.0.3" />
     <PackageReference Include="System.Private.Uri" Version="4.3.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Mtf.Controls.Video.FFmpeg\Mtf.Controls.Video.FFmpeg.csproj" />
     <ProjectReference Include="..\Mtf.Controls.Video.OpenCvSharp\Mtf.Controls.Video.OpenCvSharp.csproj" />
+    <ProjectReference Include="..\Mtf.Controls.Video.VLC\Mtf.Controls.Video.VLC.csproj" />
     <ProjectReference Include="..\Mtf.Controls.Video\Mtf.Controls.Video.csproj" />
     <ProjectReference Include="..\Mtf.Controls\Mtf.Controls.csproj" />
   </ItemGroup>
