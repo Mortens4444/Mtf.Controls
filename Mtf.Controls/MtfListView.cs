@@ -644,6 +644,64 @@ namespace Mtf.Controls
             return (index % 2) == 0 ? AlternatingColorEven : AlternatingColorOdd;
         }
 
+        public void ImportItemsFromCsv(string filePath, char delimiter = ',')
+        {
+            if (!File.Exists(filePath))
+            {
+                throw new FileNotFoundException("File not found.", filePath);
+            }
+
+            Items.Clear();
+            Columns.Clear();
+
+            using (var reader = new StreamReader(filePath, Encoding.UTF8))
+            {
+                bool isFirstLine = true;
+                ListViewGroup currentGroup = null;
+
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    if (String.IsNullOrWhiteSpace(line))
+                    {
+                        continue;
+                    }
+
+                    var values = line.Split(delimiter);
+
+                    if (isFirstLine)
+                    {
+                        foreach (var columnName in values)
+                        {
+                            Columns.Add(columnName.Trim());
+                        }
+                        isFirstLine = false;
+                        continue;
+                    }
+
+                    if (values.Length == 1 && values[0].StartsWith("\"") && values[0].EndsWith("\""))
+                    {
+                        currentGroup = new ListViewGroup(values[0].Trim('"'));
+                        Groups.Add(currentGroup);
+                        continue;
+                    }
+
+                    var item = new ListViewItem(values[0].Trim());
+                    for (int i = 1; i < values.Length; i++)
+                    {
+                        item.SubItems.Add(values[i].Trim());
+                    }
+
+                    if (currentGroup != null)
+                    {
+                        item.Group = currentGroup;
+                    }
+
+                    Items.Add(item);
+                }
+            }
+        }
+
         public void ExportItemsToCsv(string filePath, string delimiter = ",")
         {
             using (var writer = new StreamWriter(filePath, false, Encoding.UTF8))
