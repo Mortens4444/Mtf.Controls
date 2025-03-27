@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mtf.Controls.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -142,9 +143,8 @@ namespace Mtf.Controls
 
             var regex = new Regex(AnsiPattern, RegexOptions.Compiled);
             var matches = regex.Matches(text);
-            var formattedBlocks = new List<(int start, int length, Color? color, FontStyle style)>();
+            var formattedBlocks = new List<AnsiColoringRichTextBoxFormatter>();
 
-            var lastIndex = 0;
             Color? currentColor = ForeColor;
             var currentStyle = FontStyle.Regular;
             var totalRemovedLength = 0;
@@ -177,18 +177,18 @@ namespace Mtf.Controls
                     }
                 }
 
-                formattedBlocks.Add((blockStart, blockEnd - blockStart, currentColor, currentStyle));
+                formattedBlocks.Add(new AnsiColoringRichTextBoxFormatter(blockStart, blockEnd - blockStart, currentColor, currentStyle));
                 totalRemovedLength += match.Length;
             }
 
             var cleanText = regex.Replace(text, String.Empty);
             base.AppendText(cleanText);
 
-            foreach (var (start, length, color, style) in formattedBlocks)
+            foreach (var formatter in formattedBlocks)
             {
-                Select(start, length);
-                SelectionColor = color ?? ForeColor;
-                SelectionFont = new Font(Font, style);
+                Select(formatter.Start, formatter.Length);
+                SelectionColor = formatter.Color ?? ForeColor;
+                SelectionFont = new Font(Font, formatter.Style);
             }
 
             isApplyingColoring = false;

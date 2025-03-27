@@ -157,7 +157,13 @@ namespace Mtf.Controls
 
         public static void RelocateControls(Control control, Size originalSize, List<LocationAndSize> controlLocationsAndSizes)
         {
-            var (image, sizeMode) = GetImageAndSizeMode(control);
+#if NET462_OR_GREATER
+            var(image, sizeMode) = GetImageAndSizeMode(control);
+#else
+            var imageAndSizeMode = GetImageAndSizeMode(control);
+            var image = imageAndSizeMode.Item1;
+            var sizeMode = imageAndSizeMode.Item2;
+#endif
             var imageLocationAndSize = GetImageLocationAndSize(image, control.Size, sizeMode);
             var scaleX = (double)imageLocationAndSize.Size.Width / originalSize.Width;
             var scaleY = (double)imageLocationAndSize.Size.Height / originalSize.Height;
@@ -169,14 +175,26 @@ namespace Mtf.Controls
             }
         }
 
+#if NET462_OR_GREATER
         private static (Image, PictureBoxSizeMode) GetImageAndSizeMode(Control control)
+#else
+        private static Tuple<Image, PictureBoxSizeMode> GetImageAndSizeMode(Control control)
+#endif
         {
             if (control is PictureBox pictureBox)
             {
+#if NET462_OR_GREATER
                 return (pictureBox.Image, pictureBox.SizeMode);
+#else
+                return new Tuple<Image, PictureBoxSizeMode>(pictureBox.Image, pictureBox.SizeMode);
+#endif
             }
 
+#if NET462_OR_GREATER
             return (control.BackgroundImage, GetPictureBoxSizeMode(control.BackgroundImageLayout));
+#else
+            return new Tuple<Image, PictureBoxSizeMode>(control.BackgroundImage, GetPictureBoxSizeMode(control.BackgroundImageLayout));
+#endif
         }
 
         private static PictureBoxSizeMode GetPictureBoxSizeMode(ImageLayout layout)

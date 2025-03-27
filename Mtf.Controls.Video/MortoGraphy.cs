@@ -1,7 +1,8 @@
-﻿using Mtf.Controls.CustomEventArgs;
-using Mtf.Controls.Enums;
+﻿using Mtf.Controls.Enums;
 using Mtf.Controls.Extensions;
 using Mtf.Controls.Interfaces;
+using Mtf.Network;
+using Mtf.Network.EventArg;
 using System;
 using System.Drawing;
 using System.IO;
@@ -13,6 +14,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+using HttpClient = System.Net.Http.HttpClient;
+
 namespace Mtf.Controls.Video
 {
     /// <summary>
@@ -22,6 +25,7 @@ namespace Mtf.Controls.Video
     {
         private static HttpClientHandler handler;
         private static HttpClient httpClient;
+        private static VideoCaptureClient videoCaptureClient;
 
         private const int BufferSize = 512 * 1024;  // buffer size
 
@@ -63,12 +67,40 @@ namespace Mtf.Controls.Video
             });
         }
 
-        public void Start(string url)
+        /// <summary>
+        /// Resource can be an URL like: http://camera.buffalotrace.com/mjpg/video.mjpg
+        /// Or an endpoint like: 192.168.0.59:4444
+        /// </summary>
+        /// <param name="resource"></param>
+        public void Start(string resource)
         {
             //request.Content = new StringContent(String.Empty);
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("multipart/x-mixed-replace"));
             //httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("MortoGraphy/1.0");
 
+            if (Uri.IsWellFormedUriString(resource, UriKind.RelativeOrAbsolute))
+            {
+                url = StartWithUrl(resource);
+            }
+            else
+            {
+                StartWithEndpoint(resource);
+            }
+        }
+
+        private void StartWithEndpoint(string resource)
+        {
+            var connectionInfoParts = resource.Split(':');
+            if (connectionInfoParts.Length == 2)
+            {
+                videoCaptureClient = new VideoCaptureClient(connectionInfoParts[0], Convert.ToUInt16(connectionInfoParts[1]));
+                videoCaptureClient.FrameArrived += MortoGraphy_FrameArrived;
+                videoCaptureClient.Start();
+            }
+        }
+
+        private string StartWithUrl(string url)
+        {
             var uri = new Uri(url);
             if (!String.IsNullOrEmpty(uri.UserInfo))
             {
@@ -91,6 +123,7 @@ namespace Mtf.Controls.Video
             {
                 await FrameReceiver(cancellationTokenSource.Token);
             });
+            return url;
         }
 
         public void Stop()
@@ -259,7 +292,7 @@ namespace Mtf.Controls.Video
 
             using (var httpClient = new HttpClient())
             {
-                if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+                if (!String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password))
                 {
                     var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{username}:{password}"));
                     httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);

@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Mtf.Controls</id>
-    <version>1.0.55</version>
+    <version>1.0.57</version>
     <description>
       Custom Windows Forms Controls.
       
@@ -24,6 +24,8 @@
       - TransparentPanel
       
       Compatibility:
+      - .NET Framework 4.5.2
+      - .NET Framework 4.8
       - .NET Framework 4.8.1
       - .NET 8
       - .NET 9
@@ -37,13 +39,31 @@
 	<tags>AnsiColoringRichTextBox EditableComboBox FileBrowserView Kbd300ASimulator MovablePanel MovableSizablePanel MtfListView MtfPictureBox MtfTreeView PasswordBox RichTextBoxWithLineNumbers RotatableImagePanel SourceCodeViewerRichTextBox TextBoxWithRegEx TransparentPanel Mortens</tags>
 	<readme>docs\ReadMe.md</readme>
     <dependencies>
+	  <group targetFramework="net452">
+        <dependency id="Accord" version="3.8.0" />
+        <dependency id="Accord.Video" version="3.8.0" />
+        <dependency id="AForge" version="2.2.5" />
+        <dependency id="AForge.Video" version="2.2.5" />
+        <dependency id="AForge.Video.DirectShow" version="2.2.5" />
+		<dependency id="Mtf.MessageBoxes" version="3.0.37" />
+		<dependency id="System.Net.Http" version="4.3.4" />
+	  </group>
+	  <group targetFramework="net48">
+        <dependency id="Accord" version="3.8.0" />
+        <dependency id="Accord.Video" version="3.8.0" />
+        <dependency id="AForge" version="2.2.5" />
+        <dependency id="AForge.Video" version="2.2.5" />
+        <dependency id="AForge.Video.DirectShow" version="2.2.5" />
+		<dependency id="Mtf.MessageBoxes" version="3.0.37" />
+		<dependency id="System.Net.Http" version="4.3.4" />
+	  </group>	
 	  <group targetFramework="net481">
         <dependency id="Accord" version="3.8.0" />
         <dependency id="Accord.Video" version="3.8.0" />
         <dependency id="AForge" version="2.2.5" />
         <dependency id="AForge.Video" version="2.2.5" />
         <dependency id="AForge.Video.DirectShow" version="2.2.5" />
-		<dependency id="Mtf.MessageBoxes" version="3.0.31" />
+		<dependency id="Mtf.MessageBoxes" version="3.0.37" />
 		<dependency id="System.Net.Http" version="4.3.4" />
 	  </group>
 	  <group targetFramework="net8.0-windows7">
@@ -52,7 +72,7 @@
         <dependency id="AForge" version="2.2.5" />
         <dependency id="AForge.Video" version="2.2.5" />
         <dependency id="AForge.Video.DirectShow" version="2.2.5" />
-		<dependency id="Mtf.MessageBoxes" version="3.0.31" />
+		<dependency id="Mtf.MessageBoxes" version="3.0.37" />
 	  </group>
 	  <group targetFramework="net9.0-windows7">
         <dependency id="Accord" version="3.8.0" />
@@ -60,11 +80,13 @@
         <dependency id="AForge" version="2.2.5" />
         <dependency id="AForge.Video" version="2.2.5" />
         <dependency id="AForge.Video.DirectShow" version="2.2.5" />
-		<dependency id="Mtf.MessageBoxes" version="3.0.31" />
+		<dependency id="Mtf.MessageBoxes" version="3.0.37" />
 	  </group>
     </dependencies>
   </metadata>
   <files>
+    <file src=".\Mtf.Controls\bin\Release\net452\**" target="lib\net452" />
+    <file src=".\Mtf.Controls\bin\Release\net48\**" target="lib\net48" />
     <file src=".\Mtf.Controls\bin\Release\net481\**" target="lib\net481" />
     <file src=".\Mtf.Controls\bin\Release\net8.0-windows\**" target="lib\net8.0-windows7" />
     <file src=".\Mtf.Controls\bin\Release\net9.0-windows\**" target="lib\net9.0-windows7" />

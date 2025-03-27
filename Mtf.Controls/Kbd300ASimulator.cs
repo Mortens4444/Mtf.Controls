@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO.Pipes;
@@ -50,7 +51,11 @@ namespace Mtf.Controls
             var data = Encoding.ASCII.GetBytes(message);
             using (var client = new NamedPipeClientStream(".", PipeName, PipeDirection.Out))
             {
+#if NET462_OR_GREATER
                 await client.ConnectAsync().ConfigureAwait(false);
+#else
+                client.Connect();
+#endif
                 await client.WriteAsync(data, 0, data.Length).ConfigureAwait(false);
                 await client.FlushAsync().ConfigureAwait(false);
             }

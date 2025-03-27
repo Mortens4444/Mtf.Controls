@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Mtf.Controls.Video.OpenCvSharp</id>
-    <version>1.0.7</version>
+    <version>1.0.9</version>
     <description>
       Custom Windows Forms Controls.
       
@@ -11,6 +11,8 @@
       - OpenCvSharp4VideoWindow
       
       Compatibility:
+      - .NET Framework 4.6.2
+      - .NET Framework 4.8
       - .NET Framework 4.8.1
       - .NET 8
       - .NET 9
@@ -24,6 +26,16 @@
 	<tags>OpenCvSharpVideoWindow OpenCvSharp4VideoWindow Mortens</tags>
 	<readme>docs\ReadMe - Mtf.Controls.Video.OpenCvSharp.md</readme>
     <dependencies>
+	  <group targetFramework="net462">
+		<dependency id="OpenCvSharp4" version="4.10.0.20241108" />
+		<dependency id="OpenCvSharp4.Extensions" version="4.10.0.20241108" />
+		<dependency id="OpenCvSharp4.runtime.win" version="4.10.0.20241108" />
+	  </group>
+	  <group targetFramework="net48">
+		<dependency id="OpenCvSharp4" version="4.10.0.20241108" />
+		<dependency id="OpenCvSharp4.Extensions" version="4.10.0.20241108" />
+		<dependency id="OpenCvSharp4.runtime.win" version="4.10.0.20241108" />
+	  </group>
 	  <group targetFramework="net481">
 		<dependency id="OpenCvSharp4" version="4.10.0.20241108" />
 		<dependency id="OpenCvSharp4.Extensions" version="4.10.0.20241108" />
@@ -42,6 +54,8 @@
     </dependencies>
   </metadata>
   <files>
+    <file src=".\Mtf.Controls.Video.OpenCvSharp\bin\Release\net462\**" target="lib\net462" />
+    <file src=".\Mtf.Controls.Video.OpenCvSharp\bin\Release\net48\**" target="lib\net48" />
     <file src=".\Mtf.Controls.Video.OpenCvSharp\bin\Release\net481\**" target="lib\net481" />
     <file src=".\Mtf.Controls.Video.OpenCvSharp\bin\Release\net8.0-windows\**" target="lib\net8.0-windows7" />
     <file src=".\Mtf.Controls.Video.OpenCvSharp\bin\Release\net9.0-windows\**" target="lib\net9.0-windows7" />

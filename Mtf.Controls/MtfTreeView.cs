@@ -1,4 +1,5 @@
-﻿using Mtf.Controls.Enums;
+﻿using Microsoft.Extensions.Logging;
+using Mtf.Controls.Enums;
 using Mtf.Controls.Extensions;
 using System;
 using System.Collections.Generic;
@@ -117,7 +118,11 @@ namespace Mtf.Controls
             {
                 if (!MultiSelect)
                 {
+#if NET462_OR_GREATER
                     return SelectedNode == null ? Array.Empty<TreeNode>() : (new TreeNode[] { SelectedNode });
+#else
+                    return SelectedNode == null ? new TreeNode[] { } : (new TreeNode[] { SelectedNode });
+#endif
                 }
 
                 _ = selectedNodes.RemoveAll(OrphanNode);

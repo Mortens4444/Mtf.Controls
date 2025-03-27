@@ -21,7 +21,7 @@
     <PackageReference Include="AForge" Version="2.2.5" />
     <PackageReference Include="AForge.Video" Version="2.2.5" />
     <PackageReference Include="AForge.Video.DirectShow" Version="2.2.5" />
-    <PackageReference Include="Mtf.MessageBoxes" Version="3.0.31" />
+    <PackageReference Include="Mtf.MessageBoxes" Version="3.0.39" />
   </ItemGroup>
   
   <ItemGroup>

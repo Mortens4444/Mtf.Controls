@@ -93,12 +93,21 @@ namespace Mtf.Controls
 
         public void BeginUpdate()
         {
+#if NET462_OR_GREATER
             _ = SendMessage(Handle, 0x000B, 0, Array.Empty<int>());
+#else
+            _ = SendMessage(Handle, 0x000B, 0, new int[] { });
+#endif
         }
 
         public void EndUpdate()
         {
+#if NET462_OR_GREATER
             _ = SendMessage(Handle, 0x000B, 1, Array.Empty<int>());
+#else
+            _ = SendMessage(Handle, 0x000B, 1, new int[] { });
+#endif
+
             Invalidate();
         }
 
