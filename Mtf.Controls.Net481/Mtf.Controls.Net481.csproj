@@ -9,6 +9,7 @@
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
     <UseWindowsForms>true</UseWindowsForms>
+    <DebugType>full</DebugType>
   </PropertyGroup>
 
   <ItemGroup>

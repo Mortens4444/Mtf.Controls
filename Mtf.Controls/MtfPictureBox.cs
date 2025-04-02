@@ -157,12 +157,12 @@ namespace Mtf.Controls
 
         public static void RelocateControls(Control control, Size originalSize, List<LocationAndSize> controlLocationsAndSizes)
         {
-#if NET462_OR_GREATER
-            var(image, sizeMode) = GetImageAndSizeMode(control);
-#else
+#if NET452 || NET462
             var imageAndSizeMode = GetImageAndSizeMode(control);
             var image = imageAndSizeMode.Item1;
             var sizeMode = imageAndSizeMode.Item2;
+#else
+            var (image, sizeMode) = GetImageAndSizeMode(control);
 #endif
             var imageLocationAndSize = GetImageLocationAndSize(image, control.Size, sizeMode);
             var scaleX = (double)imageLocationAndSize.Size.Width / originalSize.Width;
@@ -175,25 +175,25 @@ namespace Mtf.Controls
             }
         }
 
-#if NET462_OR_GREATER
-        private static (Image, PictureBoxSizeMode) GetImageAndSizeMode(Control control)
-#else
+#if NET452 || NET462
         private static Tuple<Image, PictureBoxSizeMode> GetImageAndSizeMode(Control control)
+#else
+        private static (Image, PictureBoxSizeMode) GetImageAndSizeMode(Control control)
 #endif
         {
             if (control is PictureBox pictureBox)
             {
-#if NET462_OR_GREATER
-                return (pictureBox.Image, pictureBox.SizeMode);
-#else
+#if NET452 || NET462
                 return new Tuple<Image, PictureBoxSizeMode>(pictureBox.Image, pictureBox.SizeMode);
+#else
+                return (pictureBox.Image, pictureBox.SizeMode);
 #endif
             }
 
-#if NET462_OR_GREATER
-            return (control.BackgroundImage, GetPictureBoxSizeMode(control.BackgroundImageLayout));
-#else
+#if NET452 || NET462
             return new Tuple<Image, PictureBoxSizeMode>(control.BackgroundImage, GetPictureBoxSizeMode(control.BackgroundImageLayout));
+#else
+            return (control.BackgroundImage, GetPictureBoxSizeMode(control.BackgroundImageLayout));
 #endif
         }
 
