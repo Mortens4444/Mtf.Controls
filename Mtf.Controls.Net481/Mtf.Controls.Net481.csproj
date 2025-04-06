@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net481</TargetFrameworks>
+    <TargetFrameworks>net481;net462</TargetFrameworks>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <AnalysisLevel>latest-all</AnalysisLevel>
@@ -12,6 +12,12 @@
     <DebugType>full</DebugType>
   </PropertyGroup>
 
+  <Target Name="SetFileVersionFromNuspec" BeforeTargets="BeforeBuild">
+    <XmlPeek XmlInputPath="../Mtf.Controls.nuspec" Query="//*[local-name()='version']/text()">
+      <Output TaskParameter="Result" PropertyName="FileVersion" />
+    </XmlPeek>
+  </Target>
+  
   <ItemGroup>
     <None Remove="Resources\NoSignal.png" />
   </ItemGroup>
@@ -22,7 +28,7 @@
     <PackageReference Include="AForge" Version="2.2.5" />
     <PackageReference Include="AForge.Video" Version="2.2.5" />
     <PackageReference Include="AForge.Video.DirectShow" Version="2.2.5" />
-    <PackageReference Include="Mtf.MessageBoxes" Version="3.0.39" />
+    <PackageReference Include="Mtf.MessageBoxes" Version="4.0.46" />
   </ItemGroup>
   
   <ItemGroup>

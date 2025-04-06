@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net9.0-windows;net8.0-windows;net481;net48;net452</TargetFrameworks>
+    <TargetFrameworks>net9.0-windows;net8.0-windows;net481;net48;net462;net452</TargetFrameworks>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <OutputType>Library</OutputType>
@@ -14,12 +14,18 @@
     <DebugType>full</DebugType>
   </PropertyGroup>
 
+  <Target Name="SetFileVersionFromNuspec" BeforeTargets="BeforeBuild">
+    <XmlPeek XmlInputPath="../Mtf.Controls.Video.nuspec" Query="//*[local-name()='version']/text()">
+      <Output TaskParameter="Result" PropertyName="FileVersion" />
+    </XmlPeek>
+  </Target>
+  
   <ItemGroup>
     <None Remove="Resources\NoSignal.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Mtf.Network" Version="1.0.41" />
+    <PackageReference Include="Mtf.Network" Version="1.0.57" />
   </ItemGroup>
 
   <ItemGroup>

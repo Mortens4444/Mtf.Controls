@@ -14,6 +14,12 @@
     <DebugType>full</DebugType>
   </PropertyGroup>
 
+  <Target Name="SetFileVersionFromNuspec" BeforeTargets="BeforeBuild">
+    <XmlPeek XmlInputPath="../Mtf.Controls.Video.OpenCvSharp.nuspec" Query="//*[local-name()='version']/text()">
+      <Output TaskParameter="Result" PropertyName="FileVersion" />
+    </XmlPeek>
+  </Target>
+  
   <ItemGroup>
     <PackageReference Include="OpenCvSharp4" Version="4.10.0.20241108" />
     <PackageReference Include="OpenCvSharp4.Extensions" Version="4.10.0.20241108" />

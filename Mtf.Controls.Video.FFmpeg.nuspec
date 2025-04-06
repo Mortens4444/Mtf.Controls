@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Mtf.Controls.Video.FFmpeg</id>
-    <version>1.0.14</version>
+    <version>1.0.22</version>
     <description>
       Custom Windows Forms Controls.
       
@@ -11,6 +11,7 @@
       
       Compatibility:
       - .NET Framework 4.5.2
+      - .NET Framework 4.6.2
       - .NET Framework 4.8
       - .NET Framework 4.8.1
       - .NET 8
@@ -26,6 +27,7 @@
 	<readme>docs\ReadMe - Mtf.Controls.Video.FFmpeg.md</readme>
     <dependencies>
 	  <group targetFramework="net452" />
+	  <group targetFramework="net462" />
 	  <group targetFramework="net48" />
 	  <group targetFramework="net481" />
 	  <group targetFramework="net8.0-windows7" />
@@ -34,6 +36,7 @@
   </metadata>
   <files>
     <file src=".\Mtf.Controls.Video.FFmpeg\bin\Release\net452\**" target="lib\net452" />
+    <file src=".\Mtf.Controls.Video.FFmpeg\bin\Release\net462\**" target="lib\net462" />
     <file src=".\Mtf.Controls.Video.FFmpeg\bin\Release\net48\**" target="lib\net48" />
     <file src=".\Mtf.Controls.Video.FFmpeg\bin\Release\net481\**" target="lib\net481" />
     <file src=".\Mtf.Controls.Video.FFmpeg\bin\Release\net8.0-windows\**" target="lib\net8.0-windows7" />

@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Mtf.Controls.Video</id>
-    <version>1.0.18</version>
+    <version>1.0.28</version>
     <description>
       Custom Windows Forms Controls.
       
@@ -11,6 +11,7 @@
       
       Compatibility:
       - .NET Framework 4.5.2
+      - .NET Framework 4.6.2
       - .NET Framework 4.8
       - .NET Framework 4.8.1
       - .NET 8
@@ -26,24 +27,28 @@
 	<readme>docs\ReadMe - Mtf.Controls.Video.md</readme>
     <dependencies>
 	  <group targetFramework="net452">
-		<dependency id="Mtf.Network" version="1.0.41" />
+        <dependency id="Mtf.Network" version="1.0.56" />
+	  </group>
+	  <group targetFramework="net462">
+        <dependency id="Mtf.Network" version="1.0.56" />
 	  </group>
 	  <group targetFramework="net48">
-		<dependency id="Mtf.Network" version="1.0.41" />
+        <dependency id="Mtf.Network" version="1.0.56" />
 	  </group>
 	  <group targetFramework="net481">
-		<dependency id="Mtf.Network" version="1.0.41" />
+        <dependency id="Mtf.Network" version="1.0.56" />
 	  </group>
 	  <group targetFramework="net8.0-windows7">
-		<dependency id="Mtf.Network" version="1.0.41" />
+        <dependency id="Mtf.Network" version="1.0.56" />
 	  </group>
 	  <group targetFramework="net9.0-windows7">
-		<dependency id="Mtf.Network" version="1.0.41" />
+        <dependency id="Mtf.Network" version="1.0.56" />
 	  </group>
     </dependencies>
   </metadata>
   <files>
     <file src=".\Mtf.Controls.Video\bin\Release\net452\**" target="lib\net452" />
+    <file src=".\Mtf.Controls.Video\bin\Release\net462\**" target="lib\net462" />
     <file src=".\Mtf.Controls.Video\bin\Release\net48\**" target="lib\net48" />
     <file src=".\Mtf.Controls.Video\bin\Release\net481\**" target="lib\net481" />
     <file src=".\Mtf.Controls.Video\bin\Release\net8.0-windows\**" target="lib\net8.0-windows7" />
