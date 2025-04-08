@@ -33,6 +33,7 @@ namespace Mtf.Controls.Video
         private readonly object sync = new object();
         private readonly MortoGraphyWindow mortoGraphyWindow;
 
+        private bool useEndpoint;
         private string username;
         private string password;
         private int total;
@@ -84,6 +85,7 @@ namespace Mtf.Controls.Video
             }
             else
             {
+                useEndpoint = true;
                 StartWithEndpoint(resource);
             }
         }
@@ -128,7 +130,15 @@ namespace Mtf.Controls.Video
 
         public void Stop()
         {
-            cancellationTokenSource?.Cancel();
+            if (useEndpoint)
+            {
+                videoCaptureClient.FrameArrived -= MortoGraphy_FrameArrived;
+                mortoGraphyWindow.ThreadSafeClearImage(sync);
+            }
+            else
+            {
+                cancellationTokenSource?.Cancel();
+            }
         }
 
         protected override void DisposeManagedResources()
