@@ -27,9 +27,8 @@ namespace Mtf.Controls.Video
         private static HttpClient httpClient;
         private static VideoCaptureClient videoCaptureClient;
 
-        private const int BufferSize = 512 * 1024;  // buffer size
+        public int BufferSize { get; set; } = 512 * 1024;
 
-        private readonly byte[] buffer = new byte[BufferSize];
         private readonly object sync = new object();
         private readonly MortoGraphyWindow mortoGraphyWindow;
 
@@ -50,11 +49,12 @@ namespace Mtf.Controls.Video
             {
                 throw new ArgumentNullException(nameof(mortoGraphyWindow));
             }
+
             this.mortoGraphyWindow = mortoGraphyWindow;
             this.username = username;
             this.password = password;
-            FrameArrived += MortoGraphy_FrameArrived;
 
+            FrameArrived += MortoGraphy_FrameArrived;
             handler = new HttpClientHandler() { Credentials = new NetworkCredential(username, password) };
             httpClient = new HttpClient(handler) { Timeout = TimeSpan.FromSeconds(timeoutInSeconds) };
         }
@@ -72,15 +72,25 @@ namespace Mtf.Controls.Video
         /// Resource can be an URL like: http://camera.buffalotrace.com/mjpg/video.mjpg
         /// Or an endpoint like: 192.168.0.59:4444
         /// </summary>
-        /// <param name="resource"></param>
+        /// <param name="resource">Url or endpoint to open.</param>
         public void Start(string resource)
         {
-            //request.Content = new StringContent(String.Empty);
-            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("multipart/x-mixed-replace"));
-            //httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("MortoGraphy/1.0");
+            Start(resource, BufferSize);
+        }
 
+        /// <summary>
+        /// Resource can be an URL like: http://camera.buffalotrace.com/mjpg/video.mjpg
+        /// Or an endpoint like: 192.168.0.59:4444
+        /// </summary>
+        /// <param name="resource">Url or endpoint to open.</param>
+        /// <param name="bufferSize">Only used when using with endpoint.</param>
+        public void Start(string resource, int bufferSize = 409600)
+        {
+            BufferSize = bufferSize;
             if (Uri.IsWellFormedUriString(resource, UriKind.RelativeOrAbsolute))
             {
+                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("multipart/x-mixed-replace"));
+                //httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("MortoGraphy/1.0");
                 url = StartWithUrl(resource);
             }
             else
@@ -95,7 +105,11 @@ namespace Mtf.Controls.Video
             var connectionInfoParts = resource.Split(':');
             if (connectionInfoParts.Length == 2)
             {
-                videoCaptureClient = new VideoCaptureClient(connectionInfoParts[0], Convert.ToUInt16(connectionInfoParts[1]));
+                videoCaptureClient = new VideoCaptureClient(connectionInfoParts[0], Convert.ToUInt16(connectionInfoParts[1]))
+                {
+                    BufferSize = BufferSize
+                };
+                
                 videoCaptureClient.FrameArrived += MortoGraphy_FrameArrived;
                 videoCaptureClient.Start();
             }
@@ -133,6 +147,7 @@ namespace Mtf.Controls.Video
             if (useEndpoint)
             {
                 videoCaptureClient.FrameArrived -= MortoGraphy_FrameArrived;
+                videoCaptureClient.Dispose();
                 mortoGraphyWindow.ThreadSafeClearImage(sync);
             }
             else
@@ -211,7 +226,7 @@ namespace Mtf.Controls.Video
 
                     using (var stream = await response.Content.ReadAsStreamAsync())
                     {
-                        //var buffer = new byte[BufferSize];
+                        var buffer = new byte[BufferSize];
                         total = 0;
 
                         while (!cancellationToken.IsCancellationRequested)

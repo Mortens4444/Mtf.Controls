@@ -14,13 +14,14 @@ namespace Mtf.Controls.Video
         private string username;
         private MortoGraphy mortoGraphy;
         private string password;
+        private int bufferSize = 409600;
 
         public MortoGraphyWindow()
         {
             BackgroundImage = Properties.Resources.NoSignal;
             BackgroundImageLayout = ImageLayout.Stretch;
             SizeMode = PictureBoxSizeMode.StretchImage;
-            mortoGraphy = new MortoGraphy(this, Username, Password);
+            mortoGraphy = new MortoGraphy(this, Username, Password) { BufferSize = bufferSize };
         }
 
         [Browsable(true)]
@@ -37,7 +38,7 @@ namespace Mtf.Controls.Video
             set
             {
                 username = value;
-                mortoGraphy = new MortoGraphy(this, Username, Password);
+                mortoGraphy = new MortoGraphy(this, Username, Password) { BufferSize = bufferSize };
             }
         }
 
@@ -50,7 +51,20 @@ namespace Mtf.Controls.Video
             set
             {
                 password = value;
-                mortoGraphy = new MortoGraphy(this, Username, Password);
+                mortoGraphy = new MortoGraphy(this, Username, Password) { BufferSize = bufferSize };
+            }
+        }
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Size of the VideoCaptureClient buffers when MortoGraphy is used with an endpoint.")]
+        public int BufferSize
+        {
+            get => bufferSize;
+            set
+            {
+                bufferSize = value;
+                mortoGraphy = new MortoGraphy(this, Username, Password) { BufferSize = bufferSize };
             }
         }
 

@@ -4,7 +4,6 @@ using Mtf.Controls.Extensions;
 using Mtf.Controls.Interfaces;
 using System;
 using System.Drawing;
-using System.Windows.Forms;
 
 namespace Mtf.Controls.Video.VLC
 {

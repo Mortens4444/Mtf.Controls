@@ -67,7 +67,11 @@ namespace Mtf.Controls.Extensions
 
         public static void SetImage(this PictureBox pictureBox, Image image)
         {
-            pictureBox.Image?.Dispose();
+            try
+            {
+                pictureBox?.Image?.Dispose();
+            }
+            catch { }
             pictureBox.Image = image;
         }
     }
