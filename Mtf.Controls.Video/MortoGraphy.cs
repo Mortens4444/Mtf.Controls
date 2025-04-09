@@ -27,7 +27,7 @@ namespace Mtf.Controls.Video
         private static HttpClient httpClient;
         private static VideoCaptureClient videoCaptureClient;
 
-        public int BufferSize { get; set; } = 512 * 1024;
+        public int BufferSize { get; set; } = Network.Constants.ImageBufferSize;
 
         private readonly object sync = new object();
         private readonly MortoGraphyWindow mortoGraphyWindow;
@@ -83,8 +83,8 @@ namespace Mtf.Controls.Video
         /// Or an endpoint like: 192.168.0.59:4444
         /// </summary>
         /// <param name="resource">Url or endpoint to open.</param>
-        /// <param name="bufferSize">Only used when using with endpoint.</param>
-        public void Start(string resource, int bufferSize = 409600)
+        /// <param name="bufferSize">Size of transmit buffers.</param>
+        public void Start(string resource, int bufferSize)
         {
             BufferSize = bufferSize;
             if (Uri.IsWellFormedUriString(resource, UriKind.RelativeOrAbsolute))

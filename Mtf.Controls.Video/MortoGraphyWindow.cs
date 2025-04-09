@@ -14,7 +14,7 @@ namespace Mtf.Controls.Video
         private string username;
         private MortoGraphy mortoGraphy;
         private string password;
-        private int bufferSize = 409600;
+        private int bufferSize = Network.Constants.ImageBufferSize;
 
         public MortoGraphyWindow()
         {
