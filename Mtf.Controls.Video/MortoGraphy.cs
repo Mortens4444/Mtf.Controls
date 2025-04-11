@@ -45,12 +45,7 @@ namespace Mtf.Controls.Video
 
         public MortoGraphy(MortoGraphyWindow mortoGraphyWindow, string username, string password, long timeoutInSeconds = 5)
         {
-            if (mortoGraphyWindow == null)
-            {
-                throw new ArgumentNullException(nameof(mortoGraphyWindow));
-            }
-
-            this.mortoGraphyWindow = mortoGraphyWindow;
+            this.mortoGraphyWindow = mortoGraphyWindow ?? throw new ArgumentNullException(nameof(mortoGraphyWindow));
             this.username = username;
             this.password = password;
 
