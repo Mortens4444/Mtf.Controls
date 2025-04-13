@@ -23,9 +23,9 @@
   <ItemGroup>
     <None Remove="Resources\NoSignal.png" />
   </ItemGroup>
-
+  
   <ItemGroup>
-    <PackageReference Include="Mtf.Network" Version="1.0.93" />
+    <PackageReference Include="Mtf.Network" Version="1.0.95" />
   </ItemGroup>
 
   <ItemGroup>

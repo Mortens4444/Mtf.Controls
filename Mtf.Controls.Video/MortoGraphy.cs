@@ -81,16 +81,20 @@ namespace Mtf.Controls.Video
         /// <param name="bufferSize">Size of transmit buffers.</param>
         public void Start(string resource, int bufferSize)
         {
+            if (resource == null)
+            {
+                throw new ArgumentNullException(nameof(resource));
+            }
+
             BufferSize = bufferSize;
             if (Uri.IsWellFormedUriString(resource, UriKind.RelativeOrAbsolute))
             {
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("multipart/x-mixed-replace"));
                 //httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("MortoGraphy/1.0");
-                url = StartWithUrl(resource);
+                StartWithUrl(resource);
             }
             else
             {
-                useEndpoint = true;
                 StartWithEndpoint(resource);
             }
         }
@@ -100,19 +104,29 @@ namespace Mtf.Controls.Video
             var connectionInfoParts = resource.Split(':');
             if (connectionInfoParts.Length == 2)
             {
-                videoCaptureClient = new VideoCaptureClient(connectionInfoParts[0], Convert.ToUInt16(connectionInfoParts[1]))
+                if (UInt16.TryParse(connectionInfoParts[1], out var port))
                 {
-                    BufferSize = BufferSize
-                };
+                    useEndpoint = true;
+                    videoCaptureClient = new VideoCaptureClient(connectionInfoParts[0], port)
+                    {
+                        BufferSize = BufferSize
+                    };
+                }
                 
                 videoCaptureClient.FrameArrived += MortoGraphy_FrameArrived;
                 videoCaptureClient.Start();
             }
         }
 
-        private string StartWithUrl(string url)
+        private void StartWithUrl(string resource)
         {
-            var uri = new Uri(url);
+            url = resource;
+            if (String.IsNullOrEmpty(resource))
+            {
+                return;
+            }
+
+            var uri = new Uri(resource);
             if (!String.IsNullOrEmpty(uri.UserInfo))
             {
                 username = uri.UserInfo.Split(':')[0];
@@ -128,13 +142,12 @@ namespace Mtf.Controls.Video
             }
 
             Stop();
-            this.url = url;
+            
             cancellationTokenSource = new CancellationTokenSource();
             _ = Task.Run(async () =>
             {
                 await FrameReceiver(cancellationTokenSource.Token);
             });
-            return url;
         }
 
         public void Stop()
@@ -189,96 +202,82 @@ namespace Mtf.Controls.Video
 
         private async Task GrabMjpegFrameAsync(CancellationToken cancellationToken)
         {
-            try
+            //using (var request = new HttpRequestMessage(HttpMethod.Get, url))
             {
-                if (String.IsNullOrEmpty(url))
+                //var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+                var response = await httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+
+                if (!response.IsSuccessStatusCode || !response.Content.Headers.ContentType?.MediaType.Contains("multipart/x-mixed-replace") == true)
                 {
-                    return;
+                    throw new ApplicationException($"Invalid response received: {response}.");
                 }
 
-                //using (var request = new HttpRequestMessage(HttpMethod.Get, url))
+                var boundary = response.Content.Headers.ContentType.Parameters.FirstOrDefault(p => p.Name == "boundary")?.Value;
+                if (String.IsNullOrEmpty(boundary))
                 {
-                    //var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
-                    var response = await httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+                    throw new ApplicationException("Invalid MJPEG stream: Missing boundary.");
+                }
 
-                    if (!response.IsSuccessStatusCode || !response.Content.Headers.ContentType?.MediaType.Contains("multipart/x-mixed-replace") == true)
+                if (!boundary.StartsWith("--"))
+                {
+                    boundary = String.Concat("--", boundary);
+                }
+
+                var boundaryBytes = Encoding.ASCII.GetBytes(boundary);
+
+                using (var stream = await response.Content.ReadAsStreamAsync())
+                {
+                    var buffer = new byte[BufferSize];
+                    total = 0;
+
+                    while (!cancellationToken.IsCancellationRequested)
                     {
-                        throw new ApplicationException($"Invalid response received: {response}.");
-                    }
-
-                    var boundary = response.Content.Headers.ContentType.Parameters.FirstOrDefault(p => p.Name == "boundary")?.Value;
-                    if (String.IsNullOrEmpty(boundary))
-                    {
-                        throw new ApplicationException("Invalid MJPEG stream: Missing boundary.");
-                    }
-
-                    if (!boundary.StartsWith("--"))
-                    {
-                        boundary = String.Concat("--", boundary);
-                    }
-
-                    var boundaryBytes = Encoding.ASCII.GetBytes(boundary);
-
-                    using (var stream = await response.Content.ReadAsStreamAsync())
-                    {
-                        var buffer = new byte[BufferSize];
-                        total = 0;
-
-                        while (!cancellationToken.IsCancellationRequested)
+                        //var readTask = await stream.ReadAsync(buffer.AsMemory(total, BufferSize - total), cancellationToken);
+                        var readTask = stream.ReadAsync(buffer, total, BufferSize - total, cancellationToken);
+                        var timeoutTask = Task.Delay(delay, cancellationToken);
+                        var completedTask = await Task.WhenAny(readTask, timeoutTask);
+                        if (completedTask == timeoutTask)
                         {
-                            //var readTask = await stream.ReadAsync(buffer.AsMemory(total, BufferSize - total), cancellationToken);
-                            var readTask = stream.ReadAsync(buffer, total, BufferSize - total, cancellationToken);
-                            var timeoutTask = Task.Delay(delay, cancellationToken);
-                            var completedTask = await Task.WhenAny(readTask, timeoutTask);
-                            if (completedTask == timeoutTask)
+                            throw new TimeoutException("Stream is not responding.");
+                        }
+
+                        var read = await readTask;
+                        if (read == 0)
+                        {
+                            throw new ApplicationException("Stream closed unexpectedly.");
+                        }
+
+                        total += read;
+
+                        var start = FindSequence(buffer, boundaryBytes, 0, total);
+
+                        if (start != -1)
+                        {
+                            var end = FindSequence(buffer, boundaryBytes, start + boundaryBytes.Length, total - (start + boundaryBytes.Length));
+
+                            if (end != -1)
                             {
-                                throw new TimeoutException("Stream is not responding.");
-                            }
-
-                            var read = await readTask;
-                            if (read == 0)
-                            {
-                                throw new ApplicationException("Stream closed unexpectedly.");
-                            }
-
-                            total += read;
-
-                            var start = FindSequence(buffer, boundaryBytes, 0, total);
-
-                            if (start != -1)
-                            {
-                                var end = FindSequence(buffer, boundaryBytes, start + boundaryBytes.Length, total - (start + boundaryBytes.Length));
-
-                                if (end != -1)
+                                var imageStart = start + boundaryBytes.Length;
+                                while (buffer[imageStart] != 0xFF && buffer[imageStart + 1] != 0xD8)
                                 {
-                                    var imageStart = start + boundaryBytes.Length;
-                                    while (buffer[imageStart] != 0xFF && buffer[imageStart + 1] != 0xD8)
-                                    {
-                                        imageStart++;
-                                    }
-                                    var imageEnd = end;
-
-                                    using (var ms = new MemoryStream(buffer, imageStart, imageEnd - imageStart))
-                                    {
-                                        using (var frame = Image.FromStream(ms))
-                                        {
-                                            FrameArrived?.Invoke(this, new FrameArrivedEventArgs((Image)frame.Clone()));
-                                        }
-                                    }
-
-                                    Array.Copy(buffer, end, buffer, 0, total - end);
-                                    total -= end;
+                                    imageStart++;
                                 }
+                                var imageEnd = end;
+
+                                using (var ms = new MemoryStream(buffer, imageStart, imageEnd - imageStart))
+                                {
+                                    using (var frame = Image.FromStream(ms))
+                                    {
+                                        FrameArrived?.Invoke(this, new FrameArrivedEventArgs((Image)frame.Clone()));
+                                    }
+                                }
+
+                                Array.Copy(buffer, end, buffer, 0, total - end);
+                                total -= end;
                             }
                         }
                     }
                 }
-
-                return;
-            }
-            catch (Exception ex)
-            {
-                throw;
             }
         }
 
