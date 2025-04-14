@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Mtf.Controls.Video.OpenCvSharp</id>
-    <version>1.0.22</version>
+    <version>1.0.23</version>
     <description>
       Custom Windows Forms Controls.
       
