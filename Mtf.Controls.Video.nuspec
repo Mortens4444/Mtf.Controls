@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Mtf.Controls.Video</id>
-    <version>1.0.58</version>
+    <version>1.0.63</version>
     <description>
       Custom Windows Forms Controls.
       
@@ -27,22 +27,22 @@
 	<readme>docs\ReadMe - Mtf.Controls.Video.md</readme>
     <dependencies>
 	  <group targetFramework="net452">
-        <dependency id="Mtf.Network" version="1.0.56" />
+        <dependency id="Mtf.Network" version="1.1.9" />
 	  </group>
 	  <group targetFramework="net462">
-        <dependency id="Mtf.Network" version="1.0.56" />
+        <dependency id="Mtf.Network" version="1.1.9" />
 	  </group>
 	  <group targetFramework="net48">
-        <dependency id="Mtf.Network" version="1.0.56" />
+        <dependency id="Mtf.Network" version="1.1.9" />
 	  </group>
 	  <group targetFramework="net481">
-        <dependency id="Mtf.Network" version="1.0.56" />
+        <dependency id="Mtf.Network" version="1.1.9" />
 	  </group>
 	  <group targetFramework="net8.0-windows7">
-        <dependency id="Mtf.Network" version="1.0.56" />
+        <dependency id="Mtf.Network" version="1.1.9" />
 	  </group>
 	  <group targetFramework="net9.0-windows7">
-        <dependency id="Mtf.Network" version="1.0.56" />
+        <dependency id="Mtf.Network" version="1.1.9" />
 	  </group>
     </dependencies>
   </metadata>
