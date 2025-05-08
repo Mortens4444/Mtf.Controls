@@ -8,7 +8,7 @@ namespace Mtf.Controls
 {
     [ToolboxItem(true)]
     [ToolboxBitmap(typeof(MovableSizablePanel), "Resources.MovableSizablePanel.png")]
-    public class MovableSizablePanel : MovablePanel
+    public class MovableSizablePanel : MovablePanel, ICloneable
     {
         public MovableSizablePanel()
         {
@@ -100,6 +100,32 @@ namespace Mtf.Controls
             {
                 pbSouthEast.Location = new Point(Width - Constants.Border, Height - Constants.Border);
             }
+        }
+
+        public object Clone()
+        {
+            return new MovableSizablePanel
+            {
+                Size = Size,
+                BackColor = BackColor,
+                BorderStyle = BorderStyle,
+                CanMove = CanMove,
+                CanSize = CanSize,
+                Location = Location
+            };
+        }
+
+        public MovableSizablePanel Clone(Point location)
+        {
+            return new MovableSizablePanel
+            {
+                Size = Size,
+                BackColor = BackColor,
+                BorderStyle = BorderStyle,
+                CanMove = true,
+                CanSize = CanSize,
+                Location = location
+            };
         }
     }
 }

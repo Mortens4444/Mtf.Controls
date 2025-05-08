@@ -45,7 +45,7 @@
         <dependency id="AForge" version="2.2.5" />
         <dependency id="AForge.Video" version="2.2.5" />
         <dependency id="AForge.Video.DirectShow" version="2.2.5" />
-        <dependency id="Mtf.MessageBoxes" version="4.0.50" />
+        <dependency id="Mtf.MessageBoxes" version="5.0.5" />
         <dependency id="System.Net.Http" version="4.3.4" />
       </group>
       <group targetFramework="net462">
@@ -54,7 +54,7 @@
         <dependency id="AForge" version="2.2.5" />
         <dependency id="AForge.Video" version="2.2.5" />
         <dependency id="AForge.Video.DirectShow" version="2.2.5" />
-        <dependency id="Mtf.MessageBoxes" version="4.0.50" />
+        <dependency id="Mtf.MessageBoxes" version="5.0.5" />
         <dependency id="System.Net.Http" version="4.3.4" />
       </group>
       <group targetFramework="net48">
@@ -63,7 +63,7 @@
         <dependency id="AForge" version="2.2.5" />
         <dependency id="AForge.Video" version="2.2.5" />
         <dependency id="AForge.Video.DirectShow" version="2.2.5" />
-        <dependency id="Mtf.MessageBoxes" version="4.0.50" />
+        <dependency id="Mtf.MessageBoxes" version="5.0.5" />
         <dependency id="System.Net.Http" version="4.3.4" />
       </group>    
       <group targetFramework="net481">
@@ -72,7 +72,7 @@
         <dependency id="AForge" version="2.2.5" />
         <dependency id="AForge.Video" version="2.2.5" />
         <dependency id="AForge.Video.DirectShow" version="2.2.5" />
-        <dependency id="Mtf.MessageBoxes" version="4.0.50" />
+        <dependency id="Mtf.MessageBoxes" version="5.0.5" />
         <dependency id="System.Net.Http" version="4.3.4" />
       </group>
       <group targetFramework="net8.0-windows7">
@@ -81,7 +81,7 @@
         <dependency id="AForge" version="2.2.5" />
         <dependency id="AForge.Video" version="2.2.5" />
         <dependency id="AForge.Video.DirectShow" version="2.2.5" />
-        <dependency id="Mtf.MessageBoxes" version="4.0.50" />
+        <dependency id="Mtf.MessageBoxes" version="5.0.5" />
       </group>
       <group targetFramework="net9.0-windows7">
         <dependency id="Accord" version="3.8.0" />
@@ -89,7 +89,7 @@
         <dependency id="AForge" version="2.2.5" />
         <dependency id="AForge.Video" version="2.2.5" />
         <dependency id="AForge.Video.DirectShow" version="2.2.5" />
-        <dependency id="Mtf.MessageBoxes" version="4.0.50" />
+        <dependency id="Mtf.MessageBoxes" version="5.0.5" />
       </group>
     </dependencies>
   </metadata>
