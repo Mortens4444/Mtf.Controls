@@ -42,7 +42,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Mtf.MessageBoxes" Version="4.0.50" />
+    <PackageReference Include="Mtf.MessageBoxes" Version="5.0.5" />
   </ItemGroup>
 
   <ItemGroup>
