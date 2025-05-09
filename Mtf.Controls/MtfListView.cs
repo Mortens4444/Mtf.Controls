@@ -19,6 +19,9 @@ namespace Mtf.Controls
     [ToolboxBitmap(typeof(MtfListView), "Resources.MtfListView.png")]
     public class MtfListView : ListView
     {
+        [DllImport("User32.dll", CharSet = CharSet.Auto)]
+        public static extern IntPtr SendMessage(IntPtr hWnd, int Msg, IntPtr wParam, IntPtr lParam);
+
         private readonly List<int> alwaysDifferentColumnIndexes = new List<int>();
 
         public MtfListView()
@@ -619,24 +622,31 @@ namespace Mtf.Controls
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            if (e == null)
-            {
-                return;
-            }
-
+            base.OnPaint(e);
             if (GetStyle(ControlStyles.UserPaint))
             {
-                var message = new Message
+                IntPtr hdc = IntPtr.Zero;
+                try
                 {
-                    HWnd = Handle,
-                    Msg = (int)WindowMessage.WM_PRINTCLIENT,
-                    WParam = e.Graphics.GetHdc(),
-                    LParam = (IntPtr)WindowMessagesParameter.PrfCclient
-                };
-                DefWndProc(ref message);
-                e.Graphics.ReleaseHdc(message.WParam);
+                    hdc = e.Graphics.GetHdc();
+                    var message = new Message
+                    {
+                        HWnd = Handle,
+                        Msg = (int)WindowMessage.WM_PRINTCLIENT,
+                        WParam = hdc,
+                        LParam = (IntPtr)WindowMessagesParameter.PrfClient
+                    };
+
+                    DefWndProc(ref message);
+                }
+                finally
+                {
+                    if (hdc != IntPtr.Zero)
+                    {
+                        e.Graphics.ReleaseHdc(hdc);
+                    }
+                }
             }
-            base.OnPaint(e);
         }
 
         public virtual Color GetBackColorOfItem(int index)
