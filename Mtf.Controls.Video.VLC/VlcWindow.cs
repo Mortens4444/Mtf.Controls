@@ -1,5 +1,6 @@
 ﻿using LibVLCSharp.WinForms;
 using Mtf.Controls.Enums;
+using Mtf.Controls.Interfaces;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -10,7 +11,7 @@ namespace Mtf.Controls.Video.VLC
 {
     [ToolboxItem(true)]
     [ToolboxBitmap(typeof(VlcWindow), "Resources.VideoSource.png")]
-    public class VlcWindow : VideoView
+    public class VlcWindow : VideoView, IVideoWindow
     {
         private bool disposed;
         private readonly Vlc vlc;

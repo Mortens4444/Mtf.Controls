@@ -1,4 +1,5 @@
 ﻿using Mtf.Controls.Enums;
+using Mtf.Controls.Interfaces;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -8,7 +9,7 @@ namespace Mtf.Controls.Video
 {
     [ToolboxItem(true)]
     [ToolboxBitmap(typeof(MortoGraphyWindow), "Resources.VideoSource.png")]
-    public class MortoGraphyWindow : PictureBox
+    public class MortoGraphyWindow : PictureBox, IVideoWindow
     {
         private bool disposed;
         private string username;

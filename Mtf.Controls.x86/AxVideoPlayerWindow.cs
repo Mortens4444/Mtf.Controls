@@ -1,4 +1,5 @@
 ﻿using AxVIDEOCONTROL4Lib;
+using Mtf.Controls.Interfaces;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -8,7 +9,7 @@ namespace Mtf.Controls.x86
 {
     [ToolboxItem(true)]
     [ToolboxBitmap(typeof(AxVideoPlayerWindow), "Resources.VideoSource.png")]
-    public partial class AxVideoPlayerWindow : UserControl
+    public partial class AxVideoPlayerWindow : UserControl, IVideoWindow
     {
         public AxVideoPlayerWindow()
         {

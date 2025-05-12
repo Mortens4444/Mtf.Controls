@@ -1,4 +1,5 @@
 ﻿using Mtf.Controls.Extensions;
+using Mtf.Controls.Interfaces;
 using OpenCvSharp;
 using OpenCvSharp.Extensions;
 using System;
@@ -12,7 +13,7 @@ namespace Mtf.Controls.Video.OpenCvSharp
 {
     [ToolboxItem(true)]
     [ToolboxBitmap(typeof(OpenCvSharp4VideoWindow), "Resources.VideoSource.png")]
-    public class OpenCvSharp4VideoWindow : PictureBox
+    public class OpenCvSharp4VideoWindow : PictureBox, IVideoWindow
     {
         private CancellationTokenSource cancellationTokenSource;
         private Task videoTask;

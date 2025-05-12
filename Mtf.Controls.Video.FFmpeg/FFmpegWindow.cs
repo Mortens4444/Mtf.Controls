@@ -1,4 +1,5 @@
 ﻿using Mtf.Controls.Enums;
+using Mtf.Controls.Interfaces;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -8,7 +9,7 @@ namespace Mtf.Controls.Video.FFmpeg
 {
     [ToolboxItem(true)]
     [ToolboxBitmap(typeof(FFmpegWindow), "Resources.VideoSource.png")]
-    public class FFmpegWindow : PictureBox
+    public class FFmpegWindow : PictureBox, IVideoWindow
     {
         private bool disposed;
         private readonly FFmpeg fFmpeg;

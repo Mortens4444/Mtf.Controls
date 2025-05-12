@@ -42,7 +42,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Mtf.MessageBoxes" Version="5.0.5" />
+    <PackageReference Include="Mtf.MessageBoxes" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Mtf.Controls.Interfaces\Mtf.Controls.Interfaces.csproj" />
   </ItemGroup>
 
   <ItemGroup>

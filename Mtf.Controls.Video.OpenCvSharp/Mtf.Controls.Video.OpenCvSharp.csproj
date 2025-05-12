@@ -46,6 +46,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Mtf.Controls.Interfaces\Mtf.Controls.Interfaces.csproj" />
     <ProjectReference Include="..\Mtf.Controls\Mtf.Controls.csproj" />
   </ItemGroup>
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mtf.Controls.Interfaces;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -7,7 +8,7 @@ namespace Mtf.Controls.Video.OpenCvSharp
 {
     [ToolboxItem(true)]
     [ToolboxBitmap(typeof(OpenCvSharpVideoWindow), "Resources.VideoSource.png")]
-    public class OpenCvSharpVideoWindow : PictureBox
+    public class OpenCvSharpVideoWindow : PictureBox, IVideoWindow
     {
         private bool disposed;
         private readonly OpenCvSharpWrapper openCvSharpWrapper;

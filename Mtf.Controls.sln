@@ -28,6 +28,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtf.Controls.Video.OpenCvSh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtf.Controls.Video.VLC", "Mtf.Controls.Video.VLC\Mtf.Controls.Video.VLC.csproj", "{7918721B-BA10-477A-B03F-A2B234F90A7F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtf.Controls.Interfaces", "Mtf.Controls.Interfaces\Mtf.Controls.Interfaces.csproj", "{FFFDCE5F-D9CB-4BF3-82F6-F3EB3C47C0A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,6 +76,10 @@ Global
 		{7918721B-BA10-477A-B03F-A2B234F90A7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7918721B-BA10-477A-B03F-A2B234F90A7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7918721B-BA10-477A-B03F-A2B234F90A7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFFDCE5F-D9CB-4BF3-82F6-F3EB3C47C0A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFFDCE5F-D9CB-4BF3-82F6-F3EB3C47C0A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFFDCE5F-D9CB-4BF3-82F6-F3EB3C47C0A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFFDCE5F-D9CB-4BF3-82F6-F3EB3C47C0A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
