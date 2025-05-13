@@ -12,7 +12,7 @@ namespace Mtf.Controls
     [ToolboxBitmap(typeof(SourceCodeViewerRichTextBox), "Resources.SourceCodeViewerRichTextBox.png")]
     public class AnsiColoringRichTextBox : RichTextBox
     {
-        private static readonly char[] separator = new char[] { '\n', '\n' };
+        private static readonly char[] separator = { '\r', '\n' };
         private const string AnsiPattern = @"\x1B\[[0-9;]*m";
         private bool isApplyingColoring;
         private bool displayAnsiColors;
@@ -82,16 +82,6 @@ namespace Mtf.Controls
 
             isApplyingColoring = true;
 
-            var ansiColorMap = new Dictionary<string, Color>
-            {
-                { "\x1B[0;30m", Color.Black }, { "\x1B[0;31m", Color.Red }, { "\x1B[0;32m", Color.Green },
-                { "\x1B[0;33m", Color.Yellow }, { "\x1B[0;34m", Color.Blue }, { "\x1B[0;35m", Color.Purple },
-                { "\x1B[0;36m", Color.Cyan }, { "\x1B[0;37m", Color.White },
-                { "\x1B[1;30m", Color.Black }, { "\x1B[1;31m", Color.Red }, { "\x1B[1;32m", Color.Green },
-                { "\x1B[1;33m", Color.Yellow }, { "\x1B[1;34m", Color.Blue }, { "\x1B[1;35m", Color.Purple },
-                { "\x1B[1;36m", Color.Cyan }, { "\x1B[1;37m", Color.White }
-            };
-
             var ansiBoldMap = new Dictionary<string, bool> { { "\x1B[1;31m", true }, { "\x1B[1;32m", true } };
             var ansiUnderlineMap = new Dictionary<string, bool> { { "\x1B[4;30m", true }, { "\x1B[4;31m", true } };
 
@@ -110,12 +100,11 @@ namespace Mtf.Controls
 
                 if (ansiBoldMap.TryGetValue(ansiCode, out _))
                 {
-                    SelectionFont = new Font(Font, FontStyle.Bold);
+                    SetSelectionFont(Font, FontStyle.Bold);
                 }
-
                 if (ansiUnderlineMap.TryGetValue(ansiCode, out _))
                 {
-                    SelectionFont = new Font(Font, FontStyle.Underline);
+                    SetSelectionFont(Font, FontStyle.Underline);
                 }
             }
             isApplyingColoring = false;
@@ -156,7 +145,8 @@ namespace Mtf.Controls
                 var blockEnd = insertionStartIndex + (i < matches.Count - 1 ? matches[i + 1].Index : text.Length) - totalRemovedLength - match.Length;
 
                 var ansiCode = match.Value;
-                if (ansiCode == "\u001b[0m")
+                var resetPattern = new Regex(@"^\x1B\[0m$");
+                if (resetPattern.IsMatch(ansiCode))
                 {
                     currentColor = ForeColor;
                     currentStyle = FontStyle.Regular;
@@ -188,10 +178,22 @@ namespace Mtf.Controls
             {
                 Select(formatter.Start, formatter.Length);
                 SelectionColor = formatter.Color ?? ForeColor;
-                SelectionFont = new Font(Font, formatter.Style);
+                SetSelectionFont(Font, formatter.Style);
             }
 
             isApplyingColoring = false;
+        }
+
+        private void SetSelectionFont(Font font, FontStyle fontStyle)
+        {
+            try
+            {
+                SelectionFont = new Font(Font, fontStyle);
+            }
+            catch
+            {
+                SelectionFont = Font;
+            }
         }
 
         public void ClearColoring()
