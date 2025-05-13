@@ -8,15 +8,18 @@ namespace Mtf.Controls.Models
         
         public int Length { get; private set; }
 
-        public Color? Color { get; private set; }
+        public Color FontColor { get; private set; }
+
+        public Color BackColor { get; private set; }
 
         public FontStyle Style { get; private set; }
 
-        public AnsiColoringRichTextBoxFormatter(int start, int length, Color? color, FontStyle style)
+        public AnsiColoringRichTextBoxFormatter(int start, int length, Color color, Color backColor, FontStyle style)
         {
             Start = start;
             Length = length;
-            Color = color;
+            FontColor = color;
+            BackColor = backColor;
             Style = style;
         }
     }

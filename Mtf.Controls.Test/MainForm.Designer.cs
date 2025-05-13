@@ -52,11 +52,12 @@ namespace Mtf.Controls.Test
             var treeNode10 = new TreeNode("Node3", -2, -2);
             var resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             var listViewItem7 = new ListViewItem(new string[] { "..", "Parent Directory" }, "up");
+            var listViewItem8 = new ListViewItem(new string[] { "mfxlib.log", ".LOG File", "12,4 MB" }, ".log");
             var listViewGroup3 = new ListViewGroup("1. Group", HorizontalAlignment.Left);
             var listViewGroup4 = new ListViewGroup("2. Group", HorizontalAlignment.Left);
-            var listViewItem8 = new ListViewItem("1");
-            var listViewItem9 = new ListViewItem("2");
-            var listViewItem10 = new ListViewItem("3");
+            var listViewItem9 = new ListViewItem("1");
+            var listViewItem10 = new ListViewItem("2");
+            var listViewItem11 = new ListViewItem("3");
             mtfListView1 = new MtfListView();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
@@ -432,7 +433,7 @@ namespace Mtf.Controls.Test
             fileBrowserView1.Dock = DockStyle.Fill;
             fileBrowserView1.FullRowSelect = true;
             listViewItem7.Tag = "up";
-            fileBrowserView1.Items.AddRange(new ListViewItem[] { listViewItem7 });
+            fileBrowserView1.Items.AddRange(new ListViewItem[] { listViewItem7, listViewItem8 });
             fileBrowserView1.Location = new Point(0, 0);
             fileBrowserView1.Name = "fileBrowserView1";
             fileBrowserView1.Size = new Size(1586, 832);
@@ -470,7 +471,6 @@ namespace Mtf.Controls.Test
             // 
             // ansiColoringRichTextBox1
             // 
-            ansiColoringRichTextBox1.DisplayAnsiColors = true;
             ansiColoringRichTextBox1.Dock = DockStyle.Fill;
             ansiColoringRichTextBox1.Location = new Point(0, 0);
             ansiColoringRichTextBox1.Name = "ansiColoringRichTextBox1";
@@ -553,7 +553,7 @@ namespace Mtf.Controls.Test
             openCvSharp4VideoWindow1.BackgroundImageLayout = ImageLayout.Stretch;
             openCvSharp4VideoWindow1.Location = new Point(20, 196);
             openCvSharp4VideoWindow1.Name = "openCvSharp4VideoWindow1";
-            openCvSharp4VideoWindow1.OverlayFont = (Font)resources.GetObject("openCvSharp4VideoWindow1.OverlayFont");
+            openCvSharp4VideoWindow1.OverlayFont = new Font("Arial", 32F, FontStyle.Bold);
             openCvSharp4VideoWindow1.OverlayLocation = new Point(10, 10);
             openCvSharp4VideoWindow1.OverlayText = "Open CV Sharp 4";
             openCvSharp4VideoWindow1.Size = new Size(218, 135);
@@ -579,7 +579,7 @@ namespace Mtf.Controls.Test
             vlcWindow1.Location = new Point(20, 30);
             vlcWindow1.MediaPlayer = null;
             vlcWindow1.Name = "vlcWindow1";
-            vlcWindow1.OverlayFont = (Font)resources.GetObject("vlcWindow1.OverlayFont");
+            vlcWindow1.OverlayFont = new Font("Arial", 32F, FontStyle.Bold);
             vlcWindow1.OverlayLocation = new Point(10, 10);
             vlcWindow1.OverlayText = "VLC";
             vlcWindow1.Size = new Size(218, 138);
@@ -594,7 +594,7 @@ namespace Mtf.Controls.Test
             fFmpegWindow1.Codec = Enums.Codec.mjpeg;
             fFmpegWindow1.Location = new Point(244, 30);
             fFmpegWindow1.Name = "fFmpegWindow1";
-            fFmpegWindow1.OverlayFont = (Font)resources.GetObject("fFmpegWindow1.OverlayFont");
+            fFmpegWindow1.OverlayFont = new Font("Arial", 32F, FontStyle.Bold);
             fFmpegWindow1.OverlayLocation = new Point(10, 10);
             fFmpegWindow1.OverlayText = "FFMpeg";
             fFmpegWindow1.Size = new Size(218, 138);
@@ -606,9 +606,10 @@ namespace Mtf.Controls.Test
             // 
             mortoGraphyWindow1.BackgroundImage = (Image)resources.GetObject("mortoGraphyWindow1.BackgroundImage");
             mortoGraphyWindow1.BackgroundImageLayout = ImageLayout.Stretch;
+            mortoGraphyWindow1.BufferSize = 409600;
             mortoGraphyWindow1.Location = new Point(244, 196);
             mortoGraphyWindow1.Name = "mortoGraphyWindow1";
-            mortoGraphyWindow1.OverlayFont = (Font)resources.GetObject("mortoGraphyWindow1.OverlayFont");
+            mortoGraphyWindow1.OverlayFont = new Font("Arial", 32F, FontStyle.Bold);
             mortoGraphyWindow1.OverlayLocation = new Point(10, 10);
             mortoGraphyWindow1.OverlayText = "MortoGraphy";
             mortoGraphyWindow1.Password = null;
@@ -636,10 +637,10 @@ namespace Mtf.Controls.Test
             listViewGroup4.Header = "2. Group";
             listViewGroup4.Name = "listViewGroup2";
             mtfListView2.Groups.AddRange(new ListViewGroup[] { listViewGroup3, listViewGroup4 });
-            listViewItem8.Group = listViewGroup3;
-            listViewItem9.Group = listViewGroup4;
+            listViewItem9.Group = listViewGroup3;
             listViewItem10.Group = listViewGroup4;
-            mtfListView2.Items.AddRange(new ListViewItem[] { listViewItem8, listViewItem9, listViewItem10 });
+            listViewItem11.Group = listViewGroup4;
+            mtfListView2.Items.AddRange(new ListViewItem[] { listViewItem9, listViewItem10, listViewItem11 });
             mtfListView2.Location = new Point(707, 11);
             mtfListView2.Name = "mtfListView2";
             mtfListView2.OwnerDraw = true;
