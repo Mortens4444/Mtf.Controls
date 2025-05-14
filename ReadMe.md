@@ -27,7 +27,7 @@ To install the `Mtf.Controls` package, follow these steps:
 
 This package uses the following dependencies, each under their respective licenses:
 
-- **[Mtf.MessageBoxes](https://www.nuget.org/packages/Mtf.MessageBoxes/)**: Version 2.0.29 (MIT License)
+- **[Mtf.MessageBoxes](https://www.nuget.org/packages/Mtf.MessageBoxes/)**: Version 6.0.2 (MIT License)
 - **[System.Net.Http](https://www.nuget.org/packages/System.Net.Http/)**: Version 4.3.4 (MIT License)
 
 Each dependency's license applies independently to their respective code. This package complies with their license terms. If you use this package, ensure that you meet the requirements of each dependency's license.
