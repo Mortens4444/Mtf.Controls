@@ -1,8 +1,10 @@
-﻿using Mtf.Controls.Models;
+﻿using Mtf.Controls.Enums;
+using Mtf.Controls.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -15,6 +17,7 @@ namespace Mtf.Controls
         private static readonly char[] separator = { '\r', '\n' };
         private const string AnsiPattern = @"\x1B\[[0-9;]*m";
         private Color lastUsedFontColor;
+        private Color lastUsedBackColor;
         private Color defaultFontColor;
         private Color defaultBackColor;
 
@@ -23,6 +26,106 @@ namespace Mtf.Controls
             lastUsedFontColor = ForeColor;
             defaultFontColor = ForeColor;
             defaultBackColor = BackColor;
+        }
+
+        #region Color properties
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Black color.")]
+        public Color BlackColor { get; set; } = Color.Black;
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Red color.")]
+        public Color RedColor { get; set; } = Color.Red;
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Green color.")]
+        public Color GreenColor { get; set; } = Color.Green;
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Yellow color.")]
+        public Color YellowColor { get; set; } = Color.Yellow;
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Blue color.")]
+        public Color BlueColor { get; set; } = Color.Blue;
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Purple color.")]
+        public Color PurpleColor { get; set; } = Color.Purple;
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Cyan color.")]
+        public Color CyanColor { get; set; } = Color.Cyan;
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("White color.")]
+        public Color WhiteColor { get; set; } = Color.White;
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Bright black color.")]
+        public Color BrightBlackColor { get; set; } = Color.DarkGray;
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Bright red color.")]
+        public Color BrightRedColor { get; set; } = Color.LightCoral;
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Bright green color.")]
+        public Color BrightGreenColor { get; set; } = Color.LightGreen;
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Bright yellow color.")]
+        public Color BrightYellowColor { get; set; } = Color.LightYellow;
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Bright blue color.")]
+        public Color BrightBlueColor { get; set; } = Color.LightBlue;
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Bright Purple color.")]
+        public Color BrightPurpleColor { get; set; } = Color.Plum;
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Bright cyan color.")]
+        public Color BrightCyanColor { get; set; } = Color.LightCyan;
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Bright white color.")]
+        public Color BrightWhiteColor { get; set; } = Color.Wheat;
+
+        #endregion
+        
+        public void ChangeMode(AnsiColoringMode ansiColoringMode)
+        {
+            AppendText($"\u001b[{(int)ansiColoringMode}m");
+        }
+
+        public void AppendText(string text, params AnsiColoringMode[] ansiColoringModes)
+        {
+            var sb = new StringBuilder();
+            foreach (var ansiColoringMode in ansiColoringModes)
+            {
+                sb.Append($"\u001b[{(int)ansiColoringMode}m");
+            }
+            sb.Append(text);
+            AppendText(sb.ToString());
         }
 
         public new void AppendText(string text)
@@ -101,6 +204,8 @@ namespace Mtf.Controls
                     case 4: currentStyle |= FontStyle.Underline; break;
                     case 5: /* set blinking mode */ break;
                     case 7:
+                        lastUsedFontColor = ForeColor;
+                        lastUsedBackColor = BackColor;
                         var tmp = currentColor;
                         currentColor = currentBackColor;
                         currentBackColor = tmp;
@@ -120,51 +225,124 @@ namespace Mtf.Controls
                     case 24: currentStyle &= ~FontStyle.Underline; break;
                     case 25: /* reset blinking mode */ break;
                     case 27:
-                        currentColor = ForeColor;
-                        currentBackColor = BackColor;
+                        currentColor = lastUsedFontColor;
+                        currentBackColor = lastUsedBackColor;
                         break;
                     case 28:
                         ForeColor = lastUsedFontColor;
                         break;
                     case 29: currentStyle &= ~FontStyle.Strikeout; break;
 
-                    case 30: currentColor = Color.Black; break;
-                    case 31: currentColor = Color.Red; break;
-                    case 32: currentColor = Color.Green; break;
-                    case 33: currentColor = Color.Yellow; break;
-                    case 34: currentColor = Color.Blue; break;
-                    case 35: currentColor = Color.Purple; break;
-                    case 36: currentColor = Color.Cyan; break;
-                    case 37: currentColor = Color.White; break;
+                    case 30: currentColor = BlackColor; break;
+                    case 31: currentColor = RedColor; break;
+                    case 32: currentColor = GreenColor; break;
+                    case 33: currentColor = YellowColor; break;
+                    case 34: currentColor = BlueColor; break;
+                    case 35: currentColor = PurpleColor; break;
+                    case 36: currentColor = CyanColor; break;
+                    case 37: currentColor = WhiteColor; break;
 
-                    case 40: currentBackColor = Color.Black; break;
-                    case 41: currentBackColor = Color.Red; break;
-                    case 42: currentBackColor = Color.Green; break;
-                    case 43: currentBackColor = Color.Yellow; break;
-                    case 44: currentBackColor = Color.Blue; break;
-                    case 45: currentBackColor = Color.Purple; break;
-                    case 46: currentBackColor = Color.Cyan; break;
-                    case 47: currentBackColor = Color.White; break;
+                    case 40: currentBackColor = BlackColor; break;
+                    case 41: currentBackColor = RedColor; break;
+                    case 42: currentBackColor = GreenColor; break;
+                    case 43: currentBackColor = YellowColor; break;
+                    case 44: currentBackColor = BlueColor; break;
+                    case 45: currentBackColor = PurpleColor; break;
+                    case 46: currentBackColor = CyanColor; break;
+                    case 47: currentBackColor = WhiteColor; break;
 
-                    case 90: currentColor = Color.DarkGray; break;
-                    case 91: currentColor = Color.LightCoral; break;
-                    case 92: currentColor = Color.LightGreen; break;
-                    case 93: currentColor = Color.Khaki; break;
-                    case 94: currentColor = Color.LightBlue; break;
-                    case 95: currentColor = Color.Plum; break;
-                    case 96: currentColor = Color.LightCyan; break;
-                    case 97: currentColor = Color.White; break;
+                    case 90: currentColor = BrightBlackColor; break;
+                    case 91: currentColor = BrightRedColor; break;
+                    case 92: currentColor = BrightGreenColor; break;
+                    case 93: currentColor = BrightYellowColor; break;
+                    case 94: currentColor = BrightBlueColor; break;
+                    case 95: currentColor = BrightPurpleColor; break;
+                    case 96: currentColor = BrightCyanColor; break;
+                    case 97: currentColor = BrightWhiteColor; break;
 
-                    case 100: currentBackColor = Color.DarkGray; break;
-                    case 101: currentBackColor = Color.LightCoral; break;
-                    case 102: currentBackColor = Color.LightGreen; break;
-                    case 103: currentBackColor = Color.Khaki; break;
-                    case 104: currentBackColor = Color.LightBlue; break;
-                    case 105: currentBackColor = Color.Plum; break;
-                    case 106: currentBackColor = Color.LightCyan; break;
-                    case 107: currentBackColor = Color.White; break;
+                    case 100: currentBackColor = BrightBlackColor; break;
+                    case 101: currentBackColor = BrightRedColor; break;
+                    case 102: currentBackColor = BrightGreenColor; break;
+                    case 103: currentBackColor = BrightYellowColor; break;
+                    case 104: currentBackColor = BrightBlueColor; break;
+                    case 105: currentBackColor = BrightPurpleColor; break;
+                    case 106: currentBackColor = BrightCyanColor; break;
+                    case 107: currentBackColor = BrightWhiteColor; break;
                 }
             }
+        }
+
+        public AnsiColoringMode ColorToAnsiColoringMode(Color color, bool backColor = false)
+        {
+            if (color == BlackColor)
+            {
+                return backColor ? AnsiColoringMode.BlackBackColor : AnsiColoringMode.BlackFontColor;
+            }
+            if (color == RedColor)
+            {
+                return backColor ? AnsiColoringMode.RedBackColor : AnsiColoringMode.RedFontColor;
+            }
+            if (color == GreenColor)
+            {
+                return backColor ? AnsiColoringMode.GreenBackColor : AnsiColoringMode.GreenFontColor;
+            }
+            if (color == YellowColor)
+            {
+                return backColor ? AnsiColoringMode.YellowBackColor : AnsiColoringMode.YellowFontColor;
+            }
+
+            if (color == BlueColor)
+            {
+                return backColor ? AnsiColoringMode.BlueBackColor : AnsiColoringMode.BlueFontColor;
+            }
+            if (color == PurpleColor)
+            {
+                return backColor ? AnsiColoringMode.PurpleBackColor : AnsiColoringMode.PurpleFontColor;
+            }
+            if (color == CyanColor)
+            {
+                return backColor ? AnsiColoringMode.CyanBackColor : AnsiColoringMode.CyanFontColor;
+            }
+            if (color == WhiteColor)
+            {
+                return backColor ? AnsiColoringMode.WhiteBackColor : AnsiColoringMode.WhiteFontColor;
+            }
+
+            if (color == BrightBlackColor)
+            {
+                return backColor ? AnsiColoringMode.BrightBlackBackColor : AnsiColoringMode.BrightBlueFontColor;
+            }
+            if (color == BrightRedColor)
+            {
+                return backColor ? AnsiColoringMode.BrightRedBackColor: AnsiColoringMode.BrightRedFontColor;
+            }
+            if (color == BrightGreenColor)
+            {
+                return backColor ? AnsiColoringMode.BrightGreenBackColor: AnsiColoringMode.BrightGreenFontColor;
+            }
+            if (color == BrightYellowColor)
+            {
+                return backColor ? AnsiColoringMode.BrightYellowBackColor : AnsiColoringMode.BrightYellowFontColor;
+            }
+
+            if (color == BrightBlueColor)
+            {
+                return backColor ? AnsiColoringMode.BrightBlueBackColor : AnsiColoringMode.BrightBlueFontColor;
+            }
+            if (color == BrightPurpleColor)
+            {
+                return backColor ? AnsiColoringMode.BrightPurpleBackColor : AnsiColoringMode.BrightPurpleFontColor;
+            }
+            if (color == BrightCyanColor)
+            {
+                return backColor ? AnsiColoringMode.BrightCyanBackColor : AnsiColoringMode.BrightCyanFontColor;
+            }
+            if (color == WhiteColor)
+            {
+                return backColor ? AnsiColoringMode.BrightWhiteBackColor : AnsiColoringMode.BrightWhiteFontColor;
+            }
+
+            throw new NotSupportedException("This color is not supported.");
         }
 
         private void SetSelectionFont(Font font, FontStyle fontStyle)

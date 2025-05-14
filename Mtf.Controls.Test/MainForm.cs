@@ -1,6 +1,7 @@
 using Mtf.Controls.Services;
 using Mtf.MessageBoxes;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.IO.Pipes;
@@ -22,6 +23,31 @@ namespace Mtf.Controls.Test
             InitializeComponent();
             image1 = ResourceHelper.GetEmbeddedResourceByName(GetType().Assembly, "Mtf.Controls.Test.Resources.kertmester.png");
             image2 = ResourceHelper.GetEmbeddedResourceByName(GetType().Assembly, "Mtf.Controls.Test.Resources.hack_with_me.png");
+
+            pbFontColor.BackColor = ansiColoringRichTextBox1.ForeColor;
+            pbBackColor.BackColor = ansiColoringRichTextBox1.BackColor;
+
+            colorDialog.CustomColors =
+                new int[]
+                {
+                    ColorTranslator.ToOle(ansiColoringRichTextBox1.BlackColor),
+                    ColorTranslator.ToOle(ansiColoringRichTextBox1.RedColor),
+                    ColorTranslator.ToOle(ansiColoringRichTextBox1.GreenColor),
+                    ColorTranslator.ToOle(ansiColoringRichTextBox1.YellowColor),
+                    ColorTranslator.ToOle(ansiColoringRichTextBox1.BlueColor),
+                    ColorTranslator.ToOle(ansiColoringRichTextBox1.PurpleColor),
+                    ColorTranslator.ToOle(ansiColoringRichTextBox1.CyanColor),
+                    ColorTranslator.ToOle(ansiColoringRichTextBox1.WhiteColor),
+
+                    ColorTranslator.ToOle(ansiColoringRichTextBox1.BrightBlackColor),
+                    ColorTranslator.ToOle(ansiColoringRichTextBox1.BrightRedColor),
+                    ColorTranslator.ToOle(ansiColoringRichTextBox1.BrightGreenColor),
+                    ColorTranslator.ToOle(ansiColoringRichTextBox1.BrightYellowColor),
+                    ColorTranslator.ToOle(ansiColoringRichTextBox1.BrightBlueColor),
+                    ColorTranslator.ToOle(ansiColoringRichTextBox1.BrightPurpleColor),
+                    ColorTranslator.ToOle(ansiColoringRichTextBox1.BrightCyanColor),
+                    ColorTranslator.ToOle(ansiColoringRichTextBox1.BrightWhiteColor)
+                };
 
             ansiColoringRichTextBox1.AppendText("\u001b[1;34mbin\u001b[0m      \u001b[1;34mcifs2\u001b[0m    \u001b[1;34mdev\u001b[0m      \u001b[1;34mjffs\u001b[0m     \u001b[1;34mmmc\u001b[0m      \u001b[1;34mproc\u001b[0m     \u001b[1;34msbin\u001b[0m     \u001b[1;34mtmp\u001b[0m      \u001b[1;34mwww\u001b[0m\r\n\u001b[1;34mbootfs\u001b[0m   \u001b[1;34mdata\u001b[0m     \u001b[1;36metc\u001b[0m      \u001b[1;34mlib\u001b[0m      \u001b[1;36mmnt\u001b[0m      \u001b[1;34mrom\u001b[0m      \u001b[1;34msys\u001b[0m      \u001b[1;34musr\u001b[0m\r\n\u001b[1;34mcifs1\u001b[0m    \u001b[1;36mdebug\u001b[0m    \u001b[1;36mhome\u001b[0m     \u001b[1;34mlib64\u001b[0m    \u001b[1;34mopt\u001b[0m      \u001b[1;36mroot\u001b[0m     \u001b[1;34msysroot\u001b[0m  \u001b[1;34mvar\u001b[0m\r\nuser@system:/home/user# ");
             ansiColoringRichTextBox1.AppendText("\u001b[1;34mbin\u001b[0m      \u001b[1;34mcifs2\u001b[0m    \u001b[1;34mdev\u001b[0m      \u001b[1;34mjffs\u001b[0m     \u001b[1;34mmmc\u001b[0m      \u001b[1;34mproc\u001b[0m     \u001b[1;34msbin\u001b[0m     \u001b[1;34mtmp\u001b[0m      \u001b[1;34mwww\u001b[0m\r\n\u001b[1;34mbootfs\u001b[0m   \u001b[1;34mdata\u001b[0m     \u001b[1;36metc\u001b[0m      \u001b[1;34mlib\u001b[0m      \u001b[1;36mmnt\u001b[0m      \u001b[1;34mrom\u001b[0m      \u001b[1;34msys\u001b[0m      \u001b[1;34musr\u001b[0m\r\n\u001b[1;34mcifs1\u001b[0m    \u001b[1;36mdebug\u001b[0m    \u001b[1;36mhome\u001b[0m     \u001b[1;34mlib64\u001b[0m    \u001b[1;34mopt\u001b[0m      \u001b[1;36mroot\u001b[0m     \u001b[1;34msysroot\u001b[0m  \u001b[1;34mvar\u001b[0m\r\nuser@system:/home/user# ");
@@ -201,6 +227,50 @@ namespace Mtf.Controls.Test
         private void BtnExportTreeView_Click(object sender, EventArgs e)
         {
             mtfTreeView1.ExportNodesToCsv(@"C:\Work\Test.csv", ";");
+        }
+
+        private void PbFontColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                pbFontColor.BackColor = colorDialog.Color;
+                //ansiColoringRichTextBox1.ChangeMode(Enums.AnsiColoringMode.Reset);
+            }
+        }
+
+        private void PbBackColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                pbBackColor.BackColor = colorDialog.Color;
+                //ansiColoringRichTextBox1.ChangeMode(Enums.AnsiColoringMode.Reset);
+            }
+        }
+
+        private void BtnAppendToAnsiText_Click(object sender, EventArgs e)
+        {
+            var modes = new List<Enums.AnsiColoringMode>
+            {
+                ansiColoringRichTextBox1.ColorToAnsiColoringMode(pbFontColor.BackColor),
+                ansiColoringRichTextBox1.ColorToAnsiColoringMode(pbBackColor.BackColor, true)
+            };
+            if (chkUnderline.Checked)
+            {
+                modes.Add(Enums.AnsiColoringMode.UnderlineFont);
+            }
+            if (chkItalic.Checked)
+            {
+                modes.Add(Enums.AnsiColoringMode.ItalicFont);
+            }
+            if (chkBold.Checked)
+            {
+                modes.Add(Enums.AnsiColoringMode.BoldFont);
+            }
+            if (chkStrikeout.Checked)
+            {
+                modes.Add(Enums.AnsiColoringMode.StrikeoutFont);
+            }
+            ansiColoringRichTextBox1.AppendText(tbAnsiText.Text, modes.ToArray());
         }
     }
 }

@@ -110,6 +110,16 @@ namespace Mtf.Controls.Test
             tabPage6 = new TabPage();
             tabPage7 = new TabPage();
             tabPage8 = new TabPage();
+            btnAppendToAnsiText = new Button();
+            tbAnsiText = new TextBox();
+            chkStrikeout = new CheckBox();
+            chkBold = new CheckBox();
+            chkItalic = new CheckBox();
+            chkUnderline = new CheckBox();
+            lblBackColor = new Label();
+            pbBackColor = new PictureBox();
+            lblFontColor = new Label();
+            pbFontColor = new PictureBox();
             tabPage9 = new TabPage();
             tabPage10 = new TabPage();
             tabPage11 = new TabPage();
@@ -120,6 +130,7 @@ namespace Mtf.Controls.Test
             tbUrl = new TextBox();
             tabPage12 = new TabPage();
             kbd300aSimulator1 = new Kbd300ASimulator();
+            colorDialog = new ColorDialog();
             ((System.ComponentModel.ISupportInitialize)mtfPictureBox1).BeginInit();
             movablePanel1.SuspendLayout();
             movableSizablePanel1.SuspendLayout();
@@ -141,6 +152,8 @@ namespace Mtf.Controls.Test
             tabPage6.SuspendLayout();
             tabPage7.SuspendLayout();
             tabPage8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pbBackColor).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbFontColor).BeginInit();
             tabPage9.SuspendLayout();
             tabPage10.SuspendLayout();
             tabPage11.SuspendLayout();
@@ -471,10 +484,10 @@ namespace Mtf.Controls.Test
             // 
             // ansiColoringRichTextBox1
             // 
-            ansiColoringRichTextBox1.Dock = DockStyle.Fill;
-            ansiColoringRichTextBox1.Location = new Point(0, 0);
+            ansiColoringRichTextBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            ansiColoringRichTextBox1.Location = new Point(0, 43);
             ansiColoringRichTextBox1.Name = "ansiColoringRichTextBox1";
-            ansiColoringRichTextBox1.Size = new Size(1586, 832);
+            ansiColoringRichTextBox1.Size = new Size(1586, 789);
             ansiColoringRichTextBox1.TabIndex = 25;
             ansiColoringRichTextBox1.Text = "";
             // 
@@ -810,6 +823,16 @@ namespace Mtf.Controls.Test
             // 
             // tabPage8
             // 
+            tabPage8.Controls.Add(btnAppendToAnsiText);
+            tabPage8.Controls.Add(tbAnsiText);
+            tabPage8.Controls.Add(chkStrikeout);
+            tabPage8.Controls.Add(chkBold);
+            tabPage8.Controls.Add(chkItalic);
+            tabPage8.Controls.Add(chkUnderline);
+            tabPage8.Controls.Add(lblBackColor);
+            tabPage8.Controls.Add(pbBackColor);
+            tabPage8.Controls.Add(lblFontColor);
+            tabPage8.Controls.Add(pbFontColor);
             tabPage8.Controls.Add(ansiColoringRichTextBox1);
             tabPage8.Location = new Point(4, 24);
             tabPage8.Name = "tabPage8";
@@ -817,6 +840,99 @@ namespace Mtf.Controls.Test
             tabPage8.TabIndex = 7;
             tabPage8.Text = "AnsiColoringRichTextBox";
             tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // btnAppendToAnsiText
+            // 
+            btnAppendToAnsiText.Location = new Point(1050, 9);
+            btnAppendToAnsiText.Name = "btnAppendToAnsiText";
+            btnAppendToAnsiText.Size = new Size(75, 23);
+            btnAppendToAnsiText.TabIndex = 35;
+            btnAppendToAnsiText.Text = "Append";
+            btnAppendToAnsiText.UseVisualStyleBackColor = true;
+            btnAppendToAnsiText.Click += BtnAppendToAnsiText_Click;
+            // 
+            // tbAnsiText
+            // 
+            tbAnsiText.Location = new Point(593, 11);
+            tbAnsiText.Name = "tbAnsiText";
+            tbAnsiText.Size = new Size(451, 23);
+            tbAnsiText.TabIndex = 34;
+            // 
+            // chkStrikeout
+            // 
+            chkStrikeout.AutoSize = true;
+            chkStrikeout.Location = new Point(477, 13);
+            chkStrikeout.Name = "chkStrikeout";
+            chkStrikeout.Size = new Size(73, 19);
+            chkStrikeout.TabIndex = 33;
+            chkStrikeout.Text = "Strikeout";
+            chkStrikeout.UseVisualStyleBackColor = true;
+            // 
+            // chkBold
+            // 
+            chkBold.AutoSize = true;
+            chkBold.Location = new Point(421, 13);
+            chkBold.Name = "chkBold";
+            chkBold.Size = new Size(50, 19);
+            chkBold.TabIndex = 32;
+            chkBold.Text = "Bold";
+            chkBold.UseVisualStyleBackColor = true;
+            // 
+            // chkItalic
+            // 
+            chkItalic.AutoSize = true;
+            chkItalic.Location = new Point(364, 13);
+            chkItalic.Name = "chkItalic";
+            chkItalic.Size = new Size(51, 19);
+            chkItalic.TabIndex = 31;
+            chkItalic.Text = "Italic";
+            chkItalic.UseVisualStyleBackColor = true;
+            // 
+            // chkUnderline
+            // 
+            chkUnderline.AutoSize = true;
+            chkUnderline.Location = new Point(281, 13);
+            chkUnderline.Name = "chkUnderline";
+            chkUnderline.Size = new Size(77, 19);
+            chkUnderline.TabIndex = 30;
+            chkUnderline.Text = "Underline";
+            chkUnderline.UseVisualStyleBackColor = true;
+            // 
+            // lblBackColor
+            // 
+            lblBackColor.AutoSize = true;
+            lblBackColor.Location = new Point(171, 14);
+            lblBackColor.Name = "lblBackColor";
+            lblBackColor.Size = new Size(62, 15);
+            lblBackColor.TabIndex = 29;
+            lblBackColor.Text = "Back color";
+            // 
+            // pbBackColor
+            // 
+            pbBackColor.Location = new Point(140, 9);
+            pbBackColor.Name = "pbBackColor";
+            pbBackColor.Size = new Size(25, 25);
+            pbBackColor.TabIndex = 28;
+            pbBackColor.TabStop = false;
+            pbBackColor.Click += PbBackColor_Click;
+            // 
+            // lblFontColor
+            // 
+            lblFontColor.AutoSize = true;
+            lblFontColor.Location = new Point(39, 14);
+            lblFontColor.Name = "lblFontColor";
+            lblFontColor.Size = new Size(61, 15);
+            lblFontColor.TabIndex = 27;
+            lblFontColor.Text = "Font color";
+            // 
+            // pbFontColor
+            // 
+            pbFontColor.Location = new Point(8, 9);
+            pbFontColor.Name = "pbFontColor";
+            pbFontColor.Size = new Size(25, 25);
+            pbFontColor.TabIndex = 26;
+            pbFontColor.TabStop = false;
+            pbFontColor.Click += PbFontColor_Click;
             // 
             // tabPage9
             // 
@@ -941,6 +1057,10 @@ namespace Mtf.Controls.Test
             kbd300aSimulator1.TabIndex = 0;
             kbd300aSimulator1.TabStop = false;
             // 
+            // colorDialog
+            // 
+            colorDialog.AllowFullOpen = false;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -979,6 +1099,9 @@ namespace Mtf.Controls.Test
             tabPage6.PerformLayout();
             tabPage7.ResumeLayout(false);
             tabPage8.ResumeLayout(false);
+            tabPage8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pbBackColor).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbFontColor).EndInit();
             tabPage9.ResumeLayout(false);
             tabPage10.ResumeLayout(false);
             tabPage11.ResumeLayout(false);
@@ -1053,5 +1176,16 @@ namespace Mtf.Controls.Test
         private CheckBox chkOpenCvSharp4Video;
         private CheckBox chkFFMpegVideo;
         private CheckBox chkVlcVideo;
+        private CheckBox chkStrikeout;
+        private CheckBox chkBold;
+        private CheckBox chkItalic;
+        private CheckBox chkUnderline;
+        private Label lblBackColor;
+        private PictureBox pbBackColor;
+        private Label lblFontColor;
+        private PictureBox pbFontColor;
+        private ColorDialog colorDialog;
+        private TextBox tbAnsiText;
+        private Button btnAppendToAnsiText;
     }
 }
