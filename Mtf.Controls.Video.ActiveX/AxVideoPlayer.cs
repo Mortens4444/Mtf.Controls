@@ -239,12 +239,23 @@ namespace Mtf.Controls.Video.ActiveX
             _ = AxVideoPicture?.Connect(ipAddress, camera, username, password);
         }
 
-        public async void StartAsync(string ipAddress, string camera, string username, string password, CancellationToken cancellationToken)
+        public async Task StartAsync(string ipAddress, string camera, string username, string password)
+        {
+            await StartAsync(ipAddress, camera, username, password, CancellationToken.None).ConfigureAwait(false);
+        }
+
+        public async Task StartAsync(string ipAddress, string camera, string username, string password, CancellationToken cancellationToken)
         {
             InitStart(ipAddress, camera, username, password);
             try
             {
-                await Task.Run(() => AxVideoPicture?.Connect(ipAddress, camera, username, password), cancellationToken).ConfigureAwait(false);
+                await Task.Run(() =>
+                {
+                    AxVideoPicture.BeginInvoke((Action)(() =>
+                    {
+                        AxVideoPicture?.Connect(ipAddress, camera, username, password);
+                    }));
+                }, cancellationToken).ConfigureAwait(false);
             }
             catch (OperationCanceledException) { }
         }
