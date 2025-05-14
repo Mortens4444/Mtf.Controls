@@ -47,11 +47,9 @@ The `AnsiColoringRichTextBox` is a custom control that extends `RichTextBox` to 
 #### Usage Example
 
 ```csharp
-var ansiTextBox = new AnsiColoringRichTextBox
-{
-    DisplayAnsiColors = true,
-    Text = "\x1B[0;31mThis is red text\x1B[0;32m and this is green text."
-};
+var ansiTextBox = new AnsiColoringRichTextBox();
+ansiTextBox.AppendText("\x1B[0;31mThis is red text\x1B[0;32m and this is green text.");
+ansiTextBox.AppendText("Hello, World!", ansiTextBox.ColorToAnsiColoringMode(Color.Blue), ansiTextBox.ColorToAnsiColoringMode(Color.Yellow, true), Enums.AnsiColoringMode.BoldFont);
 Controls.Add(ansiTextBox);
 ```
 
