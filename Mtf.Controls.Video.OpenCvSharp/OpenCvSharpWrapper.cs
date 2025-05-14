@@ -3,7 +3,6 @@ using Mtf.Controls.Interfaces;
 using Mtf.MessageBoxes;
 using OpenCvSharp;
 using OpenCvSharp.Extensions;
-using OpenCvSharp.Internal;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -123,7 +122,6 @@ namespace Mtf.Controls.Video.OpenCvSharp
 
         protected override void DisposeManagedResources()
         {
-            pictureBox.Dispose();
             cancellationTokenSource?.Dispose();
             videoCapture?.Dispose();
         }
