@@ -1,4 +1,5 @@
 ﻿using AxVIDEOCONTROL4Lib;
+using Mtf.Controls.Video.ActiveX.Extensions;
 using Mtf.MessageBoxes;
 using System;
 using System.Drawing;
@@ -241,21 +242,13 @@ namespace Mtf.Controls.Video.ActiveX
 
         public async Task StartAsync(string ipAddress, string camera, string username, string password)
         {
-            await StartAsync(ipAddress, camera, username, password, CancellationToken.None).ConfigureAwait(false);
-        }
-
-        public async Task StartAsync(string ipAddress, string camera, string username, string password, CancellationToken cancellationToken)
-        {
             InitStart(ipAddress, camera, username, password);
             try
             {
-                await Task.Run(() =>
+                await AxVideoPicture.InvokeAsync(() =>
                 {
-                    AxVideoPicture.BeginInvoke((Action)(() =>
-                    {
-                        AxVideoPicture?.Connect(ipAddress, camera, username, password);
-                    }));
-                }, cancellationToken).ConfigureAwait(false);
+                    AxVideoPicture?.Connect(ipAddress, camera, username, password);
+                }).ConfigureAwait(false);
             }
             catch (OperationCanceledException) { }
         }
