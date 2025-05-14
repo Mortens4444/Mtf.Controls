@@ -39,14 +39,7 @@
     <file src=".\Mtf.Controls.Video.ActiveX\bin\Release\net462\**" target="lib\net462" />
     <file src=".\Mtf.Controls.Video.ActiveX\bin\Release\net481\**" target="lib\net481" />
     <file src=".\Mtf.Controls.Video.ActiveX\bin\Release\net9.0-windows\**" target="lib\net9.0-windows7" />
-	
-    <!-- <file src=".\Mtf.Controls.Video.ActiveX\bin\Release\net462\*VIDEOCONTROL4Lib.dll" target="lib\net462" /> -->
-    <!-- <file src=".\Mtf.Controls.Video.ActiveX\bin\Release\net462\Mtf.Controls*" target="lib\net462" /> -->
-    <!-- <file src=".\Mtf.Controls.Video.ActiveX\bin\Release\net481\*VIDEOCONTROL4Lib.dll" target="lib\net481" /> -->
-    <!-- <file src=".\Mtf.Controls.Video.ActiveX\bin\Release\net481\Mtf.Controls*" target="lib\net481" /> -->
-    <!-- <file src=".\Mtf.Controls.Video.ActiveX\bin\Release\net9.0-windows\*VIDEOCONTROL4Lib.dll" target="lib\net9.0-windows7" /> -->
-    <!-- <file src=".\Mtf.Controls.Video.ActiveX\bin\Release\net9.0-windows\Mtf.Controls*" target="lib\net9.0-windows7" /> -->
-    <!-- <file src=".\Mtf.Controls.Video.ActiveX\bin\Release\net9.0-windows\**" target="lib\net9.0-windows7" exclude=".\Mtf.Controls.Video.ActiveX\bin\Release\net9.0-windows\Microsoft.Extensions.Logging.dll" /> -->
+
     <file src="LICENSE - ActiveX.txt" target="" />
     <file src=".\ReadMe - Mtf.Controls.Video.ActiveX.md" target="docs\" />
   </files>
