@@ -69,13 +69,13 @@ namespace Mtf.Controls.Video.VLC
             mediaPlayer.SetMarqueeInt(VideoMarqueeOption.Enable, 1);
             mediaPlayer.SetMarqueeInt(VideoMarqueeOption.Position, 5);
             mediaPlayer.SetMarqueeInt(VideoMarqueeOption.Size, (int)VlcWindow.OverlayFont.SizeInPoints * 4);
-            mediaPlayer.SetMarqueeInt(VideoMarqueeOption.Color, ConvertColorToVlcInt(VlcWindow.OverlayBrush.ToColor()));
+            mediaPlayer.SetMarqueeInt(VideoMarqueeOption.Color, Vlc.ConvertColorToVlcInt(VlcWindow.OverlayBrush.ToColor()));
 
             //VideoView.Paint
             media.Dispose();
         }
 
-        private int ConvertColorToVlcInt(Color color)
+        private static int ConvertColorToVlcInt(Color color)
         {
             return (color.A << 24) | (color.R << 16) | (color.G << 8) | color.B;
         }

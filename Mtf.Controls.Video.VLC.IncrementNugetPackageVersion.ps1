@@ -5,8 +5,6 @@ if (-not (Test-Path $NuspecFile)) {
     exit 1
 }
 
-Copy-Item -Path $NuspecFile -Destination "$NuspecFile.bak" -Force
-
 $lines = Get-Content $NuspecFile
 $updatedLines = @()
 

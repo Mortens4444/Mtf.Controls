@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Mtf.Controls.Video.ActiveX</id>
+    <version>1.0.5</version>
+    <description>
+      Custom Windows Forms Controls.
+      
+      The library includes various controls, such as:
+      - AxVideoPlayerWindow
+      
+      Compatibility:
+      - .NET Framework 4.6.2
+      - .NET Framework 4.8.1
+      - .NET 9
+	</description>
+    <authors>Mortens</authors>
+	<owners>Mortens</owners>
+    <copyright>Copyright © 2025</copyright>
+	<license type="file">LICENSE - ActiveX.txt</license>
+	<!-- <license type="expression">proprietary + MIT</license> -->
+	<projectUrl>https://github.com/Mortens4444/Mtf.Controls</projectUrl>
+    <repository type="git" url="https://github.com/Mortens4444/Mtf.Controls.git" branch="main" />
+	<tags>AxVideoPlayerWindow Mortens</tags>
+	<readme>docs\ReadMe - Mtf.Controls.Video.ActiveX.md</readme>
+    <dependencies>
+	  <group targetFramework="net462">
+		<dependency id="Mtf.MessageBoxes" version="6.0.2" />
+	  </group>
+	  <group targetFramework="net481">
+		<dependency id="Mtf.MessageBoxes" version="6.0.2" />
+	  </group>
+	  <group targetFramework="net9.0-windows7">
+		<dependency id="Mtf.MessageBoxes" version="6.0.2" />
+	  </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src=".\Mtf.Controls.Video.ActiveX\bin\Release\net462\**" target="lib\net462" />
+    <file src=".\Mtf.Controls.Video.ActiveX\bin\Release\net481\**" target="lib\net481" />
+    <file src=".\Mtf.Controls.Video.ActiveX\bin\Release\net9.0-windows\**" target="lib\net9.0-windows7" />
+	
+    <!-- <file src=".\Mtf.Controls.Video.ActiveX\bin\Release\net462\*VIDEOCONTROL4Lib.dll" target="lib\net462" /> -->
+    <!-- <file src=".\Mtf.Controls.Video.ActiveX\bin\Release\net462\Mtf.Controls*" target="lib\net462" /> -->
+    <!-- <file src=".\Mtf.Controls.Video.ActiveX\bin\Release\net481\*VIDEOCONTROL4Lib.dll" target="lib\net481" /> -->
+    <!-- <file src=".\Mtf.Controls.Video.ActiveX\bin\Release\net481\Mtf.Controls*" target="lib\net481" /> -->
+    <!-- <file src=".\Mtf.Controls.Video.ActiveX\bin\Release\net9.0-windows\*VIDEOCONTROL4Lib.dll" target="lib\net9.0-windows7" /> -->
+    <!-- <file src=".\Mtf.Controls.Video.ActiveX\bin\Release\net9.0-windows\Mtf.Controls*" target="lib\net9.0-windows7" /> -->
+    <!-- <file src=".\Mtf.Controls.Video.ActiveX\bin\Release\net9.0-windows\**" target="lib\net9.0-windows7" exclude=".\Mtf.Controls.Video.ActiveX\bin\Release\net9.0-windows\Microsoft.Extensions.Logging.dll" /> -->
+    <file src="LICENSE - ActiveX.txt" target="" />
+    <file src=".\ReadMe - Mtf.Controls.Video.ActiveX.md" target="docs\" />
+  </files>
+</package>

@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net481;net462</TargetFrameworks>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <OutputType>Library</OutputType>
+    <AnalysisLevel>latest-all</AnalysisLevel>
+    <PackageReadmeFile>ReadMe.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <UseWindowsForms>true</UseWindowsForms>
+    <PlatformTarget>x86</PlatformTarget>
+    <WarningLevel>9999</WarningLevel>
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+
+  <Target Name="SetFileVersionFromNuspec" BeforeTargets="BeforeBuild">
+    <XmlPeek XmlInputPath="../Mtf.Controls.Video.Chromium.nuspec" Query="//*[local-name()='version']/text()">
+      <Output TaskParameter="Result" PropertyName="FileVersion" />
+    </XmlPeek>
+  </Target>
+  
+  <ItemGroup>
+    <None Remove="Resources\NoSignal.png" />
+    <None Remove="Resources\VideoSource.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\NoSignal.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\VideoSource.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CefSharp.WinForms" Version="136.1.40" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Mtf.Controls.Interfaces\Mtf.Controls.Interfaces.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

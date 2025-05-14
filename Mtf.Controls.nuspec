@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Mtf.Controls</id>
-    <version>1.1.9</version>
+    <version>1.1.11</version>
     <description>
       Custom Windows Forms Controls.
       
@@ -25,14 +25,14 @@
       
       Compatibility:
       - .NET Framework 4.5.2
-      - .NET Framework 4.8
+      - .NET Framework 4.6.2
       - .NET Framework 4.8.1
       - .NET 8
       - .NET 9
     </description>
     <authors>Mortens</authors>
     <owners>Mortens</owners>
-    <copyright>Copyright © 2024</copyright>
+    <copyright>Copyright © 2025</copyright>
     <license type="expression">MIT</license>
     <projectUrl>https://github.com/Mortens4444/Mtf.Controls</projectUrl>
     <repository type="git" url="https://github.com/Mortens4444/Mtf.Controls.git" branch="main" />
@@ -40,79 +40,31 @@
     <readme>docs\ReadMe.md</readme>
     <dependencies>
       <group targetFramework="net452">
-        <dependency id="Accord" version="3.8.0" />
-        <dependency id="Accord.Video" version="3.8.0" />
-        <dependency id="AForge" version="2.2.5" />
-        <dependency id="AForge.Video" version="2.2.5" />
-        <dependency id="AForge.Video.DirectShow" version="2.2.5" />
-        <dependency id="Mtf.MessageBoxes" version="5.0.5" />
+        <dependency id="Mtf.MessageBoxes" version="6.0.2" />
         <dependency id="System.Net.Http" version="4.3.4" />
       </group>
       <group targetFramework="net462">
-        <dependency id="Accord" version="3.8.0" />
-        <dependency id="Accord.Video" version="3.8.0" />
-        <dependency id="AForge" version="2.2.5" />
-        <dependency id="AForge.Video" version="2.2.5" />
-        <dependency id="AForge.Video.DirectShow" version="2.2.5" />
-        <dependency id="Mtf.MessageBoxes" version="5.0.5" />
+        <dependency id="Mtf.MessageBoxes" version="6.0.2" />
         <dependency id="System.Net.Http" version="4.3.4" />
       </group>
-      <group targetFramework="net48">
-        <dependency id="Accord" version="3.8.0" />
-        <dependency id="Accord.Video" version="3.8.0" />
-        <dependency id="AForge" version="2.2.5" />
-        <dependency id="AForge.Video" version="2.2.5" />
-        <dependency id="AForge.Video.DirectShow" version="2.2.5" />
-        <dependency id="Mtf.MessageBoxes" version="5.0.5" />
-        <dependency id="System.Net.Http" version="4.3.4" />
-      </group>    
       <group targetFramework="net481">
-        <dependency id="Accord" version="3.8.0" />
-        <dependency id="Accord.Video" version="3.8.0" />
-        <dependency id="AForge" version="2.2.5" />
-        <dependency id="AForge.Video" version="2.2.5" />
-        <dependency id="AForge.Video.DirectShow" version="2.2.5" />
-        <dependency id="Mtf.MessageBoxes" version="5.0.5" />
+        <dependency id="Mtf.MessageBoxes" version="6.0.2" />
         <dependency id="System.Net.Http" version="4.3.4" />
       </group>
       <group targetFramework="net8.0-windows7">
-        <dependency id="Accord" version="3.8.0" />
-        <dependency id="Accord.Video" version="3.8.0" />
-        <dependency id="AForge" version="2.2.5" />
-        <dependency id="AForge.Video" version="2.2.5" />
-        <dependency id="AForge.Video.DirectShow" version="2.2.5" />
-        <dependency id="Mtf.MessageBoxes" version="5.0.5" />
+        <dependency id="Mtf.MessageBoxes" version="6.0.2" />
       </group>
       <group targetFramework="net9.0-windows7">
-        <dependency id="Accord" version="3.8.0" />
-        <dependency id="Accord.Video" version="3.8.0" />
-        <dependency id="AForge" version="2.2.5" />
-        <dependency id="AForge.Video" version="2.2.5" />
-        <dependency id="AForge.Video.DirectShow" version="2.2.5" />
-        <dependency id="Mtf.MessageBoxes" version="5.0.5" />
+        <dependency id="Mtf.MessageBoxes" version="6.0.2" />
       </group>
     </dependencies>
   </metadata>
   <files>
     <file src=".\Mtf.Controls\bin\Release\net452\**" target="lib\net452" />
     <file src=".\Mtf.Controls\bin\Release\net462\**" target="lib\net462" />
-    <file src=".\Mtf.Controls\bin\Release\net48\**" target="lib\net48" />
     <file src=".\Mtf.Controls\bin\Release\net481\**" target="lib\net481" />
     <file src=".\Mtf.Controls\bin\Release\net8.0-windows\**" target="lib\net8.0-windows7" />
     <file src=".\Mtf.Controls\bin\Release\net9.0-windows\**" target="lib\net9.0-windows7" />
-    <file src=".\Mtf.Controls.Net481\bin\Release\net481\**" target="lib\net481" exclude= ".\Mtf.Controls.Net481\bin\Release\net481\Mtf.MessageBoxes.dll;.\Mtf.Controls.Net481\bin\Release\net481\System.CodeDom.dll;.\Mtf.Controls.Net481\bin\Release\net481\Microsoft.Bcl.AsyncInterfaces.dll;.\Mtf.Controls.Net481\bin\Release\net481\Microsoft.Extensions.DependencyInjection.dll;.\Mtf.Controls.Net481\bin\Release\net481\Microsoft.Extensions.Logging.dll;.\Mtf.Controls.Net481\bin\Release\net481\Microsoft.Extensions.Primitives.dll;.\Mtf.Controls.Net481\bin\Release\net481\System.Buffers.dll;.\Mtf.Controls.Net481\bin\Release\net481\System.Diagnostics.DiagnosticSource.dll;.\Mtf.Controls.Net481\bin\Release\net481\System.Memory.dll;.\Mtf.Controls.Net481\bin\Release\net481\System.Numerics.Vectors.dll;.\Mtf.Controls.Net481\bin\Release\net481\System.Runtime.CompilerServices.Unsafe.dll;.\Mtf.Controls.Net481\bin\Release\net481\System.Threading.Tasks.Extensions.dll;.\Mtf.Controls.Net481\bin\Release\net481\System.ValueTuple.dll;.\Mtf.Controls.Net481\bin\Release\net481\Microsoft.Extensions.DependencyInjection.Abstractions.dll;.\Mtf.Controls.Net481\bin\Release\net481\Microsoft.Extensions.Logging.Abstractions.dll;.\Mtf.Controls.Net481\bin\Release\net481\Microsoft.Extensions.Options.dll"/>
-
-    <file src=".\Mtf.Controls.x86\bin\Release\net452\*VIDEOCONTROL4Lib.dll" target="lib\net452" />
-    <file src=".\Mtf.Controls.x86\bin\Release\net452\Mtf.Controls*" target="lib\net452" />
-    <file src=".\Mtf.Controls.x86\bin\Release\net462\*VIDEOCONTROL4Lib.dll" target="lib\net462" />
-    <file src=".\Mtf.Controls.x86\bin\Release\net462\Mtf.Controls*" target="lib\net462" />
-    <file src=".\Mtf.Controls.x86\bin\Release\net48\*VIDEOCONTROL4Lib.dll" target="lib\net48" />
-    <file src=".\Mtf.Controls.x86\bin\Release\net48\Mtf.Controls*" target="lib\net48" />
-    <file src=".\Mtf.Controls.x86\bin\Release\net481\*VIDEOCONTROL4Lib.dll" target="lib\net481" />
-    <file src=".\Mtf.Controls.x86\bin\Release\net481\Mtf.Controls*" target="lib\net481" />
-
-    <file src=".\Mtf.Controls.x86\bin\Release\net8.0-windows\**" target="lib\net8.0-windows7" exclude=".\Mtf.Controls.x86\bin\Release\net8.0-windows\Microsoft.Extensions.Logging.dll" />
-    <file src=".\Mtf.Controls.x86\bin\Release\net9.0-windows\**" target="lib\net9.0-windows7" exclude=".\Mtf.Controls.x86\bin\Release\net9.0-windows\Microsoft.Extensions.Logging.dll" />
     <file src=".\ReadMe.md" target="docs\" />
   </files>
 </package>

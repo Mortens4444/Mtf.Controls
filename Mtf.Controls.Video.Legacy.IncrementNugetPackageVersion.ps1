@@ -1,4 +1,4 @@
-$NuspecFile = "Mtf.Controls.nuspec"
+$NuspecFile = "Mtf.Controls.Video.Legacy.nuspec"
 
 if (-not (Test-Path $NuspecFile)) {
     Write-Host "Error: File not found: $NuspecFile." -ForegroundColor Red

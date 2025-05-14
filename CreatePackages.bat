@@ -1,6 +1,15 @@
 nuget pack Mtf.Controls.nuspec
 powershell.exe -ExecutionPolicy Bypass -File ".\Mtf.Controls.IncrementNugetPackageVersion.ps1"
 
+nuget pack Mtf.Controls.Video.ActiveX.nuspec
+powershell.exe -ExecutionPolicy Bypass -File ".\Mtf.Controls.Video.ActiveX.IncrementNugetPackageVersion.ps1"
+
+nuget pack Mtf.Controls.Video.Chromium.nuspec
+powershell.exe -ExecutionPolicy Bypass -File ".\Mtf.Controls.Video.Chromium.IncrementNugetPackageVersion.ps1"
+
+nuget pack Mtf.Controls.Video.Legacy.nuspec
+powershell.exe -ExecutionPolicy Bypass -File ".\Mtf.Controls.Video.Legacy.IncrementNugetPackageVersion.ps1"
+
 nuget pack Mtf.Controls.Video.nuspec
 powershell.exe -ExecutionPolicy Bypass -File ".\Mtf.Controls.Video.IncrementNugetPackageVersion.ps1"
 

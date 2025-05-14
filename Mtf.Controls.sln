@@ -12,13 +12,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		ReadMe.md = ReadMe.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtf.Controls.Net481.Test", "Mtf.Controls.Net481.Test\Mtf.Controls.Net481.Test.csproj", "{B3371FE7-5423-469F-BAAB-12F5BCE53D05}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtf.Controls.Video.Legacy.Test", "Mtf.Controls.Video.Legacy.Test\Mtf.Controls.Video.Legacy.Test.csproj", "{B3371FE7-5423-469F-BAAB-12F5BCE53D05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtf.Controls.Net481", "Mtf.Controls.Net481\Mtf.Controls.Net481.csproj", "{62F84B61-B567-41BD-8826-0D8175FDFBF9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtf.Controls.Video.Legacy", "Mtf.Controls.Video.Legacy\Mtf.Controls.Video.Legacy.csproj", "{62F84B61-B567-41BD-8826-0D8175FDFBF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtf.Controls.x86", "Mtf.Controls.x86\Mtf.Controls.x86.csproj", "{E21CA18B-9171-42E5-B27D-0D2EC381A8C2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtf.Controls.Video.ActiveX", "Mtf.Controls.Video.ActiveX\Mtf.Controls.Video.ActiveX.csproj", "{E21CA18B-9171-42E5-B27D-0D2EC381A8C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtf.Controls.x86.Test", "Mtf.Controls.x86.Test\Mtf.Controls.x86.Test.csproj", "{D49AB670-918C-4464-B7FF-0628185B4DDB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtf.Controls.Video.ActiveX.Test", "Mtf.Controls.Video.ActiveX.Test\Mtf.Controls.Video.ActiveX.Test.csproj", "{D49AB670-918C-4464-B7FF-0628185B4DDB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtf.Controls.Video", "Mtf.Controls.Video\Mtf.Controls.Video.csproj", "{0248F22C-5ACF-4CF0-8E83-2A4A5B9925D5}"
 EndProject
@@ -29,6 +29,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtf.Controls.Video.VLC", "Mtf.Controls.Video.VLC\Mtf.Controls.Video.VLC.csproj", "{7918721B-BA10-477A-B03F-A2B234F90A7F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtf.Controls.Interfaces", "Mtf.Controls.Interfaces\Mtf.Controls.Interfaces.csproj", "{FFFDCE5F-D9CB-4BF3-82F6-F3EB3C47C0A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtf.Controls.Video.Chromium", "Mtf.Controls.Video.Chromium\Mtf.Controls.Video.Chromium.csproj", "{5DCB4F47-44C1-4910-B908-45D1CC5C4D9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -80,6 +82,10 @@ Global
 		{FFFDCE5F-D9CB-4BF3-82F6-F3EB3C47C0A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFFDCE5F-D9CB-4BF3-82F6-F3EB3C47C0A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFFDCE5F-D9CB-4BF3-82F6-F3EB3C47C0A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DCB4F47-44C1-4910-B908-45D1CC5C4D9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DCB4F47-44C1-4910-B908-45D1CC5C4D9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DCB4F47-44C1-4910-B908-45D1CC5C4D9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DCB4F47-44C1-4910-B908-45D1CC5C4D9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
