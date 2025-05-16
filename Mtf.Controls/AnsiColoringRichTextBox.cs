@@ -1,7 +1,5 @@
 ﻿using Mtf.Controls.Enums;
-using Mtf.Controls.Models;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Text;
@@ -14,7 +12,6 @@ namespace Mtf.Controls
     [ToolboxBitmap(typeof(SourceCodeViewerRichTextBox), "Resources.SourceCodeViewerRichTextBox.png")]
     public class AnsiColoringRichTextBox : RichTextBox
     {
-        private static readonly char[] separator = { '\r', '\n' };
         private const string AnsiPattern = @"\x1B\[[0-9;]*m";
         private Color lastUsedFontColor;
         private Color lastUsedBackColor;
@@ -128,56 +125,44 @@ namespace Mtf.Controls
             AppendText(sb.ToString());
         }
 
-        public new void AppendText(string text)
+        private void AppendText(string text)
         {
-            if (String.IsNullOrEmpty(text))
-            {
-                return;
-            }
-
-            var lines = text.Split(separator, StringSplitOptions.RemoveEmptyEntries);
-            foreach (var line in lines)
-            {
-                AppendTextPart(line);
-                base.AppendText(Environment.NewLine);
-            }
-        }
-
-        private void AppendTextPart(string text)
-        {
-            var insertionStartIndex = TextLength;
-
             var regex = new Regex(AnsiPattern, RegexOptions.Compiled);
             var matches = regex.Matches(text);
-            var formattedBlocks = new List<AnsiColoringRichTextBoxFormatter>();
 
-            Color currentColor = ForeColor;
-            Color currentBackColor = BackColor;
+            var currentColor = ForeColor;
+            var currentBackColor = BackColor;
             var currentStyle = FontStyle.Regular;
-            var totalRemovedLength = 0;
 
-            for (var i = 0; i < matches.Count; i++)
+            var insertionStartIndex = TextLength;
+            var currentIndex = 0;
+
+            foreach (Match match in matches)
             {
-                var match = matches[i];
-                var blockStart = insertionStartIndex + match.Index - totalRemovedLength;
-                var blockEnd = insertionStartIndex + (i < matches.Count - 1 ? matches[i + 1].Index : text.Length) - totalRemovedLength - match.Length;
+                var plainText = text.Substring(currentIndex, match.Index - currentIndex);
+                if (!String.IsNullOrEmpty(plainText))
+                {
+                    var start = TextLength;
+                    base.AppendText(plainText);
+                    Select(start, plainText.Length);
+                    SelectionColor = currentColor;
+                    SelectionBackColor = currentBackColor;
+                    SetSelectionFont(Font, currentStyle);
+                }
 
-                var ansiCode = match.Value;
-                ProcessAnsiCode(ansiCode, ref currentColor, ref currentBackColor, ref currentStyle);
-
-                formattedBlocks.Add(new AnsiColoringRichTextBoxFormatter(blockStart, blockEnd - blockStart, currentColor, currentBackColor, currentStyle));
-                totalRemovedLength += match.Length;
+                ProcessAnsiCode(match.Value, ref currentColor, ref currentBackColor, ref currentStyle);
+                currentIndex = match.Index + match.Length;
             }
 
-            var cleanText = regex.Replace(text, String.Empty);
-            base.AppendText(cleanText);
-
-            foreach (var formatter in formattedBlocks)
+            if (currentIndex < text.Length)
             {
-                Select(formatter.Start, formatter.Length);
-                SelectionColor = formatter.FontColor;
-                SelectionBackColor = formatter.BackColor;
-                SetSelectionFont(Font, formatter.Style);
+                var plainText = text.Substring(currentIndex);
+                var start = TextLength;
+                base.AppendText(plainText);
+                Select(start, plainText.Length);
+                SelectionColor = currentColor;
+                SelectionBackColor = currentBackColor;
+                SetSelectionFont(Font, currentStyle);
             }
         }
 
