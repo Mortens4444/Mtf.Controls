@@ -39,21 +39,19 @@ namespace Mtf.Controls.Video.OpenCvSharp
             {
                 Stop();
                 videoCapture = new VideoCapture(url);
-            }).ContinueWith(async (t) =>
-            {
-                await Task.Run(() =>
+                if (videoCapture.IsOpened())
                 {
-                    if (videoCapture.IsOpened())
-                    {
-                        videoCapture.Set(VideoCaptureProperties.BufferSize, 0);
-                        videoCapture.Set(VideoCaptureProperties.Fps, 60);
-                        //videoCapture.Set(VideoCaptureProperties.RtspTransport, (double)VideoCaptureAPIs.ANY);
-                        videoCapture.Set(VideoCaptureProperties.HwAcceleration, (double)VideoCaptureAPIs.ANY);
+                    videoCapture.Set(VideoCaptureProperties.BufferSize, 0);
+                    videoCapture.Set(VideoCaptureProperties.Fps, 60);
+                    //videoCapture.Set(VideoCaptureProperties.RtspTransport, (double)VideoCaptureAPIs.ANY);
+                    videoCapture.Set(VideoCaptureProperties.HwAcceleration, (double)VideoCaptureAPIs.ANY);
 
-                        try
+                    try
+                    {
+                        using (var frame = new Mat())
                         {
-                            var frame = new Mat();
                             cancellationTokenSource = new CancellationTokenSource();
+
                             while (!cancellationTokenSource.Token.IsCancellationRequested)
                             {
                                 lock (sync)
@@ -83,32 +81,31 @@ namespace Mtf.Controls.Video.OpenCvSharp
                                 }
                             }
                         }
-                        catch (Exception ex)
-                        {
-                            DebugErrorBox.Show(ex);
-                            throw;
-                        }
-                    }
-                    else
-                    {
-                        Stop();
-                    }
-                }).ContinueWith((t2) =>
-                {
-                    try
-                    {
-                        pictureBox.InvokeAction(() =>
-                        {
-                            pictureBox.ThreadSafeClearImage(sync);
-                        });
                     }
                     catch (Exception ex)
                     {
                         DebugErrorBox.Show(ex);
                         throw;
                     }
-                });
-            });
+                }
+                else
+                {
+                    Stop();
+                }
+
+                try
+                {
+                    pictureBox.InvokeAction(() =>
+                    {
+                        pictureBox.ThreadSafeClearImage(sync);
+                    });
+                }
+                catch (Exception ex)
+                {
+                    DebugErrorBox.Show(ex);
+                    throw;
+                }
+            }).ConfigureAwait(false);
         }
 
         public void Stop()
