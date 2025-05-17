@@ -1,4 +1,6 @@
 ﻿using Mtf.Controls.Enums;
+using Mtf.Controls.Interfaces;
+using Mtf.Controls.Services;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -9,21 +11,64 @@ using System.Windows.Forms;
 namespace Mtf.Controls
 {
     [ToolboxItem(true)]
-    [ToolboxBitmap(typeof(SourceCodeViewerRichTextBox), "Resources.SourceCodeViewerRichTextBox.png")]
-    public class AnsiColoringRichTextBox : RichTextBox
+    [ToolboxBitmap(typeof(AnsiColoringRichTextBox), "Resources.SourceCodeViewerRichTextBox.png")]
+    public class AnsiColoringRichTextBox : RichTextBox, IAnsiColoringCommandContext, IAnsiMovingCommandContext
     {
-        private const string AnsiPattern = @"\x1B\[[0-9;]*m";
-        private Color lastUsedFontColor;
-        private Color lastUsedBackColor;
-        private Color defaultFontColor;
-        private Color defaultBackColor;
+        private static readonly Regex AnsiPattern = new Regex(@"[\x1B\u001b]\[[0-9;]*[A-HJKSTfmisu]", RegexOptions.Compiled);
+        
+        private Color currentColor;
+        private Color currentBackColor;
+        private FontStyle currentFontStyle;
 
         public AnsiColoringRichTextBox()
         {
-            lastUsedFontColor = ForeColor;
-            defaultFontColor = ForeColor;
-            defaultBackColor = BackColor;
+            currentColor = ForeColor;
+            currentBackColor = BackColor;
+            currentFontStyle = Font.Style;
+
+            LastUsedFontColor = ForeColor;
+            DefaultFontColor = ForeColor;
+            DefaultBackColor = BackColor;
         }
+
+        #region Properties
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Default font color.")]
+        public Color DefaultFontColor { get; set; }
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Default background color.")]
+        public Color DefaultBackColor { get; set; }
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Last used font color.")]
+        public Color LastUsedFontColor { get; set; }
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Last used background color.")]
+        public Color LastUsedBackColor { get; set; }
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Current color.")]
+        public Color CurrentColor { get => currentColor; set => currentColor = value; }
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Current background color.")]
+        public Color CurrentBackColor { get => currentBackColor; set => currentBackColor = value; }
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Font style.")]
+        public FontStyle CurrentFontStyle { get => currentFontStyle; set => currentFontStyle = value; }
+
+        #endregion
 
         #region Color properties
 
@@ -108,7 +153,7 @@ namespace Mtf.Controls
         public Color BrightWhiteColor { get; set; } = Color.Wheat;
 
         #endregion
-        
+
         public void ChangeMode(AnsiColoringMode ansiColoringMode)
         {
             AppendText($"\u001b[{(int)ansiColoringMode}m");
@@ -117,24 +162,26 @@ namespace Mtf.Controls
         public void AppendText(string text, params AnsiColoringMode[] ansiColoringModes)
         {
             var sb = new StringBuilder();
-            foreach (var ansiColoringMode in ansiColoringModes)
+            if (ansiColoringModes != null)
             {
-                sb.Append($"\u001b[{(int)ansiColoringMode}m");
+                foreach (var ansiColoringMode in ansiColoringModes)
+                {
+                    var msg = $"\u001b[{(int)ansiColoringMode}m";
+                    _ = sb.Append(msg);
+                }
             }
-            sb.Append(text);
+            _ = sb.Append(text);
             AppendText(sb.ToString());
         }
 
-        private void AppendText(string text)
+        public new void AppendText(string text)
         {
-            var regex = new Regex(AnsiPattern, RegexOptions.Compiled);
-            var matches = regex.Matches(text);
+            if (String.IsNullOrEmpty(text))
+            {
+                return;
+            }
 
-            var currentColor = ForeColor;
-            var currentBackColor = BackColor;
-            var currentStyle = FontStyle.Regular;
-
-            var insertionStartIndex = TextLength;
+            var matches = AnsiPattern.Matches(text);
             var currentIndex = 0;
 
             foreach (Match match in matches)
@@ -142,203 +189,86 @@ namespace Mtf.Controls
                 var plainText = text.Substring(currentIndex, match.Index - currentIndex);
                 if (!String.IsNullOrEmpty(plainText))
                 {
-                    var start = TextLength;
-                    base.AppendText(plainText);
-                    Select(start, plainText.Length);
-                    SelectionColor = currentColor;
-                    SelectionBackColor = currentBackColor;
-                    SetSelectionFont(Font, currentStyle);
+                    ApplyStyle(plainText);
                 }
 
-                ProcessAnsiCode(match.Value, ref currentColor, ref currentBackColor, ref currentStyle);
+                if (AnsiCodeFormattingDecider.IsColoringCode(match.Value))
+                {
+                    ProcessAnsiColoringCode(match.Value);
+                }
+                else if (AnsiCodeFormattingDecider.IsMovingCode(match.Value))
+                {
+                    ProcessAnsiMovingCode(match.Value);
+                }
+
                 currentIndex = match.Index + match.Length;
             }
 
             if (currentIndex < text.Length)
             {
                 var plainText = text.Substring(currentIndex);
-                var start = TextLength;
-                base.AppendText(plainText);
-                Select(start, plainText.Length);
-                SelectionColor = currentColor;
-                SelectionBackColor = currentBackColor;
-                SetSelectionFont(Font, currentStyle);
+                ApplyStyle(plainText);
             }
         }
 
-        private void ProcessAnsiCode(string ansiCode, ref Color currentColor, ref Color currentBackColor, ref FontStyle currentStyle)
+        private void ApplyStyle(string plainText)
         {
-            var numbers = ansiCode.Trim('\x1B', '[', 'm').Split(';');
-            foreach (var numStr in numbers)
+            var start = TextLength;
+            base.AppendText(plainText);
+            Select(start, plainText.Length);
+            SelectionColor = CurrentColor;
+            SelectionBackColor = CurrentBackColor;
+            SetSelectionFont(Font, CurrentFontStyle);
+        }
+
+        private void ProcessAnsiMovingCode(string ansiCode)
+        {
+            var codeRegex = new Regex(@"\x1b\[(\d*(;\d+)*)[Hf]");
+            var match = codeRegex.Match(ansiCode);
+
+            if (match.Success)
             {
-                if (!Int32.TryParse(numStr, out var code)) continue;
+                var codesString = match.Groups[1].Value;
+                var individualCodes = codesString.Split(';');
 
-                switch (code)
+                foreach (var codeStr in individualCodes)
                 {
-                    case 0:
-                        currentColor = defaultFontColor;
-                        currentBackColor = defaultBackColor;
-                        currentStyle = FontStyle.Regular;
-                        break;
-
-                    case 1: currentStyle |= FontStyle.Bold; break;
-                    case 2: /* set dim/faint mode */
-                        currentColor = Color.FromArgb(128, currentColor);
-                        break;
-                    case 3: currentStyle |= FontStyle.Italic; break;
-                    case 4: currentStyle |= FontStyle.Underline; break;
-                    case 5: /* set blinking mode */ break;
-                    case 7:
-                        lastUsedFontColor = ForeColor;
-                        lastUsedBackColor = BackColor;
-                        var tmp = currentColor;
-                        currentColor = currentBackColor;
-                        currentBackColor = tmp;
-                        break;
-                    case 8:
-                        lastUsedFontColor = ForeColor;
-                        ForeColor = BackColor;
-                        break;
-                    case 9: currentStyle |= FontStyle.Strikeout; break;
-
-                    case 22:
-                        currentStyle &= ~FontStyle.Bold;
-                        currentColor = Color.FromArgb(Byte.MaxValue, currentColor);
-                        break;
-
-                    case 23: currentStyle &= ~FontStyle.Italic; break;
-                    case 24: currentStyle &= ~FontStyle.Underline; break;
-                    case 25: /* reset blinking mode */ break;
-                    case 27:
-                        currentColor = lastUsedFontColor;
-                        currentBackColor = lastUsedBackColor;
-                        break;
-                    case 28:
-                        ForeColor = lastUsedFontColor;
-                        break;
-                    case 29: currentStyle &= ~FontStyle.Strikeout; break;
-
-                    case 30: currentColor = BlackColor; break;
-                    case 31: currentColor = RedColor; break;
-                    case 32: currentColor = GreenColor; break;
-                    case 33: currentColor = YellowColor; break;
-                    case 34: currentColor = BlueColor; break;
-                    case 35: currentColor = PurpleColor; break;
-                    case 36: currentColor = CyanColor; break;
-                    case 37: currentColor = WhiteColor; break;
-
-                    case 40: currentBackColor = BlackColor; break;
-                    case 41: currentBackColor = RedColor; break;
-                    case 42: currentBackColor = GreenColor; break;
-                    case 43: currentBackColor = YellowColor; break;
-                    case 44: currentBackColor = BlueColor; break;
-                    case 45: currentBackColor = PurpleColor; break;
-                    case 46: currentBackColor = CyanColor; break;
-                    case 47: currentBackColor = WhiteColor; break;
-
-                    case 90: currentColor = BrightBlackColor; break;
-                    case 91: currentColor = BrightRedColor; break;
-                    case 92: currentColor = BrightGreenColor; break;
-                    case 93: currentColor = BrightYellowColor; break;
-                    case 94: currentColor = BrightBlueColor; break;
-                    case 95: currentColor = BrightPurpleColor; break;
-                    case 96: currentColor = BrightCyanColor; break;
-                    case 97: currentColor = BrightWhiteColor; break;
-
-                    case 100: currentBackColor = BrightBlackColor; break;
-                    case 101: currentBackColor = BrightRedColor; break;
-                    case 102: currentBackColor = BrightGreenColor; break;
-                    case 103: currentBackColor = BrightYellowColor; break;
-                    case 104: currentBackColor = BrightBlueColor; break;
-                    case 105: currentBackColor = BrightPurpleColor; break;
-                    case 106: currentBackColor = BrightCyanColor; break;
-                    case 107: currentBackColor = BrightWhiteColor; break;
+                    var command = AnsiMovingCommandFactory.Create(ansiCode, codesString, this);
+                    command.Execute(this);
                 }
             }
         }
 
-        public AnsiColoringMode ColorToAnsiColoringMode(Color color, bool backColor = false)
+        private void ProcessAnsiColoringCode(string ansiCode)
         {
-            if (color == BlackColor)
-            {
-                return backColor ? AnsiColoringMode.BlackBackColor : AnsiColoringMode.BlackFontColor;
-            }
-            if (color == RedColor)
-            {
-                return backColor ? AnsiColoringMode.RedBackColor : AnsiColoringMode.RedFontColor;
-            }
-            if (color == GreenColor)
-            {
-                return backColor ? AnsiColoringMode.GreenBackColor : AnsiColoringMode.GreenFontColor;
-            }
-            if (color == YellowColor)
-            {
-                return backColor ? AnsiColoringMode.YellowBackColor : AnsiColoringMode.YellowFontColor;
-            }
+            var codeRegex = new Regex(@"\x1b\[(\d+(;\d+)*)m");
+            var match = codeRegex.Match(ansiCode);
 
-            if (color == BlueColor)
+            if (match.Success)
             {
-                return backColor ? AnsiColoringMode.BlueBackColor : AnsiColoringMode.BlueFontColor;
-            }
-            if (color == PurpleColor)
-            {
-                return backColor ? AnsiColoringMode.PurpleBackColor : AnsiColoringMode.PurpleFontColor;
-            }
-            if (color == CyanColor)
-            {
-                return backColor ? AnsiColoringMode.CyanBackColor : AnsiColoringMode.CyanFontColor;
-            }
-            if (color == WhiteColor)
-            {
-                return backColor ? AnsiColoringMode.WhiteBackColor : AnsiColoringMode.WhiteFontColor;
-            }
+                var codesString = match.Groups[1].Value;
+                var individualCodes = codesString.Split(';');
 
-            if (color == BrightBlackColor)
-            {
-                return backColor ? AnsiColoringMode.BrightBlackBackColor : AnsiColoringMode.BrightBlueFontColor;
+                foreach (var codeStr in individualCodes)
+                {
+                    if (Int32.TryParse(codeStr, out int code))
+                    {
+                        var command = AnsiColoringCommandFactory.Create(code, this);
+                        command.Execute(this);
+                    }
+                }
             }
-            if (color == BrightRedColor)
-            {
-                return backColor ? AnsiColoringMode.BrightRedBackColor: AnsiColoringMode.BrightRedFontColor;
-            }
-            if (color == BrightGreenColor)
-            {
-                return backColor ? AnsiColoringMode.BrightGreenBackColor: AnsiColoringMode.BrightGreenFontColor;
-            }
-            if (color == BrightYellowColor)
-            {
-                return backColor ? AnsiColoringMode.BrightYellowBackColor : AnsiColoringMode.BrightYellowFontColor;
-            }
-
-            if (color == BrightBlueColor)
-            {
-                return backColor ? AnsiColoringMode.BrightBlueBackColor : AnsiColoringMode.BrightBlueFontColor;
-            }
-            if (color == BrightPurpleColor)
-            {
-                return backColor ? AnsiColoringMode.BrightPurpleBackColor : AnsiColoringMode.BrightPurpleFontColor;
-            }
-            if (color == BrightCyanColor)
-            {
-                return backColor ? AnsiColoringMode.BrightCyanBackColor : AnsiColoringMode.BrightCyanFontColor;
-            }
-            if (color == WhiteColor)
-            {
-                return backColor ? AnsiColoringMode.BrightWhiteBackColor : AnsiColoringMode.BrightWhiteFontColor;
-            }
-
-            throw new NotSupportedException("This color is not supported.");
         }
 
         private void SetSelectionFont(Font font, FontStyle fontStyle)
         {
             try
             {
-                SelectionFont = new Font(Font, fontStyle);
+                SelectionFont = new Font(font, fontStyle);
             }
             catch
             {
-                SelectionFont = Font;
+                SelectionFont = font;
             }
         }
 
@@ -347,6 +277,11 @@ namespace Mtf.Controls
             SelectAll();
             SelectionColor = ForeColor;
             SelectionFont = Font;
+        }
+
+        public AnsiColoringMode ColorToAnsiColoringMode(Color color, bool backColor = false)
+        {
+            return ColoringModeConverter.ColorToAnsiColoringMode(this, color, backColor);
         }
     }
 }

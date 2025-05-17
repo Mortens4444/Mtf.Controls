@@ -272,5 +272,11 @@ namespace Mtf.Controls.Test
             }
             ansiColoringRichTextBox1.AppendText(tbAnsiText.Text, modes.ToArray());
         }
+
+        private void BtnHome_Click(object sender, EventArgs e)
+        {
+            ansiColoringRichTextBox1.AppendText("\x1B[H");
+            ansiColoringRichTextBox1.Focus();
+        }
     }
 }

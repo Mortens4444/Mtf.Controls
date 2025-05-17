@@ -66,6 +66,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Mtf.Controls.Interfaces\Mtf.Controls.Interfaces.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Resources\NoSignal.png" />
   </ItemGroup>
 
