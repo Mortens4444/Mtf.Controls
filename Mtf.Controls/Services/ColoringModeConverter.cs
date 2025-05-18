@@ -8,70 +8,70 @@ namespace Mtf.Controls.Services
     {
         public static AnsiColoringMode ColorToAnsiColoringMode(AnsiColoringRichTextBox ansiColoringRichTextBox, Color color, bool backColor)
         {
-            if (color == ansiColoringRichTextBox.BlackColor)
+            if (color.ToArgb() == ansiColoringRichTextBox.BlackColor.ToArgb())
             {
                 return backColor ? AnsiColoringMode.BlackBackColor : AnsiColoringMode.BlackFontColor;
             }
-            if (color == ansiColoringRichTextBox.RedColor)
+            if (color.ToArgb() == ansiColoringRichTextBox.RedColor.ToArgb())
             {
                 return backColor ? AnsiColoringMode.RedBackColor : AnsiColoringMode.RedFontColor;
             }
-            if (color == ansiColoringRichTextBox.GreenColor)
+            if (color.ToArgb() == ansiColoringRichTextBox.GreenColor.ToArgb())
             {
                 return backColor ? AnsiColoringMode.GreenBackColor : AnsiColoringMode.GreenFontColor;
             }
-            if (color == ansiColoringRichTextBox.YellowColor)
+            if (color.ToArgb() == ansiColoringRichTextBox.YellowColor.ToArgb())
             {
                 return backColor ? AnsiColoringMode.YellowBackColor : AnsiColoringMode.YellowFontColor;
             }
 
-            if (color == ansiColoringRichTextBox.BlueColor)
+            if (color.ToArgb() == ansiColoringRichTextBox.BlueColor.ToArgb())
             {
                 return backColor ? AnsiColoringMode.BlueBackColor : AnsiColoringMode.BlueFontColor;
             }
-            if (color == ansiColoringRichTextBox.PurpleColor)
+            if (color.ToArgb() == ansiColoringRichTextBox.PurpleColor.ToArgb())
             {
                 return backColor ? AnsiColoringMode.PurpleBackColor : AnsiColoringMode.PurpleFontColor;
             }
-            if (color == ansiColoringRichTextBox.CyanColor)
+            if (color.ToArgb() == ansiColoringRichTextBox.CyanColor.ToArgb())
             {
                 return backColor ? AnsiColoringMode.CyanBackColor : AnsiColoringMode.CyanFontColor;
             }
-            if (color == ansiColoringRichTextBox.WhiteColor)
+            if (color.ToArgb() == ansiColoringRichTextBox.WhiteColor.ToArgb())
             {
                 return backColor ? AnsiColoringMode.WhiteBackColor : AnsiColoringMode.WhiteFontColor;
             }
 
-            if (color == ansiColoringRichTextBox.BrightBlackColor)
+            if (color.ToArgb() == ansiColoringRichTextBox.BrightBlackColor.ToArgb())
             {
                 return backColor ? AnsiColoringMode.BrightBlackBackColor : AnsiColoringMode.BrightBlueFontColor;
             }
-            if (color == ansiColoringRichTextBox.BrightRedColor)
+            if (color.ToArgb() == ansiColoringRichTextBox.BrightRedColor.ToArgb())
             {
                 return backColor ? AnsiColoringMode.BrightRedBackColor : AnsiColoringMode.BrightRedFontColor;
             }
-            if (color == ansiColoringRichTextBox.BrightGreenColor)
+            if (color.ToArgb() == ansiColoringRichTextBox.BrightGreenColor.ToArgb())
             {
                 return backColor ? AnsiColoringMode.BrightGreenBackColor : AnsiColoringMode.BrightGreenFontColor;
             }
-            if (color == ansiColoringRichTextBox.BrightYellowColor)
+            if (color.ToArgb() == ansiColoringRichTextBox.BrightYellowColor.ToArgb())
             {
                 return backColor ? AnsiColoringMode.BrightYellowBackColor : AnsiColoringMode.BrightYellowFontColor;
             }
 
-            if (color == ansiColoringRichTextBox.BrightBlueColor)
+            if (color.ToArgb() == ansiColoringRichTextBox.BrightBlueColor.ToArgb())
             {
                 return backColor ? AnsiColoringMode.BrightBlueBackColor : AnsiColoringMode.BrightBlueFontColor;
             }
-            if (color == ansiColoringRichTextBox.BrightPurpleColor)
+            if (color.ToArgb() == ansiColoringRichTextBox.BrightPurpleColor.ToArgb())
             {
                 return backColor ? AnsiColoringMode.BrightPurpleBackColor : AnsiColoringMode.BrightPurpleFontColor;
             }
-            if (color == ansiColoringRichTextBox.BrightCyanColor)
+            if (color.ToArgb() == ansiColoringRichTextBox.BrightCyanColor.ToArgb())
             {
                 return backColor ? AnsiColoringMode.BrightCyanBackColor : AnsiColoringMode.BrightCyanFontColor;
             }
-            if (color == ansiColoringRichTextBox.WhiteColor)
+            if (color.ToArgb() == ansiColoringRichTextBox.WhiteColor.ToArgb())
             {
                 return backColor ? AnsiColoringMode.BrightWhiteBackColor : AnsiColoringMode.BrightWhiteFontColor;
             }

@@ -12,7 +12,7 @@ namespace Mtf.Controls.Services
 
         public static bool IsMovingCode(string ansiCode, out Match match)
         {
-            var codeRegex = new Regex(@"\x1b\[(\d*(;\d+)*)[A-Hf]");
+            var codeRegex = new Regex(@"\x1B\[(\d*(;\d+)*)[A-Hf]");
             match = codeRegex.Match(ansiCode);
             return match.Success;
         }

@@ -14,11 +14,13 @@ namespace Mtf.Controls
     [ToolboxBitmap(typeof(AnsiColoringRichTextBox), "Resources.SourceCodeViewerRichTextBox.png")]
     public class AnsiColoringRichTextBox : RichTextBox, IAnsiColoringCommandContext, IAnsiMovingCommandContext
     {
-        private static readonly Regex AnsiPattern = new Regex(@"[\x1B\u001b]\[[0-9;]*[A-HJKSTfmisu]", RegexOptions.Compiled);
+        private static readonly Regex AnsiPattern = new Regex(@"\x1B\[[0-9;]*[A-HJKSTfmisu]", RegexOptions.Compiled);
         
         private Color currentColor;
         private Color currentBackColor;
         private FontStyle currentFontStyle;
+        private Color defaultBackColor;
+        private Color defaultFontColor;
 
         public AnsiColoringRichTextBox()
         {
@@ -41,12 +43,28 @@ namespace Mtf.Controls
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [Description("Default font color.")]
-        public Color DefaultFontColor { get; set; }
+        public Color DefaultFontColor
+        {
+            get => defaultFontColor;
+            set
+            {
+                defaultFontColor = value;
+                AppendText(String.Empty, ColorToAnsiColoringMode(value));
+            }
+        }
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [Description("Default background color.")]
-        public Color DefaultBackColor { get; set; }
+        public Color DefaultBackColor
+        {
+            get => defaultBackColor;
+            set
+            {
+                defaultBackColor = value;
+                AppendText(String.Empty, ColorToAnsiColoringMode(value, true));
+            }
+        }
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -73,10 +91,20 @@ namespace Mtf.Controls
         [Description("Font style.")]
         public FontStyle CurrentFontStyle { get => currentFontStyle; set => currentFontStyle = value; }
 
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Line separators.")]
+        public string[] LineSeparators => new string[] { "\r", "\n" };
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("String split options for lines.")]
+        public StringSplitOptions StringSplitOptions => StringSplitOptions.RemoveEmptyEntries;
+
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [Description("Lines.")]
-        public string[] Lines => Text.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+        public string[] Lines => Text.Split(LineSeparators, StringSplitOptions);
 
         #endregion
 

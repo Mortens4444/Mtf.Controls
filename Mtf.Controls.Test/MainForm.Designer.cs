@@ -32,14 +32,14 @@ namespace Mtf.Controls.Test
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            var listViewGroup17 = new ListViewGroup("A", HorizontalAlignment.Left);
-            var listViewGroup18 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
-            var listViewItem39 = new ListViewItem(new string[] { "Lorem", "1", "2020.10.21" }, -1);
-            var listViewItem40 = new ListViewItem(new string[] { "Ipsum", "", "2020.10.21" }, -1);
-            var listViewItem41 = new ListViewItem(new string[] { "Dolor", "2", "2020.10.21" }, -1);
-            var listViewItem42 = new ListViewItem(new string[] { "Est", "", "" }, -1);
-            var listViewItem43 = new ListViewItem(new string[] { "Sit", "", "2020.10.21" }, -1);
-            var listViewItem44 = new ListViewItem(new string[] { "Amet", "5", "2020.10.21" }, -1);
+            var listViewGroup1 = new ListViewGroup("A", HorizontalAlignment.Left);
+            var listViewGroup2 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
+            var listViewItem1 = new ListViewItem(new string[] { "Lorem", "1", "2020.10.21" }, -1);
+            var listViewItem2 = new ListViewItem(new string[] { "Ipsum", "", "2020.10.21" }, -1);
+            var listViewItem3 = new ListViewItem(new string[] { "Dolor", "2", "2020.10.21" }, -1);
+            var listViewItem4 = new ListViewItem(new string[] { "Est", "", "" }, -1);
+            var listViewItem5 = new ListViewItem(new string[] { "Sit", "", "2020.10.21" }, -1);
+            var listViewItem6 = new ListViewItem(new string[] { "Amet", "5", "2020.10.21" }, -1);
             var treeNode1 = new TreeNode("Node0", -2, -2);
             var treeNode2 = new TreeNode("Node4", 0, 0);
             var treeNode3 = new TreeNode("Node5", 0, 0);
@@ -51,13 +51,13 @@ namespace Mtf.Controls.Test
             var treeNode9 = new TreeNode("Node2", -2, -2);
             var treeNode10 = new TreeNode("Node3", -2, -2);
             var resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            var listViewItem45 = new ListViewItem(new string[] { "..", "Parent Directory" }, "up");
-            var listViewItem46 = new ListViewItem(new string[] { "mfxlib.log", ".LOG File", "12,4 MB" }, ".log");
-            var listViewGroup19 = new ListViewGroup("1. Group", HorizontalAlignment.Left);
-            var listViewGroup20 = new ListViewGroup("2. Group", HorizontalAlignment.Left);
-            var listViewItem36 = new ListViewItem("1");
-            var listViewItem37 = new ListViewItem("2");
-            var listViewItem47 = new ListViewItem("3");
+            var listViewItem7 = new ListViewItem(new string[] { "..", "Parent Directory" }, "up");
+            var listViewItem8 = new ListViewItem(new string[] { "mfxlib.log", ".LOG File", "12,4 MB" }, ".log");
+            var listViewGroup3 = new ListViewGroup("1. Group", HorizontalAlignment.Left);
+            var listViewGroup4 = new ListViewGroup("2. Group", HorizontalAlignment.Left);
+            var listViewItem9 = new ListViewItem("1");
+            var listViewItem10 = new ListViewItem("2");
+            var listViewItem11 = new ListViewItem("3");
             mtfListView1 = new MtfListView();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
@@ -110,6 +110,9 @@ namespace Mtf.Controls.Test
             tabPage6 = new TabPage();
             tabPage7 = new TabPage();
             tabPage8 = new TabPage();
+            btnMoveCaretToDown = new Button();
+            btnMoveCaretToRight = new Button();
+            btnMoveCaretToUp = new Button();
             btnMoveCaretToLeft = new Button();
             btnHome = new Button();
             btnAppendToAnsiText = new Button();
@@ -133,9 +136,6 @@ namespace Mtf.Controls.Test
             tabPage12 = new TabPage();
             kbd300aSimulator1 = new Kbd300ASimulator();
             colorDialog = new ColorDialog();
-            btnMoveCaretToUp = new Button();
-            btnMoveCaretToRight = new Button();
-            btnMoveCaretToDown = new Button();
             ((System.ComponentModel.ISupportInitialize)mtfPictureBox1).BeginInit();
             movablePanel1.SuspendLayout();
             movableSizablePanel1.SuspendLayout();
@@ -178,14 +178,14 @@ namespace Mtf.Controls.Test
             mtfListView1.EnsureLastItemIsVisible = false;
             mtfListView1.FirstItemIsGray = false;
             mtfListView1.FullRowSelect = true;
-            listViewGroup17.Header = "A";
-            listViewGroup17.Name = "listViewGroup1";
-            listViewGroup18.Header = "ListViewGroup";
-            listViewGroup18.Name = "listViewGroup2";
-            mtfListView1.Groups.AddRange(new ListViewGroup[] { listViewGroup17, listViewGroup18 });
-            listViewItem43.Group = listViewGroup18;
-            listViewItem44.Group = listViewGroup17;
-            mtfListView1.Items.AddRange(new ListViewItem[] { listViewItem39, listViewItem40, listViewItem41, listViewItem42, listViewItem43, listViewItem44 });
+            listViewGroup1.Header = "A";
+            listViewGroup1.Name = "listViewGroup1";
+            listViewGroup2.Header = "ListViewGroup";
+            listViewGroup2.Name = "listViewGroup2";
+            mtfListView1.Groups.AddRange(new ListViewGroup[] { listViewGroup1, listViewGroup2 });
+            listViewItem5.Group = listViewGroup2;
+            listViewItem6.Group = listViewGroup1;
+            mtfListView1.Items.AddRange(new ListViewItem[] { listViewItem1, listViewItem2, listViewItem3, listViewItem4, listViewItem5, listViewItem6 });
             mtfListView1.Location = new Point(3, 6);
             mtfListView1.Name = "mtfListView1";
             mtfListView1.OwnerDraw = true;
@@ -450,8 +450,8 @@ namespace Mtf.Controls.Test
             // 
             fileBrowserView1.Dock = DockStyle.Fill;
             fileBrowserView1.FullRowSelect = true;
-            listViewItem45.Tag = "up";
-            fileBrowserView1.Items.AddRange(new ListViewItem[] { listViewItem45, listViewItem46 });
+            listViewItem7.Tag = "up";
+            fileBrowserView1.Items.AddRange(new ListViewItem[] { listViewItem7, listViewItem8 });
             fileBrowserView1.Location = new Point(0, 0);
             fileBrowserView1.Name = "fileBrowserView1";
             fileBrowserView1.Size = new Size(1586, 832);
@@ -490,6 +490,7 @@ namespace Mtf.Controls.Test
             // ansiColoringRichTextBox1
             // 
             ansiColoringRichTextBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            ansiColoringRichTextBox1.BackColor = Color.Black;
             ansiColoringRichTextBox1.BlackColor = Color.Black;
             ansiColoringRichTextBox1.BlueColor = Color.Blue;
             ansiColoringRichTextBox1.BrightBlackColor = Color.DarkGray;
@@ -501,6 +502,7 @@ namespace Mtf.Controls.Test
             ansiColoringRichTextBox1.BrightWhiteColor = Color.Wheat;
             ansiColoringRichTextBox1.BrightYellowColor = Color.LightYellow;
             ansiColoringRichTextBox1.CyanColor = Color.Cyan;
+            ansiColoringRichTextBox1.ForeColor = Color.White;
             ansiColoringRichTextBox1.GreenColor = Color.Green;
             ansiColoringRichTextBox1.Location = new Point(0, 43);
             ansiColoringRichTextBox1.Name = "ansiColoringRichTextBox1";
@@ -666,15 +668,15 @@ namespace Mtf.Controls.Test
             mtfListView2.EnsureLastItemIsVisible = false;
             mtfListView2.FirstItemIsGray = false;
             mtfListView2.FullRowSelect = true;
-            listViewGroup19.Header = "1. Group";
-            listViewGroup19.Name = "listViewGroup1";
-            listViewGroup20.Header = "2. Group";
-            listViewGroup20.Name = "listViewGroup2";
-            mtfListView2.Groups.AddRange(new ListViewGroup[] { listViewGroup19, listViewGroup20 });
-            listViewItem36.Group = listViewGroup19;
-            listViewItem37.Group = listViewGroup20;
-            listViewItem47.Group = listViewGroup20;
-            mtfListView2.Items.AddRange(new ListViewItem[] { listViewItem36, listViewItem37, listViewItem47 });
+            listViewGroup3.Header = "1. Group";
+            listViewGroup3.Name = "listViewGroup1";
+            listViewGroup4.Header = "2. Group";
+            listViewGroup4.Name = "listViewGroup2";
+            mtfListView2.Groups.AddRange(new ListViewGroup[] { listViewGroup3, listViewGroup4 });
+            listViewItem9.Group = listViewGroup3;
+            listViewItem10.Group = listViewGroup4;
+            listViewItem11.Group = listViewGroup4;
+            mtfListView2.Items.AddRange(new ListViewItem[] { listViewItem9, listViewItem10, listViewItem11 });
             mtfListView2.Location = new Point(707, 11);
             mtfListView2.Name = "mtfListView2";
             mtfListView2.OwnerDraw = true;
@@ -866,6 +868,36 @@ namespace Mtf.Controls.Test
             tabPage8.TabIndex = 7;
             tabPage8.Text = "AnsiColoringRichTextBox";
             tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // btnMoveCaretToDown
+            // 
+            btnMoveCaretToDown.Location = new Point(1474, 9);
+            btnMoveCaretToDown.Name = "btnMoveCaretToDown";
+            btnMoveCaretToDown.Size = new Size(75, 23);
+            btnMoveCaretToDown.TabIndex = 40;
+            btnMoveCaretToDown.Text = "To down";
+            btnMoveCaretToDown.UseVisualStyleBackColor = true;
+            btnMoveCaretToDown.Click += BtnMoveCaretToDown_Click;
+            // 
+            // btnMoveCaretToRight
+            // 
+            btnMoveCaretToRight.Location = new Point(1393, 9);
+            btnMoveCaretToRight.Name = "btnMoveCaretToRight";
+            btnMoveCaretToRight.Size = new Size(75, 23);
+            btnMoveCaretToRight.TabIndex = 39;
+            btnMoveCaretToRight.Text = "To right";
+            btnMoveCaretToRight.UseVisualStyleBackColor = true;
+            btnMoveCaretToRight.Click += BtnMoveCaretToRight_Click;
+            // 
+            // btnMoveCaretToUp
+            // 
+            btnMoveCaretToUp.Location = new Point(1312, 9);
+            btnMoveCaretToUp.Name = "btnMoveCaretToUp";
+            btnMoveCaretToUp.Size = new Size(75, 23);
+            btnMoveCaretToUp.TabIndex = 38;
+            btnMoveCaretToUp.Text = "To up";
+            btnMoveCaretToUp.UseVisualStyleBackColor = true;
+            btnMoveCaretToUp.Click += BtnMoveCaretToUp_Click;
             // 
             // btnMoveCaretToLeft
             // 
@@ -1106,36 +1138,6 @@ namespace Mtf.Controls.Test
             // colorDialog
             // 
             colorDialog.AllowFullOpen = false;
-            // 
-            // btnMoveCaretToUp
-            // 
-            btnMoveCaretToUp.Location = new Point(1312, 9);
-            btnMoveCaretToUp.Name = "btnMoveCaretToUp";
-            btnMoveCaretToUp.Size = new Size(75, 23);
-            btnMoveCaretToUp.TabIndex = 38;
-            btnMoveCaretToUp.Text = "To up";
-            btnMoveCaretToUp.UseVisualStyleBackColor = true;
-            btnMoveCaretToUp.Click += BtnMoveCaretToUp_Click;
-            // 
-            // btnMoveCaretToRight
-            // 
-            btnMoveCaretToRight.Location = new Point(1393, 9);
-            btnMoveCaretToRight.Name = "btnMoveCaretToRight";
-            btnMoveCaretToRight.Size = new Size(75, 23);
-            btnMoveCaretToRight.TabIndex = 39;
-            btnMoveCaretToRight.Text = "To right";
-            btnMoveCaretToRight.UseVisualStyleBackColor = true;
-            btnMoveCaretToRight.Click += BtnMoveCaretToRight_Click;
-            // 
-            // btnMoveCaretToDown
-            // 
-            btnMoveCaretToDown.Location = new Point(1474, 9);
-            btnMoveCaretToDown.Name = "btnMoveCaretToDown";
-            btnMoveCaretToDown.Size = new Size(75, 23);
-            btnMoveCaretToDown.TabIndex = 40;
-            btnMoveCaretToDown.Text = "To down";
-            btnMoveCaretToDown.UseVisualStyleBackColor = true;
-            btnMoveCaretToDown.Click += BtnMoveCaretToDown_Click;
             // 
             // MainForm
             // 
