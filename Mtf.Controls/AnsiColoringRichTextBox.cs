@@ -223,7 +223,7 @@ namespace Mtf.Controls
             foreach (var ch in text)
             {
                 var controlCommand = AnsiControlCommandFactory.Create(ch);
-                controlCommand.Execute(this);
+                controlCommand?.Execute(this);
             }
 
             var matches = AnsiPattern.Matches(text);
@@ -459,11 +459,21 @@ namespace Mtf.Controls
 
         public void Backspace()
         {
-            if (SelectionStart > 0)
+            var selectionStart = SelectionStart;
+            var selectionLength = SelectionLength;
+
+            if (selectionLength > 0)
             {
-                var pos = SelectionStart;
-                Text = Text.Remove(pos - 1, 1);
-                SelectionStart = pos - 1;
+                SelectedText = String.Empty;
+                SelectionStart = selectionStart;
+                SelectionLength = 0;
+            }
+            else if (selectionStart > 0)
+            {
+                Select(selectionStart - 1, 1);
+                SelectedText = String.Empty;
+                SelectionStart = selectionStart - 1;
+                SelectionLength = 0;
             }
         }
 
