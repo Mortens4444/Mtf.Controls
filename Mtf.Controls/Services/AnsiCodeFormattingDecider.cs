@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace Mtf.Controls.Services
 {
@@ -9,9 +10,11 @@ namespace Mtf.Controls.Services
             return ansiCode.EndsWith("m", StringComparison.InvariantCulture);
         }
 
-        public static bool IsMovingCode(string ansiCode)
+        public static bool IsMovingCode(string ansiCode, out Match match)
         {
-            return ansiCode.EndsWith("H", StringComparison.InvariantCulture) || ansiCode.EndsWith("f", StringComparison.InvariantCulture);
+            var codeRegex = new Regex(@"\x1b\[(\d*(;\d+)*)[A-Hf]");
+            match = codeRegex.Match(ansiCode);
+            return match.Success;
         }
     }
 }

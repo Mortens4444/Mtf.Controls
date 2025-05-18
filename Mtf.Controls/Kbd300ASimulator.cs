@@ -10,7 +10,7 @@ using System.Windows.Forms;
 namespace Mtf.Controls
 {
     [ToolboxItem(true)]
-    [ToolboxBitmap(typeof(MovablePanel), "Resources.Kbd300ASimulator.png")]
+    [ToolboxBitmap(typeof(Kbd300ASimulator), "Resources.Kbd300ASimulator.png")]
 
     public partial class Kbd300ASimulator : MtfPictureBox
     {

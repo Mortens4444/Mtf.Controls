@@ -31,46 +31,56 @@ namespace Mtf.Controls
             DefaultBackColor = BackColor;
         }
 
-        #region Properties
+        #region Hidden Properties
 
-        [Browsable(true)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [Description("Last used background color.")]
+        public int SavedCaretPosition { get; set; }
+
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [Description("Default font color.")]
         public Color DefaultFontColor { get; set; }
 
-        [Browsable(true)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [Description("Default background color.")]
         public Color DefaultBackColor { get; set; }
 
-        [Browsable(true)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [Description("Last used font color.")]
         public Color LastUsedFontColor { get; set; }
 
-        [Browsable(true)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [Description("Last used background color.")]
         public Color LastUsedBackColor { get; set; }
 
-        [Browsable(true)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [Description("Current color.")]
         public Color CurrentColor { get => currentColor; set => currentColor = value; }
 
-        [Browsable(true)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [Description("Current background color.")]
         public Color CurrentBackColor { get => currentBackColor; set => currentBackColor = value; }
 
-        [Browsable(true)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [Description("Font style.")]
         public FontStyle CurrentFontStyle { get => currentFontStyle; set => currentFontStyle = value; }
 
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [Description("Lines.")]
+        public string[] Lines => Text.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+
         #endregion
 
-        #region Color properties
+        #region Color Properties
 
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -196,9 +206,9 @@ namespace Mtf.Controls
                 {
                     ProcessAnsiColoringCode(match.Value);
                 }
-                else if (AnsiCodeFormattingDecider.IsMovingCode(match.Value))
+                else if (AnsiCodeFormattingDecider.IsMovingCode(match.Value, out var m))
                 {
-                    ProcessAnsiMovingCode(match.Value);
+                    ProcessAnsiMovingCode(m.Value);
                 }
 
                 currentIndex = match.Index + match.Length;
@@ -223,19 +233,14 @@ namespace Mtf.Controls
 
         private void ProcessAnsiMovingCode(string ansiCode)
         {
-            var codeRegex = new Regex(@"\x1b\[(\d*(;\d+)*)[Hf]");
+            var codeRegex = new Regex(@"\x1b\[(\d*(;\d+)*)[A-Hf]");
             var match = codeRegex.Match(ansiCode);
 
             if (match.Success)
             {
                 var codesString = match.Groups[1].Value;
-                var individualCodes = codesString.Split(';');
-
-                foreach (var codeStr in individualCodes)
-                {
-                    var command = AnsiMovingCommandFactory.Create(ansiCode, codesString, this);
-                    command.Execute(this);
-                }
+                var command = AnsiMovingCommandFactory.Create(ansiCode, codesString, match);
+                command.Execute(this);
             }
         }
 
@@ -282,6 +287,47 @@ namespace Mtf.Controls
         public AnsiColoringMode ColorToAnsiColoringMode(Color color, bool backColor = false)
         {
             return ColoringModeConverter.ColorToAnsiColoringMode(this, color, backColor);
+        }
+
+        public int GetLineLength(int lineIndex)
+        {
+            return Lines.Length > lineIndex ? Lines[lineIndex].Length : 0;
+        }
+
+        public int GetLineIndexAtCaret()
+        {
+            return GetLineFromCharIndex(SelectionStart);
+        }
+
+        public int GetColumnAtCaret()
+        {
+            var lineIndex = GetLineFromCharIndex(SelectionStart);
+            var lineStartCharIndex = GetFirstCharIndexFromLine(lineIndex);
+            var column = SelectionStart - lineStartCharIndex;
+            return Math.Max(0, column);
+        }
+
+        public int GetLineCount()
+        {
+            return Lines.Length;
+        }
+
+        public int GetCharIndexFromLineAndColumn(int lineIndex, int col)
+        {
+            if (lineIndex < 0 || lineIndex >= Lines.Length)
+            {
+                return 0;
+            }
+
+            var lineStartCharIndex = GetFirstCharIndexFromLine(lineIndex);
+            if (lineStartCharIndex < 0)
+            {
+                return TextLength;
+            }
+
+            var lineLength = GetLineLength(lineIndex);
+            col = Math.Min(col, lineLength);
+            return lineStartCharIndex + col;
         }
     }
 }

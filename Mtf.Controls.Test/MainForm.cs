@@ -278,5 +278,29 @@ namespace Mtf.Controls.Test
             ansiColoringRichTextBox1.AppendText("\x1B[H");
             ansiColoringRichTextBox1.Focus();
         }
+
+        private void BtnMoveCaretToLeft_Click(object sender, EventArgs e)
+        {
+            ansiColoringRichTextBox1.AppendText("\x1B[1D");
+            ansiColoringRichTextBox1.Focus();
+        }
+
+        private void BtnMoveCaretToUp_Click(object sender, EventArgs e)
+        {
+            ansiColoringRichTextBox1.AppendText("\x1B[1A");
+            ansiColoringRichTextBox1.Focus();
+        }
+
+        private void BtnMoveCaretToRight_Click(object sender, EventArgs e)
+        {
+            ansiColoringRichTextBox1.AppendText("\x1B[1C");
+            ansiColoringRichTextBox1.Focus();
+        }
+
+        private void BtnMoveCaretToDown_Click(object sender, EventArgs e)
+        {
+            ansiColoringRichTextBox1.AppendText("\x1B[1B");
+            ansiColoringRichTextBox1.Focus();
+        }
     }
 }
