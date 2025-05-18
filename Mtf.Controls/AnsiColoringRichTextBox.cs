@@ -4,6 +4,7 @@ using Mtf.Controls.Services;
 using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Media;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -12,7 +13,7 @@ namespace Mtf.Controls
 {
     [ToolboxItem(true)]
     [ToolboxBitmap(typeof(AnsiColoringRichTextBox), "Resources.SourceCodeViewerRichTextBox.png")]
-    public class AnsiColoringRichTextBox : RichTextBox, IAnsiColoringCommandContext, IAnsiMovingCommandContext
+    public class AnsiColoringRichTextBox : RichTextBox, IAnsiColoringCommandContext, IAnsiMovingCommandContext, IAnsiErasingCommandContext, IAnsiControlCommandContext
     {
         private static readonly Regex AnsiPattern = new Regex(@"\x1B\[[0-9;]*[A-HJKSTfmisu]", RegexOptions.Compiled);
         
@@ -194,7 +195,7 @@ namespace Mtf.Controls
 
         public void ChangeMode(AnsiColoringMode ansiColoringMode)
         {
-            AppendText($"\u001b[{(int)ansiColoringMode}m");
+            AppendText($"\x1B[{(int)ansiColoringMode}m");
         }
 
         public void AppendText(string text, params AnsiColoringMode[] ansiColoringModes)
@@ -204,7 +205,7 @@ namespace Mtf.Controls
             {
                 foreach (var ansiColoringMode in ansiColoringModes)
                 {
-                    var msg = $"\u001b[{(int)ansiColoringMode}m";
+                    var msg = $"\x1B[{(int)ansiColoringMode}m";
                     _ = sb.Append(msg);
                 }
             }
@@ -217,6 +218,12 @@ namespace Mtf.Controls
             if (String.IsNullOrEmpty(text))
             {
                 return;
+            }
+
+            foreach (var ch in text)
+            {
+                var controlCommand = AnsiControlCommandFactory.Create(ch);
+                controlCommand.Execute(this);
             }
 
             var matches = AnsiPattern.Matches(text);
@@ -238,6 +245,10 @@ namespace Mtf.Controls
                 {
                     ProcessAnsiMovingCode(m.Value);
                 }
+                else if (AnsiCodeFormattingDecider.IsErasingCode(match.Value))
+                {
+                    ProcessAnsiErasingCode(match.Value);
+                }
 
                 currentIndex = match.Index + match.Length;
             }
@@ -247,6 +258,12 @@ namespace Mtf.Controls
                 var plainText = text.Substring(currentIndex);
                 ApplyStyle(plainText);
             }
+        }
+
+        private void ProcessAnsiErasingCode(string value)
+        {
+            var command = AnsiErasingCommandFactory.Create(value);
+            command.Execute(this);
         }
 
         private void ApplyStyle(string plainText)
@@ -261,7 +278,7 @@ namespace Mtf.Controls
 
         private void ProcessAnsiMovingCode(string ansiCode)
         {
-            var codeRegex = new Regex(@"\x1b\[(\d*(;\d+)*)[A-Hf]");
+            var codeRegex = new Regex(@"\x1B\[(\d*(;\d+)*)[A-Hf]");
             var match = codeRegex.Match(ansiCode);
 
             if (match.Success)
@@ -274,7 +291,7 @@ namespace Mtf.Controls
 
         private void ProcessAnsiColoringCode(string ansiCode)
         {
-            var codeRegex = new Regex(@"\x1b\[(\d+(;\d+)*)m");
+            var codeRegex = new Regex(@"\x1B\[(\d+(;\d+)*)m");
             var match = codeRegex.Match(ansiCode);
 
             if (match.Success)
@@ -356,6 +373,137 @@ namespace Mtf.Controls
             var lineLength = GetLineLength(lineIndex);
             col = Math.Min(col, lineLength);
             return lineStartCharIndex + col;
+        }
+
+        public void EraseFromCursorToEndOfLine()
+        {
+            var lineIndex = GetLineFromCharIndex(SelectionStart);
+            var lineStart = GetFirstCharIndexFromLine(lineIndex);
+            var lineLength = Lines[lineIndex].Length;
+
+            var cursorOffset = SelectionStart - lineStart;
+            var charsToErase = lineLength - cursorOffset;
+
+            if (charsToErase > 0)
+            {
+                Select(SelectionStart, charsToErase);
+                SelectedText = String.Empty;
+            }
+        }
+
+        public void EraseFromCursorToEndOfScreen()
+        {
+            var cursor = SelectionStart;
+            var totalLength = TextLength;
+            if (cursor < totalLength)
+            {
+                Select(cursor, totalLength - cursor);
+                SelectedText = String.Empty;
+            }
+        }
+
+        public void EraseFromStartOfLineToCursor()
+        {
+            var lineIndex = GetLineFromCharIndex(SelectionStart);
+            var lineStart = GetFirstCharIndexFromLine(lineIndex);
+            var cursor = SelectionStart;
+            var length = cursor - lineStart;
+
+            if (length > 0)
+            {
+                Select(lineStart, length);
+                SelectedText = String.Empty;
+                SelectionStart = cursor - length;
+            }
+        }
+
+        public void EraseFromStartToCursor()
+        {
+            var cursor = SelectionStart;
+            if (cursor > 0)
+            {
+                Select(0, cursor);
+                SelectedText = String.Empty;
+                SelectionStart = 0;
+            }
+        }
+
+        public void EraseLine()
+        {
+            var lineIndex = GetLineFromCharIndex(SelectionStart);
+            var lineStart = GetFirstCharIndexFromLine(lineIndex);
+            var lineText = Lines.Length > lineIndex ? Lines[lineIndex] : String.Empty;
+
+            if (!String.IsNullOrEmpty(lineText))
+            {
+                Select(lineStart, lineText.Length);
+                SelectedText = String.Empty;
+                SelectionStart = lineStart;
+            }
+        }
+
+        public void EraseSavedLines()
+        {
+            Clear();
+        }
+
+        public void EraseScreen()
+        {
+            Text = String.Empty;
+        }
+
+        public void Bell()
+        {
+            SystemSounds.Beep.Play();
+        }
+
+        public void Backspace()
+        {
+            if (SelectionStart > 0)
+            {
+                var pos = SelectionStart;
+                Text = Text.Remove(pos - 1, 1);
+                SelectionStart = pos - 1;
+            }
+        }
+
+        public void HorizontalTab()
+        {
+            AppendText("\t");
+        }
+
+        public void LineFeed()
+        {
+            AppendText(Environment.NewLine);
+        }
+
+        public void VerticalTab()
+        {
+            AppendText(Environment.NewLine);
+        }
+
+        public void FormFeed()
+        {
+            Clear();
+        }
+
+        public void CarriageReturn()
+        {
+            SelectionStart = GetFirstCharIndexOfCurrentLine();
+        }
+
+        public void Escape()
+        {
+        }
+
+        public void Delete()
+        {
+            if (SelectionStart < TextLength)
+            {
+                var pos = SelectionStart;
+                Text = Text.Remove(pos, 1);
+                SelectionStart = pos;
+            }
         }
     }
 }

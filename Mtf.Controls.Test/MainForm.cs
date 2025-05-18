@@ -302,5 +302,12 @@ namespace Mtf.Controls.Test
             ansiColoringRichTextBox1.AppendText("\x1B[1B");
             ansiColoringRichTextBox1.Focus();
         }
+
+        private void BtnTest_Click(object sender, EventArgs e)
+        {
+            //ansiColoringRichTextBox1.AppendText("\a"); // Test bell
+            //ansiColoringRichTextBox1.AppendText("\x1B[2J"); // Test erase entire screen
+            ansiColoringRichTextBox1.AppendText("\x1B[2K"); // Test erase entire line
+        }
     }
 }

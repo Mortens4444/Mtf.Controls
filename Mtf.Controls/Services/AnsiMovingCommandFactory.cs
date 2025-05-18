@@ -14,56 +14,6 @@ namespace Mtf.Controls.Services
                 return new MoveCaretToHome();
             }
 
-            if (ansiCode.StartsWith("\x1B[") && ansiCode.EndsWith("H"))
-            {
-                return new MoveCaretToPosition(codesString);
-            }
-
-            if (ansiCode.StartsWith("\x1B[") && ansiCode.EndsWith("f"))
-            {
-                return new MoveCaretToPosition(codesString);
-            }
-
-            if (ansiCode.StartsWith("\x1B[") && ansiCode.EndsWith("A"))
-            {
-                return new MoveCaretUp(codesString);
-            }
-
-            if (ansiCode.StartsWith("\x1B[") && ansiCode.EndsWith("B"))
-            {
-                return new MoveCaretDown(ParseCount(codesString));
-            }
-
-            if (ansiCode.StartsWith("\x1B[") && ansiCode.EndsWith("C"))
-            {
-                return new MoveCaretRight(ParseCount(codesString));
-            }
-
-            if (ansiCode.StartsWith("\x1B[") && ansiCode.EndsWith("D"))
-            {
-                return new MoveCaretLeft(ParseCount(codesString));
-            }
-
-            if (ansiCode.StartsWith("\x1B[") && ansiCode.EndsWith("E"))
-            {
-                return new MoveCaretNextLine(ParseCount(codesString));
-            }
-
-            if (ansiCode.StartsWith("\x1B[") && ansiCode.EndsWith("F"))
-            {
-                return new MoveCaretPrevLine(ParseCount(codesString));
-            }
-
-            if (ansiCode.StartsWith("\x1B[") && ansiCode.EndsWith("G"))
-            {
-                return new MoveCaretToColumn(ParseCount(codesString));
-            }
-
-            if (ansiCode == "\x1BM") // ESC M
-            {
-                return new MoveCaretLineUp(ParseCount(codesString));
-            }
-
             if (ansiCode == "\x1B7" || ansiCode == "\x1B[s")
             {
                 return new SaveCaretPosition();
@@ -74,7 +24,31 @@ namespace Mtf.Controls.Services
                 return new RestoreCaretPosition();
             }
 
-            return new NoOpCommand();
+            if (ansiCode == "\x1BM")
+            {
+                return new MoveCaretLineUp(ParseCount(codesString));
+            }
+
+            if (!ansiCode.StartsWith("\x1B["))
+            {
+                return new NoOpCommand();
+            }
+
+            var lastChar = ansiCode[ansiCode.Length - 1];
+
+            switch (lastChar)
+            {
+                case 'H':
+                case 'f': return new MoveCaretToPosition(codesString);
+                case 'A': return new MoveCaretUp(codesString);
+                case 'B': return new MoveCaretDown(ParseCount(codesString));
+                case 'C': return new MoveCaretRight(ParseCount(codesString));
+                case 'D': return new MoveCaretLeft(ParseCount(codesString));
+                case 'E': return new MoveCaretNextLine(ParseCount(codesString));
+                case 'F': return new MoveCaretPrevLine(ParseCount(codesString));
+                case 'G': return new MoveCaretToColumn(ParseCount(codesString));
+                default: return new NoOpCommand();
+            }
         }
 
         private static int ParseCount(string value)

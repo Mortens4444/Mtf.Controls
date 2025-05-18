@@ -16,5 +16,10 @@ namespace Mtf.Controls.Services
             match = codeRegex.Match(ansiCode);
             return match.Success;
         }
+
+        public static bool IsErasingCode(string ansiCode)
+        {
+            return ansiCode.StartsWith("\x1B[") && (ansiCode.EndsWith("J") || ansiCode.EndsWith("K"));
+        }
     }
 }
