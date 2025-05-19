@@ -16,7 +16,7 @@ namespace Mtf.Controls.Interfaces
 
         Color DefaultFontColor { get; }
 
-        Color DefaultBackColor { get; }
+        Color DefaultBackgroundColor { get; }
 
         Color LastUsedFontColor { get; set; }
 

@@ -11,6 +11,9 @@ using System.Windows.Forms;
 
 namespace Mtf.Controls
 {
+    /// <summary>
+    /// https://gist.github.com/ConnerWill/d4b6c776b509add763e17f9f113fd25b
+    /// </summary>
     [ToolboxItem(true)]
     [ToolboxBitmap(typeof(AnsiColoringRichTextBox), "Resources.SourceCodeViewerRichTextBox.png")]
     public class AnsiColoringRichTextBox : RichTextBox, IAnsiColoringCommandContext, IAnsiMovingCommandContext, IAnsiErasingCommandContext, IAnsiControlCommandContext
@@ -31,7 +34,7 @@ namespace Mtf.Controls
 
             LastUsedFontColor = ForeColor;
             DefaultFontColor = ForeColor;
-            DefaultBackColor = BackColor;
+            DefaultBackgroundColor = BackColor;
         }
 
         #region Hidden Properties
@@ -57,7 +60,7 @@ namespace Mtf.Controls
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [Description("Default background color.")]
-        public Color DefaultBackColor
+        public Color DefaultBackgroundColor
         {
             get => defaultBackColor;
             set

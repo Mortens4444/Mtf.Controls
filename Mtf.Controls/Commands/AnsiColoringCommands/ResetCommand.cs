@@ -8,7 +8,7 @@ namespace Mtf.Controls.Commands.AnsiColoringCommands
         public void Execute(IAnsiColoringCommandContext context)
         {
             context.CurrentColor = context.DefaultFontColor;
-            context.CurrentBackColor = context.DefaultBackColor;
+            context.CurrentBackColor = context.DefaultBackgroundColor;
             context.CurrentFontStyle = FontStyle.Regular;
         }
     }
