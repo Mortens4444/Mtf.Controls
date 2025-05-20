@@ -24,17 +24,7 @@
 	<tags>VlcWindow Mortens</tags>
 	<readme>docs\ReadMe - Mtf.Controls.Video.VLC.md</readme>
     <dependencies>
-	  <group targetFramework="net452">
-		<dependency id="LibVLCSharp" version="3.9.3" />
-		<dependency id="LibVLCSharp.WinForms" version="3.9.3" />
-		<dependency id="VideoLAN.LibVLC.Windows" version="3.0.21" />
-	  </group>
 	  <group targetFramework="net462">
-		<dependency id="LibVLCSharp" version="3.9.3" />
-		<dependency id="LibVLCSharp.WinForms" version="3.9.3" />
-		<dependency id="VideoLAN.LibVLC.Windows" version="3.0.21" />
-	  </group>
-	  <group targetFramework="net48">
 		<dependency id="LibVLCSharp" version="3.9.3" />
 		<dependency id="LibVLCSharp.WinForms" version="3.9.3" />
 		<dependency id="VideoLAN.LibVLC.Windows" version="3.0.21" />
