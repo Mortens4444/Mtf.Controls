@@ -306,9 +306,13 @@ namespace Mtf.Controls.Test
         private void BtnTest_Click(object sender, EventArgs e)
         {
             //ansiColoringRichTextBox1.AppendText("\a"); // Test bell
-            ansiColoringRichTextBox1.AppendText("\b"); // Test bell
+            //ansiColoringRichTextBox1.AppendText("\b"); // Test bell
             //ansiColoringRichTextBox1.AppendText("\x1B[2J"); // Test erase entire screen
             //ansiColoringRichTextBox1.AppendText("\x1B[2K"); // Test erase entire line
+            //ansiColoringRichTextBox1.AppendText("\x1B[K"); // Test erase from cursor to line end
+            //ansiColoringRichTextBox1.AppendText("\u001b[J"); // Test erase from cursor to end of screen
+            //ansiColoringRichTextBox1.AppendText("\u001b[1K"); // Test erase from start of line to cursor
+            ansiColoringRichTextBox1.AppendText("\u001b[1J"); // Test erase from start of screen to cursor
         }
     }
 }

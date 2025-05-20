@@ -382,9 +382,9 @@ namespace Mtf.Controls
         {
             var lineIndex = GetLineFromCharIndex(SelectionStart);
             var lineStart = GetFirstCharIndexFromLine(lineIndex);
-            var lineLength = Lines[lineIndex].Length;
-
+            var lineLength = GetLineLength(lineIndex);
             var cursorOffset = SelectionStart - lineStart;
+
             var charsToErase = lineLength - cursorOffset;
 
             if (charsToErase > 0)

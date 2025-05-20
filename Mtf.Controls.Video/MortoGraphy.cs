@@ -1,8 +1,8 @@
 ﻿using Mtf.Controls.Enums;
-using Mtf.Controls.Extensions;
 using Mtf.Controls.Interfaces;
 using Mtf.Network;
 using Mtf.Network.EventArg;
+using Mtf.Windows.Forms.Extensions;
 using System;
 using System.Drawing;
 using System.IO;
@@ -13,7 +13,6 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
 using HttpClient = System.Net.Http.HttpClient;
 
 namespace Mtf.Controls.Video

@@ -10,9 +10,7 @@
       - VlcWindow
       
       Compatibility:
-      - .NET Framework 4.5.2
       - .NET Framework 4.6.2
-      - .NET Framework 4.8
       - .NET Framework 4.8.1
       - .NET 8
       - .NET 9
@@ -59,9 +57,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src=".\Mtf.Controls.Video.VLC\bin\Release\net452\**" target="lib\net452" />
     <file src=".\Mtf.Controls.Video.VLC\bin\Release\net462\**" target="lib\net462" />
-    <file src=".\Mtf.Controls.Video.VLC\bin\Release\net48\**" target="lib\net48" />
     <file src=".\Mtf.Controls.Video.VLC\bin\Release\net481\**" target="lib\net481" />
     <file src=".\Mtf.Controls.Video.VLC\bin\Release\net8.0-windows\**" target="lib\net8.0-windows7" />
     <file src=".\Mtf.Controls.Video.VLC\bin\Release\net9.0-windows\**" target="lib\net9.0-windows7" />

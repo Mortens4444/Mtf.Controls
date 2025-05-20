@@ -1,5 +1,5 @@
 ﻿using Mtf.Controls.Enums;
-using Mtf.Controls.Extensions;
+using Mtf.Windows.Forms.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

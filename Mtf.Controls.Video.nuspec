@@ -10,9 +10,7 @@
       - MortoGraphyWindow (Show JPEG and MJPEG streams)
       
       Compatibility:
-      - .NET Framework 4.5.2
       - .NET Framework 4.6.2
-      - .NET Framework 4.8
       - .NET Framework 4.8.1
       - .NET 8
       - .NET 9
@@ -26,30 +24,22 @@
 	<tags>MortoGraphyWindow Mortens</tags>
 	<readme>docs\ReadMe - Mtf.Controls.Video.md</readme>
     <dependencies>
-	  <group targetFramework="net452">
-        <dependency id="Mtf.Network" version="2.0.3" />
-	  </group>
 	  <group targetFramework="net462">
-        <dependency id="Mtf.Network" version="2.0.3" />
-	  </group>
-	  <group targetFramework="net48">
-        <dependency id="Mtf.Network" version="2.0.3" />
+        <dependency id="Mtf.Network" version="2.0.5" />
 	  </group>
 	  <group targetFramework="net481">
-        <dependency id="Mtf.Network" version="2.0.3" />
+        <dependency id="Mtf.Network" version="2.0.5" />
 	  </group>
 	  <group targetFramework="net8.0-windows7">
-        <dependency id="Mtf.Network" version="2.0.3" />
+        <dependency id="Mtf.Network" version="2.0.5" />
 	  </group>
 	  <group targetFramework="net9.0-windows7">
-        <dependency id="Mtf.Network" version="2.0.3" />
+        <dependency id="Mtf.Network" version="2.0.5" />
 	  </group>
     </dependencies>
   </metadata>
   <files>
-    <file src=".\Mtf.Controls.Video\bin\Release\net452\**" target="lib\net452" />
     <file src=".\Mtf.Controls.Video\bin\Release\net462\**" target="lib\net462" />
-    <file src=".\Mtf.Controls.Video\bin\Release\net48\**" target="lib\net48" />
     <file src=".\Mtf.Controls.Video\bin\Release\net481\**" target="lib\net481" />
     <file src=".\Mtf.Controls.Video\bin\Release\net8.0-windows\**" target="lib\net8.0-windows7" />
     <file src=".\Mtf.Controls.Video\bin\Release\net9.0-windows\**" target="lib\net9.0-windows7" />

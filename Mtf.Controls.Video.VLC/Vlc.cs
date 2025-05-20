@@ -1,7 +1,7 @@
 ﻿using LibVLCSharp.Shared;
 using Mtf.Controls.Enums;
-using Mtf.Controls.Extensions;
 using Mtf.Controls.Interfaces;
+using Mtf.Extensions;
 using System;
 using System.Drawing;
 

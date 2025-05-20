@@ -34,7 +34,7 @@
         <dependency id="AForge" version="2.2.5" />
         <dependency id="AForge.Video" version="2.2.5" />
         <dependency id="AForge.Video.DirectShow" version="2.2.5" />
-        <dependency id="Mtf.MessageBoxes" version="6.0.2" />
+        <dependency id="Mtf.MessageBoxes" version="6.0.3" />
         <dependency id="System.Net.Http" version="4.3.4" />
       </group>
       <group targetFramework="net481">
@@ -43,7 +43,7 @@
         <dependency id="AForge" version="2.2.5" />
         <dependency id="AForge.Video" version="2.2.5" />
         <dependency id="AForge.Video.DirectShow" version="2.2.5" />
-        <dependency id="Mtf.MessageBoxes" version="6.0.2" />
+        <dependency id="Mtf.MessageBoxes" version="6.0.3" />
         <dependency id="System.Net.Http" version="4.3.4" />
       </group>
     </dependencies>

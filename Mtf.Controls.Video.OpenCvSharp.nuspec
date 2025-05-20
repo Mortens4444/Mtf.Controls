@@ -12,7 +12,6 @@
       
       Compatibility:
       - .NET Framework 4.6.2
-      - .NET Framework 4.8
       - .NET Framework 4.8.1
       - .NET 8
       - .NET 9
@@ -27,12 +26,6 @@
 	<readme>docs\ReadMe - Mtf.Controls.Video.OpenCvSharp.md</readme>
     <dependencies>
 	  <group targetFramework="net462">
-        <dependency id="Mtf.Network.interfaces" version="1.0.3" />
-		<dependency id="OpenCvSharp4" version="4.10.0.20241108" />
-		<dependency id="OpenCvSharp4.Extensions" version="4.10.0.20241108" />
-		<dependency id="OpenCvSharp4.runtime.win" version="4.10.0.20241108" />
-	  </group>
-	  <group targetFramework="net48">
         <dependency id="Mtf.Network.interfaces" version="1.0.3" />
 		<dependency id="OpenCvSharp4" version="4.10.0.20241108" />
 		<dependency id="OpenCvSharp4.Extensions" version="4.10.0.20241108" />

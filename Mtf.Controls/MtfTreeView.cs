@@ -1,6 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
-using Mtf.Controls.Enums;
-using Mtf.Controls.Extensions;
+﻿using Mtf.Controls.Enums;
+using Mtf.Windows.Forms.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

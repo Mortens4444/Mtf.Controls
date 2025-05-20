@@ -1,5 +1,5 @@
-﻿using Mtf.Controls.Extensions;
-using Mtf.Controls.Interfaces;
+﻿using Mtf.Controls.Interfaces;
+using Mtf.Windows.Forms.Extensions;
 using OpenCvSharp;
 using OpenCvSharp.Extensions;
 using System;

@@ -1,4 +1,4 @@
-﻿using Mtf.Controls.Extensions;
+﻿using Mtf.Windows.Forms.Extensions;
 using System.ComponentModel;
 using System.Windows.Forms;
 
