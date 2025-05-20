@@ -53,7 +53,6 @@
   </metadata>
   <files>
     <file src=".\Mtf.Controls.Video.OpenCvSharp\bin\Release\net462\**" target="lib\net462" />
-    <file src=".\Mtf.Controls.Video.OpenCvSharp\bin\Release\net48\**" target="lib\net48" />
     <file src=".\Mtf.Controls.Video.OpenCvSharp\bin\Release\net481\**" target="lib\net481" />
     <file src=".\Mtf.Controls.Video.OpenCvSharp\bin\Release\net8.0-windows\**" target="lib\net8.0-windows7" />
     <file src=".\Mtf.Controls.Video.OpenCvSharp\bin\Release\net9.0-windows\**" target="lib\net9.0-windows7" />
