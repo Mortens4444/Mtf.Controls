@@ -11,19 +11,49 @@
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
     <UseWindowsForms>true</UseWindowsForms>
     <WarningLevel>9999</WarningLevel>
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
     <DebugType>full</DebugType>
+    <IncludeSymbols>true</IncludeSymbols>
+    <IncludeSource>true</IncludeSource>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <EmbedAllSources>true</EmbedAllSources>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
 
-  <Target Name="SetFileVersionFromNuspec" BeforeTargets="BeforeBuild">
-    <XmlPeek XmlInputPath="../Mtf.Controls.Video.VLC.nuspec" Query="//*[local-name()='version']/text()">
-      <Output TaskParameter="Result" PropertyName="FileVersion" />
-    </XmlPeek>
-  </Target>
+  <PropertyGroup>
+    <Version>1.0.33</Version>
+    <AssemblyVersion>$(Version)</AssemblyVersion>
+    <FileVersion>$(Version)</FileVersion>
+    <InformationalVersion>$(Version)</InformationalVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Mtf.Controls.Video.VLC</PackageId>
+    <Authors>Mortens</Authors>
+    <Company>Mortens</Company>
+    <Description>
+      Custom Windows Forms Controls.
+
+      The library includes various controls, such as:
+      - VlcWindow
+    </Description>
+    <PackageReadmeFile>.\ReadMe.md</PackageReadmeFile>
+    <PackageLicenseFile>.\LICENSE.txt</PackageLicenseFile>
+    <RepositoryUrl>https://github.com/Mortens4444/Mtf.Controls.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>VlcWindow Mortens</PackageTags>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\ReadMe.md" Pack="true" PackagePath="" />
+    <None Include="..\LICENSE.txt" Pack="true" PackagePath="" />
+  </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
     <PackageReference Include="LibVLCSharp" Version="3.9.3" />
     <PackageReference Include="LibVLCSharp.WinForms" Version="3.9.3" />
-    <PackageReference Include="Mtf.Extensions" Version="1.0.0" />
+    <PackageReference Include="Mtf.Extensions" Version="1.0.6" />
     <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.21" />
   </ItemGroup>
 

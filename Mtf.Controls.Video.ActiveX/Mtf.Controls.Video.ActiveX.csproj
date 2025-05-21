@@ -12,14 +12,43 @@
     <UseWindowsForms>true</UseWindowsForms>
     <PlatformTarget>x86</PlatformTarget>
     <WarningLevel>9999</WarningLevel>
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
     <DebugType>full</DebugType>
+    <IncludeSymbols>true</IncludeSymbols>
+    <IncludeSource>true</IncludeSource>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <EmbedAllSources>true</EmbedAllSources>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
 
-  <Target Name="SetFileVersionFromNuspec" BeforeTargets="BeforeBuild">
-    <XmlPeek XmlInputPath="../Mtf.Controls.Video.ActiveX.nuspec" Query="//*[local-name()='version']/text()">
-      <Output TaskParameter="Result" PropertyName="FileVersion" />
-    </XmlPeek>
-  </Target>
+  <PropertyGroup>
+    <Version>1.0.10</Version>
+    <AssemblyVersion>$(Version)</AssemblyVersion>
+    <FileVersion>$(Version)</FileVersion>
+    <InformationalVersion>$(Version)</InformationalVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Mtf.Controls.Video.ActiveX</PackageId>
+    <Authors>Mortens</Authors>
+    <Company>Mortens</Company>
+    <Description>
+      Custom Windows Forms Controls.
+
+      The library includes various controls, such as:
+      - AxVideoPlayerWindow
+    </Description>
+    <PackageReadmeFile>.\ReadMe.md</PackageReadmeFile>
+    <PackageLicenseFile>.\LICENSE.txt</PackageLicenseFile>
+    <RepositoryUrl>https://github.com/Mortens4444/Mtf.Controls.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>AxVideoPlayerWindow Mortens</PackageTags>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\ReadMe.md" Pack="true" PackagePath="" />
+    <None Include="..\LICENSE.txt" Pack="true" PackagePath="" />
+  </ItemGroup>
 
   <ItemGroup>
     <COMReference Include="VIDEOCONTROL4Lib">
@@ -42,6 +71,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
     <PackageReference Include="Mtf.MessageBoxes" Version="6.0.3" />
   </ItemGroup>
 
