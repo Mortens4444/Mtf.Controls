@@ -22,14 +22,14 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>1.0.36</Version>
+    <Version>1.0.38</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
     <InformationalVersion>$(Version)</InformationalVersion>
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>Mtf.Controls.Video.ActiveX</PackageId>
+    <PackageId>Mtf.Controls.Video.OpenCvSharp</PackageId>
     <Authors>Mortens</Authors>
     <Company>Mortens</Company>
     <Description>

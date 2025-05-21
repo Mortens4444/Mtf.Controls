@@ -109,7 +109,7 @@ The library includes various controls, such as:
 
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
-    <PackageReference Include="Mtf.MessageBoxes" Version="6.0.5" />
+    <PackageReference Include="Mtf.MessageBoxes" Version="6.0.6" />
     <PackageReference Include="Mtf.Windows.Forms.Extensions" Version="1.0.11" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
   </ItemGroup>
