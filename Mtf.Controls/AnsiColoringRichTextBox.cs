@@ -37,6 +37,16 @@ namespace Mtf.Controls
             DefaultBackgroundColor = BackColor;
         }
 
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Line separators.")]
+        public string[] LineSeparators { get; set; } = new string[] { "\r", "\n" };
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("String split options for lines.")]
+        public StringSplitOptions StringSplitOptions { get; set; } = StringSplitOptions.RemoveEmptyEntries;
+
         #region Hidden Properties
 
         [Browsable(false)]
@@ -94,16 +104,6 @@ namespace Mtf.Controls
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [Description("Font style.")]
         public FontStyle CurrentFontStyle { get => currentFontStyle; set => currentFontStyle = value; }
-
-        [Browsable(true)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        [Description("Line separators.")]
-        public string[] LineSeparators => new string[] { "\r", "\n" };
-
-        [Browsable(true)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        [Description("String split options for lines.")]
-        public StringSplitOptions StringSplitOptions => StringSplitOptions.RemoveEmptyEntries;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
