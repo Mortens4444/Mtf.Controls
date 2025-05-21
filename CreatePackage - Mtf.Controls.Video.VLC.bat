@@ -53,4 +53,4 @@ for /R %%P in (*.csproj) do (
 powershell.exe -ExecutionPolicy Bypass -File ".\IncrementPackageVersion.ps1" -CsprojFile "%ProjectName%\%ProjectName%.csproj"
 dotnet pack --include-symbols --include-source %ProjectName%\%ProjectName%.csproj -c Release /p:IncludeSymbols=true /p:IncludeSource=true /p:DebugType=full /p:EmbedAllSources=true /p:Deterministic=true
 move .\%ProjectName%\bin\Release\*.nupkg %TargetDir%
-pause
+REM pause
