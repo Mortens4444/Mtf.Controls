@@ -26,12 +26,14 @@ namespace Mtf.Controls
         private Color defaultBackColor;
         private Color defaultFontColor;
 
-        public AnsiColoringRichTextBox()
+        public AnsiColoringRichTextBox(Theme Theme = Theme.Dark)
         {
+            BackColor = Theme == Theme.Dark ? BlackColor : WhiteColor;
+            ForeColor = Theme == Theme.Dark ? WhiteColor : BlackColor;
+
             currentColor = ForeColor;
             currentBackColor = BackColor;
             currentFontStyle = Font.Style;
-
             LastUsedFontColor = ForeColor;
             DefaultFontColor = ForeColor;
             DefaultBackgroundColor = BackColor;

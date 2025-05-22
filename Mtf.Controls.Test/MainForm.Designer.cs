@@ -491,7 +491,6 @@ namespace Mtf.Controls.Test
             // ansiColoringRichTextBox1
             // 
             ansiColoringRichTextBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            ansiColoringRichTextBox1.BackColor = Color.Black;
             ansiColoringRichTextBox1.BlackColor = Color.Black;
             ansiColoringRichTextBox1.BlueColor = Color.Blue;
             ansiColoringRichTextBox1.BrightBlackColor = Color.DarkGray;
@@ -503,7 +502,6 @@ namespace Mtf.Controls.Test
             ansiColoringRichTextBox1.BrightWhiteColor = Color.Wheat;
             ansiColoringRichTextBox1.BrightYellowColor = Color.LightYellow;
             ansiColoringRichTextBox1.CyanColor = Color.Cyan;
-            ansiColoringRichTextBox1.ForeColor = Color.White;
             ansiColoringRichTextBox1.GreenColor = Color.Green;
             ansiColoringRichTextBox1.Location = new Point(0, 43);
             ansiColoringRichTextBox1.Name = "ansiColoringRichTextBox1";
