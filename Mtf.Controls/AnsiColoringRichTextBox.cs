@@ -25,11 +25,20 @@ namespace Mtf.Controls
         private FontStyle currentFontStyle;
         private Color defaultBackColor;
         private Color defaultFontColor;
+        private Theme theme;
 
-        public AnsiColoringRichTextBox(Theme Theme = Theme.Dark)
+        public AnsiColoringRichTextBox() : this(Theme.Dark) { }
+
+        public AnsiColoringRichTextBox(Theme theme)
         {
-            BackColor = Theme == Theme.Dark ? BlackColor : WhiteColor;
-            ForeColor = Theme == Theme.Dark ? WhiteColor : BlackColor;
+            UpdateThemeColors(theme);
+        }
+
+        public void UpdateThemeColors(Theme theme = Theme.Dark)
+        {
+            this.theme = theme;
+            BackColor = theme == Theme.Dark ? BlackColor : WhiteColor;
+            ForeColor = theme == Theme.Dark ? WhiteColor : BlackColor;
 
             currentColor = ForeColor;
             currentBackColor = BackColor;
@@ -38,6 +47,28 @@ namespace Mtf.Controls
             DefaultFontColor = ForeColor;
             DefaultBackgroundColor = BackColor;
         }
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Current theme.")]
+        public Theme Theme
+        {
+            get => theme;
+            set
+            {
+                theme = value;
+                UpdateThemeColors(theme);
+                if (ClearScreenOnThemeChange)
+                {
+                    EraseScreen();
+                }
+            }
+        }
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Clears the screen after the theme changes.")]
+        public bool ClearScreenOnThemeChange { get; set; }
 
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
