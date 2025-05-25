@@ -24,7 +24,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>1.0.10</Version>
+    <Version>1.0.13</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
     <InformationalVersion>$(Version)</InformationalVersion>
@@ -46,6 +46,11 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>AxVideoPlayerWindow Mortens</PackageTags>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\NoSignal.png" />
+    <None Remove="Resources\VideoSource.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="..\ReadMe.md" Pack="true" PackagePath="" />
     <None Include="..\LICENSE.txt" Pack="true" PackagePath="" />
@@ -80,12 +85,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\VideoSource.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
-    <PackageReference Include="Mtf.MessageBoxes" Version="6.0.6" />
+    <PackageReference Include="Mtf.MessageBoxes" Version="6.0.7" />
+    <PackageReference Include="System.Resources.Extensions" Version="4.7.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Mtf.Controls.Interfaces\Mtf.Controls.Interfaces.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\NoSignal.png" />
   </ItemGroup>
 
   <ItemGroup>
