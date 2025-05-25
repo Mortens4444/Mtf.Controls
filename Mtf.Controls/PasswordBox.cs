@@ -25,12 +25,16 @@ namespace Mtf.Controls
 
         protected override void OnKeyPress(KeyPressEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(e));
+            }
+
             base.OnKeyPress(e);
 
             if (!Char.IsControl(e.KeyChar))
             {
                 var index = SelectionStart < 0 ? 0 : (SelectionStart > password.Length ? password.Length : SelectionStart);
-
                 try
                 {
                     password.InsertAt(index, e.KeyChar);
@@ -38,7 +42,7 @@ namespace Mtf.Controls
                     UpdateMaskedText();
                     SelectionStart = index + 1;
                 }
-                catch (ArgumentOutOfRangeException ex)
+                catch (ArgumentOutOfRangeException)
                 {
                 }
             }
@@ -55,6 +59,11 @@ namespace Mtf.Controls
 
         protected override void OnKeyDown(KeyEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(e));
+            }
+
             base.OnKeyDown(e);
             try
             {
@@ -72,7 +81,7 @@ namespace Mtf.Controls
                     UpdateMaskedText();
                 }
             }
-            catch (ArgumentOutOfRangeException ex)
+            catch (ArgumentOutOfRangeException)
             {
             }
         }
@@ -85,6 +94,7 @@ namespace Mtf.Controls
             }
             else
             {
+                //var randomLength = RandomProvider.GetSecureRandomByte();
                 var randomLength = random.Next(password.Length, password.Length + 10);
                 base.Text = new string(PasswordChar, randomLength);
             }

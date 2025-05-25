@@ -157,6 +157,15 @@ namespace Mtf.Controls
 
         public static void RelocateControls(Control control, Size originalSize, List<LocationAndSize> controlLocationsAndSizes)
         {
+            if (control == null)
+            {
+                throw new ArgumentNullException(nameof(control));
+            }
+            if (controlLocationsAndSizes == null)
+            {
+                throw new ArgumentNullException(nameof(controlLocationsAndSizes));
+            }
+
 #if NET452 || NET462
             var imageAndSizeMode = GetImageAndSizeMode(control);
             var image = imageAndSizeMode.Item1;
@@ -170,8 +179,14 @@ namespace Mtf.Controls
 
             for (var i = 0; i < control.Controls.Count; i++)
             {
-                control.Controls[i].Location = new Point((int)Math.Round((scaleX * controlLocationsAndSizes[i].Location.X) + imageLocationAndSize.Location.X), (int)Math.Round((scaleY * controlLocationsAndSizes[i].Location.Y) + imageLocationAndSize.Location.Y));
-                control.Controls[i].Size = new Size((int)Math.Round(scaleX * controlLocationsAndSizes[i].Size.Width), (int)Math.Round(scaleY * controlLocationsAndSizes[i].Size.Height));
+                control.Controls[i].Location = new Point(
+                    (int)Math.Round((scaleX * controlLocationsAndSizes[i].Location.X) + imageLocationAndSize.Location.X),
+                    (int)Math.Round((scaleY * controlLocationsAndSizes[i].Location.Y) + imageLocationAndSize.Location.Y)
+                );
+                control.Controls[i].Size = new Size(
+                    (int)Math.Round(scaleX * controlLocationsAndSizes[i].Size.Width),
+                    (int)Math.Round(scaleY * controlLocationsAndSizes[i].Size.Height)
+                );
             }
         }
 

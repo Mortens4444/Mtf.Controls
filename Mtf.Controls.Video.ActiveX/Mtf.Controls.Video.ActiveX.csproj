@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net9.0-windows;net481;net462</TargetFrameworks>
+    <TargetFrameworks>net9.0-windows;net8.0-windows;net481;net462</TargetFrameworks>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <OutputType>Library</OutputType>
     <AnalysisLevel>latest-all</AnalysisLevel>
     <PackageReadmeFile>ReadMe.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE - ActiveX.txt</PackageLicenseFile>
-    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <UseWindowsForms>true</UseWindowsForms>
     <PlatformTarget>x86</PlatformTarget>
     <WarningLevel>9999</WarningLevel>
@@ -20,6 +20,7 @@
     <EmbedAllSources>true</EmbedAllSources>
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     <Deterministic>true</Deterministic>
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -48,6 +49,14 @@
   <ItemGroup>
     <None Include="..\ReadMe.md" Pack="true" PackagePath="" />
     <None Include="..\LICENSE.txt" Pack="true" PackagePath="" />
+    <Content Include="bin\Release\net462\Mtf.Controls.Interfaces.dll" Pack="true" PackagePath="lib\net462" />
+    <Content Include="bin\Release\net481\Mtf.Controls.Interfaces.dll" Pack="true" PackagePath="lib\net481" />
+    <Content Include="bin\Release\net8.0-windows\Mtf.Controls.Interfaces.dll" Pack="true" PackagePath="lib\net8.0-windows7.0" />
+    <Content Include="bin\Release\net9.0-windows\Mtf.Controls.Interfaces.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
+    <Content Include="bin\Release\net462\Mtf.Controls.Interfaces.pdb" Pack="true" PackagePath="lib\net462" />
+    <Content Include="bin\Release\net481\Mtf.Controls.Interfaces.pdb" Pack="true" PackagePath="lib\net481" />
+    <Content Include="bin\Release\net8.0-windows\Mtf.Controls.Interfaces.pdb" Pack="true" PackagePath="lib\net8.0-windows7.0" />
+    <Content Include="bin\Release\net9.0-windows\Mtf.Controls.Interfaces.pdb" Pack="true" PackagePath="lib\net9.0-windows7.0" />
   </ItemGroup>
 
   <ItemGroup>

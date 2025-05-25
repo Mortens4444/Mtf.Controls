@@ -117,11 +117,7 @@ namespace Mtf.Controls
             {
                 if (!MultiSelect)
                 {
-#if NET462_OR_GREATER
                     return SelectedNode == null ? Array.Empty<TreeNode>() : (new TreeNode[] { SelectedNode });
-#else
-                    return SelectedNode == null ? new TreeNode[] { } : (new TreeNode[] { SelectedNode });
-#endif
                 }
 
                 _ = selectedNodes.RemoveAll(OrphanNode);
@@ -131,17 +127,19 @@ namespace Mtf.Controls
             {
                 selectedNodes.Clear();
                 SelectedNode = null;
-
-                for (var i = 0; i < value.Length; i++)
+                if (value != null)
                 {
-                    if (i == 0)
+                    for (var i = 0; i < value.Length; i++)
                     {
-                        SelectedNode = value[i];
-                        ShiftStartTreeNode = value[i];
-                    }
-                    else
-                    {
-                        AddToSelectedNodes(value[i]);
+                        if (i == 0)
+                        {
+                            SelectedNode = value[i];
+                            ShiftStartTreeNode = value[i];
+                        }
+                        else
+                        {
+                            AddToSelectedNodes(value[i]);
+                        }
                     }
                 }
                 base.OnAfterSelect(new TreeViewEventArgs(SelectedNode));
@@ -440,11 +438,11 @@ namespace Mtf.Controls
                 return;
             }
 
-            var treeviewHitTestInfo = HitTest(e.Location);
+            var treeViewHitTestInfo = HitTest(e.Location);
             var node = GetNodeAt(e.Location);
             if (node != null)
             {
-                if ((treeviewHitTestInfo.Location == TreeViewHitTestLocations.PlusMinus) && (base.HitTest(e.Location).Location != TreeViewHitTestLocations.PlusMinus))
+                if ((treeViewHitTestInfo.Location == TreeViewHitTestLocations.PlusMinus) && (base.HitTest(e.Location).Location != TreeViewHitTestLocations.PlusMinus))
                 {
                     node.Toggle();
                 }
@@ -453,8 +451,15 @@ namespace Mtf.Controls
 
         protected override void OnNodeMouseDoubleClick(TreeNodeMouseClickEventArgs e)
         {
-            var treeviewHitTestInfo = HitTest(e.Location);
-            if ((treeviewHitTestInfo.Location == TreeViewHitTestLocations.Image) || (treeviewHitTestInfo.Location == TreeViewHitTestLocations.StateImage) || (treeviewHitTestInfo.Location == TreeViewHitTestLocations.Label))
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(e));
+            }
+
+            var treeViewHitTestInfo = HitTest(e.Location);
+            if ((treeViewHitTestInfo.Location == TreeViewHitTestLocations.Image) ||
+                (treeViewHitTestInfo.Location == TreeViewHitTestLocations.StateImage) ||
+                (treeViewHitTestInfo.Location == TreeViewHitTestLocations.Label))
             {
                 base.OnNodeMouseDoubleClick(e);
             }
@@ -996,7 +1001,7 @@ namespace Mtf.Controls
             File.WriteAllText(filePath, csvBuilder.ToString(), Encoding.UTF8);
         }
 
-        private void ExportNode(StringBuilder csvBuilder, string delimiter, TreeNode node, int level)
+        private static void ExportNode(StringBuilder csvBuilder, string delimiter, TreeNode node, int level)
         {
             var indent = level > -1 ? $"{new string('\t', level)}{delimiter}" : String.Empty;
             _ = csvBuilder.AppendLine($"{indent}{EscapeCsvValue(node.Text)}{delimiter}{EscapeCsvValue(node.Tag?.ToString() ?? String.Empty)}");

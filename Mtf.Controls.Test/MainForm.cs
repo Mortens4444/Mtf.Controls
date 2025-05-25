@@ -307,22 +307,23 @@ namespace Mtf.Controls.Test
         private void BtnTest_Click(object sender, EventArgs e)
         {
             ansiColoringRichTextBox1.StringSplitOptions = StringSplitOptions.None;
-            var count = ((RichTextBox)ansiColoringRichTextBox1).Lines.Count();
-            var count2 = ansiColoringRichTextBox1.Lines.Count();
-            if (count == count2)
-            {
-                InfoBox.Show("Same count", $"{count}");
-            }
-            else
-            {
-                ErrorBox.Show("Not same count", $"{count} vs {count2}");
-            }
+            //var count = ((RichTextBox)ansiColoringRichTextBox1).Lines.Count();
+            //var count2 = ansiColoringRichTextBox1.Lines.Count();
+            //if (count == count2)
+            //{
+            //    InfoBox.Show("Same count", $"{count}");
+            //}
+            //else
+            //{
+            //    ErrorBox.Show("Not same count", $"{count} vs {count2}");
+            //}
 
+            ansiColoringRichTextBox1.InsertTextAtCaret("\x1B[2;2f");
             //ansiColoringRichTextBox1.AppendText("\a"); // Test bell
             //ansiColoringRichTextBox1.AppendText("\b"); // Test bell
             //ansiColoringRichTextBox1.AppendText("\x1B[2J"); // Test erase entire screen
             //ansiColoringRichTextBox1.AppendText("\x1B[2K"); // Test erase entire line
-            ansiColoringRichTextBox1.AppendText("\x1B[0K"); // Test erase entire line
+            //ansiColoringRichTextBox1.AppendText("\x1B[0K"); // Test erase entire line
             //ansiColoringRichTextBox1.AppendText("\x1B[K"); // Test erase from cursor to line end
             //ansiColoringRichTextBox1.AppendText("\u001b[J"); // Test erase from cursor to end of screen
             //ansiColoringRichTextBox1.AppendText("\u001b[1K"); // Test erase from start of line to cursor

@@ -5,6 +5,7 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Media;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -18,6 +19,8 @@ namespace Mtf.Controls
     [ToolboxBitmap(typeof(AnsiColoringRichTextBox), "Resources.SourceCodeViewerRichTextBox.png")]
     public class AnsiColoringRichTextBox : RichTextBox, IAnsiColoringCommandContext, IAnsiMovingCommandContext, IAnsiErasingCommandContext, IAnsiControlCommandContext
     {
+        public delegate void TextModifierCallback(int index, string text);
+
         private static readonly Regex AnsiPattern = new Regex(@"\x1B\[[0-9;]*[A-HJKSTfmisu]", RegexOptions.Compiled);
         
         private Color currentColor;
@@ -251,6 +254,40 @@ namespace Mtf.Controls
 
         public new void AppendText(string text)
         {
+            AppendOrInsertText(0, text, Append);
+        }
+
+        private void Append(int index, string text)
+        {
+            base.AppendText(text);
+        }
+
+        public void InsertText(int index, string text)
+        {
+            AppendOrInsertText(index, text, InsertAt);
+        }
+
+        public void InsertTextAtCaret(string text)
+        {
+            AppendOrInsertText(SelectionStart, text, InsertAt);
+        }
+
+        private void InsertAt(int index, string text)
+        {
+            var originalSelectionStart = SelectionStart;
+            var originalSelectionLength = SelectionLength;
+
+            SelectionStart = index;
+            SelectionLength = 0;
+            SelectedText = text;
+
+            SelectionStart = originalSelectionStart + text?.Length ?? 0;
+            SelectionLength = originalSelectionLength;
+        }
+
+
+        private void AppendOrInsertText(int index, string text, TextModifierCallback textModifierCallback)
+        {
             if (String.IsNullOrEmpty(text))
             {
                 return;
@@ -270,7 +307,7 @@ namespace Mtf.Controls
                 var plainText = text.Substring(currentIndex, match.Index - currentIndex);
                 if (!String.IsNullOrEmpty(plainText))
                 {
-                    ApplyStyle(plainText);
+                    ApplyStyle(index, plainText, textModifierCallback);
                 }
 
                 if (AnsiCodeFormattingDecider.IsColoringCode(match.Value))
@@ -292,7 +329,7 @@ namespace Mtf.Controls
             if (currentIndex < text.Length)
             {
                 var plainText = text.Substring(currentIndex);
-                ApplyStyle(plainText);
+                ApplyStyle(index, plainText, textModifierCallback);
             }
         }
 
@@ -302,10 +339,10 @@ namespace Mtf.Controls
             command.Execute(this);
         }
 
-        private void ApplyStyle(string plainText)
+        private void ApplyStyle(int index, string plainText, TextModifierCallback textModifierCallback)
         {
             var start = TextLength;
-            base.AppendText(plainText);
+            textModifierCallback(index, plainText);
             Select(start, plainText.Length);
             SelectionColor = CurrentColor;
             SelectionBackColor = CurrentBackColor;

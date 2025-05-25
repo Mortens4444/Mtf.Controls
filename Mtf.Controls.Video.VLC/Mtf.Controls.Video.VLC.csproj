@@ -19,10 +19,11 @@
     <EmbedAllSources>true</EmbedAllSources>
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     <Deterministic>true</Deterministic>
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>1.0.34</Version>
+    <Version>1.0.35</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
     <InformationalVersion>$(Version)</InformationalVersion>
@@ -47,13 +48,29 @@
   <ItemGroup>
     <None Include="..\ReadMe.md" Pack="true" PackagePath="" />
     <None Include="..\LICENSE.txt" Pack="true" PackagePath="" />
+    <Content Include="bin\Release\net462\Mtf.Controls.dll" Pack="true" PackagePath="lib\net462" />
+    <Content Include="bin\Release\net481\Mtf.Controls.dll" Pack="true" PackagePath="lib\net481" />
+    <Content Include="bin\Release\net8.0-windows\Mtf.Controls.dll" Pack="true" PackagePath="lib\net8.0-windows7.0" />
+    <Content Include="bin\Release\net9.0-windows\Mtf.Controls.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
+    <Content Include="bin\Release\net462\Mtf.Controls.pdb" Pack="true" PackagePath="lib\net462" />
+    <Content Include="bin\Release\net481\Mtf.Controls.pdb" Pack="true" PackagePath="lib\net481" />
+    <Content Include="bin\Release\net8.0-windows\Mtf.Controls.pdb" Pack="true" PackagePath="lib\net8.0-windows7.0" />
+    <Content Include="bin\Release\net9.0-windows\Mtf.Controls.pdb" Pack="true" PackagePath="lib\net9.0-windows7.0" />
+    <Content Include="bin\Release\net462\Mtf.Controls.Interfaces.dll" Pack="true" PackagePath="lib\net462" />
+    <Content Include="bin\Release\net481\Mtf.Controls.Interfaces.dll" Pack="true" PackagePath="lib\net481" />
+    <Content Include="bin\Release\net8.0-windows\Mtf.Controls.Interfaces.dll" Pack="true" PackagePath="lib\net8.0-windows7.0" />
+    <Content Include="bin\Release\net9.0-windows\Mtf.Controls.Interfaces.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
+    <Content Include="bin\Release\net462\Mtf.Controls.Interfaces.pdb" Pack="true" PackagePath="lib\net462" />
+    <Content Include="bin\Release\net481\Mtf.Controls.Interfaces.pdb" Pack="true" PackagePath="lib\net481" />
+    <Content Include="bin\Release\net8.0-windows\Mtf.Controls.Interfaces.pdb" Pack="true" PackagePath="lib\net8.0-windows7.0" />
+    <Content Include="bin\Release\net9.0-windows\Mtf.Controls.Interfaces.pdb" Pack="true" PackagePath="lib\net9.0-windows7.0" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
     <PackageReference Include="LibVLCSharp" Version="3.9.3" />
     <PackageReference Include="LibVLCSharp.WinForms" Version="3.9.3" />
-    <PackageReference Include="Mtf.Extensions" Version="1.0.11" />
+    <PackageReference Include="Mtf.Extensions" Version="1.0.13" />
     <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.21" />
   </ItemGroup>
 

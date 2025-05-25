@@ -22,7 +22,9 @@ namespace Mtf.Controls.Commands.AnsiMovingCommands
             {
                 var pos = 0;
                 for (var i = 0; i < line - 1; i++)
+                {
                     pos += lines[i].Length + 1;
+                }
 
                 pos += Math.Min(column - 1, lines[line - 1].Length);
                 context.SelectionStart = Math.Min(pos, context.TextLength);

@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace Mtf.Controls.Commands.AnsiColoringCommands
 {
-    class SetDimCommand : IAnsiColoringCommand
+    public class SetDimCommand : IAnsiColoringCommand
     {
         public void Execute(IAnsiColoringCommandContext context)
         {

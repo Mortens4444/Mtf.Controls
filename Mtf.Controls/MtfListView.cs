@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -622,6 +623,11 @@ namespace Mtf.Controls
 
         protected override void OnPaint(PaintEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(e));
+            }
+
             base.OnPaint(e);
             if (GetStyle(ControlStyles.UserPaint))
             {
@@ -689,7 +695,7 @@ namespace Mtf.Controls
                         continue;
                     }
 
-                    if (values.Length == 1 && values[0].StartsWith("\"") && values[0].EndsWith("\""))
+                    if (values.Length == 1 && values[0].StartsWith("\"", StringComparison.Ordinal) && values[0].EndsWith("\"", StringComparison.Ordinal))
                     {
                         currentGroup = new ListViewGroup(values[0].Trim('"'));
                         Groups.Add(currentGroup);
@@ -767,7 +773,7 @@ namespace Mtf.Controls
         public string BuildCsvContentFromListView(string delimiter)
         {
             var csvBuilder = new StringBuilder();
-            var itemsToProcess = SelectedItems.Count > 0 ? SelectedItems.Cast<ListViewItem>() : Items.Cast<ListViewItem>();
+            var itemsToProcess = (SelectedItems.Count > 0 ? SelectedItems.Cast<ListViewItem>() : Items.Cast<ListViewItem>()).ToList();
 
             if (Columns.Count > 0)
             {
@@ -781,11 +787,11 @@ namespace Mtf.Controls
                 {
                     if (Groups.Count > 0 && !headerWritten)
                     {
-                        _ = csvBuilder.AppendLine("\"Default\"");
+                        _ = csvBuilder.AppendLine(String.Format(CultureInfo.InvariantCulture, "\"{0}\"", "Default"));
                         headerWritten = true;
                     }
                     var row = String.Join(delimiter, item.SubItems.Cast<ListViewItem.ListViewSubItem>().Select(subItem => EscapeCsvValue(subItem.Text)));
-                    csvBuilder.AppendLine(row);
+                    _ = csvBuilder.AppendLine(row);
                 }
             }
 
@@ -793,18 +799,18 @@ namespace Mtf.Controls
             {
                 foreach (ListViewGroup group in Groups)
                 {
-                    var groupItems = itemsToProcess.Where(i => i.Group == group);
-                    if (groupItems.Any())
+                    var groupItems = itemsToProcess.Where(i => i.Group == group).ToList();
+                    if (groupItems.Count > 0)
                     {
-                        _ = csvBuilder.AppendLine($"\"{group.Header}\"");
+                        _ = csvBuilder.AppendLine(String.Format(CultureInfo.InvariantCulture, "\"{0}\"", group.Header));
 
                         foreach (var item in groupItems)
                         {
                             var row = String.Join(delimiter, item.SubItems.Cast<ListViewItem.ListViewSubItem>().Select(subItem => EscapeCsvValue(subItem.Text)));
-                            csvBuilder.AppendLine(row);
+                            _ = csvBuilder.AppendLine(row);
                         }
 
-                        csvBuilder.AppendLine();
+                        _ = csvBuilder.AppendLine();
                     }
                 }
             }
