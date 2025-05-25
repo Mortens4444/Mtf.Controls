@@ -62,6 +62,14 @@
     <Content Include="bin\Release\net481\Mtf.Controls.Interfaces.pdb" Pack="true" PackagePath="lib\net481" />
     <Content Include="bin\Release\net8.0-windows\Mtf.Controls.Interfaces.pdb" Pack="true" PackagePath="lib\net8.0-windows7.0" />
     <Content Include="bin\Release\net9.0-windows\Mtf.Controls.Interfaces.pdb" Pack="true" PackagePath="lib\net9.0-windows7.0" />
+    <Content Include="bin\Release\net462\AxInterop.VIDEOCONTROL4Lib.dll" Pack="true" PackagePath="lib\net462" />
+    <Content Include="bin\Release\net481\AxInterop.VIDEOCONTROL4Lib.dll" Pack="true" PackagePath="lib\net481" />
+    <Content Include="bin\Release\net8.0-windows\AxInterop.VIDEOCONTROL4Lib.dll" Pack="true" PackagePath="lib\net8.0-windows7.0" />
+    <Content Include="bin\Release\net9.0-windows\AxInterop.VIDEOCONTROL4Lib.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
+    <Content Include="bin\Release\net462\Interop.VIDEOCONTROL4Lib.dll" Pack="true" PackagePath="lib\net462" />
+    <Content Include="bin\Release\net481\Interop.VIDEOCONTROL4Lib.dll" Pack="true" PackagePath="lib\net481" />
+    <Content Include="bin\Release\net8.0-windows\Interop.VIDEOCONTROL4Lib.dll" Pack="true" PackagePath="lib\net8.0-windows7.0" />
+    <Content Include="bin\Release\net9.0-windows\Interop.VIDEOCONTROL4Lib.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
   </ItemGroup>
 
   <ItemGroup>
