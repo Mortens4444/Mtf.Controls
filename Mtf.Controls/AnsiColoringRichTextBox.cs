@@ -20,7 +20,7 @@ namespace Mtf.Controls
     {
         public delegate void TextModifierCallback(int index, string text);
 
-        private static readonly Regex AnsiPattern = new Regex(@"\x1B\[[0-9;]*[A-HJKSTfmisu]", RegexOptions.Compiled);
+        private static readonly Regex AnsiPattern = new Regex(@"\x1B\[[0-9;]*[A-HJKSTfmisu]|\a|\x08|\t|\v|\f|\x7F", RegexOptions.Compiled);
         
         private Color currentColor;
         private Color currentBackColor;
@@ -292,12 +292,6 @@ namespace Mtf.Controls
                 return;
             }
 
-            foreach (var ch in text)
-            {
-                var controlCommand = AnsiControlCommandFactory.Create(ch);
-                controlCommand?.Execute(this);
-            }
-
             var matches = AnsiPattern.Matches(text);
             var currentIndex = 0;
 
@@ -309,7 +303,12 @@ namespace Mtf.Controls
                     ApplyStyle(index, plainText, textModifierCallback);
                 }
 
-                if (AnsiCodeFormattingDecider.IsColoringCode(match.Value))
+                if (AnsiCodeFormattingDecider.IsControlCode(match.Value))
+                {
+                    var controlCommand = AnsiControlCommandFactory.Create(match.Value[0]);
+                    controlCommand?.Execute(this);
+                }
+                else if (AnsiCodeFormattingDecider.IsColoringCode(match.Value))
                 {
                     ProcessAnsiColoringCode(match.Value);
                 }
@@ -575,10 +574,6 @@ namespace Mtf.Controls
         public void CarriageReturn()
         {
             SelectionStart = GetFirstCharIndexOfCurrentLine();
-        }
-
-        public void Escape()
-        {
         }
 
         public void Delete()

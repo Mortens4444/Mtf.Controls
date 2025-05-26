@@ -2,22 +2,20 @@
 {
     public interface IAnsiControlCommandContext
     {
-        void Bell(); // \a vagy ^G
+        void Bell();
 
-        void Backspace(); // \b vagy ^H
+        void Backspace();
 
-        void HorizontalTab(); // \t vagy ^I
+        void HorizontalTab();
 
-        void LineFeed(); // \n vagy ^J
+        void LineFeed();
 
-        void VerticalTab(); // \v vagy ^K
+        void VerticalTab();
 
-        void FormFeed(); // \f vagy ^L
+        void FormFeed();
 
-        void CarriageReturn(); // \r vagy ^M
+        void CarriageReturn();
 
-        void Escape(); // \e vagy ^[
-
-        void Delete(); // 0x7F
+        void Delete();
     }
 }

@@ -5,6 +5,12 @@ namespace Mtf.Controls.Services
 {
     public static class AnsiCodeFormattingDecider
     {
+        public static bool IsControlCode(string ansiCode)
+        {
+            return (ansiCode == "\a") || (ansiCode == "\b") || (ansiCode == "\t") ||
+                (ansiCode == "\v") || (ansiCode == "\f") || (ansiCode == "\x7F");
+        }
+
         public static bool IsColoringCode(string ansiCode)
         {
             return ansiCode.EndsWith("m", StringComparison.InvariantCulture);
