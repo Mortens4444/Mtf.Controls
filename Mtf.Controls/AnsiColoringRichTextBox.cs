@@ -528,7 +528,8 @@ namespace Mtf.Controls
 
         public void Bell()
         {
-            SystemSounds.Beep.Play();
+            Console.Beep();
+            //SystemSounds.Beep.Play();
         }
 
         public void Backspace()
