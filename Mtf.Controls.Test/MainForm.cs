@@ -318,9 +318,10 @@ namespace Mtf.Controls.Test
             //    ErrorBox.Show("Not same count", $"{count} vs {count2}");
             //}
 
-            ansiColoringRichTextBox1.InsertTextAtCaret("\x1B[2;2f");
-            //ansiColoringRichTextBox1.AppendText("\a"); // Test bell
-            //ansiColoringRichTextBox1.AppendText("\b"); // Test bell
+            //ansiColoringRichTextBox1.InsertTextAtCaret("\x1B[2;2f");
+            //ansiColoringRichTextBox1.InsertTextAtCaret($"\x1B[8;1f<**HERE**");
+            //ansiColoringRichTextBox1.InsertTextAtCaret("\a"); // Test bell
+            //ansiColoringRichTextBox1.InsertTextAtCaret("\b"); // Test bell
             //ansiColoringRichTextBox1.AppendText("\x1B[2J"); // Test erase entire screen
             //ansiColoringRichTextBox1.AppendText("\x1B[2K"); // Test erase entire line
             //ansiColoringRichTextBox1.AppendText("\x1B[0K"); // Test erase entire line

@@ -35,7 +35,6 @@ namespace Mtf.Controls.Services
             }
 
             var lastChar = ansiCode[ansiCode.Length - 1];
-
             switch (lastChar)
             {
                 case 'H':

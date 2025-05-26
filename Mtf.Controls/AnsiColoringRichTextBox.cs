@@ -5,7 +5,6 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Media;
-using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -316,7 +315,7 @@ namespace Mtf.Controls
                 }
                 else if (AnsiCodeFormattingDecider.IsMovingCode(match.Value, out var m))
                 {
-                    ProcessAnsiMovingCode(m.Value);
+                    index = ProcessAnsiMovingCode(m.Value);
                 }
                 else if (AnsiCodeFormattingDecider.IsErasingCode(match.Value))
                 {
@@ -349,7 +348,7 @@ namespace Mtf.Controls
             SetSelectionFont(Font, CurrentFontStyle);
         }
 
-        private void ProcessAnsiMovingCode(string ansiCode)
+        private int ProcessAnsiMovingCode(string ansiCode)
         {
             var codeRegex = new Regex(@"\x1B\[(\d*(;\d+)*)[A-Hf]");
             var match = codeRegex.Match(ansiCode);
@@ -360,6 +359,8 @@ namespace Mtf.Controls
                 var command = AnsiMovingCommandFactory.Create(ansiCode, codesString, match);
                 command.Execute(this);
             }
+
+            return SelectionStart;
         }
 
         private void ProcessAnsiColoringCode(string ansiCode)

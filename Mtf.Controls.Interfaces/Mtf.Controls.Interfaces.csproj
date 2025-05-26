@@ -6,8 +6,6 @@
     <Nullable>disable</Nullable>
     <OutputType>Library</OutputType>
     <AnalysisLevel>latest-all</AnalysisLevel>
-    <PackageReadmeFile>ReadMe.md</PackageReadmeFile>
-    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <UseWindowsForms>true</UseWindowsForms>
     <WarningLevel>9999</WarningLevel>
@@ -19,11 +17,6 @@
     <EmbedAllSources>true</EmbedAllSources>
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     <Deterministic>true</Deterministic>
-    <IsPackable>true</IsPackable>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Pack>true</Pack>
-    <IncludeAssets>all</IncludeAssets>
-    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
   </PropertyGroup>
 
   <PropertyGroup>

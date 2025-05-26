@@ -23,7 +23,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>1.0.40</Version>
+    <Version>1.0.41</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
     <InformationalVersion>$(Version)</InformationalVersion>
@@ -69,7 +69,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
-    <PackageReference Include="Mtf.Network.Interfaces" Version="1.0.8" />
+    <PackageReference Include="Mtf.Network.Interfaces" Version="1.0.9" />
     <PackageReference Include="OpenCvSharp4" Version="4.10.0.20241108" />
     <PackageReference Include="OpenCvSharp4.Extensions" Version="4.10.0.20241108" />
     <PackageReference Include="OpenCvSharp4.runtime.win" Version="4.10.0.20241108" />

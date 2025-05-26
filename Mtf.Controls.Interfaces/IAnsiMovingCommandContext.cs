@@ -8,6 +8,8 @@
         
         int TextLength { get; }
 
+        string[] LineSeparators { get; }
+
         string[] Lines { get; }
 
         void ScrollToCaret();

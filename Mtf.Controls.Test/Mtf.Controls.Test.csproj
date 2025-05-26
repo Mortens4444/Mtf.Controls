@@ -9,7 +9,6 @@
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <UseWindowsForms>true</UseWindowsForms>
     <PlatformTarget>x86</PlatformTarget>
-    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Mtf.Network" Version="2.0.9" />
+    <PackageReference Include="Mtf.Network" Version="2.0.10" />
     <PackageReference Include="System.Private.Uri" Version="4.3.2" />
   </ItemGroup>
 
