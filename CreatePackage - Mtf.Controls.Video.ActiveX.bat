@@ -50,6 +50,10 @@ for /R %%P in (*.csproj) do (
     popd
 )
 
-powershell.exe -ExecutionPolicy Bypass -File ".\IncrementPackageVersion.ps1" -CsprojFile "%ProjectName%\%ProjectName%.csproj"
+for /f %%V in ('powershell -ExecutionPolicy Bypass -File ".\IncrementPackageVersion.ps1" -CsprojFile "%ProjectName%\%ProjectName%.csproj"') do set "PackageVersion=%%V"
+git add -A
+git commit -m "%ProjectName% NuGet package release %PackageVersion%"
+git push
+
 "C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\msbuild.exe" %ProjectName%\%ProjectName%.csproj /t:pack -p:IncludeReferencedProjects=true -p:IncludeSymbols=true -p:IncludeSource=true -p:DebugType=full -p:EmbedAllSources=true -p:IncludeReferencedProjects=true -p:PackageOutputPath="%TargetDir%"
-pause
+REM pause

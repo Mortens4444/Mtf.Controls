@@ -2,11 +2,12 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
+    <TargetFramework>net462</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
-    <ImplicitUsings>enable</ImplicitUsings>
     <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
   </PropertyGroup>
 
@@ -14,6 +15,10 @@
     <ProjectReference Include="..\Mtf.Controls.Video.ActiveX\Mtf.Controls.Video.ActiveX.csproj" />
   </ItemGroup>
 
+  <ItemGroup Condition="'$(TargetFramework)' == 'net462'">
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  
   <ItemGroup>
     <Reference Include="AxInterop.VIDEOCONTROL4Lib">
       <HintPath>..\Mtf.Controls.Video.ActiveX\obj\Release\net9.0-windows\AxInterop.VIDEOCONTROL4Lib.dll</HintPath>

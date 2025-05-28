@@ -39,3 +39,4 @@ if (-not $found) {
 $updatedLines | Set-Content $CsprojFile -Encoding UTF8
 
 Write-Host "Version updated to $newVersion in $CsprojFile" -ForegroundColor Green
+Write-Output $newVersion

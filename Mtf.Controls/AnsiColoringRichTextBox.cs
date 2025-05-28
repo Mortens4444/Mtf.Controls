@@ -73,6 +73,11 @@ namespace Mtf.Controls
 
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Delete newline characters when the EraseLine method is called.")]
+        public bool DeleteNewLineCharactersWhenEraseLineCalled { get; set; }
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [Description("Line separators.")]
         public string[] LineSeparators { get; set; } = new string[] { "\r", "\n" };
 
@@ -142,7 +147,7 @@ namespace Mtf.Controls
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [Description("Lines.")]
-        public string[] Lines => Text.Split(LineSeparators, StringSplitOptions);
+        public new string[] Lines => Text.Split(LineSeparators, StringSplitOptions);
 
         #endregion
 
@@ -255,6 +260,12 @@ namespace Mtf.Controls
             AppendOrInsertText(0, text, Append);
         }
 
+        public void AppendTextAndUpdate(string text)
+        {
+            AppendText(text);
+            Update();
+        }
+
         private void Append(int index, string text)
         {
             base.AppendText(text);
@@ -265,9 +276,21 @@ namespace Mtf.Controls
             AppendOrInsertText(index, text, InsertAt);
         }
 
+        public void InsertTextAndUpdate(int index, string text)
+        {
+            InsertText(index, text);
+            Update();
+        }
+
         public void InsertTextAtCaret(string text)
         {
             AppendOrInsertText(SelectionStart, text, InsertAt);
+        }
+
+        public void InsertTextAtCaretAndUpdate(string text)
+        {
+            InsertTextAtCaret(text);
+            Update();
         }
 
         private void InsertAt(int index, string text)
@@ -514,6 +537,23 @@ namespace Mtf.Controls
             }
         }
 
+        public void EraseLineWithNewLine()
+        {
+            var lineIndex = GetLineFromCharIndex(SelectionStart);
+            var lineStart = GetFirstCharIndexFromLine(lineIndex);
+            var nextLineStart = lineIndex + 1 < Lines.Length
+                ? GetFirstCharIndexFromLine(lineIndex + 1)
+                : TextLength;
+
+            var length = nextLineStart - lineStart;
+            if (length > 0)
+            {
+                Select(lineStart, length);
+                SelectedText = String.Empty;
+                SelectionStart = lineStart;
+            }
+        }
+
         public void EraseSavedLines()
         {
             Clear();
@@ -527,7 +567,6 @@ namespace Mtf.Controls
         public void Bell()
         {
             Console.Beep();
-            //SystemSounds.Beep.Play();
         }
 
         public void Backspace()

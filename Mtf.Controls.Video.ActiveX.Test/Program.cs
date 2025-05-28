@@ -1,3 +1,6 @@
+using System;
+using System.Windows.Forms;
+
 namespace Mtf.Controls.Video.ActiveX.Test
 {
     internal static class Program
@@ -8,9 +11,12 @@ namespace Mtf.Controls.Video.ActiveX.Test
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+#if NETFRAMEWORK
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+#else
             ApplicationConfiguration.Initialize();
+#endif
             Application.Run(new MainForm());
         }
     }

@@ -73,7 +73,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
-    <PackageReference Include="Mtf.Network" Version="2.0.10" />
+    <PackageReference Include="Mtf.Network" Version="2.0.11" />
   </ItemGroup>
 
   <ItemGroup>

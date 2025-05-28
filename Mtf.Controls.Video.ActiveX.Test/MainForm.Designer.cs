@@ -1,4 +1,7 @@
 ﻿
+using System.Drawing;
+using System.Windows.Forms;
+
 namespace Mtf.Controls.Video.ActiveX.Test
 {
     partial class MainForm

@@ -50,7 +50,11 @@ for /R %%P in (*.csproj) do (
     popd
 )
 
-powershell.exe -ExecutionPolicy Bypass -File ".\IncrementPackageVersion.ps1" -CsprojFile "%ProjectName%\%ProjectName%.csproj"
+for /f %%V in ('powershell -ExecutionPolicy Bypass -File ".\IncrementPackageVersion.ps1" -CsprojFile "%ProjectName%\%ProjectName%.csproj"') do set "PackageVersion=%%V"
+git add -A
+git commit -m "%ProjectName% NuGet package release %PackageVersion%"
+git push
+
 dotnet pack --include-symbols --include-source %ProjectName%\%ProjectName%.csproj -c Release /p:IncludeSymbols=true /p:IncludeSource=true /p:DebugType=full /p:EmbedAllSources=true /p:Deterministic=true
 move .\%ProjectName%\bin\Release\*.nupkg %TargetDir%
 REM pause

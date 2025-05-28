@@ -6,7 +6,14 @@ namespace Mtf.Controls.Commands.AnsiErasingCommands
     {
         public void Execute(IAnsiErasingCommandContext ansiErasingCommandContext)
         {
-            ansiErasingCommandContext.EraseLine();
+            if (ansiErasingCommandContext.DeleteNewLineCharactersWhenEraseLineCalled)
+            {
+                ansiErasingCommandContext.EraseLineWithNewLine();
+            }
+            else
+            {
+                ansiErasingCommandContext.EraseLine();
+            }
         }
     }
 }
