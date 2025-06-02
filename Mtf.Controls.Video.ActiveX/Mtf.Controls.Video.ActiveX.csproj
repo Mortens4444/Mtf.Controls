@@ -98,7 +98,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
-    <PackageReference Include="Mtf.MessageBoxes" Version="6.0.8" />
+    <PackageReference Include="Mtf.MessageBoxes" Version="6.0.9" />
+    <PackageReference Include="Mtf.Wmi" Version="1.0.23" />
     <PackageReference Include="System.Resources.Extensions" Version="9.0.5" />
   </ItemGroup>
 

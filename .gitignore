@@ -6,3 +6,4 @@
 *.bak
 publish.bat
 nuget.config*
+*.tmp
