@@ -8,6 +8,19 @@
         public const int UnknownErrorOccurred = 4002;
         public const int NoResult = 4003;
 
+        /// <summary>
+        /// Unknown state. When connecting to two identical cameras, one connects successfully while the other returns error -14.
+        /// </summary>
+        public const int LimitedConnectionCount = -14;
+        public const int UnknownState = -12;
+        public const int CameraNameNotSupported = -7;
+        public const int RpcNotConnected = -6;
+        public const int RpcServerConnectionError = -5;
+        public const int InvalidRpcParameters = -4;
+        public const int InvalidRpcConnection = -3;
+        public const int RpcExceptionOccurred = -2;
+        public const int RpcFailedOrCallUnsuccessful = -1;
+
         public const int RecorderBase = 1000;
         public const int InvalidRegistry = 1001;
         public const int InvalidDriverName = 1002;
@@ -39,8 +52,16 @@
         public const int ChannelCameraLowDetail = 2014;
         public const int RemoteProcedureCallServerBase = 3000;
         public const int WrongCameraName = 3001;
+
+        /// <summary>
+        /// Invalid output filename.
+        /// </summary>
         public const int RemoteProcedureCallInvalidFileName = 3002;
         //public const int RemoteProcedureCallInvalidException = 3003;
+
+        /// <summary>
+        /// Invalid operation exception occurred.
+        /// </summary>
         public const int LowVirtualMemory = 3003;
         public const int ConnectionLost = 3004;
         public const int RemoteProcedureCallInvalidFunctionCall = 3005;
@@ -64,8 +85,8 @@
         public const int RemoteProcedureCallErrorInvalidTrack = 3023;
         public const int RemoteProcedureCallErrorInvalidCall = 3024;
         public const int RemoteProcedureCallErrorCallFailed = 3025;
-        //public const int RemoteProcedureCallErrorInvalidVersion = 3026;
-        public const int PermissionError = 3026;
+        public const int RemoteProcedureCallErrorInvalidVersion = 3026;
+        //public const int PermissionError = 3026;
         public const int RemoteProcedureCallErrorPreviewUnavailable = 3027;
         public const int RemoteProcedureCallConnectSocketFailed = 3100;
         public const int RemoteProcedureCallCreateSocketFailed = 3101;
@@ -105,11 +126,21 @@
                 case WrongCredentials: return "Wrong username or password";
                 case NetworkError: return "Network (RPC) error";
                 case ConnectionFailed: return "Remote Video Server application is not responding";
-                case PermissionError: return "Security permission error / Invalid version";
+                case RemoteProcedureCallErrorInvalidVersion: return "Invalid version";
                 case TimeoutErrorCode: return "Connection timed out";
                 case NoVideoServerCredentialsFound: return "No video server credentials found";
                 case UnknownErrorOccurred: return "Unknown error occurred during connection";
                 case NoResult: return "No result";
+
+                case LimitedConnectionCount: return "Limited connection count";
+                case UnknownState: return "Unknown state";
+                case CameraNameNotSupported: return "Connection with camera name is not supported, use id instead";
+                case RpcNotConnected: return "RPC: Not connected";
+                case RpcServerConnectionError: return "RPC server connection error";
+                case InvalidRpcParameters: return "Invalid RPC parameters";
+                case InvalidRpcConnection: return "Invalid RPC connection";
+                case RpcExceptionOccurred: return "RPC exception occurred";
+                case RpcFailedOrCallUnsuccessful: return "RPC failed / RPC call unsuccessful";
 
                 case RecorderBase: return "An error occurred in the recorder module";
                 case InvalidRegistry: return "Invalid registry configuration detected";
