@@ -32,6 +32,7 @@
     <ProjectReference Include="..\Mtf.Controls.Video.VLC\Mtf.Controls.Video.VLC.csproj" />
     <ProjectReference Include="..\Mtf.Controls.Video\Mtf.Controls.Video.csproj" />
     <ProjectReference Include="..\Mtf.Controls\Mtf.Controls.csproj" />
+    <ProjectReference Include="..\Mtf.Controls.Interfaces\Mtf.Controls.Interfaces.csproj" />
   </ItemGroup>
 
   <ItemGroup>
