@@ -9,6 +9,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <LangVersion>7.3</LangVersion>
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,6 +24,13 @@
     <Reference Include="AxInterop.VIDEOCONTROL4Lib">
       <HintPath>..\Mtf.Controls.Video.ActiveX\obj\Release\net9.0-windows\AxInterop.VIDEOCONTROL4Lib.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <EmbeddedResource Include="AxVideoPictureForm.resx">
+      <LogicalName>Mtf.Controls.Video.ActiveX.AxVideoPictureForm.resources</LogicalName>
+      <DependentUpon>AxVideoPictureForm.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
