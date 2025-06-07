@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net462</TargetFramework>
-    <!--<TargetFrameworks>net9.0-windows;net8.0-windows;net481;net462</TargetFrameworks>-->
+    <TargetFrameworks>net9.0-windows;net8.0-windows;net481;net462</TargetFrameworks>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <OutputType>Library</OutputType>
