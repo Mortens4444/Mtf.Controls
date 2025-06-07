@@ -11,12 +11,9 @@ namespace Mtf.Controls.Video.ActiveX.Test
         [STAThread]
         static void Main()
         {
-#if NETFRAMEWORK
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-#else
-            ApplicationConfiguration.Initialize();
-#endif
+            //Application.Run(new AxVideoPictureForm());
             Application.Run(new MainForm());
         }
     }
