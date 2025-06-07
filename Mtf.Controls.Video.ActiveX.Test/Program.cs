@@ -13,8 +13,8 @@ namespace Mtf.Controls.Video.ActiveX.Test
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AxVideoPictureForm());
-            //Application.Run(new MainForm());
+            //Application.Run(new AxVideoPictureForm());
+            Application.Run(new MainForm());
         }
     }
 }

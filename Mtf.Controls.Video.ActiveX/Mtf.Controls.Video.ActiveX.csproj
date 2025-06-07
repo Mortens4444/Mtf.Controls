@@ -23,6 +23,7 @@
     <Deterministic>true</Deterministic>
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -117,11 +118,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Update="Properties\Settings.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>
@@ -141,6 +137,21 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net462' Or '$(TargetFramework)' == 'net481'">
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <LogicalName>Mtf.Controls.Video.ActiveX.Properties.Resources.resources</LogicalName>
+      <DependentUpon>Resources.Designer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AxVideoPlayerWindow.resx">
+      <LogicalName>Mtf.Controls.Video.ActiveX.AxVideoPlayerWindow.resources</LogicalName>
+      <DependentUpon>AxVideoPlayerWindow.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
