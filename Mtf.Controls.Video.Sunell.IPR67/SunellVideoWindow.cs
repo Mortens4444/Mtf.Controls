@@ -27,7 +27,7 @@ namespace Mtf.Controls.Video.Sunell.IPR67
             SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
             UpdateStyles();
 
-            this.rotateSpeed = rotateSpeed;//AppConfig.GetInt32(LiveView.Core.Constants.SunellCameraWindowRotateSpeed, 50);
+            this.rotateSpeed = rotateSpeed;
 
             BackgroundImage = Properties.Resources.NoSignal;
             BackgroundImageLayout = ImageLayout.Stretch;
