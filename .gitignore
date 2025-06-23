@@ -7,3 +7,5 @@
 publish.bat
 nuget.config*
 *.tmp
+Mtf.Controls.Video.Sunell.IPR66/*.dll
+Mtf.Controls.Video.Sunell.IPR67/*.dll

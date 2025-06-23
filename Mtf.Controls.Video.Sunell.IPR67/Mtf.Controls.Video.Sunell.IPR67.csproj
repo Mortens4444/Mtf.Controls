@@ -1,0 +1,138 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net9.0-windows;net462</TargetFrameworks>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <OutputType>Library</OutputType>
+    <AnalysisLevel>latest-all</AnalysisLevel>
+    <PackageReadmeFile>ReadMe - Mtf.Controls.Video.Sunell.IPR67.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE_GNU LESSER GENERAL PUBLIC.txt</PackageLicenseFile>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <UseWindowsForms>true</UseWindowsForms>
+    <PlatformTarget>x86</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <WarningLevel>9999</WarningLevel>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Version>1.0.41</Version>
+    <AssemblyVersion>$(Version)</AssemblyVersion>
+    <FileVersion>$(Version)</FileVersion>
+    <InformationalVersion>$(Version)</InformationalVersion>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <None Remove="Resources\VideoSource.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\VideoSource.png" />
+  </ItemGroup>
+  
+  <PropertyGroup>
+    <PackageId>Mtf.Controls.Video.Sunell.IPR67</PackageId>
+    <Authors>Mortens</Authors>
+    <Company>Mortens</Company>
+    <Description>
+      Custom Windows Forms Controls.
+
+      The library includes various controls, such as:
+      - SunellVideoWindow
+    </Description>
+    <PackageReadmeFile>.\ReadMe - Mtf.Controls.Video.Sunell.IPR67.md</PackageReadmeFile>
+    <PackageLicenseFile>.\LICENSE_GNU LESSER GENERAL PUBLIC.txt</PackageLicenseFile>
+    <RepositoryUrl>https://github.com/Mortens4444/Mtf.Controls.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>SunellVideoWindow Mortens</PackageTags>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <None Include="..\ReadMe - Mtf.Controls.Video.Sunell.IPR67.md" Pack="true" PackagePath="" />
+    <None Include="..\LICENSE_GNU LESSER GENERAL PUBLIC.txt" Pack="true" PackagePath="" />
+    <Content Include="bin\Release\net462\mfc80.dll" Pack="true" PackagePath="lib\net462" />
+    <Content Include="bin\Release\net9.0-windows\mfc80.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
+    <Content Include="bin\Release\net462\mfcm80u.dll" Pack="true" PackagePath="lib\net462" />
+    <Content Include="bin\Release\net9.0-windows\mfcm80u.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
+    <Content Include="bin\Release\net462\msvcp80.dll" Pack="true" PackagePath="lib\net462" />
+    <Content Include="bin\Release\net9.0-windows\msvcp80.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
+    <Content Include="bin\Release\net462\NvdaiDll.dll" Pack="true" PackagePath="lib\net462" />
+    <Content Include="bin\Release\net9.0-windows\NvdaiDll.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
+    <Content Include="bin\Release\net462\NvdalDll.dll" Pack="true" PackagePath="lib\net462" />
+    <Content Include="bin\Release\net9.0-windows\NvdalDll.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
+    <Content Include="bin\Release\net462\NvdcDll.dll" Pack="true" PackagePath="lib\net462" />
+    <Content Include="bin\Release\net9.0-windows\NvdcDll.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
+    <Content Include="bin\Release\net462\NvdcNetSDK.dll" Pack="true" PackagePath="lib\net462" />
+    <Content Include="bin\Release\net9.0-windows\NvdcNetSDK.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
+    <Content Include="bin\Release\net462\NvdcPlayerDll_D.dll" Pack="true" PackagePath="lib\net462" />
+    <Content Include="bin\Release\net9.0-windows\NvdcPlayerDll_D.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
+    <Content Include="bin\Release\net462\sdk.dll" Pack="true" PackagePath="lib\net462" />
+    <Content Include="bin\Release\net9.0-windows\sdk.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
+    <Content Include="bin\Release\net462\Sdk_C_Sharp_Lib.dll" Pack="true" PackagePath="lib\net462" />
+    <Content Include="bin\Release\net9.0-windows\Sdk_C_Sharp_Lib.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
+    <Content Include="bin\Release\net462\SensorUI_D.dll" Pack="true" PackagePath="lib\net462" />
+    <Content Include="bin\Release\net9.0-windows\SensorUI_D.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
+    <Content Include="bin\Release\net462\UpgradeClient.dll" Pack="true" PackagePath="lib\net462" />
+    <Content Include="bin\Release\net9.0-windows\UpgradeClient.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.5" />
+    <PackageReference Include="System.Memory" Version="4.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="mfc80.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="mfcm80u.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="msvcp80.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="NvdaiDll.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="NvdalDll.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="NvdcDll.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="NvdcNetSDK.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="NvdcPlayerDll_D.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="sdk.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Sdk_C_Sharp_Lib.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="SensorUI_D.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="UpgradeClient.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

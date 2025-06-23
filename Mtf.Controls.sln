@@ -32,6 +32,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtf.Controls.Interfaces", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtf.Controls.Video.Chromium", "Mtf.Controls.Video.Chromium\Mtf.Controls.Video.Chromium.csproj", "{5DCB4F47-44C1-4910-B908-45D1CC5C4D9B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtf.Controls.Video.Sunell.IPR66", "Mtf.Controls.Video.Sunell.IPR66\Mtf.Controls.Video.Sunell.IPR66.csproj", "{A9695FE3-B96F-5B49-943D-C28C4FB07BFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtf.Controls.Video.Sunell.IPR67", "Mtf.Controls.Video.Sunell.IPR67\Mtf.Controls.Video.Sunell.IPR67.csproj", "{B545F750-8357-25F3-FD51-C9641580929E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,6 +90,14 @@ Global
 		{5DCB4F47-44C1-4910-B908-45D1CC5C4D9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DCB4F47-44C1-4910-B908-45D1CC5C4D9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DCB4F47-44C1-4910-B908-45D1CC5C4D9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9695FE3-B96F-5B49-943D-C28C4FB07BFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9695FE3-B96F-5B49-943D-C28C4FB07BFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9695FE3-B96F-5B49-943D-C28C4FB07BFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9695FE3-B96F-5B49-943D-C28C4FB07BFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B545F750-8357-25F3-FD51-C9641580929E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B545F750-8357-25F3-FD51-C9641580929E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B545F750-8357-25F3-FD51-C9641580929E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B545F750-8357-25F3-FD51-C9641580929E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

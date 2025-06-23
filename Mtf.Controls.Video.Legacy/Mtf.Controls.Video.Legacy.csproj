@@ -5,7 +5,7 @@
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <AnalysisLevel>latest-all</AnalysisLevel>
-    <PackageReadmeFile>ReadMe.md</PackageReadmeFile>
+    <PackageReadmeFile>ReadMe - Mtf.Controls.Video.Legacy.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
     <UseWindowsForms>true</UseWindowsForms>
@@ -74,7 +74,7 @@
     <PackageReference Include="AForge" Version="2.2.5" />
     <PackageReference Include="AForge.Video" Version="2.2.5" />
     <PackageReference Include="AForge.Video.DirectShow" Version="2.2.5" />
-    <PackageReference Include="Mtf.MessageBoxes" Version="6.0.9" />
+    <PackageReference Include="Mtf.MessageBoxes" Version="6.0.10" />
   </ItemGroup>
   
   <ItemGroup>

@@ -40,14 +40,14 @@
       - OpenCvSharpVideoWindow
       - OpenCvSharp4VideoWindow
     </Description>
-    <PackageReadmeFile>.\ReadMe.md</PackageReadmeFile>
+    <PackageReadmeFile>.\ReadMe - Mtf.Controls.Video.OpenCvSharp.md</PackageReadmeFile>
     <PackageLicenseFile>.\LICENSE_GNU LESSER GENERAL PUBLIC.txt</PackageLicenseFile>
     <RepositoryUrl>https://github.com/Mortens4444/Mtf.Controls.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>OpenCvSharpVideoWindow OpenCvSharp4VideoWindow Mortens</PackageTags>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="..\ReadMe.md" Pack="true" PackagePath="" />
+    <None Include="..\ReadMe - Mtf.Controls.Video.OpenCvSharp.md" Pack="true" PackagePath="" />
     <None Include="..\LICENSE_GNU LESSER GENERAL PUBLIC.txt" Pack="true" PackagePath="" />
     <Content Include="bin\Release\net462\Mtf.Controls.dll" Pack="true" PackagePath="lib\net462" />
     <Content Include="bin\Release\net481\Mtf.Controls.dll" Pack="true" PackagePath="lib\net481" />

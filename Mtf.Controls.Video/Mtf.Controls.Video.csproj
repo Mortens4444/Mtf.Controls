@@ -6,7 +6,7 @@
     <Nullable>disable</Nullable>
     <OutputType>Library</OutputType>
     <AnalysisLevel>latest-all</AnalysisLevel>
-    <PackageReadmeFile>ReadMe.md</PackageReadmeFile>
+    <PackageReadmeFile>ReadMe - Mtf.Controls.Video.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <UseWindowsForms>true</UseWindowsForms>
@@ -39,14 +39,14 @@
       The library includes various controls, such as:
       - MortoGraphyWindow (Show JPEG and MJPEG streams)
     </Description>
-    <PackageReadmeFile>.\ReadMe.md</PackageReadmeFile>
+    <PackageReadmeFile>.\ReadMe - Mtf.Controls.Video.md</PackageReadmeFile>
     <PackageLicenseFile>.\LICENSE.txt</PackageLicenseFile>
     <RepositoryUrl>https://github.com/Mortens4444/Mtf.Controls.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>MortoGraphyWindow Mortens</PackageTags>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="..\ReadMe.md" Pack="true" PackagePath="" />
+    <None Include="..\ReadMe - Mtf.Controls.Video.md" Pack="true" PackagePath="" />
     <None Include="..\LICENSE.txt" Pack="true" PackagePath="" />
     <Content Include="bin\Release\net462\Mtf.Controls.dll" Pack="true" PackagePath="lib\net462" />
     <Content Include="bin\Release\net481\Mtf.Controls.dll" Pack="true" PackagePath="lib\net481" />
