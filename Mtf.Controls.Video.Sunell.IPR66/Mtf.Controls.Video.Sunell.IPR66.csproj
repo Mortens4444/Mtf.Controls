@@ -92,7 +92,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.5" />
-    <PackageReference Include="Mtf.MessageBoxes" Version="6.0.10" />
+    <PackageReference Include="Mtf.MessageBoxes" Version="6.0.13" />
     <PackageReference Include="System.Memory" Version="4.6.3" />
   </ItemGroup>
 

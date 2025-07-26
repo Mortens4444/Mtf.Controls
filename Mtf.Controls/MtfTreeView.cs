@@ -373,8 +373,8 @@ namespace Mtf.Controls
                 mouseSelectEnd = new Point(e.X, e.Y);
             }
 
-            var treeviewHitTestInfo = HitTest(e.Location);
-            cancelExpandOrCollapse = (treeviewHitTestInfo.Location != TreeViewHitTestLocations.PlusMinus) || (e.Clicks > 1);
+            var treeViewHitTestInfo = HitTest(e.Location);
+            cancelExpandOrCollapse = (treeViewHitTestInfo.Location != TreeViewHitTestLocations.PlusMinus) || (e.Clicks > 1);
             base.OnMouseDown(e);
 
             if (FullRowSelect)
@@ -382,12 +382,12 @@ namespace Mtf.Controls
                 switch (e.Button)
                 {
                     case MouseButtons.Right:
-                        if (treeviewHitTestInfo.Location == TreeViewHitTestLocations.Label)
+                        if (treeViewHitTestInfo.Location == TreeViewHitTestLocations.Label)
                         {
-                            if (!selectedNodes.Contains(treeviewHitTestInfo.Node))
+                            if (!selectedNodes.Contains(treeViewHitTestInfo.Node))
                             {
                                 selectedNodes.Clear();
-                                SelectedNode = treeviewHitTestInfo.Node;
+                                SelectedNode = treeViewHitTestInfo.Node;
                             }
                         }
                         break;
@@ -405,20 +405,20 @@ namespace Mtf.Controls
                 switch (e.Button)
                 {
                     case MouseButtons.Right:
-                        if (treeviewHitTestInfo.Location == TreeViewHitTestLocations.Label || treeviewHitTestInfo.Location == TreeViewHitTestLocations.RightOfLabel)
+                        if (treeViewHitTestInfo.Location == TreeViewHitTestLocations.Label || treeViewHitTestInfo.Location == TreeViewHitTestLocations.RightOfLabel)
                         {
-                            if (!selectedNodes.Contains(treeviewHitTestInfo.Node))
+                            if (!selectedNodes.Contains(treeViewHitTestInfo.Node))
                             {
                                 selectedNodes.Clear();
-                                SelectedNode = treeviewHitTestInfo.Node;
+                                SelectedNode = treeViewHitTestInfo.Node;
                             }
                         }
                         break;
 
                     case MouseButtons.Left:
-                        if (treeviewHitTestInfo.Location == TreeViewHitTestLocations.RightOfLabel)
+                        if (treeViewHitTestInfo.Node != null && treeViewHitTestInfo.Node.Bounds.Contains(e.Location))
                         {
-                            SelectedNode = treeviewHitTestInfo.Node;
+                            SelectedNode = treeViewHitTestInfo.Node;
                         }
                         break;
                     case MouseButtons.None:
@@ -541,14 +541,14 @@ namespace Mtf.Controls
             {
             }
 
-            var imageindex = Constants.NotFound;
+            var imageIndex = Constants.NotFound;
             if (node.ImageIndex >= 0)
             {
-                imageindex = node.ImageIndex;
+                imageIndex = node.ImageIndex;
             }
             else if (DrawDefaultImageToNodes)
             {
-                imageindex = ImageIndex;
+                imageIndex = ImageIndex;
             }
 
             var left = node.Level * node.Bounds.Height;
@@ -653,11 +653,11 @@ namespace Mtf.Controls
                     DrawCheckBoxes(node, ref left, g);
                 }
 
-                DrawImage(node, ref left, g, imageindex);
+                DrawImage(node, ref left, g, imageIndex);
             }
             else
             {
-                DrawImage(node, ref left, g, imageindex);
+                DrawImage(node, ref left, g, imageIndex);
                 if (StateImageList != null)
                 {
                     DrawStateImage(node, ref left, g);

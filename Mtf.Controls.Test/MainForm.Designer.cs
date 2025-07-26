@@ -32,32 +32,33 @@ namespace Mtf.Controls.Test
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            var listViewGroup5 = new ListViewGroup("A", HorizontalAlignment.Left);
-            var listViewGroup6 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
-            var listViewItem12 = new ListViewItem(new string[] { "Lorem", "1", "2020.10.21" }, -1);
-            var listViewItem13 = new ListViewItem(new string[] { "Ipsum", "", "2020.10.21" }, -1);
-            var listViewItem14 = new ListViewItem(new string[] { "Dolor", "2", "2020.10.21" }, -1);
-            var listViewItem15 = new ListViewItem(new string[] { "Est", "", "" }, -1);
-            var listViewItem16 = new ListViewItem(new string[] { "Sit", "", "2020.10.21" }, -1);
-            var listViewItem17 = new ListViewItem(new string[] { "Amet", "5", "2020.10.21" }, -1);
-            var treeNode11 = new TreeNode("Node0", -2, -2);
-            var treeNode12 = new TreeNode("Node4", 0, 0);
-            var treeNode13 = new TreeNode("Node5", 0, 0);
-            var treeNode14 = new TreeNode("Node7", 1, 1);
-            var treeNode15 = new TreeNode("Node8", 1, 1);
-            var treeNode16 = new TreeNode("Node9", 1, 1);
-            var treeNode17 = new TreeNode("Node6", 0, 0, new TreeNode[] { treeNode14, treeNode15, treeNode16 });
-            var treeNode18 = new TreeNode("Node1", -2, -2, new TreeNode[] { treeNode12, treeNode13, treeNode17 });
-            var treeNode19 = new TreeNode("Node2", -2, -2);
-            var treeNode20 = new TreeNode("Node3", -2, -2);
+            var listViewGroup1 = new ListViewGroup("A", HorizontalAlignment.Left);
+            var listViewGroup2 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
+            var listViewItem1 = new ListViewItem(new string[] { "Lorem", "1", "2020.10.21" }, -1);
+            var listViewItem2 = new ListViewItem(new string[] { "Ipsum", "", "2020.10.21" }, -1);
+            var listViewItem3 = new ListViewItem(new string[] { "Dolor", "2", "2020.10.21" }, -1);
+            var listViewItem4 = new ListViewItem(new string[] { "Est", "", "" }, -1);
+            var listViewItem5 = new ListViewItem(new string[] { "Sit", "", "2020.10.21" }, -1);
+            var listViewItem6 = new ListViewItem(new string[] { "Amet", "5", "2020.10.21" }, -1);
+            var treeNode1 = new TreeNode("a", 0, -2);
+            var treeNode2 = new TreeNode("b", 0, 0);
+            var treeNode3 = new TreeNode("Node5", 0, 0);
+            var treeNode4 = new TreeNode("c", 1, 1);
+            var treeNode5 = new TreeNode("Node8", 1, 1);
+            var treeNode6 = new TreeNode("Node9", 1, 1);
+            var treeNode7 = new TreeNode("Node6", 0, 0, new TreeNode[] { treeNode4, treeNode5, treeNode6 });
+            var treeNode8 = new TreeNode("Node1", 0, -2, new TreeNode[] { treeNode2, treeNode3, treeNode7 });
+            var treeNode9 = new TreeNode("Node2", -2, -2);
+            var treeNode10 = new TreeNode("Node3", -2, -2);
             var resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            var listViewItem18 = new ListViewItem(new string[] { "..", "Parent Directory" }, "up");
-            var listViewItem19 = new ListViewItem(new string[] { "mfxlib.log", ".LOG File", "12,4 MB" }, ".log");
-            var listViewGroup7 = new ListViewGroup("1. Group", HorizontalAlignment.Left);
-            var listViewGroup8 = new ListViewGroup("2. Group", HorizontalAlignment.Left);
-            var listViewItem7 = new ListViewItem("1");
-            var listViewItem8 = new ListViewItem("2");
-            var listViewItem20 = new ListViewItem("3");
+            var listViewItem7 = new ListViewItem(new string[] { "..", "Parent Directory" }, "up");
+            var listViewItem8 = new ListViewItem(new string[] { "mfxlib.log", ".LOG File", "12,4 MB" }, ".log");
+            var listViewItem9 = new ListViewItem(new string[] { "rvs.txt", ".TXT File", "167,2 kB" }, ".txt");
+            var listViewGroup3 = new ListViewGroup("1. Group", HorizontalAlignment.Left);
+            var listViewGroup4 = new ListViewGroup("2. Group", HorizontalAlignment.Left);
+            var listViewItem10 = new ListViewItem("1");
+            var listViewItem11 = new ListViewItem("2");
+            var listViewItem12 = new ListViewItem("3");
             mtfListView1 = new MtfListView();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
@@ -110,6 +111,7 @@ namespace Mtf.Controls.Test
             tabPage6 = new TabPage();
             tabPage7 = new TabPage();
             tabPage8 = new TabPage();
+            btnTest = new Button();
             btnMoveCaretToDown = new Button();
             btnMoveCaretToRight = new Button();
             btnMoveCaretToUp = new Button();
@@ -136,7 +138,6 @@ namespace Mtf.Controls.Test
             tabPage12 = new TabPage();
             kbd300aSimulator1 = new Kbd300ASimulator();
             colorDialog = new ColorDialog();
-            btnTest = new Button();
             ((System.ComponentModel.ISupportInitialize)mtfPictureBox1).BeginInit();
             movablePanel1.SuspendLayout();
             movableSizablePanel1.SuspendLayout();
@@ -179,14 +180,14 @@ namespace Mtf.Controls.Test
             mtfListView1.EnsureLastItemIsVisible = false;
             mtfListView1.FirstItemIsGray = false;
             mtfListView1.FullRowSelect = true;
-            listViewGroup5.Header = "A";
-            listViewGroup5.Name = "listViewGroup1";
-            listViewGroup6.Header = "ListViewGroup";
-            listViewGroup6.Name = "listViewGroup2";
-            mtfListView1.Groups.AddRange(new ListViewGroup[] { listViewGroup5, listViewGroup6 });
-            listViewItem16.Group = listViewGroup6;
-            listViewItem17.Group = listViewGroup5;
-            mtfListView1.Items.AddRange(new ListViewItem[] { listViewItem12, listViewItem13, listViewItem14, listViewItem15, listViewItem16, listViewItem17 });
+            listViewGroup1.Header = "A";
+            listViewGroup1.Name = "listViewGroup1";
+            listViewGroup2.Header = "ListViewGroup";
+            listViewGroup2.Name = "listViewGroup2";
+            mtfListView1.Groups.AddRange(new ListViewGroup[] { listViewGroup1, listViewGroup2 });
+            listViewItem5.Group = listViewGroup2;
+            listViewItem6.Group = listViewGroup1;
+            mtfListView1.Items.AddRange(new ListViewItem[] { listViewItem1, listViewItem2, listViewItem3, listViewItem4, listViewItem5, listViewItem6 });
             mtfListView1.Location = new Point(3, 6);
             mtfListView1.Name = "mtfListView1";
             mtfListView1.OwnerDraw = true;
@@ -221,47 +222,47 @@ namespace Mtf.Controls.Test
             mtfTreeView1.Location = new Point(6, 6);
             mtfTreeView1.MultiSelect = false;
             mtfTreeView1.Name = "mtfTreeView1";
-            treeNode11.ImageIndex = -2;
-            treeNode11.Name = "Node0";
-            treeNode11.SelectedImageIndex = -2;
-            treeNode11.Text = "Node0";
-            treeNode12.ImageIndex = 0;
-            treeNode12.Name = "Node4";
-            treeNode12.SelectedImageIndex = 0;
-            treeNode12.Text = "Node4";
-            treeNode13.ImageIndex = 0;
-            treeNode13.Name = "Node5";
-            treeNode13.SelectedImageIndex = 0;
-            treeNode13.Text = "Node5";
-            treeNode14.ImageIndex = 1;
-            treeNode14.Name = "Node7";
-            treeNode14.SelectedImageIndex = 1;
-            treeNode14.Text = "Node7";
-            treeNode15.ImageIndex = 1;
-            treeNode15.Name = "Node8";
-            treeNode15.SelectedImageIndex = 1;
-            treeNode15.Text = "Node8";
-            treeNode16.ImageIndex = 1;
-            treeNode16.Name = "Node9";
-            treeNode16.SelectedImageIndex = 1;
-            treeNode16.Text = "Node9";
-            treeNode17.ImageIndex = 0;
-            treeNode17.Name = "Node6";
-            treeNode17.SelectedImageIndex = 0;
-            treeNode17.Text = "Node6";
-            treeNode18.ImageIndex = -2;
-            treeNode18.Name = "Node1";
-            treeNode18.SelectedImageIndex = -2;
-            treeNode18.Text = "Node1";
-            treeNode19.ImageIndex = -2;
-            treeNode19.Name = "Node2";
-            treeNode19.SelectedImageIndex = -2;
-            treeNode19.Text = "Node2";
-            treeNode20.ImageIndex = -2;
-            treeNode20.Name = "Node3";
-            treeNode20.SelectedImageIndex = -2;
-            treeNode20.Text = "Node3";
-            mtfTreeView1.Nodes.AddRange(new TreeNode[] { treeNode11, treeNode18, treeNode19, treeNode20 });
+            treeNode1.ImageIndex = 0;
+            treeNode1.Name = "Node0";
+            treeNode1.SelectedImageIndex = -2;
+            treeNode1.Text = "a";
+            treeNode2.ImageIndex = 0;
+            treeNode2.Name = "Node4";
+            treeNode2.SelectedImageIndex = 0;
+            treeNode2.Text = "b";
+            treeNode3.ImageIndex = 0;
+            treeNode3.Name = "Node5";
+            treeNode3.SelectedImageIndex = 0;
+            treeNode3.Text = "Node5";
+            treeNode4.ImageIndex = 1;
+            treeNode4.Name = "Node7";
+            treeNode4.SelectedImageIndex = 1;
+            treeNode4.Text = "c";
+            treeNode5.ImageIndex = 1;
+            treeNode5.Name = "Node8";
+            treeNode5.SelectedImageIndex = 1;
+            treeNode5.Text = "Node8";
+            treeNode6.ImageIndex = 1;
+            treeNode6.Name = "Node9";
+            treeNode6.SelectedImageIndex = 1;
+            treeNode6.Text = "Node9";
+            treeNode7.ImageIndex = 0;
+            treeNode7.Name = "Node6";
+            treeNode7.SelectedImageIndex = 0;
+            treeNode7.Text = "Node6";
+            treeNode8.ImageIndex = 0;
+            treeNode8.Name = "Node1";
+            treeNode8.SelectedImageIndex = -2;
+            treeNode8.Text = "Node1";
+            treeNode9.ImageIndex = -2;
+            treeNode9.Name = "Node2";
+            treeNode9.SelectedImageIndex = -2;
+            treeNode9.Text = "Node2";
+            treeNode10.ImageIndex = -2;
+            treeNode10.Name = "Node3";
+            treeNode10.SelectedImageIndex = -2;
+            treeNode10.Text = "Node3";
+            mtfTreeView1.Nodes.AddRange(new TreeNode[] { treeNode1, treeNode8, treeNode9, treeNode10 });
             mtfTreeView1.SelectedImageIndex = 0;
             mtfTreeView1.ShowPlusMinusOnRootNodes = true;
             mtfTreeView1.Size = new Size(224, 201);
@@ -451,8 +452,8 @@ namespace Mtf.Controls.Test
             // 
             fileBrowserView1.Dock = DockStyle.Fill;
             fileBrowserView1.FullRowSelect = true;
-            listViewItem18.Tag = "up";
-            fileBrowserView1.Items.AddRange(new ListViewItem[] { listViewItem18, listViewItem19 });
+            listViewItem7.Tag = "up";
+            fileBrowserView1.Items.AddRange(new ListViewItem[] { listViewItem7, listViewItem8, listViewItem9 });
             fileBrowserView1.Location = new Point(0, 0);
             fileBrowserView1.Name = "fileBrowserView1";
             fileBrowserView1.Size = new Size(1586, 832);
@@ -491,6 +492,7 @@ namespace Mtf.Controls.Test
             // ansiColoringRichTextBox1
             // 
             ansiColoringRichTextBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            ansiColoringRichTextBox1.BackColor = Color.Black;
             ansiColoringRichTextBox1.BlackColor = Color.Black;
             ansiColoringRichTextBox1.BlueColor = Color.Blue;
             ansiColoringRichTextBox1.BrightBlackColor = Color.DarkGray;
@@ -501,15 +503,25 @@ namespace Mtf.Controls.Test
             ansiColoringRichTextBox1.BrightRedColor = Color.LightCoral;
             ansiColoringRichTextBox1.BrightWhiteColor = Color.Wheat;
             ansiColoringRichTextBox1.BrightYellowColor = Color.LightYellow;
+            ansiColoringRichTextBox1.ClearScreenOnThemeChange = false;
             ansiColoringRichTextBox1.CyanColor = Color.Cyan;
+            ansiColoringRichTextBox1.DeleteNewLineCharactersWhenEraseLineCalled = false;
+            ansiColoringRichTextBox1.ForeColor = Color.White;
             ansiColoringRichTextBox1.GreenColor = Color.Green;
+            ansiColoringRichTextBox1.LineSeparators = new string[]
+    {
+    "\r",
+    "\n"
+    };
             ansiColoringRichTextBox1.Location = new Point(0, 43);
             ansiColoringRichTextBox1.Name = "ansiColoringRichTextBox1";
             ansiColoringRichTextBox1.PurpleColor = Color.Purple;
             ansiColoringRichTextBox1.RedColor = Color.Red;
             ansiColoringRichTextBox1.Size = new Size(1586, 789);
+            ansiColoringRichTextBox1.StringSplitOptions = System.StringSplitOptions.RemoveEmptyEntries;
             ansiColoringRichTextBox1.TabIndex = 25;
             ansiColoringRichTextBox1.Text = "";
+            ansiColoringRichTextBox1.Theme = Enums.Theme.Dark;
             ansiColoringRichTextBox1.WhiteColor = Color.White;
             ansiColoringRichTextBox1.YellowColor = Color.Yellow;
             // 
@@ -667,15 +679,15 @@ namespace Mtf.Controls.Test
             mtfListView2.EnsureLastItemIsVisible = false;
             mtfListView2.FirstItemIsGray = false;
             mtfListView2.FullRowSelect = true;
-            listViewGroup7.Header = "1. Group";
-            listViewGroup7.Name = "listViewGroup1";
-            listViewGroup8.Header = "2. Group";
-            listViewGroup8.Name = "listViewGroup2";
-            mtfListView2.Groups.AddRange(new ListViewGroup[] { listViewGroup7, listViewGroup8 });
-            listViewItem7.Group = listViewGroup7;
-            listViewItem8.Group = listViewGroup8;
-            listViewItem20.Group = listViewGroup8;
-            mtfListView2.Items.AddRange(new ListViewItem[] { listViewItem7, listViewItem8, listViewItem20 });
+            listViewGroup3.Header = "1. Group";
+            listViewGroup3.Name = "listViewGroup1";
+            listViewGroup4.Header = "2. Group";
+            listViewGroup4.Name = "listViewGroup2";
+            mtfListView2.Groups.AddRange(new ListViewGroup[] { listViewGroup3, listViewGroup4 });
+            listViewItem10.Group = listViewGroup3;
+            listViewItem11.Group = listViewGroup4;
+            listViewItem12.Group = listViewGroup4;
+            mtfListView2.Items.AddRange(new ListViewItem[] { listViewItem10, listViewItem11, listViewItem12 });
             mtfListView2.Location = new Point(707, 11);
             mtfListView2.Name = "mtfListView2";
             mtfListView2.OwnerDraw = true;
@@ -868,6 +880,16 @@ namespace Mtf.Controls.Test
             tabPage8.TabIndex = 7;
             tabPage8.Text = "AnsiColoringRichTextBox";
             tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // btnTest
+            // 
+            btnTest.Location = new Point(1536, 9);
+            btnTest.Name = "btnTest";
+            btnTest.Size = new Size(42, 23);
+            btnTest.TabIndex = 41;
+            btnTest.Text = "Test";
+            btnTest.UseVisualStyleBackColor = true;
+            btnTest.Click += BtnTest_Click;
             // 
             // btnMoveCaretToDown
             // 
@@ -1138,16 +1160,6 @@ namespace Mtf.Controls.Test
             // colorDialog
             // 
             colorDialog.AllowFullOpen = false;
-            // 
-            // btnTest
-            // 
-            btnTest.Location = new Point(1536, 9);
-            btnTest.Name = "btnTest";
-            btnTest.Size = new Size(42, 23);
-            btnTest.TabIndex = 41;
-            btnTest.Text = "Test";
-            btnTest.UseVisualStyleBackColor = true;
-            btnTest.Click += BtnTest_Click;
             // 
             // MainForm
             // 
