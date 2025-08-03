@@ -24,7 +24,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>1.0.47</Version>
+    <Version>1.0.48</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
     <InformationalVersion>$(Version)</InformationalVersion>
@@ -40,8 +40,8 @@
       The library includes various controls, such as:
       - AxVideoPlayerWindow
     </Description>
-    <PackageReadmeFile>..\ReadMe - Mtf.Controls.Video.ActiveX.md</PackageReadmeFile>
-    <PackageLicenseFile>..\LICENSE - ActiveX.txt</PackageLicenseFile>
+    <PackageReadmeFile>.\ReadMe - Mtf.Controls.Video.ActiveX.md</PackageReadmeFile>
+    <PackageLicenseFile>.\LICENSE - ActiveX.txt</PackageLicenseFile>
     <RepositoryUrl>https://github.com/Mortens4444/Mtf.Controls.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>AxVideoPlayerWindow Mortens</PackageTags>
