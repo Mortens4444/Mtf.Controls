@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>1.0.45</Version>
+    <Version>1.0.46</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
     <InformationalVersion>$(Version)</InformationalVersion>
@@ -44,7 +44,7 @@
     <PackageTags>VlcWindow Mortens</PackageTags>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="..\ReadMe.md" Pack="true" PackagePath="" />
+    <None Include="..\ReadMe - Mtf.Controls.Video.VLC.md" Pack="true" PackagePath="" />
     <None Include="..\LICENSE_GNU LESSER GENERAL PUBLIC.txt" Pack="true" PackagePath="" />
     <Content Include="bin\Release\net462\Mtf.Controls.dll" Pack="true" PackagePath="lib\net462" />
     <Content Include="bin\Release\net481\Mtf.Controls.dll" Pack="true" PackagePath="lib\net481" />
