@@ -6,8 +6,6 @@
     <Nullable>disable</Nullable>
     <OutputType>Library</OutputType>
     <AnalysisLevel>latest-all</AnalysisLevel>
-    <PackageReadmeFile>ReadMe - Mtf.Controls.Video.FFmpeg.md</PackageReadmeFile>
-    <PackageLicenseFile>LICENSE_GNU LESSER GENERAL PUBLIC.txt</PackageLicenseFile>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
     <UseWindowsForms>true</UseWindowsForms>
     <WarningLevel>9999</WarningLevel>

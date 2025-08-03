@@ -6,8 +6,6 @@
     <Nullable>disable</Nullable>
     <OutputType>Library</OutputType>
     <AnalysisLevel>latest-all</AnalysisLevel>
-    <PackageReadmeFile>ReadMe - Mtf.Controls.Video.VLC.md</PackageReadmeFile>
-    <PackageLicenseFile>LICENSE_GNU LESSER GENERAL PUBLIC.txt</PackageLicenseFile>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
     <UseWindowsForms>true</UseWindowsForms>
     <WarningLevel>9999</WarningLevel>
@@ -39,8 +37,8 @@
       The library includes various controls, such as:
       - VlcWindow
     </Description>
-    <PackageReadmeFile>.\ReadMe - Mtf.Controls.Video.VLC.md</PackageReadmeFile>
-    <PackageLicenseFile>.\LICENSE_GNU LESSER GENERAL PUBLIC.txt</PackageLicenseFile>
+    <PackageReadmeFile>..\ReadMe - Mtf.Controls.Video.VLC.md</PackageReadmeFile>
+    <PackageLicenseFile>..\LICENSE_GNU LESSER GENERAL PUBLIC.txt</PackageLicenseFile>
     <RepositoryUrl>https://github.com/Mortens4444/Mtf.Controls.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>VlcWindow Mortens</PackageTags>
