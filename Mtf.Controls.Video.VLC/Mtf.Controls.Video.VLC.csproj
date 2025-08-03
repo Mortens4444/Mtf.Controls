@@ -45,7 +45,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\ReadMe.md" Pack="true" PackagePath="" />
-    <None Include="..\LICENSE.txt" Pack="true" PackagePath="" />
+    <None Include="..\LICENSE_GNU LESSER GENERAL PUBLIC.txt" Pack="true" PackagePath="" />
     <Content Include="bin\Release\net462\Mtf.Controls.dll" Pack="true" PackagePath="lib\net462" />
     <Content Include="bin\Release\net481\Mtf.Controls.dll" Pack="true" PackagePath="lib\net481" />
     <Content Include="bin\Release\net8.0-windows\Mtf.Controls.dll" Pack="true" PackagePath="lib\net8.0-windows7.0" />
