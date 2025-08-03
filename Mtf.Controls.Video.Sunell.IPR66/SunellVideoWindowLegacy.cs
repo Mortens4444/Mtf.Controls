@@ -1,4 +1,5 @@
-﻿using Mtf.Controls.Video.Sunell.IPR66.CustomEventArgs;
+﻿using Mtf.Controls.Interfaces;
+using Mtf.Controls.Video.Sunell.IPR66.CustomEventArgs;
 using Mtf.Controls.Video.Sunell.IPR66.SunellSdk;
 using Mtf.MessageBoxes;
 using System;
@@ -11,7 +12,7 @@ namespace Mtf.Controls.Video.Sunell.IPR66
 {
     [ToolboxItem(true)]
     [ToolboxBitmap(typeof(SunellVideoWindowLegacy), "Resources.VideoSource.png")]
-    public class SunellVideoWindowLegacy : PictureBox
+    public class SunellVideoWindowLegacy : PictureBox, IVideoWindow
     {
         private IntPtr nvdHandle = IntPtr.Zero;
 
@@ -72,8 +73,8 @@ namespace Mtf.Controls.Video.Sunell.IPR66
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [Description("Color of the text to be displayed on the control.")]
-        public Color OverlayColor { get; set; } = Color.White;
-        
+        public Brush OverlayBrush { get; set; } = Brushes.White;
+
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [Description("Color of the background text to be displayed on the control.")]

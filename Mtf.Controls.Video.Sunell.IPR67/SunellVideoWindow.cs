@@ -1,4 +1,5 @@
-﻿using Mtf.Controls.Video.Sunell.IPR67.Enums;
+﻿using Mtf.Controls.Interfaces;
+using Mtf.Controls.Video.Sunell.IPR67.Enums;
 using Mtf.Controls.Video.Sunell.IPR67.SunellSdk;
 using System;
 using System.ComponentModel;
@@ -9,7 +10,7 @@ namespace Mtf.Controls.Video.Sunell.IPR67
 {
     [ToolboxItem(true)]
     [ToolboxBitmap(typeof(SunellVideoWindow), "Resources.VideoSource.png")]
-    public class SunellVideoWindow : PictureBox
+    public class SunellVideoWindow : PictureBox, IVideoWindow
     {
         //private Sdk.SDK_PLAY_TIME_CB playTimeCallback;
         //private Sdk.SDK_DISCONN_CB disconnectCallback;
@@ -59,7 +60,7 @@ namespace Mtf.Controls.Video.Sunell.IPR67
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [Description("Color of the text to be displayed on the control.")]
-        public Color OverlayColor { get; set; } = Color.White;
+        public Brush OverlayBrush { get; set; } = Brushes.White;
 
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
