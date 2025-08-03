@@ -43,7 +43,7 @@
       - AxVideoPlayerWindow
     </Description>
     <PackageReadmeFile>.\ReadMe - Mtf.Controls.Video.ActiveX.md</PackageReadmeFile>
-    <PackageLicenseFile>.\LICENSE - ActiveX.txt</PackageLicenseFile>
+    <PackageLicenseFile>..\LICENSE - ActiveX.txt</PackageLicenseFile>
     <RepositoryUrl>https://github.com/Mortens4444/Mtf.Controls.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>AxVideoPlayerWindow Mortens</PackageTags>
