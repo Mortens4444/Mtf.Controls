@@ -27,7 +27,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>1.0.44</Version>
+    <Version>1.0.45</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
     <InformationalVersion>$(Version)</InformationalVersion>
@@ -91,9 +91,12 @@
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.5" />
     <PackageReference Include="System.Memory" Version="4.6.3" />
   </ItemGroup>
-  
+
   <ItemGroup>
-    <ProjectReference Include="..\Mtf.Controls.Interfaces\Mtf.Controls.Interfaces.csproj" />
+    <ProjectReference Include="..\Mtf.Controls.Interfaces\Mtf.Controls.Interfaces.csproj">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>all</IncludeAssets>
+    </ProjectReference>
   </ItemGroup>
 
   <ItemGroup>
