@@ -63,10 +63,8 @@ namespace Mtf.Controls.Video.Sunell.IPR66.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap NoSignal
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap NoSignal {
+            get {
                 object obj = ResourceManager.GetObject("NoSignal", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }

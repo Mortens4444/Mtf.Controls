@@ -57,15 +57,10 @@
 
   <ItemGroup>
     <None Remove="Resources\NoSignal.png" />
-    <None Remove="Resources\VideoSource.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Resources\NoSignal.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\VideoSource.png" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net462' Or '$(TargetFramework)' == 'net481'">

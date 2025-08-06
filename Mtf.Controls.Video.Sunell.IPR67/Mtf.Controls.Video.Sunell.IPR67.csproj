@@ -23,7 +23,7 @@
     <Deterministic>true</Deterministic>
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+    <!--<EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>-->
   </PropertyGroup>
 
   <PropertyGroup>
@@ -32,14 +32,6 @@
     <FileVersion>$(Version)</FileVersion>
     <InformationalVersion>$(Version)</InformationalVersion>
   </PropertyGroup>
-  
-  <ItemGroup>
-    <None Remove="Resources\VideoSource.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\VideoSource.png" />
-  </ItemGroup>
   
   <PropertyGroup>
     <PackageId>Mtf.Controls.Video.Sunell.IPR67</PackageId>
@@ -57,6 +49,10 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>SunellVideoWindow Mortens</PackageTags>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <None Remove="Resources\VideoSource.png" />
+  </ItemGroup>
   
   <ItemGroup>
     <None Include="..\ReadMe - Mtf.Controls.Video.Sunell.IPR67.md" Pack="true" PackagePath="" />
@@ -88,8 +84,13 @@
   </ItemGroup>
   
   <ItemGroup>
+    <EmbeddedResource Include="Resources\VideoSource.png" />
+  </ItemGroup>
+  
+  <ItemGroup>
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.5" />
     <PackageReference Include="System.Memory" Version="4.6.3" />
+    <PackageReference Include="System.Resources.Extensions" Version="9.0.5" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
@@ -97,6 +98,14 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>all</IncludeAssets>
     </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>

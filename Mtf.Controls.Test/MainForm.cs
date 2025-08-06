@@ -206,6 +206,14 @@ namespace Mtf.Controls.Test
                 {
                     vlcWindow1.Start(String.IsNullOrEmpty(tbUrl.Text) ? "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" : tbUrl.Text, demux: Enums.Demux.live555);
                 }
+                if (chkSunellIpr66.Checked)
+                {
+                    sunellVideoWindowLegacy1.Connect(cameraIp: tbSunellIp.Text, username: tbSunellUsername.Text, password: tbSunellPassword.Text);
+                }
+                if (chkSunellIpr67.Checked)
+                {
+                    sunellVideoWindow1.Connect(cameraIp: tbSunellIp.Text, username: tbSunellUsername.Text, password: tbSunellPassword.Text);
+                }
             }
             catch (Exception ex)
             {
@@ -219,6 +227,8 @@ namespace Mtf.Controls.Test
             mortoGraphyWindow1.Stop();
             vlcWindow1.Stop();
             fFmpegWindow1.Stop();
+            sunellVideoWindowLegacy1.Disconnect();
+            sunellVideoWindow1.Disconnect();
         }
 
         private void BtnExportListView_Click(object sender, EventArgs e)

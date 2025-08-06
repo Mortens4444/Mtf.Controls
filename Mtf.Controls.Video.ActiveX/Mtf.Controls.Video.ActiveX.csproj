@@ -49,7 +49,6 @@
 
   <ItemGroup>
     <None Remove="Resources\NoSignal.png" />
-    <None Remove="Resources\VideoSource.png" />
     <None Include="..\LICENSE - ActiveX.txt" Pack="true" PackagePath="" />
     <None Include="..\ReadMe - Mtf.Controls.Video.ActiveX.md" Pack="true" PackagePath="" />
     <Content Include="bin\Release\net462\Mtf.Controls.Interfaces.dll" Pack="true" PackagePath="lib\net462" />
@@ -88,10 +87,6 @@
       <Lcid>0</Lcid>
       <Isolated>false</Isolated>
     </COMReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\VideoSource.png" />
   </ItemGroup>
 
   <ItemGroup>

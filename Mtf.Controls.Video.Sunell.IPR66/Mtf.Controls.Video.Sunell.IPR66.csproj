@@ -23,7 +23,7 @@
     <Deterministic>true</Deterministic>
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+    <!--<EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>-->
   </PropertyGroup>
 
   <PropertyGroup>
@@ -32,14 +32,6 @@
     <FileVersion>$(Version)</FileVersion>
     <InformationalVersion>$(Version)</InformationalVersion>
   </PropertyGroup>
-  
-  <ItemGroup>
-    <None Remove="Resources\VideoSource.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\VideoSource.png" />
-  </ItemGroup>
 
   <PropertyGroup>
     <PackageId>Mtf.Controls.Video.Sunell.IPR66</PackageId>
@@ -57,6 +49,11 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>SunellVideoWindowLegacy Mortens</PackageTags>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\NoSignal.png" />
+    <None Remove="Resources\VideoSource.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="..\ReadMe - Mtf.Controls.Video.Sunell.IPR66.md" Pack="true" PackagePath="" />
     <None Include="..\LICENSE_GNU LESSER GENERAL PUBLIC.txt" Pack="true" PackagePath="" />
@@ -99,12 +96,17 @@
     <Content Include="bin\Release\net462\vcomp.dll" Pack="true" PackagePath="lib\net462" />
     <Content Include="bin\Release\net9.0-windows\vcomp.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\NoSignal.png" />
+    <EmbeddedResource Include="Resources\VideoSource.png" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.5" />
     <PackageReference Include="Mtf.MessageBoxes" Version="6.0.13" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.5" />
     <PackageReference Include="System.Memory" Version="4.6.3" />
+    <PackageReference Include="System.Resources.Extensions" Version="9.0.5" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
@@ -112,6 +114,14 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>all</IncludeAssets>
     </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>

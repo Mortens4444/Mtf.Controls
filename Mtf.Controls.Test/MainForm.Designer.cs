@@ -130,6 +130,16 @@ namespace Mtf.Controls.Test
             tabPage9 = new TabPage();
             tabPage10 = new TabPage();
             tabPage11 = new TabPage();
+            lblSunellPassword = new Label();
+            lblSunellUsername = new Label();
+            lblSunellIp = new Label();
+            tbSunellPassword = new TextBox();
+            tbSunellUsername = new TextBox();
+            tbSunellIp = new TextBox();
+            chkSunellIpr67 = new CheckBox();
+            chkSunellIpr66 = new CheckBox();
+            sunellVideoWindow1 = new Mtf.Controls.Video.Sunell.IPR67.SunellVideoWindow();
+            sunellVideoWindowLegacy1 = new Mtf.Controls.Video.Sunell.IPR66.SunellVideoWindowLegacy();
             chkMortoGraphyWindow = new CheckBox();
             chkOpenCvSharp4Video = new CheckBox();
             chkFFMpegVideo = new CheckBox();
@@ -164,6 +174,8 @@ namespace Mtf.Controls.Test
             tabPage9.SuspendLayout();
             tabPage10.SuspendLayout();
             tabPage11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)sunellVideoWindow1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)sunellVideoWindowLegacy1).BeginInit();
             tabPage12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)kbd300aSimulator1).BeginInit();
             SuspendLayout();
@@ -422,7 +434,7 @@ namespace Mtf.Controls.Test
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.kertmester;
-            pictureBox2.Location = new Point(760, 32);
+            pictureBox2.Location = new Point(1087, 106);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(230, 225);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -432,7 +444,7 @@ namespace Mtf.Controls.Test
             // pictureBox3
             // 
             pictureBox3.Image = Properties.Resources.hack_with_me;
-            pictureBox3.Location = new Point(996, 32);
+            pictureBox3.Location = new Point(1323, 106);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(230, 225);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -623,7 +635,7 @@ namespace Mtf.Controls.Test
             vlcWindow1.BackColor = Color.Black;
             vlcWindow1.BackgroundImage = (Image)resources.GetObject("vlcWindow1.BackgroundImage");
             vlcWindow1.BackgroundImageLayout = ImageLayout.Stretch;
-            vlcWindow1.Location = new Point(20, 30);
+            vlcWindow1.Location = new Point(20, 35);
             vlcWindow1.MediaPlayer = null;
             vlcWindow1.Name = "vlcWindow1";
             vlcWindow1.OverlayFont = new Font("Arial", 32F, FontStyle.Bold);
@@ -639,7 +651,7 @@ namespace Mtf.Controls.Test
             fFmpegWindow1.BackgroundImage = (Image)resources.GetObject("fFmpegWindow1.BackgroundImage");
             fFmpegWindow1.BackgroundImageLayout = ImageLayout.Stretch;
             fFmpegWindow1.Codec = Enums.Codec.mjpeg;
-            fFmpegWindow1.Location = new Point(244, 30);
+            fFmpegWindow1.Location = new Point(244, 32);
             fFmpegWindow1.Name = "fFmpegWindow1";
             fFmpegWindow1.OverlayFont = new Font("Arial", 32F, FontStyle.Bold);
             fFmpegWindow1.OverlayLocation = new Point(10, 10);
@@ -1056,6 +1068,16 @@ namespace Mtf.Controls.Test
             // 
             // tabPage11
             // 
+            tabPage11.Controls.Add(lblSunellPassword);
+            tabPage11.Controls.Add(lblSunellUsername);
+            tabPage11.Controls.Add(lblSunellIp);
+            tabPage11.Controls.Add(tbSunellPassword);
+            tabPage11.Controls.Add(tbSunellUsername);
+            tabPage11.Controls.Add(tbSunellIp);
+            tabPage11.Controls.Add(chkSunellIpr67);
+            tabPage11.Controls.Add(chkSunellIpr66);
+            tabPage11.Controls.Add(sunellVideoWindow1);
+            tabPage11.Controls.Add(sunellVideoWindowLegacy1);
             tabPage11.Controls.Add(chkMortoGraphyWindow);
             tabPage11.Controls.Add(chkOpenCvSharp4Video);
             tabPage11.Controls.Add(chkFFMpegVideo);
@@ -1075,6 +1097,107 @@ namespace Mtf.Controls.Test
             tabPage11.TabIndex = 10;
             tabPage11.Text = "Video";
             tabPage11.UseVisualStyleBackColor = true;
+            // 
+            // lblSunellPassword
+            // 
+            lblSunellPassword.AutoSize = true;
+            lblSunellPassword.Location = new Point(703, 123);
+            lblSunellPassword.Name = "lblSunellPassword";
+            lblSunellPassword.Size = new Size(92, 15);
+            lblSunellPassword.TabIndex = 59;
+            lblSunellPassword.Text = "Sunell password";
+            // 
+            // lblSunellUsername
+            // 
+            lblSunellUsername.AutoSize = true;
+            lblSunellUsername.Location = new Point(703, 70);
+            lblSunellUsername.Name = "lblSunellUsername";
+            lblSunellUsername.Size = new Size(94, 15);
+            lblSunellUsername.TabIndex = 58;
+            lblSunellUsername.Text = "Sunell username";
+            // 
+            // lblSunellIp
+            // 
+            lblSunellIp.AutoSize = true;
+            lblSunellIp.Location = new Point(703, 14);
+            lblSunellIp.Name = "lblSunellIp";
+            lblSunellIp.Size = new Size(52, 15);
+            lblSunellIp.TabIndex = 57;
+            lblSunellIp.Text = "Sunell IP";
+            // 
+            // tbSunellPassword
+            // 
+            tbSunellPassword.Location = new Point(703, 145);
+            tbSunellPassword.Name = "tbSunellPassword";
+            tbSunellPassword.Size = new Size(100, 23);
+            tbSunellPassword.TabIndex = 56;
+            tbSunellPassword.Text = "Tibi2025";
+            // 
+            // tbSunellUsername
+            // 
+            tbSunellUsername.Location = new Point(703, 88);
+            tbSunellUsername.Name = "tbSunellUsername";
+            tbSunellUsername.Size = new Size(100, 23);
+            tbSunellUsername.TabIndex = 55;
+            tbSunellUsername.Text = "admin";
+            // 
+            // tbSunellIp
+            // 
+            tbSunellIp.Location = new Point(703, 35);
+            tbSunellIp.Name = "tbSunellIp";
+            tbSunellIp.Size = new Size(369, 23);
+            tbSunellIp.TabIndex = 54;
+            tbSunellIp.Text = "rtsp://192.168.0.202:554/snl/live/1/1/TPvJ5dg=-efbG5YRt4PM=";
+            // 
+            // chkSunellIpr67
+            // 
+            chkSunellIpr67.AutoSize = true;
+            chkSunellIpr67.Location = new Point(468, 174);
+            chkSunellIpr67.Name = "chkSunellIpr67";
+            chkSunellIpr67.Size = new Size(90, 19);
+            chkSunellIpr67.TabIndex = 53;
+            chkSunellIpr67.Text = "Sunell IPR67";
+            chkSunellIpr67.UseVisualStyleBackColor = true;
+            // 
+            // chkSunellIpr66
+            // 
+            chkSunellIpr66.AutoSize = true;
+            chkSunellIpr66.Location = new Point(468, 10);
+            chkSunellIpr66.Name = "chkSunellIpr66";
+            chkSunellIpr66.Size = new Size(90, 19);
+            chkSunellIpr66.TabIndex = 51;
+            chkSunellIpr66.Text = "Sunell IPR66";
+            chkSunellIpr66.UseVisualStyleBackColor = true;
+            // 
+            // sunellVideoWindow1
+            // 
+            sunellVideoWindow1.BackgroundImage = (Image)resources.GetObject("sunellVideoWindow1.BackgroundImage");
+            sunellVideoWindow1.BackgroundImageLayout = ImageLayout.Stretch;
+            sunellVideoWindow1.Location = new Point(468, 196);
+            sunellVideoWindow1.Name = "sunellVideoWindow1";
+            sunellVideoWindow1.OverlayBackgroundColor = Color.White;
+            sunellVideoWindow1.OverlayFont = new Font("Arial", 32F, FontStyle.Bold);
+            sunellVideoWindow1.OverlayLocation = new Point(10, 10);
+            sunellVideoWindow1.OverlayText = "IPR67";
+            sunellVideoWindow1.Size = new Size(218, 135);
+            sunellVideoWindow1.SizeMode = PictureBoxSizeMode.StretchImage;
+            sunellVideoWindow1.TabIndex = 47;
+            sunellVideoWindow1.TabStop = false;
+            // 
+            // sunellVideoWindowLegacy1
+            // 
+            sunellVideoWindowLegacy1.BackgroundImageLayout = ImageLayout.Stretch;
+            sunellVideoWindowLegacy1.Image = (Image)resources.GetObject("sunellVideoWindowLegacy1.Image");
+            sunellVideoWindowLegacy1.Location = new Point(468, 30);
+            sunellVideoWindowLegacy1.Name = "sunellVideoWindowLegacy1";
+            sunellVideoWindowLegacy1.OverlayBackgroundColor = Color.Black;
+            sunellVideoWindowLegacy1.OverlayFont = new Font("Arial", 32F, FontStyle.Bold);
+            sunellVideoWindowLegacy1.OverlayLocation = new Point(10, 10);
+            sunellVideoWindowLegacy1.OverlayText = "Sunell IPR66";
+            sunellVideoWindowLegacy1.Size = new Size(218, 138);
+            sunellVideoWindowLegacy1.SizeMode = PictureBoxSizeMode.StretchImage;
+            sunellVideoWindowLegacy1.TabIndex = 46;
+            sunellVideoWindowLegacy1.TabStop = false;
             // 
             // chkMortoGraphyWindow
             // 
@@ -1206,6 +1329,8 @@ namespace Mtf.Controls.Test
             tabPage10.ResumeLayout(false);
             tabPage11.ResumeLayout(false);
             tabPage11.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)sunellVideoWindow1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)sunellVideoWindowLegacy1).EndInit();
             tabPage12.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)kbd300aSimulator1).EndInit();
             ResumeLayout(false);
@@ -1293,5 +1418,16 @@ namespace Mtf.Controls.Test
         private Button btnMoveCaretToRight;
         private Button btnMoveCaretToUp;
         private Button btnTest;
+        private Video.Sunell.IPR66.SunellVideoWindowLegacy sunellVideoWindowLegacy1;
+        private Video.Sunell.IPR67.SunellVideoWindow sunellVideoWindow1;
+        private CheckBox chkSunellIpr67;
+        private CheckBox chkSunellIpr66;
+        private TextBox textBox3;
+        private TextBox tbSunellIp;
+        private Label lblSunellUsername;
+        private Label lblSunellPassword;
+        private Label lblSunellIp;
+        private TextBox tbSunellUsername;
+        private TextBox tbSunellPassword;
     }
 }

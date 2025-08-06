@@ -9,7 +9,7 @@ using System.Windows.Forms;
 namespace Mtf.Controls.Video.Sunell.IPR67
 {
     [ToolboxItem(true)]
-    [ToolboxBitmap(typeof(SunellVideoWindow), "Resources.VideoSource.png")]
+    [ToolboxBitmap(typeof(SunellVideoWindow), "Mtf.Controls.Video.Sunell.IPR67.Resources.VideoSource.png")]
     public class SunellVideoWindow : PictureBox, IVideoWindow
     {
         //private Sdk.SDK_PLAY_TIME_CB playTimeCallback;
@@ -23,7 +23,9 @@ namespace Mtf.Controls.Video.Sunell.IPR67
         public const int NoStream = -1;
         public const int NoPermission = -2;
 
-        public SunellVideoWindow(int rotateSpeed = 50)
+        public SunellVideoWindow() : this(50) { }
+
+        public SunellVideoWindow(int rotateSpeed)
         {
             SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
             UpdateStyles();
