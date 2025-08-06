@@ -9,7 +9,7 @@ using System.Windows.Forms;
 namespace Mtf.Controls.Video.Sunell.IPR67
 {
     [ToolboxItem(true)]
-    [ToolboxBitmap(typeof(SunellVideoWindow), "Mtf.Controls.Video.Sunell.IPR67.Resources.VideoSource.png")]
+    [ToolboxBitmap(typeof(SunellVideoWindow), "Resources.VideoSource.png")]
     public class SunellVideoWindow : PictureBox, IVideoWindow
     {
         //private Sdk.SDK_PLAY_TIME_CB playTimeCallback;

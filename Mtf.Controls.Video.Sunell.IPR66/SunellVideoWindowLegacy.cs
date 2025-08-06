@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace Mtf.Controls.Video.Sunell.IPR66
 {
     [ToolboxItem(true)]
-    [ToolboxBitmap(typeof(SunellVideoWindowLegacy), "Mtf.Controls.Video.Sunell.IPR66.Resources.VideoSource.png")]
+    [ToolboxBitmap(typeof(SunellVideoWindowLegacy), "Resources.VideoSource.png")]
     public class SunellVideoWindowLegacy : PictureBox, IVideoWindow
     {
         private IntPtr nvdHandle = IntPtr.Zero;
