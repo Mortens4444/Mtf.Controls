@@ -142,7 +142,7 @@ namespace Mtf.Controls.Video.Sunell.IPR67.SunellSdk
         public static extern Int32 sdk_dev_conn_async([MarshalAs(UnmanagedType.LPStr)] string p_ip, UInt16 port, [MarshalAs(UnmanagedType.LPStr)] string p_user, [MarshalAs(UnmanagedType.LPStr)] string p_passwd, [MarshalAs(UnmanagedType.FunctionPtr)] SDK_DISCONN_CB disconn_cb, [MarshalAs(UnmanagedType.FunctionPtr)] SDK_CONNECT_CB conn_cb, IntPtr pObj);
 
         [DllImport(SdkDll, CharSet = CharSet.Ansi, CallingConvention = CallingConv)]
-        public static extern void sdk_dev_conn_close(UInt32 handle);
+        public static extern void sdk_dev_conn_close(IntPtr handle);
 
         [DllImport(SdkDll, CharSet = CharSet.Ansi, CallingConvention = CallingConv)]
         public static extern Int32 sdk_dev_addr_req(IntPtr handle, Int32 ipprotover, ref byte pResult);

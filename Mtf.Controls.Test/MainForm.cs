@@ -1,4 +1,5 @@
 using Mtf.Controls.Services;
+using Mtf.Controls.Video.Sunell.IPR67.SunellSdk;
 using Mtf.MessageBoxes;
 using System;
 using System.Collections.Generic;
@@ -208,11 +209,11 @@ namespace Mtf.Controls.Test
                 }
                 if (chkSunellIpr66.Checked)
                 {
-                    sunellVideoWindowLegacy1.Connect(cameraIp: tbSunellIp.Text, username: tbSunellUsername.Text, password: tbSunellPassword.Text);
+                    sunellVideoWindowLegacy1.Connect(cameraIp: tbSunellIpr66Ip.Text, username: tbSunellUsername.Text, password: tbSunellPassword.Text);
                 }
                 if (chkSunellIpr67.Checked)
                 {
-                    sunellVideoWindow1.Connect(cameraIp: tbSunellIp.Text, username: tbSunellUsername.Text, password: tbSunellPassword.Text);
+                    sunellVideoWindow1.Connect(cameraIp: tbSunellIpr67Ip.Text, username: tbSunellUsername.Text, password: tbSunellPassword.Text);
                 }
             }
             catch (Exception ex)
@@ -342,6 +343,11 @@ namespace Mtf.Controls.Test
             //ansiColoringRichTextBox1.AppendText("\u001b[J"); // Test erase from cursor to end of screen
             //ansiColoringRichTextBox1.AppendText("\u001b[1K"); // Test erase from start of line to cursor
             //ansiColoringRichTextBox1.AppendText("\u001b[1J"); // Test erase from start of screen to cursor
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Sdk.sdk_dev_quit();
         }
     }
 }

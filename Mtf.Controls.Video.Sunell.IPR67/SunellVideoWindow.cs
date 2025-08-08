@@ -23,6 +23,11 @@ namespace Mtf.Controls.Video.Sunell.IPR67
         public const int NoStream = -1;
         public const int NoPermission = -2;
 
+        static SunellVideoWindow()
+        {
+            _ = Sdk.sdk_dev_init(null);
+        }
+
         public SunellVideoWindow() : this(50) { }
 
         public SunellVideoWindow(int rotateSpeed)
@@ -87,7 +92,7 @@ namespace Mtf.Controls.Video.Sunell.IPR67
                 sdkHandler = Sdk.sdk_dev_conn(cameraIp, cameraPort, username, password, null, pObj);
                 this.streamId = sdkHandler != IntPtr.Zero ? Sdk.sdk_md_live_start(sdkHandler, channel, streamType, Handle, hardwareAcceleration, null, pObj) : NoStream;
             }));
-             
+
             //if (this.streamId != streamId)
             //{
             //    _ = Sdk.sdk_md_chg_stream(sdkHandler, streamId, streamType);
@@ -128,7 +133,15 @@ namespace Mtf.Controls.Video.Sunell.IPR67
             {
                 if (IsConnected)
                 {
-                    _ = Sdk.sdk_md_live_stop(sdkHandler, streamId);
+                    if (streamId > 0)
+                    {
+                        _ = Sdk.sdk_md_live_stop(sdkHandler, streamId);
+                    }
+
+                    if (sdkHandler != IntPtr.Zero)
+                    {
+                        Sdk.sdk_dev_conn_close(sdkHandler);
+                    }
                 }
             }
             finally
