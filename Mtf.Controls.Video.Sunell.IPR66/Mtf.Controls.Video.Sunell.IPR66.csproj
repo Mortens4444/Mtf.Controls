@@ -25,7 +25,7 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <!--<EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>-->
   </PropertyGroup>
-
+  
   <PropertyGroup>
     <Version>1.0.46</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
@@ -132,27 +132,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="atl80.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="mfc80.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="mfc80u.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="mfcm80u.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="msvcm80.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="msvcp80.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="msvcr80.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Update="NvdaiDll.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -184,9 +163,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="SensorUI_D.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="vcomp.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
