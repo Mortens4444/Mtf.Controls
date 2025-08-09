@@ -23,6 +23,9 @@ namespace Mtf.Controls.Video.Sunell.IPR67
         public const int NoStream = -1;
         public const int NoPermission = -2;
 
+        /// <summary>
+        /// Maybe designer won't be able to add the component because of this static constructor.
+        /// </summary>
         static SunellVideoWindow()
         {
             if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
