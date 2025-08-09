@@ -149,6 +149,7 @@ namespace Mtf.Controls.Test
             tabPage12 = new TabPage();
             kbd300aSimulator1 = new Kbd300ASimulator();
             colorDialog = new ColorDialog();
+            sunellVideoWindow1 = new Mtf.Controls.Video.Sunell.IPR67.SunellVideoWindow();
             ((System.ComponentModel.ISupportInitialize)mtfPictureBox1).BeginInit();
             movablePanel1.SuspendLayout();
             movableSizablePanel1.SuspendLayout();
@@ -178,6 +179,7 @@ namespace Mtf.Controls.Test
             ((System.ComponentModel.ISupportInitialize)sunellVideoWindowLegacy1).BeginInit();
             tabPage12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)kbd300aSimulator1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)sunellVideoWindow1).BeginInit();
             SuspendLayout();
             // 
             // mtfListView1
@@ -1068,6 +1070,7 @@ namespace Mtf.Controls.Test
             // 
             // tabPage11
             // 
+            tabPage11.Controls.Add(sunellVideoWindow1);
             tabPage11.Controls.Add(tbSunellIpr67Ip);
             tabPage11.Controls.Add(lblSunellIpr67Ip);
             tabPage11.Controls.Add(lblSunellPassword);
@@ -1289,6 +1292,21 @@ namespace Mtf.Controls.Test
             // 
             colorDialog.AllowFullOpen = false;
             // 
+            // sunellVideoWindow1
+            // 
+            sunellVideoWindow1.BackgroundImage = (Image)resources.GetObject("sunellVideoWindow1.BackgroundImage");
+            sunellVideoWindow1.BackgroundImageLayout = ImageLayout.Stretch;
+            sunellVideoWindow1.Location = new Point(468, 196);
+            sunellVideoWindow1.Name = "sunellVideoWindow1";
+            sunellVideoWindow1.OverlayBackgroundColor = Color.White;
+            sunellVideoWindow1.OverlayFont = new Font("Arial", 32F, FontStyle.Bold);
+            sunellVideoWindow1.OverlayLocation = new Point(10, 10);
+            sunellVideoWindow1.OverlayText = "";
+            sunellVideoWindow1.Size = new Size(218, 135);
+            sunellVideoWindow1.SizeMode = PictureBoxSizeMode.StretchImage;
+            sunellVideoWindow1.TabIndex = 62;
+            sunellVideoWindow1.TabStop = false;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1338,6 +1356,7 @@ namespace Mtf.Controls.Test
             ((System.ComponentModel.ISupportInitialize)sunellVideoWindowLegacy1).EndInit();
             tabPage12.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)kbd300aSimulator1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)sunellVideoWindow1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1424,7 +1443,6 @@ namespace Mtf.Controls.Test
         private Button btnMoveCaretToUp;
         private Button btnTest;
         private Video.Sunell.IPR66.SunellVideoWindowLegacy sunellVideoWindowLegacy1;
-        private Video.Sunell.IPR67.SunellVideoWindow sunellVideoWindow1;
         private CheckBox chkSunellIpr67;
         private CheckBox chkSunellIpr66;
         private TextBox textBox3;
@@ -1436,5 +1454,6 @@ namespace Mtf.Controls.Test
         private TextBox tbSunellPassword;
         private TextBox tbSunellIpr67Ip;
         private Label lblSunellIpr67Ip;
+        private Video.Sunell.IPR67.SunellVideoWindow sunellVideoWindow1;
     }
 }

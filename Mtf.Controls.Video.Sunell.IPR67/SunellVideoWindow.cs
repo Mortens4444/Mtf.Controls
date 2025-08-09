@@ -25,7 +25,10 @@ namespace Mtf.Controls.Video.Sunell.IPR67
 
         static SunellVideoWindow()
         {
-            _ = Sdk.sdk_dev_init(null);
+            if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
+            {
+                _ = Sdk.sdk_dev_init(null);
+            }
         }
 
         public SunellVideoWindow() : this(50) { }

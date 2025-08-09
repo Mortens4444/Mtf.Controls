@@ -9,6 +9,7 @@
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <UseWindowsForms>true</UseWindowsForms>
     <PlatformTarget>x86</PlatformTarget>
+    <DesignTimeBuildTargetFramework>net462</DesignTimeBuildTargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
