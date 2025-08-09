@@ -57,12 +57,6 @@
   <ItemGroup>
     <None Include="..\ReadMe - Mtf.Controls.Video.Sunell.IPR67.md" Pack="true" PackagePath="" />
     <None Include="..\LICENSE_GNU LESSER GENERAL PUBLIC.txt" Pack="true" PackagePath="" />
-    <Content Include="bin\Release\net462\mfc80.dll" Pack="true" PackagePath="lib\net462" />
-    <Content Include="bin\Release\net9.0-windows\mfc80.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
-    <Content Include="bin\Release\net462\mfcm80u.dll" Pack="true" PackagePath="lib\net462" />
-    <Content Include="bin\Release\net9.0-windows\mfcm80u.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
-    <Content Include="bin\Release\net462\msvcp80.dll" Pack="true" PackagePath="lib\net462" />
-    <Content Include="bin\Release\net9.0-windows\msvcp80.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
     <Content Include="bin\Release\net462\NvdaiDll.dll" Pack="true" PackagePath="lib\net462" />
     <Content Include="bin\Release\net9.0-windows\NvdaiDll.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
     <Content Include="bin\Release\net462\NvdalDll.dll" Pack="true" PackagePath="lib\net462" />

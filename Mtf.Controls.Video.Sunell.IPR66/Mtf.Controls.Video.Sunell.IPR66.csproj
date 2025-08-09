@@ -27,7 +27,7 @@
   </PropertyGroup>
   
   <PropertyGroup>
-    <Version>1.0.46</Version>
+    <Version>1.0.47</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
     <InformationalVersion>$(Version)</InformationalVersion>
@@ -57,20 +57,6 @@
   <ItemGroup>
     <None Include="..\ReadMe - Mtf.Controls.Video.Sunell.IPR66.md" Pack="true" PackagePath="" />
     <None Include="..\LICENSE_GNU LESSER GENERAL PUBLIC.txt" Pack="true" PackagePath="" />
-    <Content Include="bin\Release\net462\atl80.dll" Pack="true" PackagePath="lib\net462" />
-    <Content Include="bin\Release\net9.0-windows\atl80.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
-    <Content Include="bin\Release\net462\mfc80.dll" Pack="true" PackagePath="lib\net462" />
-    <Content Include="bin\Release\net9.0-windows\mfc80.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
-    <Content Include="bin\Release\net462\mfc80u.dll" Pack="true" PackagePath="lib\net462" />
-    <Content Include="bin\Release\net9.0-windows\mfc80u.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
-    <Content Include="bin\Release\net462\mfcm80u.dll" Pack="true" PackagePath="lib\net462" />
-    <Content Include="bin\Release\net9.0-windows\mfcm80u.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
-    <Content Include="bin\Release\net462\msvcm80.dll" Pack="true" PackagePath="lib\net462" />
-    <Content Include="bin\Release\net9.0-windows\msvcm80.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
-    <Content Include="bin\Release\net462\msvcp80.dll" Pack="true" PackagePath="lib\net462" />
-    <Content Include="bin\Release\net9.0-windows\msvcp80.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
-    <Content Include="bin\Release\net462\msvcr80.dll" Pack="true" PackagePath="lib\net462" />
-    <Content Include="bin\Release\net9.0-windows\msvcr80.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
     <Content Include="bin\Release\net462\NvdaiDll.dll" Pack="true" PackagePath="lib\net462" />
     <Content Include="bin\Release\net9.0-windows\NvdaiDll.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
     <Content Include="bin\Release\net462\NvdaiDll_D.dll" Pack="true" PackagePath="lib\net462" />
@@ -93,8 +79,6 @@
     <Content Include="bin\Release\net9.0-windows\SensorUI.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
     <Content Include="bin\Release\net462\SensorUI_D.dll" Pack="true" PackagePath="lib\net462" />
     <Content Include="bin\Release\net9.0-windows\SensorUI_D.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
-    <Content Include="bin\Release\net462\vcomp.dll" Pack="true" PackagePath="lib\net462" />
-    <Content Include="bin\Release\net9.0-windows\vcomp.dll" Pack="true" PackagePath="lib\net9.0-windows7.0" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\NoSignal.png" />

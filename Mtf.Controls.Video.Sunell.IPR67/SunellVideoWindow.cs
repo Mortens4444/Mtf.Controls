@@ -32,14 +32,19 @@ namespace Mtf.Controls.Video.Sunell.IPR67
 
         public SunellVideoWindow(int rotateSpeed)
         {
-            SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
-            UpdateStyles();
-
             this.rotateSpeed = rotateSpeed;
 
             BackgroundImage = Properties.Resources.NoSignal;
             BackgroundImageLayout = ImageLayout.Stretch;
             SizeMode = PictureBoxSizeMode.StretchImage;
+
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
+            {
+                return;
+            }
+
+            SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
+            UpdateStyles();
 
             //playTimeCallback = new Sdk.SDK_PLAY_TIME_CB(PlayTimeCallback);
             //disconnectCallback = new Sdk.SDK_DISCONN_CB(DisconnectCallback);
