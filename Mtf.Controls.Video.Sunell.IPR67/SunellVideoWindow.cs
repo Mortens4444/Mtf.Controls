@@ -23,17 +23,6 @@ namespace Mtf.Controls.Video.Sunell.IPR67
         public const int NoStream = -1;
         public const int NoPermission = -2;
 
-        /// <summary>
-        /// Maybe designer won't be able to add the component because of this static constructor.
-        /// </summary>
-        static SunellVideoWindow()
-        {
-            if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
-            {
-                _ = Sdk.sdk_dev_init(null);
-            }
-        }
-
         public SunellVideoWindow() : this(50) { }
 
         public SunellVideoWindow(int rotateSpeed)
@@ -93,6 +82,16 @@ namespace Mtf.Controls.Video.Sunell.IPR67
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool IsConnected { get; private set; }
+
+        public static void SdkInit()
+        {
+            _ = Sdk.sdk_dev_init(null);
+        }
+
+        public static void SdkQuit()
+        {
+            Sdk.sdk_dev_quit();
+        }
 
         public int Connect(string cameraIp = "192.168.0.120", ushort cameraPort = 30001, string username = "admin", string password = "admin", int streamId = 1, int channel = 1, StreamType streamType = StreamType.HighDensity, bool hardwareAcceleration = true)
         {
@@ -158,6 +157,7 @@ namespace Mtf.Controls.Video.Sunell.IPR67
             finally
             {
                 IsConnected = false;
+                Invoke((Action)(() => { BackgroundImage = Properties.Resources.NoSignal; }));
             }
         }
     }

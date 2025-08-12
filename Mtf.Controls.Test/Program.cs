@@ -1,3 +1,4 @@
+using Mtf.Controls.Video.Sunell.IPR67;
 using System;
 using System.Windows.Forms;
 
@@ -19,10 +20,14 @@ namespace Mtf.Controls.Test
 #else
             ApplicationConfiguration.Initialize();
 #endif
+            SunellVideoWindow.SdkInit();
+
             using (var mainForm = new MainForm())
             {
                 Application.Run(mainForm);
             }
+
+            SunellVideoWindow.SdkQuit();
         }
     }
 }

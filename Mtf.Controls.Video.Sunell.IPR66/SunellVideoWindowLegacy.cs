@@ -89,7 +89,7 @@ namespace Mtf.Controls.Video.Sunell.IPR66
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool IsConnected => nvdHandle != IntPtr.Zero;
 
-        public void Connect(string cameraIp = "192.168.0.120", ushort cameraPort = 30001, string username = "admin", string password = "admin", int streamId = 1, int cameraId = 1, bool autoConnect = true, int ipProtocolVersion = 1, int transferProtocol = 2)
+        public bool Connect(string cameraIp = "192.168.0.120", ushort cameraPort = 30001, string username = "admin", string password = "admin", int streamId = 1, int cameraId = 1, bool autoConnect = true, int ipProtocolVersion = 1, int transferProtocol = 2)
         {
             var deviceInfo = new ST_DeviceInfo
             {
@@ -104,7 +104,10 @@ namespace Mtf.Controls.Video.Sunell.IPR66
             };
 
             var returnCode = NvdcDll.Remote_Nvd_Init(ref nvdHandle, ref deviceInfo, transferProtocol);
-            CheckForError(returnCode);
+            if (HasError(returnCode))
+            {
+                return false;
+            }
 
             if (NvdcDll.NvdSdk_Is_Handle_Valid(nvdHandle))
             {
@@ -113,13 +116,22 @@ namespace Mtf.Controls.Video.Sunell.IPR66
                 SetVideoWindow();
 
                 returnCode = NvdcDll.Remote_LivePlayer2_SetNotifyWindow(nvdHandle, Handle, WM_LIVEPLAY_MESSAGE, IntPtr.Zero);
-                CheckForError(returnCode);
+                if (HasError(returnCode))
+                {
+                    return false;
+                }
 
                 returnCode = NvdcDll.Remote_LivePlayer2_Open(nvdHandle, cameraId);
-                CheckForError(returnCode);
+                if (HasError(returnCode))
+                {
+                    return false;
+                }
 
                 returnCode = NvdcDll.Remote_LivePlayer2_Play(nvdHandle);
-                CheckForError(returnCode);
+                if (HasError(returnCode))
+                {
+                    return false;
+                }
 
                 //BackgroundImage = null;
             }
@@ -127,6 +139,8 @@ namespace Mtf.Controls.Video.Sunell.IPR66
             {
                 throw new InvalidOperationException("The handle is not valid.");
             }
+
+            return true;
         }
 
         public void Disconnect()
@@ -148,7 +162,7 @@ namespace Mtf.Controls.Video.Sunell.IPR66
             if (IsConnected)
             {
                 var returnCode = NvdcDll.Remote_LivePlayer2_SetVideoWindow(nvdHandle, Handle, 0, 0, Width, Height);
-                CheckForError(returnCode);
+                HasError(returnCode);
                 return true;
             }
 
@@ -160,7 +174,7 @@ namespace Mtf.Controls.Video.Sunell.IPR66
             if (IsConnected)
             {
                 var returnCode = NvdcDll.Remote_LivePlayer2_SetUseTimeStamp(nvdHandle, useTimeStamp);
-                CheckForError(returnCode);
+                HasError(returnCode);
             }
         }
 
@@ -169,7 +183,7 @@ namespace Mtf.Controls.Video.Sunell.IPR66
             if (IsConnected)
             {
                 var returnCode = NvdcDll.Remote_LivePlayer2_SetStretchMode(nvdHandle, stretch);
-                CheckForError(returnCode);
+                HasError(returnCode);
             }
         }
 
@@ -178,7 +192,7 @@ namespace Mtf.Controls.Video.Sunell.IPR66
             if (IsConnected)
             {
                 var returnCode = NvdcDll.Remote_LivePlayer2_SetAutoConnectFlag(nvdHandle, autoConnect);
-                CheckForError(returnCode);
+                HasError(returnCode);
             }
         }
 
@@ -187,7 +201,7 @@ namespace Mtf.Controls.Video.Sunell.IPR66
             if (IsConnected)
             {
                 var returnCode = NvdcDll.Remote_LivePlayer2_SetCurrentContrast(nvdHandle, percent);
-                CheckForError(returnCode);
+                HasError(returnCode);
             }
         }
 
@@ -196,7 +210,7 @@ namespace Mtf.Controls.Video.Sunell.IPR66
             if (IsConnected)
             {
                 var returnCode = NvdcDll.Remote_LivePlayer2_SetDefaultStreamId(nvdHandle, streamId);
-                CheckForError(returnCode);
+                HasError(returnCode);
             }
         }
 
@@ -205,7 +219,7 @@ namespace Mtf.Controls.Video.Sunell.IPR66
             if (IsConnected)
             {
                 var returnCode = NvdcDll.Remote_LivePlayer2_SetCurrentBrightness(nvdHandle, percent);
-                CheckForError(returnCode);
+                HasError(returnCode);
             }
         }
 
@@ -214,7 +228,7 @@ namespace Mtf.Controls.Video.Sunell.IPR66
             if (IsConnected)
             {
                 var returnCode = NvdcDll.Remote_LivePlayer2_SetCurrentHue(nvdHandle, percent);
-                CheckForError(returnCode);
+                HasError(returnCode);
             }
         }
 
@@ -223,7 +237,7 @@ namespace Mtf.Controls.Video.Sunell.IPR66
             if (IsConnected)
             {
                 var returnCode = NvdcDll.Remote_LivePlayer2_SetCurrentSaturation(nvdHandle, percent);
-                CheckForError(returnCode);
+                HasError(returnCode);
             }
         }
 
@@ -232,7 +246,7 @@ namespace Mtf.Controls.Video.Sunell.IPR66
             if (IsConnected)
             {
                 var returnCode = NvdcDll.Remote_LivePlayer2_PlaySound(nvdHandle);
-                CheckForError(returnCode);
+                HasError(returnCode);
             }
         }
 
@@ -241,7 +255,7 @@ namespace Mtf.Controls.Video.Sunell.IPR66
             if (IsConnected)
             {
                 var returnCode = NvdcDll.Remote_LivePlayer2_Pause(nvdHandle);
-                CheckForError(returnCode);
+                HasError(returnCode);
             }
         }
 
@@ -250,7 +264,7 @@ namespace Mtf.Controls.Video.Sunell.IPR66
             if (IsConnected)
             {
                 var returnCode = NvdcDll.Remote_LivePlayer2_SnapShot(nvdHandle, filePath);
-                CheckForError(returnCode);
+                HasError(returnCode);
             }
         }
 
@@ -259,10 +273,10 @@ namespace Mtf.Controls.Video.Sunell.IPR66
             if (IsConnected)
             {
                 var returnCode = NvdcDll.Remote_LivePlayer2_SetRecorderFile(nvdHandle, filePath);
-                CheckForError(returnCode);
+                HasError(returnCode);
 
                 returnCode = NvdcDll.Remote_LivePlayer2_StartRecord(nvdHandle);
-                CheckForError(returnCode);
+                HasError(returnCode);
             }
         }
 
@@ -272,12 +286,12 @@ namespace Mtf.Controls.Video.Sunell.IPR66
             {
                 int recorderStatus = 0;
                 var returnCode = NvdcDll.Remote_LivePlayer2_GetRecorderStatus(nvdHandle, ref recorderStatus);
-                CheckForError(returnCode);
+                HasError(returnCode);
             
                 if (recorderStatus == 1)
                 {
                     returnCode = NvdcDll.Remote_LivePlayer2_StopRecord(nvdHandle);
-                    CheckForError(returnCode);
+                    HasError(returnCode);
                 }
             }
         }
@@ -289,7 +303,7 @@ namespace Mtf.Controls.Video.Sunell.IPR66
             if (IsConnected)
             {
                 var returnCode = NvdcDll.Remote_PTZEx_Open(nvdHandle, cameraId);
-                CheckForError(returnCode);
+                HasError(returnCode);
             }
         }
 
@@ -298,7 +312,7 @@ namespace Mtf.Controls.Video.Sunell.IPR66
             if (IsConnected)
             {
                 var returnCode = NvdcDll.Remote_PTZEx_Close(nvdHandle);
-                CheckForError(returnCode);
+                HasError(returnCode);
             }
         }
 
@@ -307,7 +321,7 @@ namespace Mtf.Controls.Video.Sunell.IPR66
             if (IsConnected)
             {
                 var returnCode = NvdcDll.Remote_PTZEx_Stop(nvdHandle);
-                CheckForError(returnCode);
+                HasError(returnCode);
             }
         }
 
@@ -316,7 +330,7 @@ namespace Mtf.Controls.Video.Sunell.IPR66
             if (IsConnected)
             {
                 var returnCode = NvdcDll.Remote_PTZEx_RotateUp(nvdHandle, speed);
-                CheckForError(returnCode);
+                HasError(returnCode);
             }
         }
 
@@ -325,7 +339,7 @@ namespace Mtf.Controls.Video.Sunell.IPR66
             if (IsConnected)
             {
                 var returnCode = NvdcDll.Remote_PTZEx_RotateDown(nvdHandle, speed);
-                CheckForError(returnCode);
+                HasError(returnCode);
             }
         }
 
@@ -334,7 +348,7 @@ namespace Mtf.Controls.Video.Sunell.IPR66
             if (IsConnected)
             {
                 var returnCode = NvdcDll.Remote_PTZEx_RotateRight(nvdHandle, speed);
-                CheckForError(returnCode);
+                HasError(returnCode);
             }
         }
 
@@ -343,7 +357,7 @@ namespace Mtf.Controls.Video.Sunell.IPR66
             if (IsConnected)
             {
                 var returnCode = NvdcDll.Remote_PTZEx_RotateLeft(nvdHandle, speed);
-                CheckForError(returnCode);
+                HasError(returnCode);
             }
         }
         #pragma warning restore CA1707
@@ -411,7 +425,7 @@ namespace Mtf.Controls.Video.Sunell.IPR66
         //    }
         //}
 
-        private static void CheckForError(int errorCode, [CallerMemberName] string callerFunction = "", [CallerFilePath] string callerFile = "", [CallerLineNumber] int callerLine = 0)
+        private static bool HasError(int errorCode, [CallerMemberName] string callerFunction = "", [CallerFilePath] string callerFile = "", [CallerLineNumber] int callerLine = 0)
         {
             if (errorCode != 0)
             {
@@ -423,7 +437,9 @@ namespace Mtf.Controls.Video.Sunell.IPR66
                 {
                     DebugErrorBox.Show(ex);
                 }
+                return true;
             }
+            return false;
         }
     }
 }
