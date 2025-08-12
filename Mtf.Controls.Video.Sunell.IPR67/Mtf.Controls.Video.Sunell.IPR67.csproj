@@ -82,9 +82,10 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.5" />
+    <PackageReference Include="Mtf.MessageBoxes" Version="6.0.13" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.8" />
     <PackageReference Include="System.Memory" Version="4.6.3" />
-    <PackageReference Include="System.Resources.Extensions" Version="9.0.5" PrivateAssets="All" />
+    <PackageReference Include="System.Resources.Extensions" Version="9.0.8" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>

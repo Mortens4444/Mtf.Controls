@@ -1,6 +1,7 @@
 ﻿using Mtf.Controls.Interfaces;
 using Mtf.Controls.Video.Sunell.IPR67.Enums;
 using Mtf.Controls.Video.Sunell.IPR67.SunellSdk;
+using Mtf.MessageBoxes;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -20,6 +21,7 @@ namespace Mtf.Controls.Video.Sunell.IPR67
         private int channel;
         private int rotateSpeed = 50;
 
+        public const int NoSdkHandler = -3;
         public const int NoStream = -1;
         public const int NoPermission = -2;
 
@@ -97,12 +99,25 @@ namespace Mtf.Controls.Video.Sunell.IPR67
         {
             var pObj = IntPtr.Zero;
             this.channel = channel;
-            Invoke((Action)(() =>
+            //Invoke((Action)(() =>
+            //{
+            //    sdkHandler = Sdk.sdk_dev_conn(cameraIp, cameraPort, username, password, null, pObj);
+            //    this.streamId = sdkHandler != IntPtr.Zero ? Sdk.sdk_md_live_start(sdkHandler, channel, streamType, Handle, hardwareAcceleration, null, pObj) : NoStream;
+            //}));
+            sdkHandler = Sdk.sdk_dev_conn(cameraIp, cameraPort, username, password, null, pObj);
+            if (sdkHandler == IntPtr.Zero)
             {
-                sdkHandler = Sdk.sdk_dev_conn(cameraIp, cameraPort, username, password, null, pObj);
-                this.streamId = sdkHandler != IntPtr.Zero ? Sdk.sdk_md_live_start(sdkHandler, channel, streamType, Handle, hardwareAcceleration, null, pObj) : NoStream;
-            }));
+                return NoSdkHandler;
+            }
 
+            this.streamId = Sdk.sdk_md_live_start(sdkHandler, channel, streamType, Handle, hardwareAcceleration, null, pObj);
+            if (this.streamId < 0)
+            {
+                Sdk.sdk_dev_conn_close(sdkHandler);
+                sdkHandler = IntPtr.Zero;
+                return NoStream;
+                //return this.streamId;
+            }
             //if (this.streamId != streamId)
             //{
             //    _ = Sdk.sdk_md_chg_stream(sdkHandler, streamId, streamType);
@@ -146,13 +161,19 @@ namespace Mtf.Controls.Video.Sunell.IPR67
                     if (streamId > 0)
                     {
                         _ = Sdk.sdk_md_live_stop(sdkHandler, streamId);
+                        streamId = NoStream;
                     }
 
                     if (sdkHandler != IntPtr.Zero)
                     {
                         Sdk.sdk_dev_conn_close(sdkHandler);
+                        sdkHandler = IntPtr.Zero;
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                DebugErrorBox.Show(ex);
             }
             finally
             {
