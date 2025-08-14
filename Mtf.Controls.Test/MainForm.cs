@@ -214,7 +214,8 @@ namespace Mtf.Controls.Test
                 }
                 if (chkSunellIpr67.Checked)
                 {
-                    sunellVideoWindow1.Connect(cameraIp: tbSunellIpr67Ip.Text, username: tbSunellUsername.Text, password: tbSunellPassword.Text);
+                    //sunellVideoWindow1.Connect(cameraIp: tbSunellIpr67Ip.Text, username: tbSunellUsername.Text, password: tbSunellPassword.Text);
+                    sunellVideoWindow1.Connect(tbSunellIpr67Ip.Text, 30001, tbSunellUsername.Text, tbSunellPassword.Text, 1, 1, StreamType.D1, true);
                 }
             }
             catch (Exception ex)

@@ -148,7 +148,7 @@ namespace Mtf.Controls.Video.Sunell.IPR67.SunellSdk
         public static extern Int32 sdk_dev_addr_req(IntPtr handle, Int32 ipprotover, ref byte pResult);
 
         [DllImport(SdkDll, CharSet = CharSet.Ansi, CallingConvention = CallingConv)]
-        public static extern Int32 sdk_dev_live_start(IntPtr handle, Int32 chn, Int32 streamType, [MarshalAs(UnmanagedType.FunctionPtr)] SDK_STREAM_CB stream_cb, IntPtr pObj);
+        public static extern Int32 sdk_dev_live_start(IntPtr handle, Int32 chn, StreamType streamType, [MarshalAs(UnmanagedType.FunctionPtr)] SDK_STREAM_CB stream_cb, IntPtr pObj);
 
         [DllImport(SdkDll, CharSet = CharSet.Ansi, CallingConvention = CallingConv)]
         public static extern Int32 sdk_dev_live_stop(IntPtr handle, Int32 streamId);

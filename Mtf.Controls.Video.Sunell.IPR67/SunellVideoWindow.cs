@@ -5,6 +5,7 @@ using Mtf.MessageBoxes;
 using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Mtf.Controls.Video.Sunell.IPR67
@@ -16,8 +17,11 @@ namespace Mtf.Controls.Video.Sunell.IPR67
         //private Sdk.SDK_PLAY_TIME_CB playTimeCallback;
         //private Sdk.SDK_DISCONN_CB disconnectCallback;
 
-        private IntPtr sdkHandler;
-        private int streamId;
+        private GCHandle? thisHandleGch;
+        private Sdk.SDK_DISCONN_CB disconnDelegate;
+        private Sdk.SDK_PLAY_TIME_CB playTimeDelegate;
+        private IntPtr sdkHandler = IntPtr.Zero;
+        private int streamId = -1;
         private int channel;
         private int rotateSpeed = 50;
 
@@ -47,14 +51,14 @@ namespace Mtf.Controls.Video.Sunell.IPR67
             //disconnectCallback = new Sdk.SDK_DISCONN_CB(DisconnectCallback);
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                Disconnect();
-            }
-            base.Dispose(disposing);
-        }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        Disconnect();
+        //    }
+        //    base.Dispose(disposing);
+        //}
 
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -97,24 +101,47 @@ namespace Mtf.Controls.Video.Sunell.IPR67
 
         public int Connect(string cameraIp = "192.168.0.120", ushort cameraPort = 30001, string username = "admin", string password = "admin", int streamId = 1, int channel = 1, StreamType streamType = StreamType.HighDensity, bool hardwareAcceleration = true)
         {
-            var pObj = IntPtr.Zero;
+            disconnDelegate = OnSdkDisconnected;
+            playTimeDelegate = OnPlayTime;
+            thisHandleGch = GCHandle.Alloc(this, GCHandleType.Normal);
+            var pObj = GCHandle.ToIntPtr(thisHandleGch.Value);
+            if (!IsHandleCreated)
+            {
+                var _ = Handle; // force creation
+            }
+
             this.channel = channel;
             //Invoke((Action)(() =>
             //{
             //    sdkHandler = Sdk.sdk_dev_conn(cameraIp, cameraPort, username, password, null, pObj);
             //    this.streamId = sdkHandler != IntPtr.Zero ? Sdk.sdk_md_live_start(sdkHandler, channel, streamType, Handle, hardwareAcceleration, null, pObj) : NoStream;
             //}));
-            sdkHandler = Sdk.sdk_dev_conn(cameraIp, cameraPort, username, password, null, pObj);
+
+            Invoke((Action)(() =>
+            {
+                //sdkHandler = Sdk.sdk_dev_conn(cameraIp, cameraPort, username, password, null, pObj);
+                sdkHandler = Sdk.sdk_dev_conn(cameraIp, cameraPort, username, password, disconnDelegate, pObj);
+                if (sdkHandler != IntPtr.Zero)
+                {
+                    this.streamId = Sdk.sdk_md_live_start(sdkHandler, channel, streamType, Handle, hardwareAcceleration, null, pObj);
+                    //streamId = Sdk.sdk_md_live_start(sdkHandler, channel, streamType, Handle, hardwareAcceleration, playTimeDelegate, pObj);
+                }
+            }));
+
             if (sdkHandler == IntPtr.Zero)
             {
+                FreeThisHandle();
                 return NoSdkHandler;
             }
 
-            this.streamId = Sdk.sdk_md_live_start(sdkHandler, channel, streamType, Handle, hardwareAcceleration, null, pObj);
+            //this.streamId = Sdk.sdk_dev_live_start(sdkHandler, channel, streamType, null, pObj);
+            //_ = Sdk.sdk_dev_video_control(Handle, String.Empty);
+            //this.streamId = Sdk.sdk_md_live_start(sdkHandler, channel, streamType, Handle, hardwareAcceleration, null, pObj);
             if (this.streamId < 0)
             {
-                Sdk.sdk_dev_conn_close(sdkHandler);
+                try { Sdk.sdk_dev_conn_close(sdkHandler); } catch { }
                 sdkHandler = IntPtr.Zero;
+                FreeThisHandle();
                 return NoStream;
                 //return this.streamId;
             }
@@ -178,8 +205,30 @@ namespace Mtf.Controls.Video.Sunell.IPR67
             finally
             {
                 IsConnected = false;
+                FreeThisHandle();
                 Invoke((Action)(() => { BackgroundImage = Properties.Resources.NoSignal; }));
             }
+        }
+
+        private void FreeThisHandle()
+        {
+            if (thisHandleGch.HasValue && thisHandleGch.Value.IsAllocated)
+            {
+                thisHandleGch.Value.Free();
+                thisHandleGch = null;
+            }
+            disconnDelegate = null;
+            playTimeDelegate = null;
+        }
+
+        private void OnSdkDisconnected(IntPtr handle, IntPtr pObj, uint type)
+        {
+            // kezelés, logolás, UI update - INVOKE needed to touch controls
+        }
+
+        private void OnPlayTime(IntPtr handle, int streamId, IntPtr pObj, ref IntPtr pTime)
+        {
+            // játékidő callback
         }
     }
 }
