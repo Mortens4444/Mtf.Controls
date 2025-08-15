@@ -185,7 +185,7 @@ namespace Mtf.Controls.Test
 
         private void BtnShowPassword_Click(object sender, EventArgs e)
         {
-            textBox2.Text = passwordBox1.Password;
+            tbPlaintextPassword.Text = passwordBox1.Password;
         }
 
         private void BtnStartVideoWindows_Click(object sender, EventArgs e)
@@ -350,6 +350,11 @@ namespace Mtf.Controls.Test
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Sdk.sdk_dev_quit();
+        }
+
+        private void btnLoadPassword_Click(object sender, EventArgs e)
+        {
+            passwordBox1.Password = "Test";
         }
     }
 }

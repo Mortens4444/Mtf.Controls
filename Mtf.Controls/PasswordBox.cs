@@ -35,9 +35,19 @@ namespace Mtf.Controls
             if (!Char.IsControl(e.KeyChar))
             {
                 var index = SelectionStart < 0 ? 0 : (SelectionStart > password.Length ? password.Length : SelectionStart);
+
                 try
                 {
+                    if (SelectionLength > 0)
+                    {
+                        for (int i = 0; i < SelectionLength && password.Length > 0; i++)
+                        {
+                            password.RemoveAt(index);
+                        }
+                    }
+
                     password.InsertAt(index, e.KeyChar);
+
                     e.Handled = true;
                     UpdateMaskedText();
                     SelectionStart = index + 1;
@@ -136,6 +146,7 @@ namespace Mtf.Controls
                 if (String.IsNullOrEmpty(value))
                 {
                     password = new SecureString();
+                    Text = String.Empty;
                 }
                 else
                 {
@@ -145,6 +156,7 @@ namespace Mtf.Controls
                         secureString.AppendChar(ch);
                     }
                     password = secureString;
+                    UpdateMaskedText();
                 }
             }
         }

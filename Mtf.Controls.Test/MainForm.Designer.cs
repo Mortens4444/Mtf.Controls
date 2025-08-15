@@ -32,14 +32,14 @@ namespace Mtf.Controls.Test
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            var listViewGroup1 = new ListViewGroup("A", HorizontalAlignment.Left);
-            var listViewGroup2 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
-            var listViewItem1 = new ListViewItem(new string[] { "Lorem", "1", "2020.10.21" }, -1);
-            var listViewItem2 = new ListViewItem(new string[] { "Ipsum", "", "2020.10.21" }, -1);
-            var listViewItem3 = new ListViewItem(new string[] { "Dolor", "2", "2020.10.21" }, -1);
-            var listViewItem4 = new ListViewItem(new string[] { "Est", "", "" }, -1);
-            var listViewItem5 = new ListViewItem(new string[] { "Sit", "", "2020.10.21" }, -1);
-            var listViewItem6 = new ListViewItem(new string[] { "Amet", "5", "2020.10.21" }, -1);
+            var listViewGroup9 = new ListViewGroup("A", HorizontalAlignment.Left);
+            var listViewGroup10 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
+            var listViewItem22 = new ListViewItem(new string[] { "Lorem", "1", "2020.10.21" }, -1);
+            var listViewItem23 = new ListViewItem(new string[] { "Ipsum", "", "2020.10.21" }, -1);
+            var listViewItem24 = new ListViewItem(new string[] { "Dolor", "2", "2020.10.21" }, -1);
+            var listViewItem25 = new ListViewItem(new string[] { "Est", "", "" }, -1);
+            var listViewItem26 = new ListViewItem(new string[] { "Sit", "", "2020.10.21" }, -1);
+            var listViewItem27 = new ListViewItem(new string[] { "Amet", "5", "2020.10.21" }, -1);
             var treeNode1 = new TreeNode("a", 0, -2);
             var treeNode2 = new TreeNode("b", 0, 0);
             var treeNode3 = new TreeNode("Node5", 0, 0);
@@ -51,14 +51,14 @@ namespace Mtf.Controls.Test
             var treeNode9 = new TreeNode("Node2", -2, -2);
             var treeNode10 = new TreeNode("Node3", -2, -2);
             var resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            var listViewItem7 = new ListViewItem(new string[] { "..", "Parent Directory" }, "up");
-            var listViewItem8 = new ListViewItem(new string[] { "mfxlib.log", ".LOG File", "12,4 MB" }, ".log");
-            var listViewItem9 = new ListViewItem(new string[] { "rvs.txt", ".TXT File", "167,2 kB" }, ".txt");
-            var listViewGroup3 = new ListViewGroup("1. Group", HorizontalAlignment.Left);
-            var listViewGroup4 = new ListViewGroup("2. Group", HorizontalAlignment.Left);
-            var listViewItem10 = new ListViewItem("1");
-            var listViewItem11 = new ListViewItem("2");
-            var listViewItem12 = new ListViewItem("3");
+            var listViewItem28 = new ListViewItem(new string[] { "..", "Parent Directory" }, "up");
+            var listViewItem29 = new ListViewItem(new string[] { "mfxlib.log", ".LOG File", "12,4 MB" }, ".log");
+            var listViewItem30 = new ListViewItem(new string[] { "rvs.txt", ".TXT File", "167,2 kB" }, ".txt");
+            var listViewGroup11 = new ListViewGroup("1. Group", HorizontalAlignment.Left);
+            var listViewGroup12 = new ListViewGroup("2. Group", HorizontalAlignment.Left);
+            var listViewItem19 = new ListViewItem("1");
+            var listViewItem20 = new ListViewItem("2");
+            var listViewItem21 = new ListViewItem("3");
             mtfListView1 = new MtfListView();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
@@ -83,8 +83,8 @@ namespace Mtf.Controls.Test
             richTextBox1 = new RichTextBox();
             fileBrowserView1 = new FileBrowserView();
             passwordBox1 = new PasswordBox();
-            button2 = new Button();
-            textBox2 = new TextBox();
+            btnGetPassword = new Button();
+            tbPlaintextPassword = new TextBox();
             ansiColoringRichTextBox1 = new AnsiColoringRichTextBox();
             textBoxWithRegEx1 = new TextBoxWithRegEx();
             richTextBoxWithLineNumbers1 = new RichTextBoxWithLineNumbers();
@@ -130,6 +130,7 @@ namespace Mtf.Controls.Test
             tabPage9 = new TabPage();
             tabPage10 = new TabPage();
             tabPage11 = new TabPage();
+            sunellVideoWindow1 = new Mtf.Controls.Video.Sunell.IPR67.SunellVideoWindow();
             tbSunellIpr67Ip = new TextBox();
             lblSunellIpr67Ip = new Label();
             lblSunellPassword = new Label();
@@ -149,7 +150,7 @@ namespace Mtf.Controls.Test
             tabPage12 = new TabPage();
             kbd300aSimulator1 = new Kbd300ASimulator();
             colorDialog = new ColorDialog();
-            sunellVideoWindow1 = new Mtf.Controls.Video.Sunell.IPR67.SunellVideoWindow();
+            btnLoadPassword = new Button();
             ((System.ComponentModel.ISupportInitialize)mtfPictureBox1).BeginInit();
             movablePanel1.SuspendLayout();
             movableSizablePanel1.SuspendLayout();
@@ -176,10 +177,10 @@ namespace Mtf.Controls.Test
             tabPage9.SuspendLayout();
             tabPage10.SuspendLayout();
             tabPage11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)sunellVideoWindow1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)sunellVideoWindowLegacy1).BeginInit();
             tabPage12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)kbd300aSimulator1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)sunellVideoWindow1).BeginInit();
             SuspendLayout();
             // 
             // mtfListView1
@@ -194,14 +195,14 @@ namespace Mtf.Controls.Test
             mtfListView1.EnsureLastItemIsVisible = false;
             mtfListView1.FirstItemIsGray = false;
             mtfListView1.FullRowSelect = true;
-            listViewGroup1.Header = "A";
-            listViewGroup1.Name = "listViewGroup1";
-            listViewGroup2.Header = "ListViewGroup";
-            listViewGroup2.Name = "listViewGroup2";
-            mtfListView1.Groups.AddRange(new ListViewGroup[] { listViewGroup1, listViewGroup2 });
-            listViewItem5.Group = listViewGroup2;
-            listViewItem6.Group = listViewGroup1;
-            mtfListView1.Items.AddRange(new ListViewItem[] { listViewItem1, listViewItem2, listViewItem3, listViewItem4, listViewItem5, listViewItem6 });
+            listViewGroup9.Header = "A";
+            listViewGroup9.Name = "listViewGroup1";
+            listViewGroup10.Header = "ListViewGroup";
+            listViewGroup10.Name = "listViewGroup2";
+            mtfListView1.Groups.AddRange(new ListViewGroup[] { listViewGroup9, listViewGroup10 });
+            listViewItem26.Group = listViewGroup10;
+            listViewItem27.Group = listViewGroup9;
+            mtfListView1.Items.AddRange(new ListViewItem[] { listViewItem22, listViewItem23, listViewItem24, listViewItem25, listViewItem26, listViewItem27 });
             mtfListView1.Location = new Point(3, 6);
             mtfListView1.Name = "mtfListView1";
             mtfListView1.OwnerDraw = true;
@@ -466,8 +467,8 @@ namespace Mtf.Controls.Test
             // 
             fileBrowserView1.Dock = DockStyle.Fill;
             fileBrowserView1.FullRowSelect = true;
-            listViewItem7.Tag = "up";
-            fileBrowserView1.Items.AddRange(new ListViewItem[] { listViewItem7, listViewItem8, listViewItem9 });
+            listViewItem28.Tag = "up";
+            fileBrowserView1.Items.AddRange(new ListViewItem[] { listViewItem28, listViewItem29, listViewItem30 });
             fileBrowserView1.Location = new Point(0, 0);
             fileBrowserView1.Name = "fileBrowserView1";
             fileBrowserView1.Size = new Size(1586, 832);
@@ -486,22 +487,22 @@ namespace Mtf.Controls.Test
             passwordBox1.Size = new Size(100, 23);
             passwordBox1.TabIndex = 22;
             // 
-            // button2
+            // btnGetPassword
             // 
-            button2.Location = new Point(125, 22);
-            button2.Name = "button2";
-            button2.Size = new Size(100, 23);
-            button2.TabIndex = 23;
-            button2.Text = "Get password";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += BtnShowPassword_Click;
+            btnGetPassword.Location = new Point(125, 22);
+            btnGetPassword.Name = "btnGetPassword";
+            btnGetPassword.Size = new Size(100, 23);
+            btnGetPassword.TabIndex = 23;
+            btnGetPassword.Text = "Get password";
+            btnGetPassword.UseVisualStyleBackColor = true;
+            btnGetPassword.Click += BtnShowPassword_Click;
             // 
-            // textBox2
+            // tbPlaintextPassword
             // 
-            textBox2.Location = new Point(19, 51);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(206, 23);
-            textBox2.TabIndex = 24;
+            tbPlaintextPassword.Location = new Point(19, 51);
+            tbPlaintextPassword.Name = "tbPlaintextPassword";
+            tbPlaintextPassword.Size = new Size(206, 23);
+            tbPlaintextPassword.TabIndex = 24;
             // 
             // ansiColoringRichTextBox1
             // 
@@ -693,15 +694,15 @@ namespace Mtf.Controls.Test
             mtfListView2.EnsureLastItemIsVisible = false;
             mtfListView2.FirstItemIsGray = false;
             mtfListView2.FullRowSelect = true;
-            listViewGroup3.Header = "1. Group";
-            listViewGroup3.Name = "listViewGroup1";
-            listViewGroup4.Header = "2. Group";
-            listViewGroup4.Name = "listViewGroup2";
-            mtfListView2.Groups.AddRange(new ListViewGroup[] { listViewGroup3, listViewGroup4 });
-            listViewItem10.Group = listViewGroup3;
-            listViewItem11.Group = listViewGroup4;
-            listViewItem12.Group = listViewGroup4;
-            mtfListView2.Items.AddRange(new ListViewItem[] { listViewItem10, listViewItem11, listViewItem12 });
+            listViewGroup11.Header = "1. Group";
+            listViewGroup11.Name = "listViewGroup1";
+            listViewGroup12.Header = "2. Group";
+            listViewGroup12.Name = "listViewGroup2";
+            mtfListView2.Groups.AddRange(new ListViewGroup[] { listViewGroup11, listViewGroup12 });
+            listViewItem19.Group = listViewGroup11;
+            listViewItem20.Group = listViewGroup12;
+            listViewItem21.Group = listViewGroup12;
+            mtfListView2.Items.AddRange(new ListViewItem[] { listViewItem19, listViewItem20, listViewItem21 });
             mtfListView2.Location = new Point(707, 11);
             mtfListView2.Name = "mtfListView2";
             mtfListView2.OwnerDraw = true;
@@ -833,9 +834,10 @@ namespace Mtf.Controls.Test
             // 
             // tabPage5
             // 
+            tabPage5.Controls.Add(btnLoadPassword);
             tabPage5.Controls.Add(passwordBox1);
-            tabPage5.Controls.Add(button2);
-            tabPage5.Controls.Add(textBox2);
+            tabPage5.Controls.Add(btnGetPassword);
+            tabPage5.Controls.Add(tbPlaintextPassword);
             tabPage5.Controls.Add(editableComboBox1);
             tabPage5.Controls.Add(textBoxWithRegEx1);
             tabPage5.Location = new Point(4, 24);
@@ -1102,6 +1104,21 @@ namespace Mtf.Controls.Test
             tabPage11.Text = "Video";
             tabPage11.UseVisualStyleBackColor = true;
             // 
+            // sunellVideoWindow1
+            // 
+            sunellVideoWindow1.BackgroundImage = (Image)resources.GetObject("sunellVideoWindow1.BackgroundImage");
+            sunellVideoWindow1.BackgroundImageLayout = ImageLayout.Stretch;
+            sunellVideoWindow1.Location = new Point(468, 196);
+            sunellVideoWindow1.Name = "sunellVideoWindow1";
+            sunellVideoWindow1.OverlayBackgroundColor = Color.White;
+            sunellVideoWindow1.OverlayFont = new Font("Arial", 32F, FontStyle.Bold);
+            sunellVideoWindow1.OverlayLocation = new Point(10, 10);
+            sunellVideoWindow1.OverlayText = "";
+            sunellVideoWindow1.Size = new Size(218, 135);
+            sunellVideoWindow1.SizeMode = PictureBoxSizeMode.StretchImage;
+            sunellVideoWindow1.TabIndex = 62;
+            sunellVideoWindow1.TabStop = false;
+            // 
             // tbSunellIpr67Ip
             // 
             tbSunellIpr67Ip.Location = new Point(703, 82);
@@ -1292,20 +1309,15 @@ namespace Mtf.Controls.Test
             // 
             colorDialog.AllowFullOpen = false;
             // 
-            // sunellVideoWindow1
+            // btnLoadPassword
             // 
-            sunellVideoWindow1.BackgroundImage = (Image)resources.GetObject("sunellVideoWindow1.BackgroundImage");
-            sunellVideoWindow1.BackgroundImageLayout = ImageLayout.Stretch;
-            sunellVideoWindow1.Location = new Point(468, 196);
-            sunellVideoWindow1.Name = "sunellVideoWindow1";
-            sunellVideoWindow1.OverlayBackgroundColor = Color.White;
-            sunellVideoWindow1.OverlayFont = new Font("Arial", 32F, FontStyle.Bold);
-            sunellVideoWindow1.OverlayLocation = new Point(10, 10);
-            sunellVideoWindow1.OverlayText = "";
-            sunellVideoWindow1.Size = new Size(218, 135);
-            sunellVideoWindow1.SizeMode = PictureBoxSizeMode.StretchImage;
-            sunellVideoWindow1.TabIndex = 62;
-            sunellVideoWindow1.TabStop = false;
+            btnLoadPassword.Location = new Point(231, 22);
+            btnLoadPassword.Name = "btnLoadPassword";
+            btnLoadPassword.Size = new Size(100, 23);
+            btnLoadPassword.TabIndex = 30;
+            btnLoadPassword.Text = "Load password";
+            btnLoadPassword.UseVisualStyleBackColor = true;
+            btnLoadPassword.Click += btnLoadPassword_Click;
             // 
             // MainForm
             // 
@@ -1353,10 +1365,10 @@ namespace Mtf.Controls.Test
             tabPage10.ResumeLayout(false);
             tabPage11.ResumeLayout(false);
             tabPage11.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)sunellVideoWindow1).EndInit();
             ((System.ComponentModel.ISupportInitialize)sunellVideoWindowLegacy1).EndInit();
             tabPage12.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)kbd300aSimulator1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)sunellVideoWindow1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1387,8 +1399,8 @@ namespace Mtf.Controls.Test
         private RichTextBox richTextBox1;
         private FileBrowserView fileBrowserView1;
         private PasswordBox passwordBox1;
-        private Button button2;
-        private TextBox textBox2;
+        private Button btnGetPassword;
+        private TextBox tbPlaintextPassword;
         private AnsiColoringRichTextBox ansiColoringRichTextBox1;
         private ImageList imageList;
         private TextBoxWithRegEx textBoxWithRegEx1;
@@ -1455,5 +1467,6 @@ namespace Mtf.Controls.Test
         private TextBox tbSunellIpr67Ip;
         private Label lblSunellIpr67Ip;
         private Video.Sunell.IPR67.SunellVideoWindow sunellVideoWindow1;
+        private Button btnLoadPassword;
     }
 }
